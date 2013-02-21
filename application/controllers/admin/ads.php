@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Admin extends MY_Controller {
+class Ads extends MY_Controller {
 
 	public function __construct(){
 		parent::__construct();
@@ -11,54 +11,24 @@ class Admin extends MY_Controller {
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
 		$this->output->set_header('Pragma: no-cache');
 
-		if($this->session->userdata('username')!='admin'){
-			//$this->login();
-			//return false;
+		if($this->session->userdata('username')!='root'){	//<--- admin's username
+			redirect('admin');
 		}
 
 		$this->load->library('adminrender_library');
+		$this->load->model('ads_model');
 	}
 
 	public function index(){
-
-		if($this->session->userdata('username')=='root'){	//<--- admin's username
-			redirect('admin/main');
-		}else{
-			$this->login();
-		}
+		$this->list_ads();
 	}
-    
-    /**
-     * Admin Login fn
-     */
-    public function login(){
+	
+	public function list_ads(){
+		$data = $this->ads_model->get();
 
-		//----------------------------
-		//if admin is trying to login ...
-		if($this->input->post('username')){
-			//check & login
-			//redirect to admin/main if succces
-			//else return err msg array
-			
-			//$data['errors'] = $this->_chk_login();
-			$data['errors'] = $this->_chk_login_tmp($this->input->post());
-			
-			$data['username']=$this->input->post('username');
-			$data['password']=$this->input->post('password');
-		}
-		//----------------------------
+		$ads = $this->adminrender_library->render_adslist($data);
 
 
-		//$this->load->template('admin');
-		//$template['active_group'] = 'default';
-		$this->template->set_template('admin-login');
-		$this->template->write('username','testing_username');
-		$this->template->write('password','testing_password');
-		$this->template->render();
-    }
-
-	public function main(){
-		
 		$this->template->set_template('admin');
 		$data = array(	'Home'		=> base_url().'admin',
 						'Advertizements'=> base_url().'admin/ads',
@@ -71,10 +41,66 @@ class Admin extends MY_Controller {
 						'Contact'	=> base_url().'admin/contact',
 					);
 		$menu = $this->adminrender_library->render_navigation($data);
+
+		$this->template->set_template('admin');
+		$this->template->write('list',$ads);
 		$this->template->write('menu',$menu);
-		
+
 		$this->template->render();
 	}
+    
+//    /**
+//     * Admin Login fn
+//     */
+//    public function login(){
+//
+//		//----------------------------
+//		//if admin is trying to login ...
+//		if($this->input->post('username')){
+//			//check & login
+//			//redirect to admin/main if succces
+//			//else return err msg array
+//			
+//			//$data['errors'] = $this->_chk_login();
+//			$data['errors'] = $this->_chk_login_tmp($this->input->post());
+//			
+//			$data['username']=$this->input->post('username');
+//			$data['password']=$this->input->post('password');
+//		}
+//		//----------------------------
+//
+//
+//		//$this->load->template('admin');
+//		//$template['active_group'] = 'default';
+//		$this->template->set_template('admin-login');
+//		$this->template->write('username','testing_username');
+//		$this->template->write('password','testing_password');
+//		$this->template->render();
+//    }
+//
+//	public function main(){
+//		
+//		$this->template->set_template('admin');
+//		$data = array(	'Home'		=> base_url().'admin',
+//						'Advertizements'=> base_url().'admin/ads',
+//						'Models'	=> base_url().'admin/models',
+//						'Events'	=> base_url().'admin/events',
+//						'Articles'	=> base_url().'admin/articles',
+//						'Gossip'	=> base_url().'admin/gossips',
+//						'Projects'	=> base_url().'admin/projects',
+//						'Services'	=> base_url().'admin/services',
+//						'Contact'	=> base_url().'admin/contact',
+//					);
+//		$menu = $this->adminrender_library->render_navigation($data);
+//		$this->template->write('menu',$menu);
+//		
+//		$this->template->render();
+//	}
+//
+//	public function ads(){
+//		echo 'in ads';die;
+//
+//	}
 
 
 	/**

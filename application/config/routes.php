@@ -39,8 +39,10 @@
 */
 
 $route['admin'] = 'admin/admin'; 	//admin's root class
-$route['admin/(:any)'] = 'admin/admin/$1';
-$route['admin/(:any)/(:any)'] = 'admin/admin/$1/$2';
+$route['admin/main'] = 'admin/admin/main';
+
+$route['admin/(:any)'] = 'admin/$1';
+$route['admin/(:any)/(:any)'] = 'admin/$1/$2';
 
 $route['default_controller'] = 'main';
 $route['404_override'] = '';

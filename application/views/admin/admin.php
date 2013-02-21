@@ -4,20 +4,17 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<title>Steal My Admin</title>
-		<link rel="stylesheet" href="<?php echo base_url().ADMINCSS?>960.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="<?php echo base_url().ADMINCSS?>template.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="<?php echo base_url().ADMINCSS?>colour.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>960.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>template.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>colour.css" type="text/css" media="screen" charset="utf-8" />
 	</head>
 	<body>
 		<h1 id="head">Steal My Admin Template</h1>
 
-		<ul id="navigation">
-			<li><span class="active">Overview</span></li>
-			<li><a href="#">News</a></li>
-			<li><a href="#">Users</a></li>
-		</ul>
-		
+		<?php echo $menu?>
+
 		<div id="content" class="container_16 clearfix">
+
 			<div class="grid_11">
 				<h2>About</h2>
 				<p>After looking for a decent admin template and not having any success I decided to knock this one up. It's released under the creative commons license, so make sure you look at that before using it in your project.</p>
@@ -32,6 +29,38 @@
 					<li><a href="user.html">User Listing (Tables &amp; Pagination)</a></li>
 				</ol>
 			</div>
+
+<div class="grid_4">
+	<p>
+		<label>Username<small>Alpha-numeric values</small></label>
+		<input type="text">
+	</p>
+</div>
+<div class="grid_5">
+	<p>
+		<label>Email Address</label>
+		<input type="text">
+	</p>
+</div>
+<div class="grid_5">
+	<p>
+		<label>Department</label>
+		<select>
+			<option>Development</option>
+			<option>Marketing</option>
+			<option>Design</option>
+			<option>IT</option>
+		</select>
+	</p>
+</div>
+<div class="grid_2">
+	<p>
+		<input type="submit" value="New&nbsp;&nbsp;&nbsp;&nbsp;">
+		<input type="submit" value="Search">
+	</p>
+</div>
+			
+			<?php echo $list?>
 		</div>
 
 			<div id="foot">

@@ -16,7 +16,8 @@
  *     production
  *
  * NOTE: If you change these, also change the error_reporting() code below
- *
+ * 
+ * plus the link to jquery file ....
  */
 	define('ENVIRONMENT', 'development');
 /*

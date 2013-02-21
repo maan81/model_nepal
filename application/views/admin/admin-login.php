@@ -7,20 +7,28 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Model Nepal Administrator Login</title>
-  <link rel="stylesheet" href="<?php echo base_url().ADMINCSS?>login-style.css">
+  <link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>login-style.css">
   <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+	<?php if(ENVIRONMENT=='production'):?>
+		<script src='http://code.jquery.com/jquery-latest.min.js' type='text/javascript'></script>
+	<?php else : ?>
+		<script src='<?php echo base_url().JSPATH?>jquery-1.8.2.min.js' type='text/javascript'></script>
+	<?php endif?>
+	
+	<script type='text/javascript' src='<?php echo base_url().ADMINJSPATH?>functions.js'></script>
 </head>
 <body>
 	
-  <form method="post" action="" class="login">
+  <form method="post" action="" class="login" id="admin-login">
     <p>
-      <label for="username">Email:</label>
-      <input type="text" name="username" id="username" value="name@example.com">
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username" value="Username">
     </p>
 
     <p>
       <label for="password">Password:</label>
-      <input type="password" name="password" id="password" value="password">
+      <input type="password" name="password" id="password" value="********">
     </p>
 
     <p class="login-submit">

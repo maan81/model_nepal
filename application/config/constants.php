@@ -43,10 +43,10 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 |--------------------------------------------------------------------------
 |
 */
-define('ADMINCSS',								'public/admin/css/');
-define('ADMINJS',								'public/admin/views/js/');
-define('CSSPATH',								'public/admin/public/css');
-define('JSPATH',								'public/admin/public/js/');
+define('ADMINCSSPATH',			'public/admin/css/');
+define('ADMINJSPATH',			'public/admin/js/');
+define('CSSPATH',				'public/css/');
+define('JSPATH',				'public/js/');
 
 
 /* End of file constants.php */

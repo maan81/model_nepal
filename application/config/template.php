@@ -57,7 +57,10 @@ $template['active_template'] = 'site';
 */
 
 $template['admin']['template'] = 'admin/admin.php';
-$template['admin']['regions'] = array('menu');
+$template['admin']['regions'] = array(
+										'menu',
+										'list'
+									);
 $template['admin']['parser'] = 'parser';
 $template['admin']['parser_method'] = 'parse';
 $template['admin']['parse_template'] = FALSE;

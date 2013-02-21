@@ -4,10 +4,10 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<title>Steal My Admin</title>
-		<link rel="stylesheet" href="<?php echo base_url().ADMINCSS?>960.css" type="text/css" media="screen" charset="utf-8" />
-		<!--<link rel="stylesheet" href="<?php echo base_url().ADMINCSS?>fluid.css" type="text/css" media="screen" charset="utf-8" />-->
-		<link rel="stylesheet" href="<?php echo base_url().ADMINCSS?>template.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="<?php echo base_url().ADMINCSS?>colour.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>960.css" type="text/css" media="screen" charset="utf-8" />
+		<!--<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>fluid.css" type="text/css" media="screen" charset="utf-8" />-->
+		<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>template.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>colour.css" type="text/css" media="screen" charset="utf-8" />
 	</head>
 	<body>
 		

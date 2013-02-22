@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Ads extends MY_Controller {
+class Subjects extends MY_Controller {
 
 	public function __construct(){
 		parent::__construct();
@@ -69,9 +69,22 @@ class Ads extends MY_Controller {
 	
 
 	public function edit($id=null){
+/*
+		if($this->input->post()){
+			$data = $this->input->post();
+			
+			$data = $this->ads_model->update($data);
+			
+			if($data){
+				$this->session->set_flashdata('msg', 'Data saved.');			
+			}else{
+				$this->session->set_flashdata('err', 'Error saving data.');
+			}
+		}
+
 		$data = $this->ads_model->get();
 //print_r($data);die;		
-		$this->new_ads($data);
+*/		$this->new_ads($data);
 	}
 
 	private function render_navigation(){

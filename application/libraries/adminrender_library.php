@@ -22,7 +22,17 @@ class Adminrender_library{
 	/**
 	 * admin menu
 	 */
-	public function render_navigation($data){
+	public function render_navigation($data=null){
+		$data = array(	'Home'		=> base_url().'admin',
+						'Advertizements'=> base_url().'admin/ads',
+						'Models'	=> base_url().'admin/subjects',
+						'Events'	=> base_url().'admin/events',
+						'Articles'	=> base_url().'admin/articles',
+						'Gossip'	=> base_url().'admin/gossips',
+						'Projects'	=> base_url().'admin/projects',
+						'Services'	=> base_url().'admin/services',
+						'Contact'	=> base_url().'admin/contact',
+					);
 
 		$op = '<ul id="navigation">';
 		foreach($data as $key=>$val){
@@ -39,8 +49,8 @@ class Adminrender_library{
 	 * ads list
 	 */
 	public function render_adslist($data){
-		
-		$op =	'<div class="grid_2">
+//print_r($data);die;		
+		$op =	'<div class="grid_2" style="float:right;">
 					<p>
 						<a href="'.site_url('admin/ads/new_ads').'">New</a>
 					</p>
@@ -62,9 +72,8 @@ class Adminrender_library{
 								</td>
 							</tr>
 						</tfoot>';
-echo '<pre>';
-print_r($data);
-echo '</pre>';
+
+		if($data)
 		foreach($data as $key=>$val){
 			$op .=	'<tr>'.
 						'<td>'.$val->category.'</td>'.
@@ -87,9 +96,12 @@ echo '</pre>';
 	/**
 	 * new ads form
 	 */
-	public function render_new_ads($data=null){
+	public function render_new_ads($data){
 		$this->ci->load->helper('form');
-		
+//echo '<pre>';
+//print_r($data);
+//echo '</pre>';
+//die;
 		$op =	'<div class="container_16 clearfix" id="content">
 					'.form_open_multipart().'
 					<div class="grid_16">
@@ -100,7 +112,7 @@ echo '</pre>';
 					<div class="grid_5">
 						<p>
 							<label for="name">Title <small>Alpha-numeric characters without spaces.</small></label>
-							<input type="text" name="name">
+							<input type="text" name="name" value="'.($data?$data[0]->name:'').'" />
 						</p>
 					</div>
 
@@ -108,9 +120,9 @@ echo '</pre>';
 						<p>
 							<label for="category">Category</label>
 							<select name="category">
-								<option value="draft">Draft</option>
-								<option value="published">Published</option>
-								<option value="private">Private</option>
+								<option value="draft" '.($data?($data[0]->category=='draft'?'selected="selected"':''):'').'>Draft</option>
+								<option value="published" '.($data?($data[0]->category=='published'?'selected="selected"':''):'').'>Published</option>
+								<option value="private" '.($data?($data[0]->category=='private'?'selected="selected"':''):'').'>Private</option>
 							</select>
 						</p>
 					</div>
@@ -125,20 +137,27 @@ echo '</pre>';
 						<p>
 							<label for="dimensions">Dimensions <small>( width x height )</small></label>
 							<select name="dimensions">
-								<option value="248x117">248x117</option>
-								<option value="249x162">249x162</option>
-								<option value="250x223">250x223</option>
-								<option value="341x81" >341x81</option>
-								<option value="686x107">686x107</option>
-								<option value="306x78" >306x78</option>
+								<option value="248x117" '.
+									($data?($data[0]->dimensions=='248x117'?'selected="selected"':''):'').'>248x117</option>
+								<option value="249x162" '.
+									($data?($data[0]->dimensions=='249x162'?'selected="selected"':''):'').'>249x162</option>
+								<option value="250x223" '.
+									($data?($data[0]->dimensions=='250x223'?'selected="selected"':''):'').'>250x223</option>
+								<option value="341x81"  '.
+									($data?($data[0]->dimensions=='341x81'?'selected="selected"':''):'').'>341x81</option>
+								<option value="686x107" '.
+									($data?($data[0]->dimensions=='686x107'?'selected="selected"':''):'').'>686x107</option>
+								<option value="306x78"  '.
+									($data?($data[0]->dimensions=='306x78'?'selected="selected"':''):'').'>306x78</option>
 							</select>
 						</p>
 					</div>
 					<div class="grid_16">
 						<p>
 							<label for="title">Link<small>Must contain alpha-numeric characters.</small></label>
-							<input type="text" name="link">
-						</p><p class="submit">
+							<input type="text" name="link" value="'.($data?$data[0]->link:'').'">
+						</p>
+						<p class="submit">
 							<a href="'.site_url('admin/ads').'">Cancel</a>
 							<input type="submit" value="Submit">
 						</p>

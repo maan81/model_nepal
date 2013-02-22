@@ -11,16 +11,15 @@ class Ads_model extends CI_Model{
 	/**
 	 * get ads [of selected parameter]
 	 */
-	public function get($ads=null){
-
-		if(count($ads)>0){
+	public function get($ads=false){
+		if($ads){
 			foreach($ads as $key=>$value){
 				$this->db->where($key,$value);
 			}
 		}
 		$res = $this->db->get($this->table);
 
-		return $res->result();
+		return count($res->result())?$res->result():false;
 	}
 
 
@@ -31,6 +30,9 @@ class Ads_model extends CI_Model{
 		return $this->db->count_all($this->table);
 	}
 
+	//not running yet
+	public function update($data=null){
+	}
 
 	/**
 	 * set & upload nu file

@@ -47,7 +47,7 @@ define('ADMINCSSPATH',			'public/admin/css/');
 define('ADMINJSPATH',			'public/admin/js/');
 define('CSSPATH',				'public/css/');
 define('JSPATH',				'public/js/');
-
+define('ADDSPATH',				'public/ads/');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

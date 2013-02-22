@@ -33,53 +33,52 @@ class Ads_model extends CI_Model{
 
 
 	/**
-	 * store & upload nu file
+	 * set & upload nu file
 	 * returns the id
 	 */
-	public function upload($type=null){
+	public function set($data=null){
 //echo '<pre>';
 //print_r($_FILES);
 //print_r($_POST);
 //echo '</pre>';
-
-		$tmp = $_FILES['file']['name'];
+//die;
+		$tmp = $_FILES['image']['name'];
 		$ext =  end(explode('.',$tmp));
 		$mtime = microtime(true).'.'.$ext;
 //echo $mtime.'<br/>';
 		$config = array(
-					  'allowed_types' => 'jpg|jpeg|gif|png|txt|pdf|doc|docx',
-					  'upload_path' => DOCUMENTS,
+					  'allowed_types' => 'jpg|jpeg|gif|png',
+					  'upload_path' => ADDSPATH,
 					  'maintain_ratio' => true,
 					  'max-size' => 20000,
-					  'width' => 2000,
-					  'height' => 1500,
 					  'overwrite' => true,
 					  'file_name' => $mtime
 					);
 //echo '<pre>';
 //print_r($config);
 //echo '</pre>';
-
+//die;
 
 		$this->load->library('upload',$config);
 		$this->upload->initialize($config);
 
-		if(!$this->upload->do_upload('file')){
+		if(!$this->upload->do_upload('image')){
 			echo $this->upload->display_errors();
 
 		}else{
 
 			$image_data = $this->upload->data();
-
+//echo '<pre>';
+//print_r($image_data);
+//echo '</pre>';
 			$data = array(
-						'filename' 		=> $_FILES['file']['name'],
-						'title' 		=> $this->input->post('title'),
-						'description'	=> $this->input->post('description'),
-						'title_np' 		=> $this->input->post('title_np'),
-						'description_np'=> $this->input->post('description_np'),
-						'timestamp'		=> $mtime,
-						'created_by'	=> $this->ion_auth->get_user()->username,
-						'date_created'	=> $this->session->userdata('date_created'),
+						'image' 		=> $image_data['file_name'],
+						'name' 			=> $this->input->post('name'),
+						'category'		=> $this->input->post('category'),
+						'dimensions' 	=> $this->input->post('dimensions'),
+						'link'			=> $this->input->post('link'),
+					//	'timestamp'		=> $mtime,
+					//	'date_created'	=> $this->session->userdata('date_created'),
 					//	'file_type'		=> $type
 					);
 
@@ -88,7 +87,10 @@ class Ads_model extends CI_Model{
 			$this->db->insert($this->table,$data);
 
 			$data = array_merge($data,array('id'=>$this->db->insert_id()));
-
+//echo '<pre>';
+//print_r($data);
+//echo '</pre>';
+//die;
 			return $data;
 		}
 	}
@@ -103,15 +105,19 @@ class Ads_model extends CI_Model{
 	 * @return boolean
 	 */
 	public function del($ids){
-		$vip = $this->get($ids);
-//print_r($files);
-		foreach($vip as $file){
-			unlink(DOCUMENTS.$file->timestamp);
+		
+		$items = $this->get(array('id'=>$ids));
+//echo '<pre>';
+//print_r($items);
+//echo '</pre>';
+//die;
+		foreach($items as $item){
+			unlink(ADDSPATH.$item->image);
+
+			$this->db->where('id',$item->id)
+					->delete($this->table);
 		}
 
-
-		$this->db->where('id',$ids['id'])
-				->delete($this->table);
 
 		return true;
 	}

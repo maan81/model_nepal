@@ -52,8 +52,6 @@ class Admin extends MY_Controller {
 		//$this->load->template('admin');
 		//$template['active_group'] = 'default';
 		$this->template->set_template('admin-login');
-		$this->template->write('username','testing_username');
-		$this->template->write('password','testing_password');
 		$this->template->render();
     }
 

@@ -65,6 +65,7 @@ a.delete {
 	color:#fff
 }
 .error {
+	display:none;
 	background:#901830
 }
 .success {

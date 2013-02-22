@@ -14,7 +14,7 @@
 		<?php echo $menu?>
 
 		<div id="content" class="container_16 clearfix">
-
+<!--
 			<div class="grid_11">
 				<h2>About</h2>
 				<p>After looking for a decent admin template and not having any success I decided to knock this one up. It's released under the creative commons license, so make sure you look at that before using it in your project.</p>
@@ -53,14 +53,9 @@
 		</select>
 	</p>
 </div>
-<div class="grid_2">
-	<p>
-		<input type="submit" value="New&nbsp;&nbsp;&nbsp;&nbsp;">
-		<input type="submit" value="Search">
-	</p>
-</div>
-			
+-->			
 			<?php echo $list?>
+			<?php echo $new_item?>
 		</div>
 
 			<div id="foot">

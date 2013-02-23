@@ -22,7 +22,7 @@ class Adminrender_library{
 	/**
 	 * admin menu
 	 */
-	public function render_navigation($data=null){
+	public function render_navigation($selected){
 		$data = array(	'Home'		=> base_url().'admin',
 						'Advertizements'=> base_url().'admin/ads',
 						'Models'	=> base_url().'admin/subjects',
@@ -36,9 +36,11 @@ class Adminrender_library{
 
 		$op = '<ul id="navigation">';
 		foreach($data as $key=>$val){
-			$op .= '<li><a href="'.$val.'">'.$key.'</a></li>';
-			//<li><span class="active">Overview</span></li>//for selected poriton
-			//<li><a href="#">News</a></li>					//for rest
+			if($key==$selected){
+				$op .= '<li><span class="active">'.$key.'</span></li>';//for selected poriton
+			}else{
+				$op .= '<li><a href="'.$val.'">'.$key.'</a></li>';
+			}
 		}
 		$op .= '</ul>';
 		

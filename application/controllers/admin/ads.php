@@ -75,17 +75,7 @@ class Ads extends MY_Controller {
 	}
 
 	private function render_navigation(){
-		$data = array(	'Home'		=> base_url().'admin',
-						'Advertizements'=> base_url().'admin/ads',
-						'Models'	=> base_url().'admin/models',
-						'Events'	=> base_url().'admin/events',
-						'Articles'	=> base_url().'admin/articles',
-						'Gossip'	=> base_url().'admin/gossips',
-						'Projects'	=> base_url().'admin/projects',
-						'Services'	=> base_url().'admin/services',
-						'Contact'	=> base_url().'admin/contact',
-					);
-		$menu = $this->adminrender_library->render_navigation($data);
+		$menu = $this->adminrender_library->render_navigation('Advertizements');
 		$this->template->write('menu',$menu);
 	}
 }

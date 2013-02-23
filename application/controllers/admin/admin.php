@@ -58,8 +58,9 @@ class Admin extends MY_Controller {
 	public function main(){
 		
 		$this->template->set_template('admin');
-		
-		$this->render_navigation();
+
+		$menu = $this->adminrender_library->render_navigation('Home');
+		$this->template->write('menu',$menu);
 		
 		$this->template->render();
 	}

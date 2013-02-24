@@ -26,9 +26,9 @@ class Adminrender_library{
 		$data = array(	'Home'		=> base_url().'admin',
 						'Advertizements'=> base_url().'admin/ads',
 						'Models'	=> base_url().'admin/subjects',
-						'Events'	=> base_url().'admin/events',
+						'Gossips'	=> base_url().'admin/gossips',
+						//'Events'	=> base_url().'admin/events',
 						'Articles'	=> base_url().'admin/articles',
-						'Gossip'	=> base_url().'admin/gossips',
 						'Projects'	=> base_url().'admin/projects',
 						'Services'	=> base_url().'admin/services',
 						'Contact'	=> base_url().'admin/contact',
@@ -301,6 +301,111 @@ class Adminrender_library{
 
 					</form>
 				</div>';
+
+
+		return  $op;
+	}
+
+
+
+
+
+
+
+	/**
+	 * gossips list
+	 */
+	public function render_gossipslist($data){
+//print_r($data);die;		
+		$op =	'<div class="grid_2" style="float:right;">
+					<p>
+						<a href="'.site_url('admin/gossips/new_gossip').'">New</a>
+					</p>
+				</div>';
+		$op .= 	'<div class="grid_16">';
+		$op .= '	<table>
+						<thead>
+							<tr>
+								<th>Title</th>
+								<th>Summary</th>
+								<th width="10%" colspan="2">Actions</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<td class="pagination" colspan="5">
+									<span class="active curved">1</span><a class="curved" href="#">2</a><a class="curved" href="#">3</a><a class="curved" href="#">4</a> ... <a class="curved" href="#">10 million</a>
+								</td>
+							</tr>
+						</tfoot>';
+
+		if($data)
+		foreach($data as $key=>$val){
+			$op .=	'<tr>'.
+						'<td>'.$val->title.'</td>'.
+						'<td>'.$val->summary.'</td>'.
+						'<td>
+							<a class="edit" href="'.site_url('admin/gossips/edit/'.$val->id).'">Edit</a>
+						</td>'.
+						'<td>
+							<a class="delete" href="'.site_url('admin/gossips/del/'.$val->id).'">Delete</a>
+						</td>'.
+					'</tr>';
+		}
+
+		$op .=	'</table></div>';
+		return $op;
+	}
+	
+	
+	/**
+	 * new gossip form
+	 */
+	public function render_new_gossips($data){
+		$this->ci->load->helper('form');
+echo '<pre>';
+print_r($data);
+echo '</pre>';
+//die;
+
+		$op =	'<div class="container_16 clearfix" id="content">
+					'.form_open_multipart().'
+					<div class="grid_16">
+						<h2>Gossip</h2>
+						<p class="error">Something went wrong.</p>
+					</div>
+
+					<div class="grid_5">
+						<p>
+							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>
+							<input type="text" name="title" value="'.($data?$data[0]->title:'').'" />
+						</p>
+					</div>
+
+					<div class="grid_16">
+						<p>
+							<label>Summary <small>Will be displayed in search engine results.</small></label>
+							<textarea class="area_small" name="summary">'.
+								($data?$data[0]->summary:'').
+							'</textarea>
+						</p>
+					</div>
+
+					<div class="grid_16">
+						<p>
+							<label>Article <small>Markdown Syntax.</small></label>
+							<textarea class="area_medium" name="content">'.
+								($data?$data[0]->content:'').
+							'</textarea>
+						</p>
+						<p class="submit">
+							<a href="'.site_url('admin/gossips').'">Cancel</a>
+							<input type="submit" value="Submit">
+						</p>
+					</div>	
+
+					</form>
+				</div>';//.$generated_editor;
 
 
 		return  $op;

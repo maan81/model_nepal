@@ -191,3 +191,13 @@ body, textarea{color:#333;font:13px/1.5 'Helvetica Neue',Arial,'Liberation Sans'
 * html .clearfix {
 	height: 1%;
 }
+
+
+/* added ....*/
+.area_medium{
+	height:250px;
+}
+/* added ....*/
+.area_small{
+	height:75px;
+}

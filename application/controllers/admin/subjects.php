@@ -26,7 +26,7 @@ class Subjects extends MY_Controller {
 	public function list_subjects(){
 		$data = $this->subjects_model->get();
 
-		$subjects = $this->adminrender_library->render_adslist($data);
+		$subjects = $this->adminrender_library->render_subjectslist($data);
 
 		$this->template->set_template('admin');
 
@@ -38,15 +38,15 @@ class Subjects extends MY_Controller {
 	}
     
     
-    public function new_ads(){
+    public function new_subject(){
 		$data = null;
 		if($data = $this->input->post()){
 			$data = $this->subjects_model->set($data);
 		}
 	
-		$new_ads = $this->adminrender_library->render_new_ads($data);
+		$new_subjects = $this->adminrender_library->render_new_subjects($data);
 		$this->template->set_template('admin');
-		$this->template->write('new_item',$new_ads);
+		$this->template->write('new_item',$new_subjects);
 		
 		$this->render_navigation();
 		
@@ -59,7 +59,7 @@ class Subjects extends MY_Controller {
 		
 		$this->subjects_model->del($id);
 		
-		redirect('admin/ads');
+		redirect('admin/subjects');
 	}
 	
 	private function render_navigation(){

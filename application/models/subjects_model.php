@@ -33,66 +33,18 @@ class Subjects_model extends CI_Model{
 
 
 	/**
-	 * set & upload nu file
-	 * returns the id
+	 * set/update subject's info
+	 * returns the the inserted object
 	 */
 	public function set($data=null){
-//~ //echo '<pre>';
-//~ //print_r($_FILES);
-//~ //print_r($_POST);
-//~ //echo '</pre>';
-//~ //die;
-		//~ $tmp = $_FILES['image']['name'];
-		//~ $ext =  end(explode('.',$tmp));
-		//~ $mtime = microtime(true).'.'.$ext;
-//~ //echo $mtime.'<br/>';
-		//~ $config = array(
-					  //~ 'allowed_types' => 'jpg|jpeg|gif|png',
-					  //~ 'upload_path' => ADDSPATH,
-					  //~ 'maintain_ratio' => true,
-					  //~ 'max-size' => 20000,
-					  //~ 'overwrite' => true,
-					  //~ 'file_name' => $mtime
-					//~ );
-//~ //echo '<pre>';
-//~ //print_r($config);
-//~ //echo '</pre>';
-//~ //die;
-//~ 
-		//~ $this->load->library('upload',$config);
-		//~ $this->upload->initialize($config);
-//~ 
-		//~ if(!$this->upload->do_upload('image')){
-			//~ echo $this->upload->display_errors();
-//~ 
-		//~ }else{
-//~ 
-			//~ $image_data = $this->upload->data();
-//~ //echo '<pre>';
-//~ //print_r($image_data);
-//~ //echo '</pre>';
-			//~ $data = array(
-						//~ 'image' 		=> $image_data['file_name'],
-						//~ 'name' 			=> $this->input->post('name'),
-						//~ 'category'		=> $this->input->post('category'),
-						//~ 'dimensions' 	=> $this->input->post('dimensions'),
-						//~ 'link'			=> $this->input->post('link'),
-					//~ //	'timestamp'		=> $mtime,
-					//~ //	'date_created'	=> $this->session->userdata('date_created'),
-					//~ //	'file_type'		=> $type
-					//~ );
-//~ 
-//~ //print_r($_POST);
-//~ //print_r($data);die;
-			//~ $this->db->insert($this->table,$data);
-//~ 
-			//~ $data = array_merge($data,array('id'=>$this->db->insert_id()));
-//~ //echo '<pre>';
-//~ //print_r($data);
-//~ //echo '</pre>';
-//~ //die;
-			//~ return $data;
-		//~ }
+
+		$this->db->insert($this->table,$data);
+
+		$data = $this->db->insert_id();
+
+		$data = $this->get(array('id'=>$data));
+
+		return $data;
 	}
 
 

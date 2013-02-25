@@ -8,6 +8,7 @@
 class Adminrender_library{
 	
 	private $ci = null;
+	protected $ethinicity = array();
 
 	/**
 	* __construct
@@ -17,17 +18,28 @@ class Adminrender_library{
 	public function __construct(){
 		$this->ci =& get_instance();
 		$this->ci->load->database();
+		
+		array_push( $this->ethinicity,
+						'brahmin',		'gurung',
+						'limbu',		'magar',
+						'newar',		'rai',
+						'rana',			'sherpa',
+						'tamang',		'thakali',
+						'thakuri',		'tibetan Origin'
+					);
 	}
 	
 	/**
 	 * admin menu
 	 */
 	public function render_navigation($selected){
+//echo $selected;		
 		$data = array(	'Home'		=> base_url().'admin',
 						'Advertizements'=> base_url().'admin/ads',
+						'Featured Models'=> base_url().'admin/featured',
 						'Models'	=> base_url().'admin/subjects',
 						'Gossips'	=> base_url().'admin/gossips',
-						//'Events'	=> base_url().'admin/events',
+						'Events'	=> base_url().'admin/events',
 						'Articles'	=> base_url().'admin/articles',
 						'Projects'	=> base_url().'admin/projects',
 						'Services'	=> base_url().'admin/services',
@@ -61,6 +73,7 @@ class Adminrender_library{
 		$op .= '	<table>
 						<thead>
 							<tr>
+								<th>ID</th>
 								<th>Category</th>
 								<th>Title</th>
 								<th>Dimensions</th>
@@ -78,6 +91,7 @@ class Adminrender_library{
 		if($data)
 		foreach($data as $key=>$val){
 			$op .=	'<tr>'.
+						'<td>'.$val->id.'</td>'.
 						'<td>'.$val->category.'</td>'.
 						'<td>'.$val->name.'</td>'.
 						'<td>'.$val->dimensions.'</td>'.
@@ -173,19 +187,20 @@ class Adminrender_library{
 
 
 	/**
-	 * subjects list
+	 * featured list
 	 */
-	public function render_subjectslist($data){
+	public function render_featuredlist($data){
 //print_r($data);die;		
 		$op =	'<div class="grid_2" style="float:right;">
 					<p>
-						<a href="'.site_url('admin/subjects/new_subject').'">New</a>
+						<a href="'.site_url('admin/featured/new_subject').'">New</a>
 					</p>
 				</div>';
 		$op .= 	'<div class="grid_16">';
 		$op .= '	<table>
 						<thead>
 							<tr>
+								<th>ID</th>
 								<th>Name</th>
 								<th>Gender</th>
 								<th>Ethinicity</th>
@@ -203,14 +218,15 @@ class Adminrender_library{
 		if($data)
 		foreach($data as $key=>$val){
 			$op .=	'<tr>'.
+						'<td>'.$val->id.'</td>'.
 						'<td>'.$val->name.'</td>'.
 						'<td>'.$val->gender.'</td>'.
 						'<td>'.$val->ethinicity.'</td>'.
 						'<td>
-							<a class="edit" href="'.site_url('admin/subjectsw/edit/'.$val->id).'">Edit</a>
+							<a class="edit" href="'.site_url('admin/featured/edit/'.$val->id).'">Edit</a>
 						</td>'.
 						'<td>
-							<a class="delete" href="'.site_url('admin/subjects/del/'.$val->id).'">Delete</a>
+							<a class="delete" href="'.site_url('admin/featured/del/'.$val->id).'">Delete</a>
 						</td>'.
 					'</tr>';
 		}
@@ -221,9 +237,9 @@ class Adminrender_library{
 	
 
 	/**
-	 * new subjects form
+	 * new featured form
 	 */
-	public function render_new_subjects($data){
+	public function render_new_featured($data){
 		$this->ci->load->helper('form');
 //echo '<pre>';
 //print_r($data);
@@ -234,7 +250,7 @@ class Adminrender_library{
 		$op =	'<div class="container_16 clearfix" id="content">
 					'.form_open().'
 					<div class="grid_16">
-						<h2>Model</h2>
+						<h2>Featured Model</h2>
 						<p class="error">Something went wrong.</p>
 					</div>
 
@@ -259,25 +275,21 @@ class Adminrender_library{
 					<div class="grid_6">
 						<p>
 							<label for="ethinicity">Ethinicity </label>
-							<select name="ethinicity">
-								<option value="248x117" '.
-									($data?($data[0]->ethinicity=='248x117'?'selected="selected"':''):'').'>248x117</option>
-								<option value="249x162" '.
-									($data?($data[0]->ethinicity=='249x162'?'selected="selected"':''):'').'>249x162</option>
-								<option value="250x223" '.
-									($data?($data[0]->ethinicity=='250x223'?'selected="selected"':''):'').'>250x223</option>
-								<option value="341x81"  '.
-									($data?($data[0]->ethinicity=='341x81'?'selected="selected"':''):'').'>341x81</option>
-								<option value="686x107" '.
-									($data?($data[0]->ethinicity=='686x107'?'selected="selected"':''):'').'>686x107</option>
-								<option value="306x78"  '.
-									($data?($data[0]->ethinicity=='306x78'?'selected="selected"':''):'').'>306x78</option>
-							</select>
+							<select name="ethinicity">';
+
+				foreach($this->ethinicity as $val){
+					$op .= '<option value="'.$val.'" '.
+								($data?($data[0]->ethinicity==$val?'selected="selected"':''):'').'>'.
+								ucfirst($val)
+							.'</option>';								
+				}
+				
+				$op .=		'</select>
 						</p>
 					</div>
 					<div class="grid_16">
 						<p class="submit">
-							<a href="'.site_url('admin/subjects').'">Cancel</a>
+							<a href="'.site_url('admin/featured').'">Cancel</a>
 							<input type="submit" value="Submit">
 						</p>
 					</div>	
@@ -326,6 +338,7 @@ class Adminrender_library{
 		$op .= '	<table>
 						<thead>
 							<tr>
+								<th>ID</th>
 								<th>Title</th>
 								<th>Summary</th>
 								<th width="10%" colspan="2">Actions</th>
@@ -342,6 +355,7 @@ class Adminrender_library{
 		if($data)
 		foreach($data as $key=>$val){
 			$op .=	'<tr>'.
+						'<td>'.$val->id.'</td>'.
 						'<td>'.$val->title.'</td>'.
 						'<td>'.$val->summary.'</td>'.
 						'<td>
@@ -410,4 +424,114 @@ echo '</pre>';
 
 		return  $op;
 	}
+
+
+	/**
+	 * events list
+	 */
+	public function render_eventslist($data){
+//print_r($data);die;		
+		$op =	'<div class="grid_2" style="float:right;">
+					<p>
+						<a href="'.site_url('admin/events/new_event').'">New</a>
+					</p>
+				</div>';
+		$op .= 	'<div class="grid_16">';
+		$op .= '	<table>
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Title</th>
+								<th>Summary</th>
+								<th width="10%" colspan="2">Actions</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<td class="pagination" colspan="5">
+									<span class="active curved">1</span><a class="curved" href="#">2</a><a class="curved" href="#">3</a><a class="curved" href="#">4</a> ... <a class="curved" href="#">10 million</a>
+								</td>
+							</tr>
+						</tfoot>';
+
+		if($data)
+		foreach($data as $key=>$val){
+			$op .=	'<tr>'.
+						'<td>'.$val->id.'</td>'.
+						'<td>'.$val->title.'</td>'.
+						'<td>'.$val->summary.'</td>'.
+						'<td>
+							<a class="edit" href="'.site_url('admin/events/edit/'.$val->id).'">Edit</a>
+						</td>'.
+						'<td>
+							<a class="delete" href="'.site_url('admin/events/del/'.$val->id).'">Delete</a>
+						</td>'.
+					'</tr>';
+		}
+
+		$op .=	'</table></div>';
+		return $op;
+	}
+	
+	
+	/**
+	 * new events form
+	 */
+	public function render_new_events($data){
+		$this->ci->load->helper('form');
+//echo '<pre>';
+//print_r($data);
+//echo '</pre>';
+//die;
+
+		$op =	'<div class="container_16 clearfix" id="content">
+					'.form_open().'
+					<div class="grid_16">
+						<h2>New Events</h2>
+						<p class="error">Something went wrong.</p>
+					</div>
+
+					<div class="grid_5">
+						<p>
+							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>
+							<input type="text" name="title" value="'.($data?$data[0]->title:'').'" />
+						</p>
+					</div>
+
+					<div class="grid_16">
+						<p>
+							<label>Summary <small>Will be displayed in search engine results.</small></label>
+							<textarea class="area_small" name="summary">'.
+								($data?$data[0]->summary:'').
+							'</textarea>
+						</p>
+
+						<p class="submit">
+							<a href="'.site_url('admin/events').'">Cancel</a>
+							<input type="submit" value="Submit">
+						</p>
+					</div>
+
+					<div class="grid_16">
+						<small>
+							To create a Events Gallery, create a folder within <code>public\</code> 
+							and upload the images there using any ftp client. 
+						</small>
+						<br>
+						<small>eg.</small>  	
+						<small>
+							<ul style="list-style:none;">
+								<li><code>&lt;site&gt;\public\event_name\</code></li>
+								<li><code>&lt;site&gt;\public\another_event_name\</code></li>
+							</ul>
+						</small>
+					</div>		
+					</form>
+				</div>';
+
+
+		return  $op;
+	}
+
+
 }

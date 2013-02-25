@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>Steal My Admin</title>
+		<title>Model Nepal Administrator</title>
 		<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>960.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>template.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>colour.css" type="text/css" media="screen" charset="utf-8" />
 	</head>
 	<body>
-		<h1 id="head">Steal My Admin Template</h1>
+		<h1 id="head">Model Nepal Administrator</h1>
 
 		<?php echo $menu?>
 

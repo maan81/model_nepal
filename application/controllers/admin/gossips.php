@@ -112,7 +112,7 @@ die;
 //print_r($data);
 //echo '</pre>';
 //die;		
-		$this->new_gossip($data);
+		$this->new_gossip(array($data));
 	}
 
 	private function render_navigation(){

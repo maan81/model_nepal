@@ -48,7 +48,9 @@ define('ADMINJSPATH',		'public/admin/js/');
 define('CSSPATH',			'public/css/');
 define('JSPATH',			'public/js/');
 define('ADDSPATH',			'public/ads/');
-define('CKEDITOR',			'public/ckeditor');
+define('CKEDITOR',			'public/ckeditor/');
+define('FEATUREDPATH',		'public/featured/');
+define('EVENTSPATH',		'public/events/');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

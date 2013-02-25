@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Subjects_model extends CI_Model{
-	protected $table = 'subjects';
+class Featured_model extends CI_Model{
+	protected $table = 'featured';
 
 	public function __construct(){
 		parent::__construct();
@@ -11,10 +11,10 @@ class Subjects_model extends CI_Model{
 	/**
 	 * get ads [of selected parameter]
 	 */
-	public function get($subjects=null){
+	public function get($featured=null){
 
-		if(count($subjects)>0){
-			foreach($subjects as $key=>$value){
+		if(count($featured)>0){
+			foreach($featured as $key=>$value){
 				$this->db->where($key,$value);
 			}
 		}
@@ -50,7 +50,7 @@ class Subjects_model extends CI_Model{
 
 
 	/**
-	 * delete ads
+	 * delete featured
 	 *
 	 * @param array of enws ids to be deleted
 	 * 		  OR int
@@ -63,12 +63,12 @@ class Subjects_model extends CI_Model{
 //~ //print_r($items);
 //~ //echo '</pre>';
 //~ //die;
-		//~ foreach($items as $item){
-			//~ unlink(ADDSPATH.$item->image);
-//~ 
-			//~ $this->db->where('id',$item->id)
-					//~ ->delete($this->table);
-		//~ }
+		foreach($items as $item){
+			unlink(FEATUREDPATH.$item->image);
+ 
+			$this->db->where('id',$item->id)
+					 ->delete($this->table);
+		}
 //~ 
 //~ 
 		//~ return true;
@@ -109,5 +109,5 @@ class Subjects_model extends CI_Model{
 	}
 }
 
-/* End of file ads_model.php */
-/* Location: ./application/models/ads_model.php */
+/* End of file featured_model.php */
+/* Location: ./application/models/featured_model.php */

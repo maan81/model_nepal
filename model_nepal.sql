@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 24, 2013 at 05:13 PM
+-- Generation Time: Feb 25, 2013 at 01:54 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.5
 
@@ -39,6 +39,34 @@ CREATE TABLE IF NOT EXISTS `ads` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `events`
+--
+
+CREATE TABLE IF NOT EXISTS `events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(127) NOT NULL,
+  `summary` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `featured`
+--
+
+CREATE TABLE IF NOT EXISTS `featured` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `gender` tinyint(1) NOT NULL,
+  `ethinicity` varchar(127) NOT NULL,
+  `date_created` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `gossips`
 --
 
@@ -49,22 +77,7 @@ CREATE TABLE IF NOT EXISTS `gossips` (
   `summary` varchar(255) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `subjects`
---
-
-CREATE TABLE IF NOT EXISTS `subjects` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `gender` tinyint(1) NOT NULL,
-  `ethinicity` varchar(127) NOT NULL,
-  `date_created` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

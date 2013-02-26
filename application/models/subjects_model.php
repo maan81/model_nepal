@@ -66,7 +66,7 @@ class Subjects_model extends CI_Model{
 			$data = array('id'=>$this->db->insert_id());
 		}
 
-		return $this->get($data);
+		return $data;
 	}
 
 	/**

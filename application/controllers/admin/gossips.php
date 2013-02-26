@@ -92,7 +92,7 @@ class Gossips extends MY_Controller {
 		$data = array('id'=>$id);
 
 		//validate first .......
-		$this->validated_del($data);
+		$this->_validated_del($data);
 		if($this->_validated){
 			$this->gossips_model->del($data);
 			$this->session->set_flashdata('msg', 'Data deleted.');			
@@ -103,6 +103,9 @@ class Gossips extends MY_Controller {
 		redirect('admin/gossips');
 	}
 	
+	private function _validate_del($data){
+		$this->_validated = true;
+	}
 
 	private function _validate_del($data){
 		$this->_validated = true;

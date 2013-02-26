@@ -90,6 +90,7 @@ class Featured_model extends CI_Model{
 		if(!$data){
 			return false;
 		}
+
 		$items = $this->get($data);
 		
 		foreach($items as $key=>$val){

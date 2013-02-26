@@ -8,6 +8,7 @@ class Ads extends MY_Controller {
 
 	public function __construct(){
 		parent::__construct();
+
 		/**
 		 * set headers to prevent back after login
 		 */
@@ -60,10 +61,12 @@ class Ads extends MY_Controller {
 				//input new data
 				$data = $this->ads_model->set($data);
 				$this->session->set_flashdata('msg', 'Data saved.');			
-
+		
 			}else{
 				//err in validation....
 				$this->session->set_flashdata('err', 'Error saving data.');
+
+				$data = array($data);
 			}
 		}
 

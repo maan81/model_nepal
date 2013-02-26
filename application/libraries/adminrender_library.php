@@ -8,7 +8,7 @@
 class Adminrender_library{
 	
 	private $ci = null;
-	protected $ethinicity = array();
+	protected $ethnicity = array();
 
 	/**
 	* __construct
@@ -19,7 +19,7 @@ class Adminrender_library{
 		$this->ci =& get_instance();
 		$this->ci->load->database();
 		
-		array_push( $this->ethinicity,
+		array_push( $this->ethnicity,
 						'brahmin',		'gurung',
 						'limbu',		'magar',
 						'newar',		'rai',
@@ -203,7 +203,7 @@ class Adminrender_library{
 								<th>ID</th>
 								<th>Name</th>
 								<th>Gender</th>
-								<th>Ethinicity</th>
+								<th>Ethnicity</th>
 								<th width="10%" colspan="2">Actions</th>
 							</tr>
 						</thead>
@@ -221,7 +221,7 @@ class Adminrender_library{
 						'<td>'.$val->id.'</td>'.
 						'<td>'.$val->name.'</td>'.
 						'<td>'.$val->gender.'</td>'.
-						'<td>'.$val->ethinicity.'</td>'.
+						'<td>'.$val->ethnicity.'</td>'.
 						'<td>
 							<a class="edit" href="'.site_url('admin/featured/edit/'.$val->id).'">Edit</a>
 						</td>'.
@@ -274,12 +274,12 @@ class Adminrender_library{
 
 					<div class="grid_6">
 						<p>
-							<label for="ethinicity">Ethinicity </label>
-							<select name="ethinicity">';
+							<label for="ethnicity">Ethnicity </label>
+							<select name="ethnicity">';
 
-				foreach($this->ethinicity as $val){
+				foreach($this->ethnicity as $val){
 					$op .= '<option value="'.$val.'" '.
-								($data?($data[0]->ethinicity==$val?'selected="selected"':''):'').'>'.
+								($data?($data[0]->ethnicity==$val?'selected="selected"':''):'').'>'.
 								ucfirst($val)
 							.'</option>';								
 				}
@@ -534,4 +534,222 @@ echo '</pre>';
 	}
 
 
+
+
+	/**
+	 * articles list
+	 */
+	public function render_articleslist($data){
+//print_r($data);die;		
+		$op =	'<div class="grid_2" style="float:right;">
+					<p>
+						<a href="'.site_url('admin/articles/new_article').'">New</a>
+					</p>
+				</div>';
+		$op .= 	'<div class="grid_16">';
+		$op .= '	<table>
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Title</th>
+								<th>Summary</th>
+								<th width="10%" colspan="2">Actions</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<td class="pagination" colspan="5">
+									<span class="active curved">1</span><a class="curved" href="#">2</a><a class="curved" href="#">3</a><a class="curved" href="#">4</a> ... <a class="curved" href="#">10 million</a>
+								</td>
+							</tr>
+						</tfoot>';
+
+		if($data)
+		foreach($data as $key=>$val){
+			$op .=	'<tr>'.
+						'<td>'.$val->id.'</td>'.
+						'<td>'.$val->title.'</td>'.
+						'<td>'.$val->summary.'</td>'.
+						'<td>
+							<a class="edit" href="'.site_url('admin/articles/edit/'.$val->id).'">Edit</a>
+						</td>'.
+						'<td>
+							<a class="delete" href="'.site_url('admin/articles/del/'.$val->id).'">Delete</a>
+						</td>'.
+					'</tr>';
+		}
+
+		$op .=	'</table></div>';
+		return $op;
+	}
+	
+	
+	/**
+	 * new article form
+	 */
+	public function render_new_article($data){
+		$this->ci->load->helper('form');
+echo '<pre>';
+print_r($data);
+echo '</pre>';
+//die;
+
+		$op =	'<div class="container_16 clearfix" id="content">
+					'.form_open().'
+					<div class="grid_16">
+						<h2>New Article</h2>
+						<p class="error">Something went wrong.</p>
+					</div>
+
+					<div class="grid_5">
+						<p>
+							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>
+							<input type="text" name="title" value="'.($data?$data[0]->title:'').'" />
+						</p>
+					</div>
+
+					<div class="grid_16">
+						<p>
+							<label>Summary <small>Will be displayed in search engine results.</small></label>
+							<textarea class="area_small" name="summary">'.
+								($data?$data[0]->summary:'').
+							'</textarea>
+						</p>
+					</div>
+
+					<div class="grid_16">
+						<p>
+							<label>Article <small>Markdown Syntax.</small></label>
+							<textarea class="area_medium" name="content">'.
+								($data?$data[0]->content:'').
+							'</textarea>
+						</p>
+						<p class="submit">
+							<a href="'.site_url('admin/articles').'">Cancel</a>
+							<input type="submit" value="Submit">
+						</p>
+					</div>	
+					</form>
+				</div>';
+
+
+		return  $op;
+	}
+
+
+
+	/**
+	 * subjects list
+	 */
+	public function render_subjectslist($data){
+//print_r($data);die;		
+		$op =	'<div class="grid_2" style="float:right;">
+					<p>
+						<a href="'.site_url('admin/subjects/new_subject').'">New</a>
+					</p>
+				</div>';
+		$op .= 	'<div class="grid_16">';
+		$op .= '	<table>
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>Gender</th>
+								<th>Ethnicity</th>
+								<th width="10%" colspan="2">Actions</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<td class="pagination" colspan="5">
+									<span class="active curved">1</span><a class="curved" href="#">2</a><a class="curved" href="#">3</a><a class="curved" href="#">4</a> ... <a class="curved" href="#">10 million</a>
+								</td>
+							</tr>
+						</tfoot>';
+
+		if($data)
+		foreach($data as $key=>$val){
+			$op .=	'<tr>'.
+						'<td>'.$val->id.'</td>'.
+						'<td>'.$val->name.'</td>'.
+						'<td>'.$val->gender.'</td>'.
+						'<td>'.$val->ethnicity.'</td>'.
+						'<td>
+							<a class="edit" href="'.site_url('admin/subjects/edit/'.$val->id).'">Edit</a>
+						</td>'.
+						'<td>
+							<a class="delete" href="'.site_url('admin/subjects/del/'.$val->id).'">Delete</a>
+						</td>'.
+					'</tr>';
+		}
+
+		$op .=	'</table></div>';
+		return $op;
+	}
+	
+
+	/**
+	 * new subjects form
+	 */
+	public function render_new_subjects($data){
+		$this->ci->load->helper('form');
+//echo '<pre>';
+//print_r($data);
+//echo '</pre>';
+//die;
+
+
+		$op =	'<div class="container_16 clearfix" id="content">
+					'.form_open().'
+					<div class="grid_16">
+						<h2>Model</h2>
+						<p class="error">Something went wrong.</p>
+					</div>
+
+					<div class="grid_6">
+						<p>
+							<label for="name">Name <small>Alpha-numeric characters without spaces.</small></label>
+							<input type="text" name="name" value="'.($data?$data[0]->name:'').'" />
+						</p>
+					</div>
+
+					<div class="grid_5">
+						<p>
+							<label for="gender">Gender</label>
+							<select name="gender">
+								<option value="1" '.($data?($data[0]->gender=='1'?'selected="selected"':''):'').' >Male</option>
+								<option value="0" '.($data?($data[0]->gender=='0'?'selected="selected"':''):'').'>Female</option>
+								
+							</select>
+						</p>
+					</div>
+
+					<div class="grid_6">
+						<p>
+							<label for="ethnicity">Ethnicity </label>
+							<select name="ethnicity">';
+
+				foreach($this->ethnicity as $val){
+					$op .= '<option value="'.$val.'" '.
+								($data?($data[0]->ethnicity==$val?'selected="selected"':''):'').'>'.
+								ucfirst($val)
+							.'</option>';								
+				}
+				
+				$op .=		'</select>
+						</p>
+					</div>
+					<div class="grid_16">
+						<p class="submit">
+							<a href="'.site_url('admin/subjects').'">Cancel</a>
+							<input type="submit" value="Submit">
+						</p>
+					</div>	
+
+					</form>
+				</div>';
+
+
+		return  $op;
+	}
 }

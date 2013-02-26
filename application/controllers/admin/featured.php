@@ -1,6 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Featured extends MY_Controller {
 
+	/**
+	 * flag for validated; for all new inputs ... 
+	 */
+	private $_validated=false;
+
 	public function __construct(){
 		parent::__construct();
 		/**
@@ -38,10 +43,25 @@ class Featured extends MY_Controller {
 	}
     
     
-    public function new_subject(){
+    public function new_featured(){
 		$data = null;
-		if($data = $this->input->post()){
-			$data = $this->featured_model->set($data);
+
+		if($this->input->post()){
+			$data = array(
+							'name'		=> $this->input->post('name'),
+							'gender'	=> $this->input->post('gender'),
+							'ethnicity'	=> $this->input->post('ethnicity'),
+						);
+
+			$this->_validate_new($data);
+			
+			if($this->_validated){
+				//input new data
+				$data = $this->featured_model->set($data);
+
+			}else{
+				//err in validation....
+			}
 		}
 	
 		$new_featured = $this->adminrender_library->render_new_featured($data);
@@ -53,15 +73,28 @@ class Featured extends MY_Controller {
 		$this->template->render();
 	}
 	
+	private function _validate_new($data){
+		$this->_validated = true;
+	}
+
 	public function del($id=null){
 
+		$data = array('id'=>$id);
+
 		//validate first .......
-		
-		$this->featured_model->del($id);
-		
+		if($this->_validated($data)){
+			$this->featured_model->del($data);
+			$this->session->set_flashdata('msg', 'Data deleted.');			
+			
+		}else{
+			$this->session->set_flashdata('err', 'Error saving data.');
+		}
 		redirect('admin/featured');
 	}
 	
+	public function edit($id=null){
+		array('id',$id)
+	}
 	private function render_navigation(){
 		$menu = $this->adminrender_library->render_navigation('Featured Models');
 		$this->template->write('menu',$menu);

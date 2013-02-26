@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Gossips_model extends CI_Model{
-	protected $table = 'gossips';
+class Subjects_model extends CI_Model{
+	protected $table = 'subjects';
 
 	public function __construct(){
 		parent::__construct();
@@ -9,13 +9,14 @@ class Gossips_model extends CI_Model{
 
 
 	/**
-	 * get gossips
+	 * get ads [of selected parameter]
 	 * @param array of selected parameter
 	 * @return array of objects, or false 
 	 */
-	public function get($gossips=false){
-		if($gossips){
-			foreach($gossips as $key=>$value){
+	public function get($subjects=false){
+print_r($subjects);
+		if($subjects){
+			foreach($subjects as $key=>$value){
 				$this->db->where($key,$value);
 			}
 		}
@@ -26,7 +27,7 @@ class Gossips_model extends CI_Model{
 
 	/**
 	 * count records
-	 * @param subject array/object
+	 * @param records array/object
 	 * @return integer
 	 */
 	public function record_count($data=false){
@@ -38,21 +39,26 @@ class Gossips_model extends CI_Model{
 		return $this->db->count_all_records($this->table);
 	}
 
+
 	/**
 	 * set/update record's info
 	 * @param record array/object
 	 * @return the inserted/updated object
 	 */
 	public function set($data=false){
+//echo '<pre>';
+//print_r($data);
+//echo '</pre>';
+//die;
 		if(!$data)
 			return false;
 
 		$data = (object)$data;
 
 		//update data
-		if($data->id){
+		if(isset($data->id)){
 			$this->update($data);
-		
+
 		//insert new data
 		}else{
 			$this->db->insert($this->table,$data);
@@ -62,7 +68,6 @@ class Gossips_model extends CI_Model{
 
 		return $this->get($data);
 	}
-
 
 	/**
 	 * update record's info
@@ -94,8 +99,7 @@ class Gossips_model extends CI_Model{
 		}
 		return true;
 	}
-
 }
 
-/* End of file gossips_model.php */
-/* Location: ./application/models/gossips_model.php */
+/* End of file subjects_model.php */
+/* Location: ./application/models/subjects_model.php */

@@ -1,6 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Ads extends MY_Controller {
 
+	/**
+	 * flag for validated; for all new inputs ... 
+	 */
+	private $_validated=false;
+
 	public function __construct(){
 		parent::__construct();
 		/**
@@ -40,16 +45,28 @@ class Ads extends MY_Controller {
     
     public function new_ads($data = false){
 		if($this->input->post()){
-			$data = $this->input->post();
+			$data = array(
+							'name'		=> $this->input->post('name'),
+							'category'	=> $this->input->post('category'),
+							'dimensions'=> $this->input->post('dimensions'),
+							'link'		=> $this->input->post('link'),
+							'image'		=> $this->input->post('image')
+						);
+
+			$this->_validate_new($data);
+
 			
-			$data = $this->ads_model->set($data);
-			
-			if($data){
+			if($this->_validated){
+				//input new data
+				$data = $this->ads_model->set($data);
 				$this->session->set_flashdata('msg', 'Data saved.');			
+
 			}else{
+				//err in validation....
 				$this->session->set_flashdata('err', 'Error saving data.');
 			}
 		}
+
 		$new_ads = $this->adminrender_library->render_new_ads($data);
 		$this->template->set_template('admin');
 		$this->template->write('new_item',$new_ads);
@@ -59,17 +76,27 @@ class Ads extends MY_Controller {
 		$this->template->render();
 	}
 	
+	private function _validate_new($data){
+		$this->_validated = true;
+	}
+
 	public function del($id=null){
+		$data = array('id'=>$id);
 
-		if($this->ads_model->del($id))
-			$this->session->flashdata('msg','Sucessfuly deleted.');
-
+		//validate first .......
+		if($this->_validated($data)){
+			$this->ads_model->del($data);
+			$this->session->set_flashdata('msg', 'Data deleted.');			
+			
+		}else{
+			$this->session->set_flashdata('err', 'Error saving data.');
+		}
 		redirect('admin/ads');
 	}
 	
 
 	public function edit($id=null){
-		$data = $this->ads_model->get();
+		$data = $this->ads_model->get(array('id',$id));
 //print_r($data);die;		
 		$this->new_ads($data);
 	}

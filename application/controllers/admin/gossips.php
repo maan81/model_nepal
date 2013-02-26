@@ -1,6 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Gossips extends MY_Controller {
 
+	/**
+	 * flag for validated; for all new inputs ... 
+	 */
+	private $_validated=false;
+
 	public function __construct(){
 		parent::__construct();
 		/**
@@ -40,16 +45,29 @@ class Gossips extends MY_Controller {
     
     public function new_gossip($data = false){
 		if($this->input->post()){
-			$data = $this->input->post();
+			$data = array(
+							'content'		=> $this->input->post('content'),
+							'title'	=> $this->input->post('title'),
+							'summary'	=> $this->input->post('summary'),
+						);
 			
-			$data = $this->gossips_model->set($data);
-			
-			if($data){
-				$this->session->set_flashdata('msg', 'Data saved.');			
+			$this->_validate_new($data);
+
+			if($this->_validated){
+				//input new data
+				$data = $this->gossips_model->set($data);
+				
+				if($data){
+					$this->session->set_flashdata('msg', 'Data saved.');			
+				}else{
+					$this->session->set_flashdata('err', 'Error saving data.');
+				}
+
 			}else{
-				$this->session->set_flashdata('err', 'Error saving data.');
+				//err in validation....
 			}
 		}
+
 
 		//$data['generated_editor'] = $this->_ckeditor_conf();
 		//$data['generated_editor'] = display_ckeditor($data['generated_editor']);
@@ -82,14 +100,23 @@ class Gossips extends MY_Controller {
 
 	public function del($id=null){
 
-		if($this->gossips_model->del($id))
-			$this->session->flashdata('msg','Sucessfuly deleted.');
+		$data = array('id'=>$id);
 
+		//validate first .......
+		if($this->_validated($data)){
+			$this->gossips_model->del($data);
+			$this->session->set_flashdata('msg', 'Data deleted.');			
+			
+		}else{
+			$this->session->set_flashdata('err', 'Error saving data.');
+		}
 		redirect('admin/gossips');
 	}
 	
 
 	public function edit($id=false){
+print_r($id);
+die('in gossip editing ...');		
 		if($this->input->post()){
 			$data = $this->input->post();
 			

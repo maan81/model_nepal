@@ -9,104 +9,96 @@ class Featured_model extends CI_Model{
 
 
 	/**
-	 * get ads [of selected parameter]
+	 * count records
+	 * @param records array/object
+	 * @return integer
 	 */
-	public function get($featured=null){
+	public function record_count($data=false){
+		if($data){
+			foreach($data as $key=>$val){
+				$this->db->where($key,$val);
+			}
+		}
+		return $this->db->count_all_records($this->table);
+	}
 
-		if(count($featured)>0){
+	/**
+	 * get featured [of selected parameter]
+	 * @param array of selected parameter
+	 * @return array of objects, or false 
+	 */
+	public function get($featured=false){
+
+		if($featured){
 			foreach($featured as $key=>$value){
 				$this->db->where($key,$value);
 			}
 		}
 		$res = $this->db->get($this->table);
-
-		return $res->result();
+		return count($res->result())?$res->result():false;
 	}
 
 
 	/**
-	 * count records
+	 * set/update record's info
+	 * @param record array/object
+	 * @return the inserted/updated object
 	 */
-	public function record_count(){
-		return $this->db->count_all($this->table);
+	public function set($data=false){
+		if(!$data)
+			return false;
+
+		$data = (object)$data;
+
+		//update data
+		if($data->id){
+			$this->update($data);
+		
+		//insert new data
+		}else{
+			$this->db->insert($this->table,$data);
+
+			$data = $this->db->insert_id();
+		}
+
+		return $this->get($data);
 	}
 
 
 	/**
-	 * set/update subject's info
-	 * returns the the inserted object
+	 * update record's info
+	 * @param record array/object
 	 */
-	public function set($data=null){
-
-		$this->db->insert($this->table,$data);
-
-		$data = $this->db->insert_id();
-
-		$data = $this->get(array('id'=>$data));
-
-		return $data;
+	private function update($data){
+		unset($data->id);
+	
+		$this->db->where('id', $id);
+		$this->db->update($this->table, $data); 
 	}
 
 
-
 	/**
-	 * delete featured
+	 * delete objects
 	 *
-	 * @param array of enws ids to be deleted
-	 * 		  OR int
+	 * @param array of objects ids to be deleted
 	 * @return boolean
 	 */
-	public function del($ids){
+	public function del($data=false){
+
+		if(!$data){
+			return false;
+		}
+		$items = $this->get(array('id'=>$ids));
 		
-		//~ $items = $this->get(array('id'=>$ids));
-//~ //echo '<pre>';
-//~ //print_r($items);
-//~ //echo '</pre>';
-//~ //die;
-		foreach($items as $item){
-			unlink(FEATUREDPATH.$item->image);
- 
-			$this->db->where('id',$item->id)
+		foreach($items as $key=>$val){
+			unlink(FEATUREDPATH.$item->id);
+
+			$this->db->where('id',$val->id)
 					 ->delete($this->table);
 		}
-//~ 
-//~ 
-		//~ return true;
+		return true;
 	}
 
-
-	/**
-	 * change the active vips
-	 *
-	 * @param id int
-	 * @param active boolean
-	 */
-	public function change_active($ids=false,$active=false){
-//~ 
-		//~ $this->db->set(	'active',$active=='true'?1:0 )
-				//~ ->where('id',$ids)
-				//~ ->update($this->table);
-//~ //echo $this->db->last_query();				
-	//~ }
-//~ 
-//~ 
-	//~ /**
-	 //~ * download existing news
-	 //~ */
-	//~ private function download($data){
-//~ 
-		//~ $update = array(
-					   //~ 'title' 		=> $data[0],
-					   //~ 'content' 	=> $data[1],
-					   //~ 'date_published' => $data[3],
-					   //~ 'date_removed' => $data[4]
-					//~ );
-//~ 
-		//~ $this->db->where('id', $data['id']);
-		//~ $this->db->update('news', $update);
-//~ 
-		//~ return $data['id'];
-	}
 }
 
 /* End of file featured_model.php */

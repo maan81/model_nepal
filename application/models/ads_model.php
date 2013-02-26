@@ -9,7 +9,9 @@ class Ads_model extends CI_Model{
 
 
 	/**
-	 * get ads [of selected parameter]
+	 * get ads 
+	 * @param array of selected parameter
+	 * @return array of objects, or false 
 	 */
 	public function get($ads=false){
 		if($ads){
@@ -25,138 +27,108 @@ class Ads_model extends CI_Model{
 
 	/**
 	 * count records
+	 * @param records array/object
+	 * @return integer
 	 */
-	public function record_count(){
-		return $this->db->count_all($this->table);
+	public function record_count($data=false){
+		if($data){
+			foreach($data as $key=>$val){
+				$this->db->where($key,$val);
+			}
+		}
+		return $this->db->count_all_records($this->table);
 	}
 
-	//not running yet
-	public function update($data=null){
-	}
 
 	/**
-	 * set & upload nu file
-	 * returns the id
+	 * set/update record's info
+	 * @param record array/object
+	 * @return the inserted/updated object
 	 */
-	public function set($data=null){
-//echo '<pre>';
-//print_r($_FILES);
-//print_r($_POST);
-//echo '</pre>';
-//die;
-		$tmp = $_FILES['image']['name'];
-		$ext =  end(explode('.',$tmp));
-		$mtime = microtime(true).'.'.$ext;
-//echo $mtime.'<br/>';
-		$config = array(
-					  'allowed_types' => 'jpg|jpeg|gif|png',
-					  'upload_path' => ADDSPATH,
-					  'maintain_ratio' => true,
-					  'max-size' => 20000,
-					  'overwrite' => true,
-					  'file_name' => $mtime
-					);
-//echo '<pre>';
-//print_r($config);
-//echo '</pre>';
-//die;
+	public function set($data=false){
+		if(!$data)
+			return false;
 
-		$this->load->library('upload',$config);
-		$this->upload->initialize($config);
+		$data = (object)$data;
 
-		if(!$this->upload->do_upload('image')){
-			echo $this->upload->display_errors();
+		//update data
+		if(isset($data->id)){
+			$this->update($data);
 
+		//insert new data
 		}else{
 
-			$image_data = $this->upload->data();
-//echo '<pre>';
-//print_r($image_data);
-//echo '</pre>';
-			$data = array(
-						'image' 		=> $image_data['file_name'],
-						'name' 			=> $this->input->post('name'),
-						'category'		=> $this->input->post('category'),
-						'dimensions' 	=> $this->input->post('dimensions'),
-						'link'			=> $this->input->post('link'),
-					//	'timestamp'		=> $mtime,
-					//	'date_created'	=> $this->session->userdata('date_created'),
-					//	'file_type'		=> $type
-					);
+			$tmp = $_FILES['image']['name'];
+			$ext =  end(explode('.',$tmp));
+			$mtime = microtime(true).'.'.$ext;
 
-//print_r($_POST);
-//print_r($data);die;
-			$this->db->insert($this->table,$data);
+			$config = array(
+						  'allowed_types' => 'jpg|jpeg|gif|png',
+						  'upload_path' => ADDSPATH,
+						  'maintain_ratio' => true,
+						  'max-size' => 20000,
+						  'overwrite' => true,
+						  'file_name' => $mtime
+						);
 
-			$data = array_merge($data,array('id'=>$this->db->insert_id()));
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//die;
-			return $data;
+			$this->load->library('upload',$config);
+			$this->upload->initialize($config);
+
+			if(!$this->upload->do_upload('image')){
+				echo $this->upload->display_errors();
+
+			}else{
+
+				$image_data = $this->upload->data();
+				$data = array(
+							'image' 		=> $image_data['file_name'],
+							'name' 			=> $this->input->post('name'),
+							'category'		=> $this->input->post('category'),
+							'dimensions' 	=> $this->input->post('dimensions'),
+							'link'			=> $this->input->post('link'),
+						);
+
+				$this->db->insert($this->table,$data);
+
+				$data = array_merge($data,array('id'=>$this->db->insert_id()));
+				return $data;
+			}
 		}
 	}
 
+	/**
+	 * update record's info
+	 * @param record array/object
+	 */
+	private function update($data){
+		unset($data->id);
+	
+		$this->db->where('id', $id);
+		$this->db->update($this->table, $data); 
+	}
 
 
 	/**
-	 * delete ads
+	 * delete objects
 	 *
-	 * @param array of enws ids to be deleted
-	 * 		  OR int
+	 * @param array of objects ids to be deleted
 	 * @return boolean
 	 */
-	public function del($ids){
+	public function del($data){
 		
-		$items = $this->get(array('id'=>$ids));
-//echo '<pre>';
-//print_r($items);
-//echo '</pre>';
-//die;
-		foreach($items as $item){
-			unlink(ADDSPATH.$item->image);
-
-			$this->db->where('id',$item->id)
-					->delete($this->table);
+		if(!$data){
+			return false;
 		}
-
-
+		$items = $this->get(array('id'=>$ids));
+		foreach($items as $key=>$val){
+			unlink(ADDSPATH.$val->image);
+ 
+			$this->db->where('id',$val->id)
+					 ->delete($this->table);
+		}
 		return true;
 	}
 
-
-	/**
-	 * change the active vips
-	 *
-	 * @param id int
-	 * @param active boolean
-	 */
-	public function change_active($ids=false,$active=false){
-
-		$this->db->set(	'active',$active=='true'?1:0 )
-				->where('id',$ids)
-				->update($this->table);
-//echo $this->db->last_query();				
-	}
-
-
-	/**
-	 * download existing news
-	 */
-	private function download($data){
-
-		$update = array(
-					   'title' 		=> $data[0],
-					   'content' 	=> $data[1],
-					   'date_published' => $data[3],
-					   'date_removed' => $data[4]
-					);
-
-		$this->db->where('id', $data['id']);
-		$this->db->update('news', $update);
-
-		return $data['id'];
-	}
 }
 
 /* End of file ads_model.php */

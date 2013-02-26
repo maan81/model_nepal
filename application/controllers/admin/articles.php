@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Events extends MY_Controller {
+class Articles extends MY_Controller {
 
 	/**
 	 * flag for validated; for all new inputs ... 
@@ -21,21 +21,21 @@ class Events extends MY_Controller {
 		}
 
 		$this->load->library('adminrender_library');
-		$this->load->model('events_model');
+		$this->load->model('articles_model');
 	}
 
 	public function index(){
-		$this->list_events();
+		$this->list_articles();
 	}
 	
-	public function list_events(){
-		$data = $this->events_model->get();
+	public function list_articles(){
+		$data = $this->articles_model->get();
 
-		$events = $this->adminrender_library->render_eventslist($data);
+		$articles = $this->adminrender_library->render_articleslist($data);
 
 		$this->template->set_template('admin');
 
-		$this->template->write('list',$events);
+		$this->template->write('list',$articles);
 		
 		$this->render_navigation();
 		
@@ -43,20 +43,21 @@ class Events extends MY_Controller {
 	}
     
     
-    public function new_event($data = false){
-		
+    public function new_article($data = false){
 		if($this->input->post()){
 			$data = array(
 							'title'		=> $this->input->post('title'),
-							'summary'	=> $this->input->post('sumary'),
+							'content'	=> $this->input->post('content'),
+							'summary'	=> $this->input->post('summary')
 						);
 			
 			$this->_validate_new($data);
 
 			if($this->_validated){
+
 				//input new data
-				$data = $this->events_model->set($data);
-				
+				$data = $this->articles_model->set($data);
+	
 				if($data){
 					$this->session->set_flashdata('msg', 'Data saved.');			
 				}else{
@@ -66,12 +67,11 @@ class Events extends MY_Controller {
 			}else{
 				//err in validation....
 			}
-
 		}
 
-		$new_events = $this->adminrender_library->render_new_events($data);
+		$new_articles = $this->adminrender_library->render_new_article($data);
 		$this->template->set_template('admin');
-		$this->template->write('new_item',$new_events);
+		$this->template->write('new_item',$new_articles);
 		
 		$this->render_navigation();
 		
@@ -83,32 +83,31 @@ class Events extends MY_Controller {
 	}
 
 	public function del($id=null){
-
 		$data = array('id'=>$id);
 
 		//validate first .......
 		if($this->_validated($data)){
-			$this->events_model->del($data);
+			$this->articles_model->del($data);
 			$this->session->set_flashdata('msg', 'Data deleted.');			
 			
 		}else{
 			$this->session->set_flashdata('err', 'Error saving data.');
 		}
-		redirect('admin/events');
+		redirect('admin/articles');
 	}
 	
 
 	public function edit($id=null){
-		$data = $this->events_model->get(array('id',$id));
+		$data = $this->articles_model->get(array('id',$id));
 //print_r($data);die;		
-		$this->new_events($data);
+		$this->new_article($data);
 	}
 
 	private function render_navigation(){
-		$menu = $this->adminrender_library->render_navigation('Events');
+		$menu = $this->adminrender_library->render_navigation('Articles');
 		$this->template->write('menu',$menu);
 	}
 }
 
-/* End of file events.php */
-/* Location: ./application/controllers/admin/events.php */
+/* End of file articles.php */
+/* Location: ./application/controllers/admin/articles.php */

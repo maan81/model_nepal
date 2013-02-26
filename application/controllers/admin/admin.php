@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 class Admin extends MY_Controller {
 
 	public function __construct(){
@@ -11,10 +12,6 @@ class Admin extends MY_Controller {
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
 		$this->output->set_header('Pragma: no-cache');
 
-		if($this->session->userdata('username')!='admin'){
-			//$this->login();
-			//return false;
-		}
 
 		$this->load->library('adminrender_library');
 	}
@@ -36,10 +33,6 @@ class Admin extends MY_Controller {
 		//----------------------------
 		//if admin is trying to login ...
 		if($this->input->post('username')){
-			//check & login
-			//redirect to admin/main if succces
-			//else return err msg array
-			
 			//$data['errors'] = $this->_chk_login();
 			$data['errors'] = $this->_chk_login_tmp($this->input->post());
 			
@@ -56,6 +49,11 @@ class Admin extends MY_Controller {
     }
 
 	public function main(){
+
+		if($this->session->userdata('username')!='root'){
+			$this->login();
+			return;
+		}
 		
 		$this->template->set_template('admin');
 
@@ -74,6 +72,7 @@ class Admin extends MY_Controller {
 	 * validate username,password,captcha
 	 * redirect to admin if successful
 	 */
+	// tmp fn........... 
 	private function _chk_login_tmp($data){		
 		//username = root, password= password
 		if(($data['username']=='root') && ($data['password']=='password')){ //<--- admin's username + password
@@ -84,6 +83,11 @@ class Admin extends MY_Controller {
 		}
 		return false;
 	}
+
+//	/**
+//	 * validate username,password,captcha
+//	 * redirect to admin if successful
+//	 */
 //	private function _chk_login(){
 //		$err = array();
 //		$this->load->model('users_model');

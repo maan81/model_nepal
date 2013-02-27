@@ -51,14 +51,14 @@ class Featured_model extends CI_Model{
 		$data = (object)$data;
 
 		//update data
-		if($data->id){
+		if(isset($data->id)){
 			$this->update($data);
 		
 		//insert new data
 		}else{
 			$this->db->insert($this->table,$data);
 
-			$data = $this->db->insert_id();
+			$data = array('id'=>$this->db->insert_id());
 		}
 
 		return $this->get($data);
@@ -70,10 +70,12 @@ class Featured_model extends CI_Model{
 	 * @param record array/object
 	 */
 	private function update($data){
+		$id = $data->id;
 		unset($data->id);
 	
 		$this->db->where('id', $id);
 		$this->db->update($this->table, $data); 
+		return true;
 	}
 
 
@@ -88,7 +90,7 @@ class Featured_model extends CI_Model{
 		if(!$data){
 			return false;
 		}
-		$items = $this->get(array('id'=>$ids));
+		$items = $this->get($data);
 		
 		foreach($items as $key=>$val){
 			unlink(FEATUREDPATH.$item->id);
@@ -98,7 +100,6 @@ class Featured_model extends CI_Model{
 		}
 		return true;
 	}
-
 }
 
 /* End of file featured_model.php */

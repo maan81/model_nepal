@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 26, 2013 at 03:18 PM
+-- Generation Time: Feb 27, 2013 at 02:53 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.5
 
@@ -34,7 +34,14 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `link` varchar(255) NOT NULL,
   `image` varchar(127) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `ads`
+--
+
+INSERT INTO `ads` (`id`, `name`, `category`, `dimensions`, `link`, `image`) VALUES
+(10, 'asdf', 'private', '341x81', '', '1361879740.3759.jpg');
 
 -- --------------------------------------------------------
 
@@ -48,7 +55,14 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `content` text NOT NULL,
   `summary` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `articles`
+--
+
+INSERT INTO `articles` (`id`, `title`, `content`, `summary`) VALUES
+(1, 'jtd ', 'fghk dshkf chj edykdgh dyj dyjd ', 'df jksrtj dfgj sert ');
 
 -- --------------------------------------------------------
 
@@ -106,17 +120,14 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `ethnicity` varchar(127) NOT NULL,
   `date_created` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `subjects`
 --
 
 INSERT INTO `subjects` (`id`, `name`, `gender`, `ethnicity`, `date_created`) VALUES
-(1, 'asdf', 0, 'newar', 0),
-(2, 'bb', 0, 'tamang', 0),
-(3, 'bnar', 1, 'sherpa', 0),
-(4, 'bnariii', 0, 'tibetan Origin', 0);
+(11, 'Ram Krishna', 1, 'gurung', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

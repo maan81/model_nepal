@@ -89,9 +89,11 @@ class Ads_model extends CI_Model{
 						);
 
 				$this->db->insert($this->table,$data);
+				
+				unset($data);
+				$data['id'] = $this->db->insert_id();
 
-				$data = array_merge($data,array('id'=>$this->db->insert_id()));
-				return $data;
+				return $this->get($data);
 			}
 		}
 	}
@@ -101,10 +103,12 @@ class Ads_model extends CI_Model{
 	 * @param record array/object
 	 */
 	private function update($data){
+		$id = $data->id;
 		unset($data->id);
 	
 		$this->db->where('id', $id);
 		$this->db->update($this->table, $data); 
+		return true;
 	}
 
 
@@ -114,12 +118,12 @@ class Ads_model extends CI_Model{
 	 * @param array of objects ids to be deleted
 	 * @return boolean
 	 */
-	public function del($data){
+	public function del($data=false){
 		
 		if(!$data){
 			return false;
 		}
-		$items = $this->get(array('id'=>$ids));
+		$items = $this->get($ids);
 		foreach($items as $key=>$val){
 			unlink(ADDSPATH.$val->image);
  
@@ -128,7 +132,6 @@ class Ads_model extends CI_Model{
 		}
 		return true;
 	}
-
 }
 
 /* End of file ads_model.php */

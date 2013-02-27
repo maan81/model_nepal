@@ -9,12 +9,12 @@ class Subjects_model extends CI_Model{
 
 
 	/**
-	 * get ads [of selected parameter]
+	 * get subjects [of selected parameter]
 	 * @param array of selected parameter
 	 * @return array of objects, or false 
 	 */
 	public function get($subjects=false){
-print_r($subjects);
+//print_r($subjects);
 		if($subjects){
 			foreach($subjects as $key=>$value){
 				$this->db->where($key,$value);
@@ -63,7 +63,7 @@ print_r($subjects);
 		}else{
 			$this->db->insert($this->table,$data);
 
-			$data = $this->db->insert_id();
+			$data = array('id'=>$this->db->insert_id());
 		}
 
 		return $this->get($data);
@@ -74,10 +74,12 @@ print_r($subjects);
 	 * @param record array/object
 	 */
 	private function update($data){
+		$id = $data->id;
 		unset($data->id);
 	
 		$this->db->where('id', $id);
 		$this->db->update($this->table, $data); 
+		return true;
 	}
 
 	/**
@@ -86,12 +88,12 @@ print_r($subjects);
 	 * @param array of objects ids to be deleted
 	 * @return boolean
 	 */
-	public function del($data=false){
+	public function del($ids=false){
 
-		if(!$data){
+		if(!$ids){
 			return false;
 		}
-		$items = $this->get(array('id'=>$ids));
+		$items = $this->get($ids);
 		
 		foreach($items as $key=>$val){
 			$this->db->where('id',$val->id)

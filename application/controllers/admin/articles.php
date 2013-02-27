@@ -86,7 +86,8 @@ class Articles extends MY_Controller {
 		$data = array('id'=>$id);
 
 		//validate first .......
-		if($this->_validated($data)){
+		$this->_validate_del($data);
+		if($this->_validated){
 			$this->articles_model->del($data);
 			$this->session->set_flashdata('msg', 'Data deleted.');			
 			
@@ -96,11 +97,42 @@ class Articles extends MY_Controller {
 		redirect('admin/articles');
 	}
 	
+	private function _validate_del($data){
+		$this->_validated = true;
+	}
 
-	public function edit($id=null){
-		$data = $this->articles_model->get(array('id',$id));
-//print_r($data);die;		
+	public function edit($id=false){
+		// id error
+		if(!$id){
+			return false;
+		}
+		if($this->input->post()){
+			$id = $this->session->userdata('updated_id');
+	
+			$data = array(
+							'id'		=> $id,
+							'title'		=> $this->input->post('title'),
+							'summary'	=> $this->input->post('summary'),
+							'content'	=> $this->input->post('content'),
+						);
+
+			$this->_validate_new($data);
+			
+			if($this->_validated){
+				//input new data
+				$data = $this->articles_model->set($data);
+				$this->session->set_flashdata('msg', 'Data saved.');			
+			}else{
+				//err in validation....
+				$this->session->set_flashdata('err', 'Error saving data.');
+			}
+
+			unset($_POST);
+		}
+
+		$data = $this->articles_model->get(array('id'=>$id));
 		$this->new_article($data);
+		$this->session->set_userdata('updated_id',$id);
 	}
 
 	private function render_navigation(){

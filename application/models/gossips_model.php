@@ -50,14 +50,14 @@ class Gossips_model extends CI_Model{
 		$data = (object)$data;
 
 		//update data
-		if($data->id){
+		if(isset($data->id)){
 			$this->update($data);
 		
 		//insert new data
 		}else{
 			$this->db->insert($this->table,$data);
 
-			$data = $this->db->insert_id();
+			$data = array('id'=>$this->db->insert_id());
 		}
 
 		return $this->get($data);
@@ -69,10 +69,12 @@ class Gossips_model extends CI_Model{
 	 * @param record array/object
 	 */
 	private function update($data){
+		$id = $data->id;
 		unset($data->id);
 	
 		$this->db->where('id', $id);
 		$this->db->update($this->table, $data); 
+		return true;
 	}
 
 	/**
@@ -86,7 +88,7 @@ class Gossips_model extends CI_Model{
 		if(!$data){
 			return false;
 		}
-		$items = $this->get(array('id'=>$ids));
+		$items = $this->get($ids);
 		
 		foreach($items as $key=>$val){
 			$this->db->where('id',$val->id)
@@ -94,7 +96,6 @@ class Gossips_model extends CI_Model{
 		}
 		return true;
 	}
-
 }
 
 /* End of file gossips_model.php */

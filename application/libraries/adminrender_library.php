@@ -11,10 +11,10 @@ class Adminrender_library{
 	protected $ethnicity = array();
 
 	/**
-	* __construct
-	*
-	* @return void
-	**/
+	 * __construct
+	 *
+	 * @return void
+	 **/
 	public function __construct(){
 		$this->ci =& get_instance();
 		$this->ci->load->database();
@@ -66,7 +66,7 @@ class Adminrender_library{
 //print_r($data);die;		
 		$op =	'<div class="grid_2" style="float:right;">
 					<p>
-						<a href="'.site_url('admin/ads/new_ads').'">New</a>
+						<a href="'.site_url('admin/ads/new_ad').'">New</a>
 					</p>
 				</div>';
 		$op .= 	'<div class="grid_16">';
@@ -121,6 +121,12 @@ class Adminrender_library{
 		$op =	'<div class="container_16 clearfix" id="content">
 					'.form_open_multipart().'
 					<div class="grid_16">
+						<div class="grid_2" style="float: right;">
+							<p>
+								<a href="'.base_url('admin/ads').'">Back</a>
+							</p>
+						</div>
+
 						<h2>New Advertizement</h2>
 						<p class="error">Something went wrong.</p>
 					</div>
@@ -220,8 +226,8 @@ class Adminrender_library{
 			$op .=	'<tr>'.
 						'<td>'.$val->id.'</td>'.
 						'<td>'.$val->name.'</td>'.
-						'<td>'.$val->gender.'</td>'.
-						'<td>'.$val->ethnicity.'</td>'.
+						'<td>'.($val->gender==1?'Male':'Female').'</td>'.
+						'<td>'.ucfirst($val->ethnicity).'</td>'.
 						'<td>
 							<a class="edit" href="'.site_url('admin/featured/edit/'.$val->id).'">Edit</a>
 						</td>'.
@@ -250,6 +256,12 @@ class Adminrender_library{
 		$op =	'<div class="container_16 clearfix" id="content">
 					'.form_open().'
 					<div class="grid_16">
+						<div class="grid_2" style="float: right;">
+							<p>
+								<a href="'.base_url('admin/featured').'">Back</a>
+							</p>
+						</div>
+						
 						<h2>Featured Model</h2>
 						<p class="error">Something went wrong.</p>
 					</div>
@@ -320,10 +332,6 @@ class Adminrender_library{
 
 
 
-
-
-
-
 	/**
 	 * gossips list
 	 */
@@ -377,14 +385,20 @@ class Adminrender_library{
 	 */
 	public function render_new_gossips($data){
 		$this->ci->load->helper('form');
-echo '<pre>';
-print_r($data);
-echo '</pre>';
+//echo '<pre>';
+//print_r($data);
+//echo '</pre>';
 //die;
 
 		$op =	'<div class="container_16 clearfix" id="content">
 					'.form_open_multipart().'
 					<div class="grid_16">
+						<div class="grid_2" style="float: right;">
+							<p>
+								<a href="'.base_url('admin/gossips').'">Back</a>
+							</p>
+						</div>
+
 						<h2>Gossip</h2>
 						<p class="error">Something went wrong.</p>
 					</div>
@@ -487,6 +501,11 @@ echo '</pre>';
 		$op =	'<div class="container_16 clearfix" id="content">
 					'.form_open().'
 					<div class="grid_16">
+						<div class="grid_2" style="float: right;">
+							<p>
+								<a href="'.base_url('admin/events').'">Back</a>
+							</p>
+						</div>
 						<h2>New Events</h2>
 						<p class="error">Something went wrong.</p>
 					</div>
@@ -589,14 +608,19 @@ echo '</pre>';
 	 */
 	public function render_new_article($data){
 		$this->ci->load->helper('form');
-echo '<pre>';
-print_r($data);
-echo '</pre>';
+//echo '<pre>';
+//print_r($data);
+//echo '</pre>';
 //die;
 
 		$op =	'<div class="container_16 clearfix" id="content">
 					'.form_open().'
 					<div class="grid_16">
+						<div class="grid_2" style="float: right;">
+							<p>
+								<a href="'.base_url('admin/articles').'">Back</a>
+							</p>
+						</div>
 						<h2>New Article</h2>
 						<p class="error">Something went wrong.</p>
 					</div>
@@ -672,8 +696,8 @@ echo '</pre>';
 			$op .=	'<tr>'.
 						'<td>'.$val->id.'</td>'.
 						'<td>'.$val->name.'</td>'.
-						'<td>'.$val->gender.'</td>'.
-						'<td>'.$val->ethnicity.'</td>'.
+						'<td>'.($val->gender==1?'Male':'Female').'</td>'.
+						'<td>'.ucfirst($val->ethnicity).'</td>'.
 						'<td>
 							<a class="edit" href="'.site_url('admin/subjects/edit/'.$val->id).'">Edit</a>
 						</td>'.
@@ -702,6 +726,11 @@ echo '</pre>';
 		$op =	'<div class="container_16 clearfix" id="content">
 					'.form_open().'
 					<div class="grid_16">
+						<div class="grid_2" style="float: right;">
+							<p>
+								<a href="'.base_url('admin/subjects').'">Back</a>
+							</p>
+						</div>
 						<h2>Model</h2>
 						<p class="error">Something went wrong.</p>
 					</div>

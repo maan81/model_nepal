@@ -44,7 +44,6 @@ class Events extends MY_Controller {
     
     
     public function new_event($data = false){
-		
 		if($this->input->post()){
 			$data = array(
 							'title'		=> $this->input->post('title'),
@@ -87,7 +86,8 @@ class Events extends MY_Controller {
 		$data = array('id'=>$id);
 
 		//validate first .......
-		if($this->_validated($data)){
+		$this->_validate_del($data);
+		if($this->_validated){
 			$this->events_model->del($data);
 			$this->session->set_flashdata('msg', 'Data deleted.');			
 			
@@ -97,11 +97,41 @@ class Events extends MY_Controller {
 		redirect('admin/events');
 	}
 	
+	private function _validate_del($data){
+		$this->_validated = true;
+	}
 
-	public function edit($id=null){
-		$data = $this->events_model->get(array('id',$id));
-//print_r($data);die;		
+	public function edit($id=false){
+		// id error
+		if(!$id){
+			return false;
+		}
+		if($this->input->post()){
+			$id = $this->session->userdata('updated_id');
+	
+			$data = array(
+							'id'		=> $id,
+							'title'		=> $this->input->post('title'),
+							'summary'	=> $this->input->post('summary'),
+						);
+
+			$this->_validate_new($data);
+			
+			if($this->_validated){
+				//input new data
+				$data = $this->events_model->set($data);
+				$this->session->set_flashdata('msg', 'Data saved.');			
+			}else{
+				//err in validation....
+				$this->session->set_flashdata('err', 'Error saving data.');
+			}
+			
+			unset($_POST);
+		}
+
+		$data = $this->events_model->get(array('id'=>$id));
 		$this->new_events($data);
+		$this->session->set_userdata('updated_id',$id);
 	}
 
 	private function render_navigation(){

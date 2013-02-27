@@ -42,8 +42,8 @@ class Gossips extends MY_Controller {
 		$this->template->render();
 	}
     
-    
     public function new_gossip($data = false){
+
 		if($this->input->post()){
 			$data = array(
 							'content'		=> $this->input->post('content'),
@@ -65,6 +65,7 @@ class Gossips extends MY_Controller {
 
 			}else{
 				//err in validation....
+				$this->session->set_flashdata('err','Error saving data.');
 			}
 		}
 
@@ -81,6 +82,72 @@ class Gossips extends MY_Controller {
 		$this->template->render();
 	}
 	
+
+	private function _validate_new($data){
+		$this->_validated = true;
+	}
+
+	public function del($id=null){
+
+		$data = array('id'=>$id);
+
+		//validate first .......
+		$this->validated_del($data);
+		if($this->_validated){
+			$this->gossips_model->del($data);
+			$this->session->set_flashdata('msg', 'Data deleted.');			
+			
+		}else{
+			$this->session->set_flashdata('err', 'Error saving data.');
+		}
+		redirect('admin/gossips');
+	}
+	
+
+	private function _validate_del($data){
+		$this->_validated = true;
+	}
+
+	public function edit($id=false){
+		// id error
+		if(!$id){
+			return false;
+		}
+		if($this->input->post()){
+			$id = $this->session->userdata('updated_id');
+	
+			$data = array(
+							'id'		=> $id,
+							'content'	=> $this->input->post('content'),
+							'title'		=> $this->input->post('title'),
+							'summary'	=> $this->input->post('summary'),
+						);
+
+			$this->_validate_new($data);
+			
+			if($this->_validated){
+				//input new data
+				$data = $this->gossips_model->set($data);
+				$this->session->set_flashdata('msg', 'Data saved.');			
+			}else{
+				//err in validation....
+				$this->session->set_flashdata('err', 'Error saving data.');
+			}
+			
+			unset($_POST);
+		}
+
+		$data = $this->gossips_model->get(array('id'=>$id));
+		$this->new_gossip($data);
+		$this->session->set_userdata('updated_id',$id);
+	}
+
+	private function render_navigation(){
+		$menu = $this->adminrender_library->render_navigation('Gossips');
+		$this->template->write('menu',$menu);
+	}
+
+
 	/**
 	 * ckEditor's configurations.
 	 */
@@ -96,55 +163,6 @@ class Gossips extends MY_Controller {
 							'toolbar' 	=> 	$this->config->item('ck_toolbar'),
 						),
 		);
-	}
-
-	public function del($id=null){
-
-		$data = array('id'=>$id);
-
-		//validate first .......
-		if($this->_validated($data)){
-			$this->gossips_model->del($data);
-			$this->session->set_flashdata('msg', 'Data deleted.');			
-			
-		}else{
-			$this->session->set_flashdata('err', 'Error saving data.');
-		}
-		redirect('admin/gossips');
-	}
-	
-
-	public function edit($id=false){
-print_r($id);
-die('in gossip editing ...');		
-		if($this->input->post()){
-			$data = $this->input->post();
-			
-			$data = $this->gossips_model->set($data);
-print_r($data);
-echo $this->db->insert_id();
-die;			
-			if($data){
-				$this->session->set_flashdata('msg', 'Data saved.');			
-			}else{
-				$this->session->set_flashdata('err', 'Error saving data.');
-			}
-		}
-
-
-		if($id)
-			$id = array('id'=>$id);
-		$data = $this->gossips_model->get($id);
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//die;		
-		$this->new_gossip(array($data));
-	}
-
-	private function render_navigation(){
-		$menu = $this->adminrender_library->render_navigation('Gossips');
-		$this->template->write('menu',$menu);
 	}
 }
 

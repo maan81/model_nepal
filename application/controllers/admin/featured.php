@@ -43,9 +43,8 @@ class Featured extends MY_Controller {
 	}
     
     
-    public function new_featured(){
-		$data = null;
-
+    public function new_featured($data = false){
+		
 		if($this->input->post()){
 			$data = array(
 							'name'		=> $this->input->post('name'),
@@ -58,9 +57,10 @@ class Featured extends MY_Controller {
 			if($this->_validated){
 				//input new data
 				$data = $this->featured_model->set($data);
-
+				$this->session->set_flashdata('msg','Data saved.');
 			}else{
 				//err in validation....
+				$this->session->set_flashdata('err','Error saving data.');
 			}
 		}
 	
@@ -82,7 +82,8 @@ class Featured extends MY_Controller {
 		$data = array('id'=>$id);
 
 		//validate first .......
-		if($this->_validated($data)){
+		$this->_validate_del($data);
+		if($this->_validated){
 			$this->featured_model->del($data);
 			$this->session->set_flashdata('msg', 'Data deleted.');			
 			
@@ -92,9 +93,44 @@ class Featured extends MY_Controller {
 		redirect('admin/featured');
 	}
 	
-	public function edit($id=null){
-		array('id',$id)
+	private function _validate_del($data){
+		$this->_validated = true;
 	}
+
+	public function edit($id=false){
+		// id error
+		if(!$id){
+			return false;
+		}
+		if($this->input->post()){
+			$id = $this->session->userdata('updated_id');
+	
+			$data = array(
+							'id'		=> $id,
+							'name'		=> $this->input->post('name'),
+							'gender'	=> $this->input->post('gender'),
+							'ethnicity'	=> $this->input->post('ethnicity'),
+						);
+
+			$this->_validate_new($data);
+			
+			if($this->_validated){
+				//input new data
+				$data = $this->featured_model->set($data);
+				$this->session->set_flashdata('msg', 'Data saved.');			
+			}else{
+				//err in validation....
+				$this->session->set_flashdata('err', 'Error saving data.');
+			}
+			
+			unset($_POST);
+		}
+
+		$data = $this->featured_model->get(array('id'=>$id));
+		$this->new_featured($data);
+		$this->session->set_userdata('updated_id',$id);
+	}
+
 	private function render_navigation(){
 		$menu = $this->adminrender_library->render_navigation('Featured Models');
 		$this->template->write('menu',$menu);

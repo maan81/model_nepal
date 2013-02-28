@@ -38,6 +38,15 @@ class Ads extends MY_Controller {
 
 		$this->template->write('list',$ads);
 		
+		$this->template->add_js(ADMINJSPATH.'jquery.dataTables.min.js');
+
+		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables.css');
+		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables_themeroller.css');
+		$this->template->add_css(ADMINCSSPATH.'demo_page.css');
+		$this->template->add_css(ADMINCSSPATH.'demo_table.css');
+		$this->template->add_css(ADMINCSSPATH.'demo_table_jui.css');
+		$this->template->add_css(ADMINCSSPATH.'dataTables_modifications.css');
+
 		$this->render_navigation();
 		
 		$this->template->render();
@@ -47,7 +56,7 @@ class Ads extends MY_Controller {
     public function new_ad($data = false){
 		if($this->input->post()){
 			$data = array(
-							'name'		=> $this->input->post('name'),
+							'title'		=> $this->input->post('title'),
 							'category'	=> $this->input->post('category'),
 							'dimensions'=> $this->input->post('dimensions'),
 							'link'		=> $this->input->post('link'),
@@ -135,7 +144,7 @@ class Ads extends MY_Controller {
 		$data = $this->ads_model->get(array('id'=>$id));
 //print_r($data);die;		
 		$this->new_ad($data);
-		$this->session->set_userdata('updated_id');
+		$this->session->set_userdata('updated_id',$id);
 	}
 
 	private function render_navigation(){

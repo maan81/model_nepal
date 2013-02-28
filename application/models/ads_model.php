@@ -82,7 +82,7 @@ class Ads_model extends CI_Model{
 				$image_data = $this->upload->data();
 				$data = array(
 							'image' 		=> $image_data['file_name'],
-							'name' 			=> $this->input->post('name'),
+							'title' 		=> $this->input->post('title'),
 							'category'		=> $this->input->post('category'),
 							'dimensions' 	=> $this->input->post('dimensions'),
 							'link'			=> $this->input->post('link'),
@@ -105,7 +105,7 @@ class Ads_model extends CI_Model{
 	private function update($data){
 		$id = $data->id;
 		unset($data->id);
-	
+//print_r($data);die;	
 		$this->db->where('id', $id);
 		$this->db->update($this->table, $data); 
 		return true;

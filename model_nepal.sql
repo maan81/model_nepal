@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 27, 2013 at 02:53 PM
+-- Generation Time: Feb 28, 2013 at 02:40 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.5
 
@@ -28,20 +28,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `ads` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(127) NOT NULL,
+  `title` varchar(127) NOT NULL,
   `category` varchar(127) NOT NULL,
   `dimensions` varchar(127) NOT NULL,
   `link` varchar(255) NOT NULL,
   `image` varchar(127) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `ads`
 --
 
-INSERT INTO `ads` (`id`, `name`, `category`, `dimensions`, `link`, `image`) VALUES
-(10, 'asdf', 'private', '341x81', '', '1361879740.3759.jpg');
+INSERT INTO `ads` (`id`, `title`, `category`, `dimensions`, `link`, `image`) VALUES
+(11, 'aaa', 'published', '248x117', 'bbbb', '1361959773.2543.jpg');
 
 -- --------------------------------------------------------
 
@@ -120,14 +120,25 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `ethnicity` varchar(127) NOT NULL,
   `date_created` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `subjects`
 --
 
 INSERT INTO `subjects` (`id`, `name`, `gender`, `ethnicity`, `date_created`) VALUES
-(11, 'Ram Krishna', 1, 'gurung', 0);
+(11, 'Ram Krishna', 1, 'magar', 0),
+(13, 'asdfasdf', 1, 'gurung', 0),
+(14, 'asdfasdf', 1, 'gurung', 0),
+(15, 'asdfasdf', 1, 'gurung', 0),
+(16, 'fgn', 0, 'rai', 0),
+(17, 'oprkfg jdjsrytj s s', 0, 'rana', 0),
+(18, 'oprkfg jdjsrytj s s', 0, 'rana', 0),
+(20, 'a sfgj dfgjdd fj', 0, 'gurung', 0),
+(21, 'jklfghj dfgj srjt dxftg srtjdftst', 0, 'rana', 0),
+(22, 'iidg hfgh sth rseh', 0, 'tamang', 0),
+(23, 'mcvbg xdgzxdf aryarya', 0, 'sherpa', 0),
+(24, 's eryhsdfh se', 0, 'tamang', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

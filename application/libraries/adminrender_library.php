@@ -68,43 +68,29 @@ class Adminrender_library{
 					<p>
 						<a href="'.site_url('admin/ads/new_ad').'">New</a>
 					</p>
-				</div>';
-		$op .= 	'<div class="grid_16">';
-		$op .= '	<table>
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Category</th>
-								<th>Title</th>
-								<th>Dimensions</th>
-								<th width="10%" colspan="2">Actions</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<td class="pagination" colspan="5">
-									<span class="active curved">1</span><a class="curved" href="#">2</a><a class="curved" href="#">3</a><a class="curved" href="#">4</a> ... <a class="curved" href="#">10 million</a>
-								</td>
-							</tr>
-						</tfoot>';
+				</div>'.
+				'<script type="text/javascript">
+				$(function() {
+				    $(\'#list_data\').dataTable( {
+				        "aaData": [';
 
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'<tr>'.
-						'<td>'.$val->id.'</td>'.
-						'<td>'.$val->category.'</td>'.
-						'<td>'.$val->name.'</td>'.
-						'<td>'.$val->dimensions.'</td>'.
-						'<td>
-							<a class="edit" href="'.site_url('admin/ads/edit/'.$val->id).'">Edit</a>
-						</td>'.
-						'<td>
-							<a class="delete" href="'.site_url('admin/ads/del/'.$val->id).'">Delete</a>
-						</td>'.
-					'</tr>';
+			$op .=	'["'.$val->id.'", "'.$val->category.'", "'.$val->title.'", "'.$val->dimensions.'", "<a class=\"edit\" href=\"'.site_url('admin/ads/edit/'.$val->id).'\">Edit</a>","<a class=\"delete\" href=\"'.site_url('admin/ads/del/'.$val->id).'\">Delete</a>"]';
 		}
 
-		$op .=	'</table></div>';
+		$op .=  '],"aoColumns": [
+			            { "sTitle": "ID" },
+			            { "sTitle": "Category" },
+			            { "sTitle": "Title" },
+			            { "sTitle": "Dimensions"},
+			            { "sTitle": "Actions", sWidth:"5%"},
+			            { "sTitle": "" , sWidth:"5%"},
+			        ]
+			    } );   
+			} );
+			</script>';
+		$op .= 	'<div class="grid_16"><table id="list_data"></table></div>';
 		return $op;
 	}
 	
@@ -133,8 +119,8 @@ class Adminrender_library{
 
 					<div class="grid_5">
 						<p>
-							<label for="name">Title <small>Alpha-numeric characters without spaces.</small></label>
-							<input type="text" name="name" value="'.($data?$data[0]->name:'').'" />
+							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>
+							<input type="text" name="title" value="'.($data?$data[0]->title:'').'" />
 						</p>
 					</div>
 
@@ -176,7 +162,7 @@ class Adminrender_library{
 					</div>
 					<div class="grid_16">
 						<p>
-							<label for="title">Link<small>Must contain alpha-numeric characters.</small></label>
+							<label for="link">Link<small>Must contain alpha-numeric characters.</small></label>
 							<input type="text" name="link" value="'.($data?$data[0]->link:'').'">
 						</p>
 						<p class="submit">
@@ -201,43 +187,29 @@ class Adminrender_library{
 					<p>
 						<a href="'.site_url('admin/featured/new_subject').'">New</a>
 					</p>
-				</div>';
-		$op .= 	'<div class="grid_16">';
-		$op .= '	<table>
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Name</th>
-								<th>Gender</th>
-								<th>Ethnicity</th>
-								<th width="10%" colspan="2">Actions</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<td class="pagination" colspan="5">
-									<span class="active curved">1</span><a class="curved" href="#">2</a><a class="curved" href="#">3</a><a class="curved" href="#">4</a> ... <a class="curved" href="#">10 million</a>
-								</td>
-							</tr>
-						</tfoot>';
+				</div>'.
+				'<script type="text/javascript">
+				$(function() {
+				    $(\'#list_data\').dataTable( {
+				        "aaData": [';
 
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'<tr>'.
-						'<td>'.$val->id.'</td>'.
-						'<td>'.$val->name.'</td>'.
-						'<td>'.($val->gender==1?'Male':'Female').'</td>'.
-						'<td>'.ucfirst($val->ethnicity).'</td>'.
-						'<td>
-							<a class="edit" href="'.site_url('admin/featured/edit/'.$val->id).'">Edit</a>
-						</td>'.
-						'<td>
-							<a class="delete" href="'.site_url('admin/featured/del/'.$val->id).'">Delete</a>
-						</td>'.
-					'</tr>';
+			$op .=	'[ "'.$val->id.'", "'.$val->name.'", "'.($val->gender==1?'Male':'Female').'", "'.ucfirst($val->ethnicity).'", "<a class=\"edit\" href=\"'.site_url('admin/featured/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/featured/del/'.$val->id).'\">Delete</a>"]';
 		}
 
-		$op .=	'</table></div>';
+		$op .=  '],"aoColumns": [
+			            { "sTitle": "ID" },
+			            { "sTitle": "Name" },
+			            { "sTitle": "Gender" },
+			            { "sTitle": "Ethnicity"},
+			            { "sTitle": "Actions", sWidth:"5%"},
+			            { "sTitle": "" , sWidth:"5%"},
+			        ]
+			    } );   
+			} );
+			</script>';
+		$op .= 	'<div class="grid_16"><table id="list_data"></table></div>';
 		return $op;
 	}
 	
@@ -341,41 +313,28 @@ class Adminrender_library{
 					<p>
 						<a href="'.site_url('admin/gossips/new_gossip').'">New</a>
 					</p>
-				</div>';
-		$op .= 	'<div class="grid_16">';
-		$op .= '	<table>
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Title</th>
-								<th>Summary</th>
-								<th width="10%" colspan="2">Actions</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<td class="pagination" colspan="5">
-									<span class="active curved">1</span><a class="curved" href="#">2</a><a class="curved" href="#">3</a><a class="curved" href="#">4</a> ... <a class="curved" href="#">10 million</a>
-								</td>
-							</tr>
-						</tfoot>';
+				</div>'.
+				'<script type="text/javascript">
+				$(function() {
+				    $(\'#list_data\').dataTable( {
+				        "aaData": [';
 
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'<tr>'.
-						'<td>'.$val->id.'</td>'.
-						'<td>'.$val->title.'</td>'.
-						'<td>'.$val->summary.'</td>'.
-						'<td>
-							<a class="edit" href="'.site_url('admin/gossips/edit/'.$val->id).'">Edit</a>
-						</td>'.
-						'<td>
-							<a class="delete" href="'.site_url('admin/gossips/del/'.$val->id).'">Delete</a>
-						</td>'.
-					'</tr>';
+			$op .=	'["'.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/gossips/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/gossips/del/'.$val->id).'\">Delete</a>"]';
 		}
 
-		$op .=	'</table></div>';
+		$op .=  '],"aoColumns": [
+			            { "sTitle": "ID" },
+			            { "sTitle": "Title" },
+			            { "sTitle": "Summary" },
+			            { "sTitle": "Actions", sWidth:"5%"},
+			            { "sTitle": "" , sWidth:"5%"},
+			        ]
+			    } );   
+			} );
+			</script>';
+		$op .= 	'<div class="grid_16"><table id="list_data"></table></div>';
 		return $op;
 	}
 	
@@ -449,41 +408,28 @@ class Adminrender_library{
 					<p>
 						<a href="'.site_url('admin/events/new_event').'">New</a>
 					</p>
-				</div>';
-		$op .= 	'<div class="grid_16">';
-		$op .= '	<table>
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Title</th>
-								<th>Summary</th>
-								<th width="10%" colspan="2">Actions</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<td class="pagination" colspan="5">
-									<span class="active curved">1</span><a class="curved" href="#">2</a><a class="curved" href="#">3</a><a class="curved" href="#">4</a> ... <a class="curved" href="#">10 million</a>
-								</td>
-							</tr>
-						</tfoot>';
+				</div>'.
+				'<script type="text/javascript">
+				$(function() {
+				    $(\'#list_data\').dataTable( {
+				        "aaData": [';
 
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'<tr>'.
-						'<td>'.$val->id.'</td>'.
-						'<td>'.$val->title.'</td>'.
-						'<td>'.$val->summary.'</td>'.
-						'<td>
-							<a class="edit" href="'.site_url('admin/events/edit/'.$val->id).'">Edit</a>
-						</td>'.
-						'<td>
-							<a class="delete" href="'.site_url('admin/events/del/'.$val->id).'">Delete</a>
-						</td>'.
-					'</tr>';
+			$op .=	'['.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/events/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/events/del/'.$val->id).'\">Delete</a>"]';
 		}
 
-		$op .=	'</table></div>';
+		$op .=  '],"aoColumns": [
+			            { "sTitle": "ID" },
+			            { "sTitle": "Title" },
+			            { "sTitle": "Summary" },
+			            { "sTitle": "Actions", sWidth:"5%"},
+			            { "sTitle": "" , sWidth:"5%"},
+			        ]
+			    } );   
+			} );
+			</script>';
+		$op .= 	'<div class="grid_16"><table id="list_data"></table></div>';
 		return $op;
 	}
 	
@@ -564,41 +510,27 @@ class Adminrender_library{
 					<p>
 						<a href="'.site_url('admin/articles/new_article').'">New</a>
 					</p>
-				</div>';
-		$op .= 	'<div class="grid_16">';
-		$op .= '	<table>
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Title</th>
-								<th>Summary</th>
-								<th width="10%" colspan="2">Actions</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<td class="pagination" colspan="5">
-									<span class="active curved">1</span><a class="curved" href="#">2</a><a class="curved" href="#">3</a><a class="curved" href="#">4</a> ... <a class="curved" href="#">10 million</a>
-								</td>
-							</tr>
-						</tfoot>';
-
+				</div>'.
+				'<script type="text/javascript">
+				$(function() {
+				    $(\'#list_data\').dataTable( {
+				        "aaData": [';
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'<tr>'.
-						'<td>'.$val->id.'</td>'.
-						'<td>'.$val->title.'</td>'.
-						'<td>'.$val->summary.'</td>'.
-						'<td>
-							<a class="edit" href="'.site_url('admin/articles/edit/'.$val->id).'">Edit</a>
-						</td>'.
-						'<td>
-							<a class="delete" href="'.site_url('admin/articles/del/'.$val->id).'">Delete</a>
-						</td>'.
-					'</tr>';
+			$op .=	'[ "'.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/articles/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/articles/del/'.$val->id).'\">Delete</a>" ]';
 		}
 
-		$op .=	'</table></div>';
+		$op .=  '],"aoColumns": [
+			            { "sTitle": "ID" },
+			            { "sTitle": "Title" },
+			            { "sTitle": "Summary" },
+			            { "sTitle": "Actions", sWidth:"5%"},
+			            { "sTitle": "" , sWidth:"5%"},
+			        ]
+			    } );   
+			} );
+			</script>';
+		$op .= 	'<div class="grid_16"><table id="list_data"></table></div>';
 		return $op;
 	}
 	
@@ -671,43 +603,27 @@ class Adminrender_library{
 					<p>
 						<a href="'.site_url('admin/subjects/new_subject').'">New</a>
 					</p>
-				</div>';
-		$op .= 	'<div class="grid_16">';
-		$op .= '	<table>
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Name</th>
-								<th>Gender</th>
-								<th>Ethnicity</th>
-								<th width="10%" colspan="2">Actions</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<td class="pagination" colspan="5">
-									<span class="active curved">1</span><a class="curved" href="#">2</a><a class="curved" href="#">3</a><a class="curved" href="#">4</a> ... <a class="curved" href="#">10 million</a>
-								</td>
-							</tr>
-						</tfoot>';
-
-		if($data)
-		foreach($data as $key=>$val){
-			$op .=	'<tr>'.
-						'<td>'.$val->id.'</td>'.
-						'<td>'.$val->name.'</td>'.
-						'<td>'.($val->gender==1?'Male':'Female').'</td>'.
-						'<td>'.ucfirst($val->ethnicity).'</td>'.
-						'<td>
-							<a class="edit" href="'.site_url('admin/subjects/edit/'.$val->id).'">Edit</a>
-						</td>'.
-						'<td>
-							<a class="delete" href="'.site_url('admin/subjects/del/'.$val->id).'">Delete</a>
-						</td>'.
-					'</tr>';
-		}
-
-		$op .=	'</table></div>';
+				</div>'.
+				'<script type="text/javascript">
+				$(function() {
+				    $(\'#list_data\').dataTable( {
+				        "aaData": [';
+				if($data)
+				foreach($data as $key=>$val){
+			        $op .= '[ "'.$val->id.'", "'.$val->name.'", "'.($val->gender==1?'Male':'Female').'", "'.ucfirst($val->ethnicity).'", "<a class=\"edit\" href=\"'.site_url('admin/subjects/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/subjects/del/'.$val->id).'\">Delete</a>" ],';
+		        }
+		$op .=  '],"aoColumns": [
+			            { "sTitle": "ID" },
+			            { "sTitle": "Name" },
+			            { "sTitle": "Gender" },
+			            { "sTitle": "Ethnicity"},
+			            { "sTitle": "Actions", sWidth:"5%"},
+			            { "sTitle": "" , sWidth:"5%"},
+			        ]
+			    } );   
+			} );
+			</script>';
+		$op .= 	'<div class="grid_16"><table id="list_data"></table></div>';
 		return $op;
 	}
 	

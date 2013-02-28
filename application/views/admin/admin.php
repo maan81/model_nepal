@@ -7,6 +7,15 @@
 		<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>960.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>template.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>colour.css" type="text/css" media="screen" charset="utf-8" />
+		
+		<?php if(ENVIRONMENT=='production'):?>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<?php else:?>
+		<script type='text/javascript' src='<?php echo base_url().JSPATH?>jquery-1.8.2.min.js'></script>
+		<?php endif;?>
+
+		<?php echo $_styles?>
+		<?php echo $_scripts?>
 	</head>
 	<body>
 		<h1 id="head">Model Nepal Administrator</h1>

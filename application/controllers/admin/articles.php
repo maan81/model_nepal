@@ -37,6 +37,15 @@ class Articles extends MY_Controller {
 
 		$this->template->write('list',$articles);
 		
+		$this->template->add_js(ADMINJSPATH.'jquery.dataTables.min.js');
+
+		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables.css');
+		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables_themeroller.css');
+		$this->template->add_css(ADMINCSSPATH.'demo_page.css');
+		$this->template->add_css(ADMINCSSPATH.'demo_table.css');
+		$this->template->add_css(ADMINCSSPATH.'demo_table_jui.css');
+		$this->template->add_css(ADMINCSSPATH.'dataTables_modifications.css');
+
 		$this->render_navigation();
 		
 		$this->template->render();

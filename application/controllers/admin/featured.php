@@ -56,9 +56,14 @@ class Featured extends MY_Controller {
 		
 		if($this->input->post()){
 			$data = array(
-							'name'		=> $this->input->post('name'),
-							'gender'	=> $this->input->post('gender'),
-							'ethnicity'	=> $this->input->post('ethnicity'),
+							'name'			=> $this->input->post('name'),
+							'gender'		=> $this->input->post('gender'),
+							'ethnicity'		=> $this->input->post('ethnicity'),
+							'wardrobe'		=> $this->input->post('wardrobe'),
+							'location'		=> $this->input->post('location'),
+							'make_up'		=> $this->input->post('make_up'),
+							'photographer'	=> $this->input->post('photographer'),
+							'model_by'		=> $this->input->post('model_by'),
 						);
 
 			$this->_validate_new($data);
@@ -115,10 +120,15 @@ class Featured extends MY_Controller {
 			$id = $this->session->userdata('updated_id');
 	
 			$data = array(
-							'id'		=> $id,
-							'name'		=> $this->input->post('name'),
-							'gender'	=> $this->input->post('gender'),
-							'ethnicity'	=> $this->input->post('ethnicity'),
+							'id'			=> $id,
+							'name'			=> $this->input->post('name'),
+							'gender'		=> $this->input->post('gender'),
+							'ethnicity'		=> $this->input->post('ethnicity'),
+							'wardrobe'		=> $this->input->post('wardrobe'),
+							'location'		=> $this->input->post('location'),
+							'make_up'		=> $this->input->post('make_up'),
+							'photographer'	=> $this->input->post('photographer'),
+							'model_by'		=> $this->input->post('model_by'),
 						);
 
 			$this->_validate_new($data);

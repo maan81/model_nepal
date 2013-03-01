@@ -5,6 +5,8 @@ class Ads_model extends CI_Model{
 
 	public function __construct(){
 		parent::__construct();
+
+		$this->load->helper('file');
 	}
 
 
@@ -53,7 +55,7 @@ class Ads_model extends CI_Model{
 
 		//update data
 		if(isset($data->id)){
-			$this->update($data);
+			$data = $this->update($data);
 
 		//insert new data
 		}else{
@@ -69,7 +71,7 @@ class Ads_model extends CI_Model{
 						  'max-size' => 20000,
 						  'overwrite' => true,
 						  'file_name' => $mtime
-						);
+						);	
 
 			$this->load->library('upload',$config);
 			$this->upload->initialize($config);
@@ -108,7 +110,9 @@ class Ads_model extends CI_Model{
 //print_r($data);die;	
 		$this->db->where('id', $id);
 		$this->db->update($this->table, $data); 
-		return true;
+
+		$data->id = $id;
+		return $data;
 	}
 
 

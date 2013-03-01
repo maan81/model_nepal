@@ -5,6 +5,8 @@ class Featured_model extends CI_Model{
 
 	public function __construct(){
 		parent::__construct();
+		
+		$this->load->helper('file');
 	}
 
 
@@ -52,13 +54,19 @@ class Featured_model extends CI_Model{
 
 		//update data
 		if(isset($data->id)){
-			$this->update($data);
+			$data = $this->update($data);
 		
 		//insert new data
 		}else{
+			$this->load->helper('utilites_helper');
+			$folder_name = gen_folder_name($data->name);
+
 			$this->db->insert($this->table,$data);
 
 			$data = array('id'=>$this->db->insert_id());
+
+			//create new folder -- by featured model's name -- to place galleries & imgs.
+			mkdir(FEATUREDPATH.$folder_name);
 		}
 
 		return $this->get($data);
@@ -70,12 +78,22 @@ class Featured_model extends CI_Model{
 	 * @param record array/object
 	 */
 	private function update($data){
+		$this->load->helper('utilites_helper');
 		$id = $data->id;
 		unset($data->id);
 	
+		$old_data = $this->get(array('id'=>$id));
+		$old_folder_name = gen_folder_name($old_data[0]->name);
+
 		$this->db->where('id', $id);
-		$this->db->update($this->table, $data); 
-		return true;
+		$data = $this->db->update($this->table, $data); 
+		$new_folder_name = gen_folder_name($data->name);
+
+		rename(FEATUREDPATH.$old_folder_name, FEATUREDPATH.$new_folder_name);
+
+		$data->id = $id;
+
+		return $data;
 	}
 
 
@@ -92,9 +110,14 @@ class Featured_model extends CI_Model{
 		}
 
 		$items = $this->get($data);
-		
+		$this->load->helper('utilites_helper');
+
 		foreach($items as $key=>$val){
-			unlink(FEATUREDPATH.$item->id);
+			$folder_name = gen_folder_name($val->name);
+
+			//delete the directory & all the ones in it.
+			delete_files(FEATUREDPATH.$folder_name, true);
+			rmdir(FEATUREDPATH.$folder_name);
 
 			$this->db->where('id',$val->id)
 					 ->delete($this->table);

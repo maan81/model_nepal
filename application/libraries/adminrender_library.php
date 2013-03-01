@@ -34,16 +34,16 @@ class Adminrender_library{
 	 */
 	public function render_navigation($selected){
 //echo $selected;		
-		$data = array(	'Home'		=> base_url().'admin',
+		$data = array(	'Home'			=> base_url().'admin',
 						'Advertizements'=> base_url().'admin/ads',
-						'Featured Models'=> base_url().'admin/featured',
-						'Models'	=> base_url().'admin/subjects',
-						'Gossips'	=> base_url().'admin/gossips',
-						'Events'	=> base_url().'admin/events',
-						'Articles'	=> base_url().'admin/articles',
-						'Projects'	=> base_url().'admin/projects',
-						'Services'	=> base_url().'admin/services',
-						'Contact'	=> base_url().'admin/contact',
+						'Featured Models'=>base_url().'admin/featured',
+						'Models'		=> base_url().'admin/subjects',
+						'Gossips'		=> base_url().'admin/gossips',
+						'Events'		=> base_url().'admin/events',
+						'Articles'		=> base_url().'admin/articles',
+						'Projects'		=> base_url().'admin/projects',
+						'Services'		=> base_url().'admin/services',
+						'Contact'		=> base_url().'admin/contact',
 					);
 
 		$op = '<ul id="navigation">';
@@ -76,7 +76,7 @@ class Adminrender_library{
 
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'["'.$val->id.'", "'.$val->category.'", "'.$val->title.'", "'.$val->dimensions.'", "<a class=\"edit\" href=\"'.site_url('admin/ads/edit/'.$val->id).'\">Edit</a>","<a class=\"delete\" href=\"'.site_url('admin/ads/del/'.$val->id).'\">Delete</a>"]';
+			$op .=	'["'.$val->id.'", "'.$val->category.'", "'.$val->title.'", "'.$val->dimensions.'", "<a class=\"edit\" href=\"'.site_url('admin/ads/edit/'.$val->id).'\">Edit</a>","<a class=\"delete\" href=\"'.site_url('admin/ads/del/'.$val->id).'\">Delete</a>"], ';
 		}
 
 		$op .=  '],"aoColumns": [
@@ -185,7 +185,7 @@ class Adminrender_library{
 //print_r($data);die;		
 		$op =	'<div class="grid_2" style="float:right;">
 					<p>
-						<a href="'.site_url('admin/featured/new_subject').'">New</a>
+						<a href="'.site_url('admin/featured/new_featured').'">New</a>
 					</p>
 				</div>'.
 				'<script type="text/javascript">
@@ -195,13 +195,32 @@ class Adminrender_library{
 
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'[ "'.$val->id.'", "'.$val->name.'", "'.($val->gender==1?'Male':'Female').'", "'.ucfirst($val->ethnicity).'", "<a class=\"edit\" href=\"'.site_url('admin/featured/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/featured/del/'.$val->id).'\">Delete</a>"]';
+			$op .=	'[ '.
+						'"'.$val->id.'", '.
+						'"'.$val->name.'", '.
+						'"'.($val->gender==1?'Male':'Female').'", '.
+						'"'.$val->wardrobe.'", '.
+						'"'.$val->location.'", '.
+						'"'.$val->make_up.'", '.
+						'"'.$val->photographer.'", '.
+						'"'.$val->model_by.'", '.
+						'"'.ucfirst($val->ethnicity).'", '.
+						'"<a class=\"edit\" href=\"'.site_url('admin/featured/edit/'.$val->id).'\">Edit</a>", '.
+						'"<a class=\"delete\" href=\"'.site_url('admin/featured/del/'.$val->id).'\">Delete</a>"'.
+					'],';
 		}
 
 		$op .=  '],"aoColumns": [
 			            { "sTitle": "ID" },
 			            { "sTitle": "Name" },
 			            { "sTitle": "Gender" },
+
+			            { "sTitle": "Wardrobe"},
+			            { "sTitle": "Location"},
+			            { "sTitle": "Make-Up"},
+			            { "sTitle": "Photographer"},
+			            { "sTitle": "Model By"},
+
 			            { "sTitle": "Ethnicity"},
 			            { "sTitle": "Actions", sWidth:"5%"},
 			            { "sTitle": "" , sWidth:"5%"},
@@ -271,6 +290,37 @@ class Adminrender_library{
 				$op .=		'</select>
 						</p>
 					</div>
+					<div class="grid_12"></div>
+					<div class="grid_6">
+						<p>
+							<label for="wardrobe">Wardrobe<small>Alpha-numeric characters without spaces.</small></label>
+							<input type="text" name="wardrobe" value="'.($data?$data[0]->wardrobe:'').'">
+						</p>
+					</div>
+					<div class="grid_6">
+						<p>
+							<label for="location">Location<small>Alpha-numeric characters without spaces.</small></label>
+							<input type="text" name="location" value="'.($data?$data[0]->location:'').'">
+						</p>
+					</div>
+					<div class="grid_6">
+						<p>
+							<label for="make_up">Make Up<small>Alpha-numeric characters without spaces.</small></label>
+							<input type="text" name="make_up" value="'.($data?$data[0]->make_up:'').'">
+						</p>
+					</div>
+					<div class="grid_6">
+						<p>
+							<label for="model_by">Model By<small>Alpha-numeric characters without spaces.</small></label>
+							<input type="text" name="model_by" value="'.($data?$data[0]->model_by:'').'">
+						</p>
+					</div>
+					<div class="grid_6">
+						<p>
+							<label for="photographer">Photographer<small>Alpha-numeric characters without spaces.</small></label>
+							<input type="text" value="'.($data?$data[0]->photographer:'').'" name="photographer">
+						</p>
+					</div>
 					<div class="grid_16">
 						<p class="submit">
 							<a href="'.site_url('admin/featured').'">Cancel</a>
@@ -321,7 +371,7 @@ class Adminrender_library{
 
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'["'.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/gossips/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/gossips/del/'.$val->id).'\">Delete</a>"]';
+			$op .=	'["'.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/gossips/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/gossips/del/'.$val->id).'\">Delete</a>"], ';
 		}
 
 		$op .=  '],"aoColumns": [
@@ -416,7 +466,7 @@ class Adminrender_library{
 
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'['.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/events/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/events/del/'.$val->id).'\">Delete</a>"]';
+			$op .=	'['.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/events/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/events/del/'.$val->id).'\">Delete</a>"], ';
 		}
 
 		$op .=  '],"aoColumns": [
@@ -517,7 +567,7 @@ class Adminrender_library{
 				        "aaData": [';
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'[ "'.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/articles/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/articles/del/'.$val->id).'\">Delete</a>" ]';
+			$op .=	'[ "'.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/articles/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/articles/del/'.$val->id).'\">Delete</a>" ], ';
 		}
 
 		$op .=  '],"aoColumns": [

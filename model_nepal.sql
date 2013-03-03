@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 01, 2013 at 12:53 PM
+-- Generation Time: Mar 03, 2013 at 05:16 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.5
 
@@ -34,14 +34,7 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `link` varchar(255) NOT NULL,
   `image` varchar(127) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
-
---
--- Dumping data for table `ads`
---
-
-INSERT INTO `ads` (`id`, `title`, `category`, `dimensions`, `link`, `image`) VALUES
-(11, 'aaa', 'published', '248x117', 'bbbb', '1361959773.2543.jpg');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 -- --------------------------------------------------------
 
@@ -97,13 +90,6 @@ CREATE TABLE IF NOT EXISTS `featured` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
---
--- Dumping data for table `featured`
---
-
-INSERT INTO `featured` (`id`, `name`, `gender`, `ethnicity`, `wardrobe`, `location`, `make_up`, `photographer`, `model_by`, `date_created`) VALUES
-(16, 'dfs se', 0, 'gurung', 'xc bse', 'ds fhe', 'dsf her', 'df he', 'sf her', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -128,18 +114,49 @@ CREATE TABLE IF NOT EXISTS `gossips` (
 CREATE TABLE IF NOT EXISTS `subjects` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `age` int(11) NOT NULL,
   `gender` tinyint(1) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `contact_no` varchar(127) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `height` varchar(11) NOT NULL,
+  `weight` varchar(11) NOT NULL,
+  `bust` varchar(11) NOT NULL,
+  `waist` varchar(11) NOT NULL,
+  `hip` varchar(11) NOT NULL,
+  `shoe` varchar(11) NOT NULL,
+  `dress` varchar(11) NOT NULL,
+  `hair_color` varchar(127) NOT NULL,
+  `hair_length` varchar(127) NOT NULL,
   `ethnicity` varchar(127) NOT NULL,
+  `skin` varchar(127) NOT NULL,
+  `eyes` varchar(127) NOT NULL,
+  `teeth` varchar(11) NOT NULL,
+  `professional` varchar(127) NOT NULL,
+  `additional` text NOT NULL,
+  `travelling_area` varchar(11) NOT NULL,
+  `travelling_duration` varchar(11) NOT NULL,
+  `editorial` tinyint(1) NOT NULL,
+  `runaway` tinyint(1) NOT NULL,
+  `catalog` tinyint(1) NOT NULL,
+  `print` tinyint(1) NOT NULL,
+  `showroom` tinyint(1) NOT NULL,
+  `fitness` tinyint(1) NOT NULL,
+  `fit` tinyint(1) NOT NULL,
+  `tearoom` tinyint(1) NOT NULL,
+  `body_part` tinyint(1) NOT NULL,
+  `lingerie` tinyint(1) NOT NULL,
+  `product_modelling` tinyint(1) NOT NULL,
+  `lifestyle_modelling` tinyint(1) NOT NULL,
+  `coorporate_modelling` tinyint(1) NOT NULL,
+  `product_demo` tinyint(1) NOT NULL,
+  `tradeshow` tinyint(1) NOT NULL,
+  `lingrie` tinyint(1) NOT NULL,
+  `art` tinyint(1) NOT NULL,
+  `experience` text NOT NULL,
   `date_created` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
-
---
--- Dumping data for table `subjects`
---
-
-INSERT INTO `subjects` (`id`, `name`, `gender`, `ethnicity`, `date_created`) VALUES
-(28, 'cc', 1, 'gurung', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

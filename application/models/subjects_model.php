@@ -104,12 +104,12 @@ class Subjects_model extends CI_Model{
 	 * @param array of objects ids to be deleted
 	 * @return boolean
 	 */
-	public function del($ids=false){
+	public function del($data=false){
 
-		if(!$ids){
+		if(!$data){
 			return false;
 		}
-		$items = $this->get($ids);
+		$items = $this->get($data);
 		
 		$this->load->helper('utilites_helper');
 

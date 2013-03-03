@@ -90,7 +90,7 @@ class Articles_model extends CI_Model{
 		if(!$data){
 			return false;
 		}
-		$items = $this->get($ids);
+		$items = $this->get($data);
 		foreach($items as $key=>$val){
 
 			$this->db->where('id',$val->id)

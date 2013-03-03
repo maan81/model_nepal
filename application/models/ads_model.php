@@ -127,7 +127,7 @@ class Ads_model extends CI_Model{
 		if(!$data){
 			return false;
 		}
-		$items = $this->get($ids);
+		$items = $this->get($data);
 		foreach($items as $key=>$val){
 			unlink(ADDSPATH.$val->image);
  

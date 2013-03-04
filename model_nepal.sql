@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 03, 2013 at 05:16 PM
+-- Generation Time: Mar 04, 2013 at 01:54 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.5
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `link` varchar(255) NOT NULL,
   `image` varchar(127) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `featured` (
   `model_by` varchar(225) NOT NULL,
   `date_created` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `weight` varchar(11) NOT NULL,
   `bust` varchar(11) NOT NULL,
   `waist` varchar(11) NOT NULL,
-  `hip` varchar(11) NOT NULL,
+  `hips` varchar(11) NOT NULL,
   `shoe` varchar(11) NOT NULL,
   `dress` varchar(11) NOT NULL,
   `hair_color` varchar(127) NOT NULL,
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `experience` text NOT NULL,
   `date_created` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -715,6 +715,7 @@ class Adminrender_library{
 							.slideUp(250)
 							.next()
 							.slideDown(250)
+						$(document).scrollTop()
 					})
 					$("#prev_btn").on("click",function(e){
 						e.preventDefault();
@@ -723,6 +724,7 @@ class Adminrender_library{
 							.slideUp(250)
 							.prev()
 							.slideDown(250)
+						$(document).scrollTop()
 					})
 				})
 			</script>
@@ -767,6 +769,20 @@ class Adminrender_library{
 								<input type="text" name="address" value="'.($data?$data[0]->address:'').'" />
 							</p>
 						</div>
+
+						<div class="grid_6">
+							<p>
+								<label for="contact_no">Contact No.</label>
+								<input type="text" name="contact_no" value="'.($data?$data[0]->contact_no:'').'" />
+							</p>
+						</div>
+						<div class="grid_6">
+							<p>
+								<label for="email">Email</label>
+								<input type="text" name="email" value="'.($data?$data[0]->email:'').'" />
+							</p>x
+						</div>
+
 						<div class="grid_5"></div><div class="grid_6">
 							<p>
 								<label for="height">Height (ft. / inches) <small>Alpha-numeric characters without spaces.</small></label>
@@ -802,8 +818,8 @@ class Adminrender_library{
 						<div class="grid_5"></div>
 						<div class="grid_6">
 							<p>
-								<label for="hips">Shoes<small>Alpha-numeric characters without spaces.</small></label>
-								<input type="text" name="shoes" value="'.($data?$data[0]->shoe:'').'" />
+								<label for="shoe">Shoes<small>Alpha-numeric characters without spaces.</small></label>
+								<input type="text" name="shoe" value="'.($data?$data[0]->shoe:'').'" />
 							</p>
 						</div>
 						<div class="grid_6">
@@ -840,14 +856,14 @@ class Adminrender_library{
 						</div>
 						<div class="grid_6">
 							<p>
-								<label for="skin_color">Skin<small>Alpha-numeric characters without spaces.</small></label>
-								<input type="text" value="'.($data?$data[0]->skin_color:'').'" name="skin" />
+								<label for="skin">Skin<small>Alpha-numeric characters without spaces.</small></label>
+								<input type="text" value="'.($data?$data[0]->skin:'').'" name="skin" />
 							</p>
 						</div>
 						<div class="grid_6">
 							<p>
-								<label for="eye">Eyes<small>Alpha-numeric characters without spaces.</small></label>
-								<input type="text" value="'.($data?$data[0]->eye:'').'" name="eye">
+								<label for="eyes">Eyes<small>Alpha-numeric characters without spaces.</small></label>
+								<input type="text" value="'.($data?$data[0]->eyes:'').'" name="eyes">
 							</p>
 						</div>
 						<div class="grid_6">
@@ -858,18 +874,25 @@ class Adminrender_library{
 						</div>
 						<div class="grid_6">
 							<p>
-								<label for="profession">Professonal Status</label>
-								<select name="profession" >
-									<option value="armateur" >Armateur</option>
-									<option value="semi-pro" >Semi. Pro</option>
-									<option value="professional" >Professonal</option>
+								<label for="professional">Professonal Status</label>
+								<select name="professional" >
+									<option value="armateur" '.($data?($data[0]->professional=='armateur'?'selected="selected"':''):'').'>
+										Armateur
+									</option>
+									<option value="semi-pro" '.($data?($data[0]->professional=='semi-pro'?'selected="selected"':''):'').'>
+										Semi. Pro
+									</option>
+									<option value="professional" '.($data?($data[0]->professional=='professonal'?'selected="selected"':''):'').'>
+										Professonal
+									</option>
 								</select>
 							</p>
 						</div>
 						<div class="grid_12">
 							<p>
 								<label for="additional">Additional Info<small>Alpha-numeric characters without spaces.</small></label>
-								<textarea value="'.($data?$data[0]->additional:'').'" style="height: 36px; resize: vertical; min-height: 100px;" name="additional">
+								<textarea style="height: 36px; resize: vertical; min-height: 100px;" name="additional">'.
+									($data?$data[0]->additional:'').'
 								</textarea>
 							</p>
 						</div>
@@ -884,7 +907,7 @@ class Adminrender_library{
 						<div class="grid_16">
 							<div style="float: right;" class="grid_2">
 								<p>
-									<a href="'.site_url('admin/subject').'">Back</a>
+									<a href="#">Back</a>
 								</p>
 							</div>
 							<h2>Availability</h2>
@@ -893,12 +916,24 @@ class Adminrender_library{
 
 						<div class="grid_6">
 							<p>
-								<label for="name">Travelling Area<small>Alpha-numeric characters without spaces.</small></label>
-								<select name="travelling">
-									<option>Local</option>
-									<option>National</option>
-									<option>International</option>
+								<label for="travelling_area">Travelling Area<small>Alpha-numeric characters without spaces.</small></label>
+								<select name="travelling_area">
+									<option value="local" '.($data?($data[0]->travelling_area=='local'?'selected="selected"':''):'').'>
+										Local
+									</option>
+									<option value="national" '.($data?($data[0]->travelling_area=='national'?'selected="selected"':''):'').'>
+										National
+									</option>
+									<option value="international" '.($data?($data[0]->travelling_area=='internatinal'?'selected="selected"':''):'').'>
+										International
+									</option>
 								</select>
+							</p>
+						</div>
+						<div class="grid_6">
+							<p>
+								<label for="travelling_duration">Travelling Duration<small>Alpha-numeric characters without spaces.</small></label>
+								<input type="text" name="travelling_duration" id="travelling_duration" value="'.($data?$data[0]->travelling_duration:'').'" />
 							</p>
 						</div>
 
@@ -909,43 +944,53 @@ class Adminrender_library{
 								<label>Fashion Type </label>
 
 								<label class="grid_4" for="editorial">
-									<input type="checkbox" value="editorial" name="fashon_type" id="editorial">Editorial
+									<input type="checkbox" value="1" name="editorial" id="editorial" '.($data?($data[0]->editorial==1?'checked="checked"':''):'').' >
+										Editorial
 								</label>
 
 								<label for="runaway" class="grid_4">
-									<input type="checkbox" value="runaway" name="fashon_type" id="runaway">Runaway
+									<input type="checkbox" value="1" name="runaway" id="runaway" '.($data?($data[0]->runaway==1?'checked="checked"':''):'').' >
+										Runaway
 								</label>
 
 								<label for="catalog" class="grid_4">
-									<input type="checkbox" value="catalog" name="fashon_type" id="catalog">Catalog
+									<input type="checkbox" value="1" name="catalog" id="catalog" '.($data?($data[0]->catalog==1?'checked="checked"':''):'').' >
+										Catalog
 								</label>
 
-								<label id="print" class="grid_4">
-									<input type="checkbox" value="print" name="fashon_type" id="print">Print
+								<label for="print" class="grid_4">
+									<input type="checkbox" value="1" name="print" id="print" '.($data?($data[0]->editorial==1?'checked="checked"':''):'').' >
+										Print
 								</label>
 
-								<label id="showroom" class="grid_4">
-									<input type="checkbox" value="showroom" name="fashon_type" id="showroom">Showroom
+								<label for="showroom" class="grid_4">
+									<input type="checkbox" value="1" name="showroom" id="showroom" '.($data?($data[0]->showroom==1?'checked="checked"':''):'').' >
+										Showroom
 								</label>
 
 								<label for="fitness" class="grid_4">    
-									<input type="checkbox" value="fitness" name="fashon_type" id="fitness">Fitness
+									<input type="checkbox" value="1" name="fitness" id="fitness" '.($data?($data[0]->fitness==1?'checked="checked"':''):'').' >
+										Fitness
 								</label>
 
 								<label for="fit" class="grid_4">
-									<input type="checkbox" value="fit" name="fashon_type" id="fit">Fit
+									<input type="checkbox" value="1" name="fit" id="fit" '.($data?($data[0]->fit==1?'checked="checked"':''):'').' >
+										Fit
 								</label>
 
 								<label for="tearoom" class="grid_4">
-									<input type="checkbox" value="tearoom" name="fashon_type" id="tearoom">Tearoom
+									<input type="checkbox" value="1" name="tearoom" id="tearoom" '.($data?($data[0]->tearoom==1?'checked="checked"':''):'').' >
+										Tearoom
 								</label>
 
 								<label for="body_part" class="grid_4">
-									<input type="checkbox" value="body_part" name="fashon_type" id="body_part">Body Part
+									<input type="checkbox" value="1" name="body_part" id="body_part" '.($data?($data[0]->body_part==1?'checked="checked"':''):'').' >
+										Body Part
 								</label>
 
 								<label for="lingerie" class="grid_4">    
-									<input type="checkbox" value="lingerie" name="fashon_type" id="lingerie">Lingerie / Swinsuit
+									<input type="checkbox" value="1" name="lingerie" id="lingerie" '.($data?($data[0]->lingerie==1?'checked="checked"':''):'').' >
+										Lingerie / Swinsuit
 								</label>
 							</p>
 								
@@ -955,24 +1000,29 @@ class Adminrender_library{
 							<p class="checkboxes">
 								<label>Commercial Type</label>
 
-								<label for="editorial" class="grid_4">
-									<input type="checkbox" id="product" name="commercial_type" value="product">Product Modelling
+								<label for="product_modelling" class="grid_4">
+									<input type="checkbox" id="product_modelling" name="product_modelling" value="1" '.($data?($data[0]->product_modelling==1?'checked="checked"':''):'').' >
+										Product Modelling
 								</label>
 
-								<label class="grid_4" for="lifestyle">
-									<input type="checkbox" id="lifestyle" name="commercial_type" value="lifestyle">Lifestyle Modelling
+								<label class="grid_4" for="lifestyle_modelling">
+									<input type="checkbox" id="lifestyle_modelling" name="lifestyle_modelling" value="1" '.($data?($data[0]->lifestyle_modelling==1?'checked="checked"':''):'').' >
+										Lifestyle Modelling
 								</label>
 
-								<label class="grid_4" for="coorporate">
-									<input type="checkbox" id="coorporate" name="commercial_type" value="coorporate">Coorporate Modelling
+								<label class="grid_4" for="coorporate_modelling">
+									<input type="checkbox" id="coorporate_modelling" name="coorporate_modelling" value="1" '.($data?($data[0]->coorporate_modelling==1?'checked="checked"':''):'').' >
+										Coorporate Modelling
 								</label>
 
-								<label class="grid_4" id="demo">
-									<input type="checkbox" id="demo" name="commercial_type" value="product">Product Demo
+								<label class="grid_4" for="product_demo">
+									<input type="checkbox" id="product_demo" name="product_demo" value="1" '.($data?($data[0]->product_demo==1?'checked="checked"':''):'').' >
+										Product Demo
 								</label>
 
-								<label class="grid_4" id="tradeshow">
-									<input type="checkbox" id="tradeshow" name="commercial_type" value="tradeshow">Tradeshow
+								<label class="grid_4" for="tradeshow">
+									<input type="checkbox" id="tradeshow" name="tradeshow" value="1" '.($data?($data[0]->tradeshow==1?'checked="checked"':''):'').' >
+										Tradeshow
 								</label>
 							</p>
 						</div>
@@ -982,11 +1032,13 @@ class Adminrender_library{
 								<label>Glamour Type</label>
 
 								<label class="grid_4" for="lingrie">
-									<input type="checkbox" value="lingrie" name="glamour_type" id="lingrie">Lingrie / Swimsuit
+									<input type="checkbox" value="1" name="lingrie" id="lingrie" '.($data?($data[0]->lingrie==1?'checked="checked"':''):'').' >
+										Lingrie / Swimsuit
 								</label>
 
 								<label for="art" class="grid_4">
-									<input type="checkbox" value="art" name="glamour_type" id="art">Art
+									<input type="checkbox" value="1" name="art" id="art" '.($data?($data[0]->art==1?'checked="checked"':''):'').' >
+										Art
 								</label>
 							</p>
 						</div>
@@ -994,7 +1046,8 @@ class Adminrender_library{
 						<div class="grid_12">
 							<p>
 								<label for="experience">Experience<small>Alpha-numeric characters without spaces.</small></label>
-								<textarea value="'.($data?$data[0]->experience:'').'" name="experience" style="height: 36px; resize: vertical; min-height: 100px;">
+								<textarea name="experience" style="height: 36px; resize: vertical; min-height: 100px;">'.
+									($data?$data[0]->experience:'').'
 								</textarea>
 							</p>
 						</div>

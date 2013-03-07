@@ -16,7 +16,8 @@ class Articles extends MY_Controller {
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
 		$this->output->set_header('Pragma: no-cache');
 
-		if($this->session->userdata('username')!='root'){	//<--- admin's username
+		if(($this->session->userdata('usertype')=='administrator') &&
+		   ($this->session->userdata('usertype')=='editor') ) {
 			redirect('admin');
 		}
 

@@ -50,10 +50,16 @@ class Adminrender_library{
 						'Projects'		=> base_url().'admin/projects',
 						'Services'		=> base_url().'admin/services',
 						'Contact'		=> base_url().'admin/contact',
+						//'Users'			=> base_url().'admin/users',
 					);
+
+		if($this->ci->session->userdata('usertype')=='administrator'){
+			$data['Users'] = base_url().'admin/users';
+		}
 
 		$op = '<ul id="navigation">';
 		foreach($data as $key=>$val){
+
 			if($key==$selected){
 				$op .= '<li><span class="active">'.$key.'</span></li>';//for selected poriton
 			}else{
@@ -1226,5 +1232,98 @@ class Adminrender_library{
 				</div>
 			</form>';
 		return $op;
+	}
+
+	/**
+	 * users list
+	 */
+	public function render_userslist($data){
+//print_r($data);die;		
+		$op =	'<div class="grid_2" style="float:right;">
+					<p>
+						<a href="'.site_url('admin/users/new_user').'">New</a>
+					</p>
+				</div>'.
+				'<script type="text/javascript">
+				$(function() {
+				    $(\'#list_data\').dataTable( {
+				        "aaData": [';
+
+		if($data)
+		foreach($data as $key=>$val){
+			$op .=	'["'.$val->id.'", "'.$val->usertype.'", "'.$val->username.'", "<a class=\"edit\" href=\"'.site_url('admin/users/edit/'.$val->id).'\">Edit</a>","<a class=\"delete\" href=\"'.site_url('admin/users/del/'.$val->id).'\">Delete</a>"], ';
+		}
+
+		$op .=  '],"aoColumns": [
+			            { "sTitle": "ID" },
+			            { "sTitle": "Usertype" },
+			            { "sTitle": "Username" },
+			            { "sTitle": "Actions", sWidth:"5%"},
+			            { "sTitle": "" , sWidth:"5%"},
+			        ]
+			    } );   
+			} );
+			</script>';
+		$op .= 	'<div class="grid_16"><table id="list_data"></table></div>';
+		return $op;
+	}
+
+	/**
+	 * new users form
+	 */
+	public function render_new_user($data){
+//echo '<pre>';
+//print_r($data);
+//echo '</pre>';
+//die;
+		$op =	'<div class="container_16 clearfix" id="content">
+					'.form_open().'
+					<div class="grid_16">
+						<div class="grid_2" style="float: right;">
+							<p>
+								<a href="'.base_url('admin/users').'">Back</a>
+							</p>
+						</div>
+
+						<h2>New User</h2>
+						<p class="error">Something went wrong.</p>
+					</div>
+
+					<div class="grid_6">
+						<p>
+							<label for="username">Username <small>Alpha-numeric characters without spaces.</small></label>
+							<input type="text" name="username" value="'.($data?$data[0]->username:'').'" />
+						</p>
+					</div>
+
+					<div class="grid_6">
+						<p>
+							<label for="usertype">User Type</label>
+							<select name="usertype">
+								<option value="administrator" '.($data?($data[0]->usertype=='administrator'?'selected="selected"':''):'').'>Administrator</option>
+								<option value="editor" '.($data?($data[0]->usertype=='editor'?'selected="selected"':''):'').'>Editor</option>
+								<option value="user" '.($data?($data[0]->usertype=='user'?'selected="selected"':''):'').'>User</option>
+							</select>
+						</p>
+					</div>
+
+					<div class="grid_6">
+						<p>
+							<label for="email">Email <small>Alpha-numeric characters without spaces.</small></label>
+							<input type="text" name="email" value="'.($data?$data[0]->email:'').'" />
+						</p>
+					</div>
+
+					<div class="grid_16">
+						<p class="submit">
+							<a href="'.site_url('admin/users').'">Cancel</a>
+							<input type="submit" value="Submit">
+						</p>
+					</div>		
+					</form>
+				</div>';
+
+
+		return  $op;
 	}
 }

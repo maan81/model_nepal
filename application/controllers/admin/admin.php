@@ -17,8 +17,8 @@ class Admin extends MY_Controller {
 	}
 
 	public function index(){
-//$this->tmp();die;
-		if($this->session->userdata('username')=='root'){	//<--- admin's username
+		if(($this->session->userdata('usertype')=='administrator') ||
+		   ($this->session->userdata('usertype')=='editor') ) {
 			redirect('admin/main');
 		}else{
 			$this->login();
@@ -49,8 +49,9 @@ class Admin extends MY_Controller {
     }
 
 	public function main(){
-
-		if($this->session->userdata('username')!='root'){
+//echo $this->session->userdata('usertype');die;
+		if( ($this->session->userdata('usertype')!='administrator') && 
+			($this->session->userdata('usertype')!='editor') ){
 			$this->login();
 			return;
 		}
@@ -98,11 +99,15 @@ class Admin extends MY_Controller {
 //			$err['captcha_err'] = 'Invalid Captcha';
 //
 //		}else{
+//print_r($this->users_model->check_login($username,$password));
+//die;		
 			//if admin's login is invalid ...
 			if(! $this->users_model->check_login($username,$password)){
 				$err['login_err'] = 'Invalid Login';
+//die('a');				
 
 			}else{
+//die('b');				
 				//redirect to admin's main page
 				redirect('admin/main');
 			}

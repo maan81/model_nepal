@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 07, 2013 at 12:31 PM
+-- Generation Time: Mar 07, 2013 at 04:19 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.5
 
@@ -49,13 +49,6 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `summary` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `articles`
---
-
-INSERT INTO `articles` (`id`, `title`, `content`, `summary`) VALUES
-(1, 'jtd ', 'fghk dshkf chj edykdgh dyj dyjd ', 'df jksrtj dfgj sert ');
 
 -- --------------------------------------------------------
 
@@ -171,14 +164,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(127) NOT NULL,
   `usertype` varchar(127) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `usertype`) VALUES
-(1, 'root', '1fd185ec2e46a16240b7544dff37aa65', 'root@root.com', 'administrator');
+(1, 'root', '1fd185ec2e46a16240b7544dff37aa65', 'root@root.com', 'administrator'),
+(10, 'ee', 'd2f2297d6e829cd3493aa7de4416a18f', 'ee@ee.com', 'editor'),
+(11, 'ff', '957dfa81344b79c93465901c32c52853', 'ff@ff.com', 'administrator');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

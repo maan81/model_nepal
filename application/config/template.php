@@ -59,6 +59,7 @@ $template['active_template'] = 'site';
 $template['admin']['template']	= 'admin/admin.php';
 $template['admin']['regions']	= array(
 										'menu',
+										'userlogged',
 										'list',
 										'new_item'
 									);

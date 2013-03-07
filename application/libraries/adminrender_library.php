@@ -9,6 +9,7 @@ class Adminrender_library{
 	
 	private $ci = null;
 	protected $ethnicity = array();
+	protected $usertype = array();
 
 	/**
 	 * __construct
@@ -18,7 +19,8 @@ class Adminrender_library{
 	public function __construct(){
 		$this->ci =& get_instance();
 		$this->ci->load->database();
-		
+		$this->ci->load->helper('form');
+
 		array_push( $this->ethnicity,
 						'brahmin',		'gurung',
 						'limbu',		'magar',
@@ -26,6 +28,10 @@ class Adminrender_library{
 						'rana',			'sherpa',
 						'tamang',		'thakali',
 						'thakuri',		'tibetan Origin'
+					);
+
+		array_push( $this->usertype,
+						'administrator', 'editor', 'user'
 					);
 	}
 	
@@ -99,7 +105,6 @@ class Adminrender_library{
 	 * new ads form
 	 */
 	public function render_new_ads($data){
-		$this->ci->load->helper('form');
 //echo '<pre>';
 //print_r($data);
 //echo '</pre>';
@@ -237,7 +242,6 @@ class Adminrender_library{
 	 * new featured form
 	 */
 	public function render_new_featured($data){
-		$this->ci->load->helper('form');
 //echo '<pre>';
 //print_r($data);
 //echo '</pre>';
@@ -393,7 +397,6 @@ class Adminrender_library{
 	 * new gossip form
 	 */
 	public function render_new_gossips($data){
-		$this->ci->load->helper('form');
 //echo '<pre>';
 //print_r($data);
 //echo '</pre>';
@@ -488,7 +491,6 @@ class Adminrender_library{
 	 * new events form
 	 */
 	public function render_new_events($data){
-		$this->ci->load->helper('form');
 //echo '<pre>';
 //print_r($data);
 //echo '</pre>';
@@ -589,7 +591,6 @@ class Adminrender_library{
 	 * new article form
 	 */
 	public function render_new_article($data){
-		$this->ci->load->helper('form');
 //echo '<pre>';
 //print_r($data);
 //echo '</pre>';
@@ -682,7 +683,6 @@ class Adminrender_library{
 	 * new subjects form
 	 */
 	public function render_new_subjects($data){
-		$this->ci->load->helper('form');
 //echo '<pre>';
 //print_r($data);
 //echo '</pre>';
@@ -1063,5 +1063,168 @@ class Adminrender_library{
 				</form>
 				';
 		return  $op;
+	}
+
+
+	public function render_userlogged($data=false){
+	
+		if(! $data)
+			return false;
+
+		
+		$op =	'
+				<style type="text/css" rel="stylesheet">
+				#username{
+					float:right;
+					font-size: 0.5em;
+					margin: 10px;
+					width:60px;
+					cursor:pointer;	
+				}
+				#username:hover{
+					background-color: #434A48;
+				}
+				#user_details{
+					display:none;
+				}
+				#user_details ul{
+					list-style: none outside none;
+					margin-bottom: auto;
+					padding-top: 5px;
+				}
+				#user_details li{
+					margin-left: 0;
+					padding: 5px;	
+				}
+				#user_details li:hover{
+					background-color: #383E3C;
+				}
+				</style>
+
+				<script type="text/javascript">
+				$(function(){
+					$("#username").hover(function(){
+							$("#user_details").fadeIn(250);
+						},function(){
+							$("#user_details").fadeOut(250);
+						}
+					)
+
+					$("#profile").click(function(){
+						window.location = "'.site_url('admin/users/view_profile').'";
+					})
+					$("#logout").click(function(){
+						window.location = "'.site_url('logout').'";
+					})
+				})
+				</script>
+				<div id="username" >
+					<a>'.$this->ci->session->userdata('username').'</a>
+					<div style="" id="user_details">
+					    <ul>
+					        <li><span id="profile">Profile</span></li>
+					        <li><span id="logout">Logout</span></li>
+					    </ul>
+					</div>
+				</div>';
+		return $op;
+	}
+
+	public function view_profile($data=false){
+		if(! $data)
+			return false;
+
+		$op =''.form_open().'
+					<div class="grid_16">
+						<div class="grid_2" style="float: right;">
+							<p>
+								<a href="'.site_url('admin/main').'">Back</a>
+							</p>
+						</div>
+						<h2>User Information</h2>
+						<p class="error">Something went wrong.</p>
+					</div>
+
+					<div class="grid_12">
+						<p>
+							<label for="view_username">Username <small>Alpha-numeric characters without spaces.</small></label>
+							<div id="view_username" class="profile_data">'.($data?$data[0]->username:'').'</div>
+						</p>
+					</div>
+
+					<div class="grid_4">
+						<p>
+							<a id="new_password" href="'.site_url('admin/users/change_password').'">Change password</a>';
+
+				//	if($this->ci->session->userdata('username')=='root'){
+				//		$op .=	'<span id="del_account">Delete account</span>';
+				//	}else{
+				//		$op .=	'<a id="del_account" href="#">Delete account</a>';
+				//	}
+
+				$op .=	'</p>
+					</div>
+					<div class="grid_6">
+						<p>
+							<label for="view_email">Email</label>
+							<div id="view_email" class="profile_data">'.($data?$data[0]->email:'').'</div>
+						</p>
+					</div>
+
+					<div class="grid_5"></div>
+					<div class="grid_6">
+						<p>
+							<label for="view_usertype">User Type </label>
+							<div id="view_usertype" class="profile_data">'.($data?$data[0]->usertype:'').'</div>
+						</p>
+					</div>
+				</form>';
+		return  $op;
+	}
+
+	public function change_password($data=false){
+		if(!$data)
+			return false;
+
+		$op = form_open().
+				'<div class="grid_16">
+					<div style="float: right;" class="grid_2">
+						<p>
+							<a href="'.site_url('admin/users/view_profile').'">Back</a>
+						</p>
+					</div>
+					<h2>User Information</h2>
+					<p class="error">Something went wrong.</p>
+				</div>
+
+				<div class="grid_6">
+					<p>
+						<label for="old_password">Old password </label>
+						<input type="password" class="profile_data" id="old_password" name="old_password">
+					</p>
+				</div>
+				<div class="grid_12"></div>
+
+				<div class="grid_6">
+					<p>
+						<label id="new_password" for="new_password">New password</label>
+						<input type="password" name="new_password" id="new_password">
+					</p>
+				</div>
+				<div class="grid_6">
+					<p>
+						<label for="new_password_reenter">Reenter Newe Password</label>
+						<input type="password" class="profile_data" name="new_password_reenter" id="new_password_reenter">
+					</p>
+				</div>
+
+				
+				<div class="grid_6">
+					<p>
+						<input type="submit" value="Update" name="submit">
+					</p>
+				</div>
+			</form>';
+		return $op;
 	}
 }

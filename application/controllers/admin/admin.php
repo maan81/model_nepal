@@ -17,7 +17,7 @@ class Admin extends MY_Controller {
 	}
 
 	public function index(){
-
+//$this->tmp();die;
 		if($this->session->userdata('username')=='root'){	//<--- admin's username
 			redirect('admin/main');
 		}else{
@@ -33,11 +33,11 @@ class Admin extends MY_Controller {
 		//----------------------------
 		//if admin is trying to login ...
 		if($this->input->post('username')){
-			//$data['errors'] = $this->_chk_login();
-			$data['errors'] = $this->_chk_login_tmp($this->input->post());
-			
 			$data['username']=$this->input->post('username');
 			$data['password']=$this->input->post('password');
+
+			$data['errors'] = $this->_chk_login($data['username'],$data['password']);
+			//$data['errors'] = $this->_chk_login_tmp($this->input->post());
 		}
 		//----------------------------
 
@@ -60,6 +60,8 @@ class Admin extends MY_Controller {
 		$menu = $this->adminrender_library->render_navigation('Home');
 		$this->template->write('menu',$menu);
 		
+		$this->render_user_info();
+
 		$this->template->render();
 	}
 
@@ -68,46 +70,63 @@ class Admin extends MY_Controller {
 		$this->template->write('menu',$menu);
 	}
 
-	/**
-	 * validate username,password,captcha
-	 * redirect to admin if successful
-	 */
-	// tmp fn........... 
-	private function _chk_login_tmp($data){		
-		//username = root, password= password
-		if(($data['username']=='root') && ($data['password']=='password')){ //<--- admin's username + password
-			$this->session->set_userdata('username',$data['username']);
-				//redirect to admin's main page
-				redirect('/admin/main');
-			return true;
-		}
-		return false;
-	}
-
 //	/**
 //	 * validate username,password,captcha
 //	 * redirect to admin if successful
 //	 */
-//	private function _chk_login(){
-//		$err = array();
-//		$this->load->model('users_model');
-//
+//	// tmp fn........... 
+//	private function _chk_login_tmp($data){		
+//		//username = root, password= password
+//		if(($data['username']=='root') && ($data['password']=='password')){ //<--- admin's username + password
+//			$this->session->set_userdata('username',$data['username']);
+//				//redirect to admin's main page
+//				redirect('/admin/main');
+//			return true;
+//		}
+//		return false;
+//	}
+
+	/**
+	 * validate username,password,captcha
+	 * redirect to admin if successful
+	 */
+	private function _chk_login($username,$password){
+		$err = array();
+		$this->load->model('users_model');
+
 //		if(!$this->captcha_model->check_captcha()){
 //			$err['captcha_err'] = 'Invalid Captcha';
 //
 //		}else{
-//			//if admin's login is invalid ...
-//			if(! $this->check_login()){
-//				$err['login_err'] = 'Invalid Login';
-//
-//			}else{
-//				//redirect to admin's main page
-//				redirect('/admin/main');
-//			}
+			//if admin's login is invalid ...
+			if(! $this->users_model->check_login($username,$password)){
+				$err['login_err'] = 'Invalid Login';
+
+			}else{
+				//redirect to admin's main page
+				redirect('admin/main');
+			}
 //		}
 //
-//		return $err;
-//	}
+		return $err;
+	}
+
+	private function render_user_info(){
+		$user_data = array(	'username'=>$this->session->userdata('username'),
+							'usertype'=>$this->session->userdata('usertype') );
+		$userlogged = $this->adminrender_library->render_userlogged($user_data);
+		$this->template->write('userlogged',$userlogged);
+	}
+		
+	//default
+	//username : root
+	//unencoded password : password
+	//password : 1fd185ec2e46a16240b7544dff37aa65
+	public function tmp($username='root',$password='password'){
+		$data = array('username'=>$username,'password'=>md5($password.$username));
+		print_r($data);die;
+	}
+
 }
 
 /* End of file admin.php */

@@ -47,6 +47,7 @@ class Gossips extends MY_Controller {
 		$this->template->add_css(ADMINCSSPATH.'dataTables_modifications.css');
 
 		$this->render_navigation();
+		$this->render_user_info();
 		
 		$this->template->render();
 	}
@@ -87,6 +88,7 @@ class Gossips extends MY_Controller {
 		$this->template->write('new_item',$new_gossips);
 
 		$this->render_navigation();
+		$this->render_user_info();
 		
 		$this->template->render();
 	}
@@ -171,6 +173,12 @@ class Gossips extends MY_Controller {
 							'toolbar' 	=> 	$this->config->item('ck_toolbar'),
 						),
 		);
+	}
+	private function render_user_info(){
+		$user_data = array(	'username'=>$this->session->userdata('username'),
+							'usertype'=>$this->session->userdata('usertype') );
+		$userlogged = $this->adminrender_library->render_userlogged($user_data);
+		$this->template->write('userlogged',$userlogged);
 	}
 }
 

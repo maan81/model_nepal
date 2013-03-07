@@ -89,7 +89,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a:hover {
-	text-decoration:none;
+	text-decoration:underline;
 }
 
 a.edit, a.delete {
@@ -98,6 +98,7 @@ a.edit, a.delete {
 	background-position:left center;
 }
 a {
+	text-decoration: none;
 	padding:4px;
 }
 

@@ -48,6 +48,7 @@ class Ads extends MY_Controller {
 		$this->template->add_css(ADMINCSSPATH.'dataTables_modifications.css');
 
 		$this->render_navigation();
+		$this->render_user_info();
 		
 		$this->template->render();
 	}
@@ -84,6 +85,7 @@ class Ads extends MY_Controller {
 		$this->template->write('new_item',$new_ads);
 		
 		$this->render_navigation();
+		$this->render_user_info();
 		
 		$this->template->render();
 	}
@@ -150,6 +152,13 @@ class Ads extends MY_Controller {
 	private function render_navigation(){
 		$menu = $this->adminrender_library->render_navigation('Advertizements');
 		$this->template->write('menu',$menu);
+	}
+
+	private function render_user_info(){
+		$user_data = array(	'username'=>$this->session->userdata('username'),
+							'usertype'=>$this->session->userdata('usertype') );
+		$userlogged = $this->adminrender_library->render_userlogged($user_data);
+		$this->template->write('userlogged',$userlogged);
 	}
 }
 

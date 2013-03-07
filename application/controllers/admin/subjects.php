@@ -47,6 +47,7 @@ class Subjects extends MY_Controller {
 		$this->template->add_css(ADMINCSSPATH.'dataTables_modifications.css');
 
 		$this->render_navigation();
+		$this->render_user_info();
 		
 		$this->template->render();
 	}
@@ -55,9 +56,9 @@ class Subjects extends MY_Controller {
     public function new_subject($data = false){
 		
 		if($this->input->post()){
-echo '<pre>';
-print_r($this->input->post());
-echo '</pre>';			
+//echo '<pre>';
+//print_r($this->input->post());
+//echo '</pre>';			
 			$data = array(
 							'name'			=> $this->input->post('name'),
 							'gender'		=> $this->input->post('gender'),
@@ -119,6 +120,7 @@ echo '</pre>';
 		$this->template->write('new_item',$new_subjects);
 
 		$this->render_navigation();
+		$this->render_user_info();
 		
 		$this->template->render();
 	}
@@ -224,6 +226,12 @@ echo '</pre>';
 	private function render_navigation(){
 		$menu = $this->adminrender_library->render_navigation('Models');
 		$this->template->write('menu',$menu);
+	}
+	private function render_user_info(){
+		$user_data = array(	'username'=>$this->session->userdata('username'),
+							'usertype'=>$this->session->userdata('usertype') );
+		$userlogged = $this->adminrender_library->render_userlogged($user_data);
+		$this->template->write('userlogged',$userlogged);
 	}
 }
 

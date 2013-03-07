@@ -18,7 +18,10 @@
 		<?php echo $_scripts?>
 	</head>
 	<body>
-		<h1 id="head">Model Nepal Administrator</h1>
+		<h1 id="head">
+			Model Nepal Administrator
+			<?php echo $userlogged?>
+		</h1>
 
 		<?php echo $menu?>
 

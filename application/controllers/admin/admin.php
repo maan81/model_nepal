@@ -17,8 +17,8 @@ class Admin extends MY_Controller {
 	}
 
 	public function index(){
-		if(($this->session->userdata('usertype')=='administrator') ||
-		   ($this->session->userdata('usertype')=='editor') ) {
+		if(($this->session->userdata('usertype')!='administrator') &&
+		   ($this->session->userdata('usertype')!='editor') ) {
 			redirect('admin/main');
 		}else{
 			$this->login();

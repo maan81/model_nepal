@@ -16,6 +16,83 @@ class Admin extends MY_Controller {
 		$this->load->library('adminrender_library');
 	}
 
+	/**
+	 * flag for validated; for all new inputs ... 
+	 */
+	private $_validated=false;
+
+	/**
+	 * email validation
+	 * @param string email
+	 * @return void
+	 */
+	private function _validate_email($email){
+		$this->_validated = true;
+	}
+
+	/**
+	 * Forgot username/password
+	 * @param void
+	 * @return void
+	 */
+	public function reset_user(){
+		$data = array();
+
+		if($this->input->post()){
+			$email = $this->input->post('email');
+			//validate email
+			$this->_validate_email($email);
+
+			if($this->_validated){
+
+				$this->load->helper('string');
+				$this->load->library('email');
+				
+				//get reqd. data
+				$this->load->model('users_model');
+				$data = $this->users_model->get(array('email'=>$email));
+
+				//generate nu rand. password & reset in db
+				$data[0]->password = random_string().$data[0]->username;
+				$this->users_model->set(array(	'id' 		=> $data[0]->id,
+												'password'	=> md5($data[0]->password.$data[0]->username)
+												)
+										);
+
+				//generate html for email
+				$reset_user = $this->adminrender_library->reset_user($data);
+
+				$this->load->library('email');
+
+				$this->email->from('Model Nepal','moletest123456@gmail.com');//gmail reqd ......
+
+				$this->email->to($data[0]->email);
+
+				$this->email->subject('Model Nepal Account');
+				$this->email->message($reset_user);
+
+				$this->email->set_newline("\r\n");
+
+
+				if($this->email->send()){
+					$this->session->flashdata('sending_email','Email has been send.');
+				}else{
+					$this->session->flashdata('sending_email','There was an error while sending email.');
+				};
+
+/*
+SELECT update_time
+FROM information_schema.tables
+WHERE table_schema='mydb'
+AND table_name='mytable';
+*/			}
+		}
+
+		//render form
+		$this->template->set_template('reset_user');
+		$this->template->render();
+	}
+
 	public function index(){
 		if(($this->session->userdata('usertype')!='administrator') &&
 		   ($this->session->userdata('usertype')!='editor') ) {

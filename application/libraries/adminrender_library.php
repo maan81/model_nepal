@@ -1326,4 +1326,28 @@ class Adminrender_library{
 
 		return  $op;
 	}
+
+	public function reset_user($data){
+		$email = '<div>
+					<p>
+						Your username/password has been reset to as follows : 
+					</p>
+
+					<table>
+						<tr>
+							<td>Your username : </td>
+							<td>'.$data[0]->username.'<td>
+						</tr>
+						<tr>
+							<td>Your password : </td>
+							<td>'.$data[0]->password.'<td>
+						</tr>
+					</table>
+
+					<p>
+						You can reset your password by logging in and going into profiles and change password.
+					</p>
+				</div>';		
+		return $email;
+	}
 }

@@ -16,27 +16,45 @@
 		<script src='<?php echo base_url().JSPATH?>jquery-1.8.2.min.js' type='text/javascript'></script>
 	<?php endif?>
 	
-	<script type='text/javascript' src='<?php echo base_url().ADMINJSPATH?>functions.js'></script>
+  <script>
+  $(function(){
+    $('#email','#admin-login')
+    .click(function(){
+        if($(this).val() == 'Email')
+            $(this).val('');
+        })
+    .blur(function(){
+            if($(this).val() == '')
+        $(this).val('Email')
+    }) 
+  })
+  </script>
+  <style >
+    #reset-user-submit {
+        border-radius: 32px 32px 32px 32px;
+        /*box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);*/
+        height: 48px;
+        padding: 8px;
+        position: absolute;
+        right: -37px;
+        top: -11px;
+        width: 48px;
+        top: 35px;
+    }
+  </style>
 </head>
 <body>
 	
-  <form method="post" action="" class="login" id="admin-login">
+  <form id="admin-login" class="login" action="" method="post">
+    <h2 style="font-size: 1.5em; font-weight: bold; text-align: center; padding-bottom: 30px;">Enter your email</h2>
     <p>
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" value="Username">
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" value="Email">
     </p>
 
-    <p>
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" value="********">
+    <p id="reset-user-submit">
+      <button class="login-button" type="submit">Login</button>
     </p>
-
-    <p class="login-submit">
-      <button type="submit" class="login-button">Login</button>
-    </p>
-
-    <p class="forgot-password">
-      <a href="<?php echo site_url('admin/reset_user')?>">Forgot your password?</a></p>
   </form>
 
   <section class="about">

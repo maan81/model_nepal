@@ -86,6 +86,20 @@ $template['admin-login']['parser_method'] = 'parse';
 $template['admin-login']['parse_template'] = FALSE;
 
 
+/*
+|--------------------------------------------------------------------------
+| Reseting username/password's form
+|--------------------------------------------------------------------------
+*/
+
+$template['reset_user']['template'] = 'admin/reset_user.php';
+$template['reset_user']['regions'] = array(
+											   'email',
+											   'footer',
+											);
+$template['reset_user']['parser'] = 'parser';
+$template['reset_user']['parser_method'] = 'parse';
+$template['reset_user']['parse_template'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------

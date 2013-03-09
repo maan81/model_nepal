@@ -112,7 +112,6 @@ class Users extends MY_Controller {
 	}
 
 
-
 //---------------------------------------------------------------------------------
 	/**
 	 * flag for validated; for all new inputs ... 

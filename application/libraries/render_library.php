@@ -22,8 +22,8 @@ class Render_library{
 	public function render_header($data){
 		$data = array(
 					'ads'	=>	array(
-									'ad1'	=> 'ad1.jpg',
-									'ad2'	=> 'ad2.jpg'
+									'ad1.jpg'	=> '#',
+									'ad2.jpg'	=> '#'
 								),
 					'nav'	=>	array(
 									'Featured Models'	=> '#',
@@ -37,12 +37,17 @@ class Render_library{
 
 		$op = 	'<div class="header">
 					<div class="logo">
-						<img src="'.IMGSPATH.'logo.png" alt="Model Nepal" title="Model Nepal" />
+						<a href="#"><img src="'.IMGSPATH.'logo.png" alt="Model Nepal" title="Model Nepal" /></a>
 					</div>
-					<div class="h-ad">'.
-						'<img src="'.IMGSPATH.$data['ads']['ad1'].'" alt="ad1" />'.//add1
-						'<img src="'.IMGSPATH.$data['ads']['ad2'].'" alt="ad1" />'.//add1
-					'</div>
+					<div class="h-ad">';
+
+				foreach($data['ads'] as $key=>$val){
+					$op .= '<a href="'.$val.'">
+								<img src="'.ADDSPATH.$key.'" alt="ad1" />
+							</a>';
+				}	
+					
+		$op .=		'</div>
 					<div class="nav">
 						<a href="#">Home</a>';
 					foreach($data['nav'] as $key=>$val){
@@ -62,7 +67,10 @@ class Render_library{
 		return $op;
 	}
 
-
+	/**
+	 * Facebook's Like button
+	 * Server's date
+	 */
 	public function render_toplink($data){
 		$op = 	'<div id="toplink">
 					<div class="toplink">
@@ -71,7 +79,9 @@ class Render_library{
 							<div class="addthis_toolbox addthis_default_style ">
 								<a class="addthis_button_facebook_like"></a>
 							</div>
-							<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-512a3fd75f430942"></script>
+							<script type="text/javascript" 
+									src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-512a3fd75f430942">
+							</script>
 						</div>
 				    </div>
 				</div>';	
@@ -81,10 +91,44 @@ class Render_library{
 
 	public function render_mainContents($data){
 
+		$data = array(
+					'add' 		=> array(
+											'img'	=>	'fullbanner.jpg',
+											'url'	=>	'#'
+								),
+					'add2'		=>	array(
+											'img'	=> 'ad3.jpg',
+											'url'	=> '#'
+								),
+					'subject'		=> array(
+											'img'	=>	'm4/m4.jpg',
+											'url'	=>	'#'
+								),
+					'featured' 	=> array(
+										0 	=> array(
+													'img'	=> 'm1/m1.jpg',
+													'title'	=> 'The Night',
+													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
+												),
+										1  	=>  array(
+													'img'	=> 'm2/m2.jpg',
+													'title'	=> 'The Night',
+													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
+												),
+										2  	=>  array(
+													'img'	=> 'm3/m3.jpg',
+													'title'	=> 'The Night',
+													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
+												),
+									)
+				);
+
 		$op = 	'<div class="mainContents">
 					<div class="leftPart">
 						<div class="fullbanner">
-							<img src="tmp/fullbanner.jpg" alt="Banner" width="690" height="110" />
+							<a href="'.$data['add']['url'].'">
+								<img src="'.ADDSPATH.$data['add']['img'].'" alt="Banner" width="690" height="110" />
+							</a>
 						</div>
 						<div class="bannerthree">
 
@@ -93,104 +137,64 @@ class Render_library{
 								<a class="prev disabled"></a>
 								<a class="next disabled"></a>
 
-								<div id="ps_albums">
-									<div class="ps_album models" style="opacity:0;">
-										<img  src="tmp/m1.jpg" alt="model"  />
+								<div id="ps_albums">';
+						foreach($data['featured'] as $key=>$val){
+							
+							$op .= 	'<div class="ps_album models" style="opacity:0;">
+										<img  src="'.FEATUREDPATH.$val['img'].'" alt="model"  />
 										<div class="ps_desc">
-											<h2>The Night</h2>
-											<span>
-												Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get 
-												to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!
-											</span>
+											<h2>'.$val['title'].'</h2>
+											<span>'.$val['desc'].'</span>
 										</div>
-									</div>
-									<div class="ps_album models" style="opacity:0;">
-										<img  src="tmp/m1.jpg" alt="model"  />
-										<div class="ps_desc">
-											<h2>The Night</h2>
-											<span>
-												Top Cat! The most effectual Top Cat! Who&#39;s intellectual close friends get 
-												to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!
-											</span>
-										</div>
-									</div>
-									<div class="ps_album models" style="opacity:0;">
-										<img  src="tmp/m1.jpg" alt="model" />
-										<div class="ps_desc">
-											<h2>The Night</h2>
-											<span>
-												Top Cat! The most effectual Top Cat! Who&#39;s intellectual close friends get 
-												to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!
-											</span>
-										</div>
-									</div>
-									<div class="ps_album models" style="opacity:0;">
-										<img  src="tmp/m1.jpg" alt="model"  />
-										<div class="ps_desc">
-											<h2>The Night</h2>
-											<span>
-												Top Cat! The most effectual Top Cat! Who&#39;s intellectual close friends get 
-												to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!
-											</span>
-										</div>
-									</div>
-									<div class="ps_album models" style="opacity:0;">
-										<img  src="tmp/m1.jpg" alt="model"  />
-										<div class="ps_desc">
-											<h2>The Night</h2>
-											<span>
-												Top Cat! The most effectual Top Cat! Who&#39;s intellectual close friends get 
-												to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!
-											</span>
-										</div>
-									</div>
-									<div class="ps_album models" style="opacity:0;">
-										<img  src="tmp/m1.jpg" alt="model" />
-										<div class="ps_desc">
-											<h2>The Night</h2>
-											<span>
-												Top Cat! The most effectual Top Cat! Who&#39;s intellectual close friends get 
-												to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!
-											</span>
-										</div>
-									</div>
-								</div>
+									</div>';
+						}
+									
+					$op .= 		'</div>
 							</div>
 							<!-- slider end -->
 
 							</div>
-							<div class="bannertwo">
-								<div class="leftimg">
-							    	<img  src="tmp/m4.jpg" alt="model" width="300" height="250" />
+						<div class="bannertwo">
+							
+							<div class="leftimg">
+						    	<a href="'.$data['subject']['url'].'">
+						    		<img  src="'.SUBJECTSPATH.$data['subject']['img'].'" alt="model" width="300" height="250" />
+					    		</a>
+							</div>
+
+						    <div class="rightadsense">
+						    	<a href="'.$data['add2']['url'].'">
+						    		<img  src="'.ADDSPATH.$data['add2']['img'].'" alt="model" width="355" height="250" />
+					    		</a>
+						    </div>
+						</div>
+
+						<div class="twia">
+							<div class="heading"> 
+								<span class="left">
+									<img src="tmp/left.png" alt="left" />
+								</span>
+						    	the world in action
+						    	<span class="right">
+						    		<img src="tmp/right.png" alt="right" />
+						    	</span>
+						    </div>
+
+						    <div class="twiacontents">
+						    	<div class="contents">
+						            <span>Miss Nepal 2013! Begins</span>
+						            <img src="tmp/twia.jpg" alt="twia" width="210" height="120" />
+						    	</div>
+						    	<div class="contents">
+						            <span>Miss Nepal 2013! Begins</span>
+						        	<img src="tmp/twia.jpg" alt="twia" width="210" height="120" />
+						        </div>
+						        <div class="contents">
+						        	<span>Miss Nepal 2013! Begins</span>
+									<img src="tmp/twia.jpg" alt="twia" width="210" height="120" />
 								</div>
-							    <div class="rightadsense"><img  src="tmp/ad3.jpg" alt="model" width="355" height="250" />
-							    </div>
-							</div>
-							<div class="twia">
-								<div class="heading"> 
-									<span class="left">
-										<img src="tmp/left.png" alt="left" />
-									</span>
-							    	the world in action
-							    	<span class="right">
-							    		<img src="tmp/right.png" alt="right" />
-							    	</span>
-							    </div>
-							    <div class="twiacontents">
-							    	<div class="contents">
-							            <span>Miss Nepal 2013! Begins</span>
-							            <img src="tmp/twia.jpg" alt="twia" width="210" height="120" />
-							    	</div>
-							    	<div class="contents">
-							            <span>Miss Nepal 2013! Begins</span>
-							        	<img src="tmp/twia.jpg" alt="twia" width="210" height="120" />
-							        </div>
-							        <div class="contents">
-							        	<span>Miss Nepal 2013! Begins</span>
-										<img src="tmp/twia.jpg" alt="twia" width="210" height="120" />
-									</div>
-							    </div>
-							</div>
+						    </div>
+						</div>
 					</div>'.
 
 	                $this->render_right(false).
@@ -203,23 +207,24 @@ class Render_library{
 
 	public function render_right($data){
 
-		$op = 	'<div class="rightPart">
-					<div class="rads">
-						<img src="tmp/rad1.jpg" alt="Ad" />
-					</div>
-					<div class="rads">
-						<img src="tmp/rad2.jpg" alt="Ad" />
-					</div>
-					<div class="rads">
-						<img src="tmp/rad3.jpg" alt="Ad" />
-					</div>
-					<div class="rads">
-						<img src="tmp/rad1.jpg" alt="Ad" width="250" height="200" />
-					</div>
-					<div class="rads">
-						<img src="tmp/rad4.jpg" alt="Ad" width="250" height="100"  />
-					</div>
-				</div>';
+		$data = array(
+					'rad1.jpg' => '#',
+					'rad2.jpg' => '#',
+					'rad3.jpg' => '#',
+					'rad1.jpg' => '#',
+					'rad4.jpg' => '#',
+				);
+
+		$op = 	'<div class="rightPart">';
+
+		foreach($data as $key=>$val){
+			$op .= 	'<div class="rads">
+						<a href="'.$val.'">
+							<img src="'.ADDSPATH.$key.'" alt="Ad" width="250" />
+						</a>
+					</div>';
+		}
+		$op .=	'</div>';
 
 		return $op;
 	}
@@ -236,23 +241,23 @@ class Render_library{
 				        + 977 01-4242893 | 9851026750 </div>
 				      <div class="logos">
 				        <span class="logs">A presentation of<br />
-				          <img src="tmp/fisheye.png" alt="Fish Eya" />
+				          <img src="'.IMGSPATH.'fisheye.png" alt="Fish Eya" />
 				        </span>
 				        <span class="logs">in Association with<br />
-				          <img src="tmp/studiof.png" alt="Fish Eya" />
+				          <img src="'.IMGSPATH.'studiof.png" alt="Fish Eya" />
 				        </span>
 				        <span class="logs">Supported By:<br />
-				          <img src="tmp/songsnepal.png" alt="Fish Eya" />
+				          <img src="'.IMGSPATH.'songsnepal.png" alt="Fish Eya" />
 				        </span>
 				        <span class="logs"><br />
-				          <img src="tmp/sparrow.png" alt="Fish Eya" />
+				          <img src="'.IMGSPATH.'sparrow.png" alt="Fish Eya" />
 				        </span>
 				        <span class="logs">Hosting By<br />
-				          <img src="tmp/ws.png" alt="Fish Eya" />
+				          <img src="'.IMGSPATH.'ws.png" alt="Fish Eya" />
 				        </span>
 				      </div>
 				    </div>
-				  <div class="footerend">&copy; Copyright <?php echo date("Y"); ?> ModelsNepal.com. All Rights Reserved.</div>
+				  <div class="footerend">&copy; Copyright '.date("Y").' ModelsNepal.com. All Rights Reserved.</div>
 				</div>';		
 		
 		return $op;

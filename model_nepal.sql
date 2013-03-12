@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 09, 2013 at 09:16 AM
+-- Generation Time: Mar 12, 2013 at 05:55 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.5
 
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(127) NOT NULL,
   `usertype` varchar(127) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `users`
@@ -173,15 +173,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `usertype`) VALUES
 (1, 'root', '1fd185ec2e46a16240b7544dff37aa65', 'root@root.com', 'administrator'),
 (11, 'ff', 'ece926d8c0356205276a45266d361161', 'ff@ff.com', 'administrator'),
-(12, 'ee', '670da91be64127c92faac35c8300e814', 'pranijman@gmail.com', 'editor'),
-(13, '', 'b85ac4b4ec0d60e012c4c109470d45b2', '', ''),
-(14, '', '09f78e93378d495795ce56e0143caf4d', '', ''),
-(15, '', '20c45e85dc07e8ecc895d5cafb55b52e', '', ''),
-(16, '', 'c5e3093fae784a36d076b0d3b189c7e5', '', ''),
-(17, '', '87f4c5e1e9dfc3205e37baac2279126d', '', ''),
-(18, '', '838d484568505f0b45403538cd68dcae', '', ''),
-(19, '', '2db4683a6ae8a4f08329c7a1ee3320ba', '', ''),
-(20, '', '5c96c0149708f44a2eae051af5df7966', '', '');
+(12, 'ee', 'c0bdce0aca8f4f5512bb2fd78c922c24', 'pranijman@gmail.com', 'editor');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

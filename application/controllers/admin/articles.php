@@ -21,7 +21,6 @@ class Articles extends MY_Controller {
 			redirect('admin');
 		}
 
-		$this->load->library('adminrender_library');
 		$this->load->model('articles_model');
 	}
 

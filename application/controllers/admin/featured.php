@@ -21,7 +21,6 @@ class Featured extends MY_Controller {
 			redirect('admin');
 		}
 
-		$this->load->library('adminrender_library');
 		$this->load->model('featured_model');
 	}
 

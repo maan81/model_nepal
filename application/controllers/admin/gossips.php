@@ -21,7 +21,6 @@ class Gossips extends MY_Controller {
 			redirect('admin');
 		}
 
-		$this->load->library('adminrender_library');
 		$this->load->model('gossips_model');
 	}
 

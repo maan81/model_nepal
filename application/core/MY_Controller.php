@@ -19,8 +19,9 @@ class MY_Controller extends CI_Controller {
 		 * load the render library
 		 */
 		$this->load->library('render_library');
+		$this->load->library('adminrender_library');
 	}
 }
 
-/* End of file MY_MOLE_Controller.php */
-/* Location: ./application/core/MY_MOLE_Controller.php */
+/* End of file MY_Controller.php */
+/* Location: ./application/core/MY_Controller.php */

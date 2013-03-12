@@ -45,6 +45,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 */
 define('ADMINCSSPATH',		'public/admin/css/');
 define('ADMINJSPATH',		'public/admin/js/');
+define('IMGSPATH',			'public/imgs/');
 define('CSSPATH',			'public/css/');
 define('JSPATH',			'public/js/');
 define('ADDSPATH',			'public/ads/');

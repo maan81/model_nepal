@@ -11,9 +11,6 @@ class Admin extends MY_Controller {
 		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
 		$this->output->set_header('Pragma: no-cache');
-
-
-		$this->load->library('adminrender_library');
 	}
 
 	/**

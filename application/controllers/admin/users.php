@@ -18,7 +18,6 @@ class Users extends MY_Controller {
 			redirect('admin');
 		}
 
-		$this->load->library('adminrender_library');
 		$this->load->model('users_model');
 	}
 
@@ -108,7 +107,17 @@ class Users extends MY_Controller {
 	 * redirect to admin if successful
 	 */
 	private function _chk_login($old_password,$new_password,$new_password_reenter){
-		return true;
+		$data = array(
+						'id'	=> $this->session->userdata('userid'),
+						'password'=>$old_password
+					);
+		if($this->users_model->get($data) && 
+			( count($this->users_model->get($data))==1)
+			){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 

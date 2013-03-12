@@ -2,15 +2,31 @@
 
 class Main extends MY_Controller {
 
+	public function __construct(){
+		parent::__construct();
+	}
 
-	public function index()
-	{
-		echo 'in main';
-		//$this->load->template('site');
+	public function index(){
+
+		$this->template->set_template('site');
 		
-//		$this->template->write('test','testing');
 
-		//$this->template->render();
+		$op = $this->render_library->render_toplink(false);
+		$this->template->write('toplink',$op);
+
+		$op = $this->render_library->render_header(false);
+		$this->template->write('header',$op);
+
+
+		$op = $this->render_library->render_footer(false);
+		$this->template->write('footer',$op);
+
+
+		$op = $this->render_library->render_mainContents(false);
+		$this->template->write('mainContents',$op);
+
+
+		$this->template->render();
 	}
 }
 

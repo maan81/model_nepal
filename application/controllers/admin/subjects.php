@@ -21,7 +21,6 @@ class Subjects extends MY_Controller {
 			redirect('admin');
 		}
 
-		$this->load->library('adminrender_library');
 		$this->load->model('subjects_model');
 	}
 

@@ -45,6 +45,11 @@ $route['admin/reset_user'] = 'admin/admin/reset_user';
 $route['admin/(:any)'] = 'admin/$1';
 $route['admin/(:any)/(:any)'] = 'admin/$1/$2';
 
+$route['featured'] = 'site/featured';
+$route['featured/(:any)'] = 'site/featured/$1';
+$route['featured/(:any)/(:any)'] = 'site/featured/$1/$2';
+$route['featured/(:any)/(:any)/(:any)'] = 'site/featured/$1/$2/$3';
+
 $route['default_controller'] = 'main';
 $route['404_override'] = '';
 

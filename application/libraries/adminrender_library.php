@@ -22,14 +22,9 @@ class Adminrender_library{
 		$this->ci->load->database();
 		$this->ci->load->helper('form');
 
-		array_push( $this->ethnicity,
-						'brahmin',		'gurung',
-						'limbu',		'magar',
-						'newar',		'rai',
-						'rana',			'sherpa',
-						'tamang',		'thakali',
-						'thakuri',		'tibetan Origin'
-					);
+		$this->ci->load->config('ethnicity');
+		$this->ethnicity = $this->ci->config->item('ethnicity');
+
 
 		array_push( $this->usertype,
 						'administrator', 'editor', 'user'
@@ -58,7 +53,6 @@ class Adminrender_library{
 						'Projects'		=> base_url().'admin/projects',
 						'Services'		=> base_url().'admin/services',
 						'Contact'		=> base_url().'admin/contact',
-						//'Users'			=> base_url().'admin/users',
 					);
 
 		if($this->ci->session->userdata('usertype')=='administrator'){

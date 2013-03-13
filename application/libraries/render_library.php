@@ -41,7 +41,7 @@ class Render_library{
 //die;					
 		$op .=		'</div>
 					<div class="nav">
-						<a href="#">Home</a>';
+						<a href="'.base_url().'">Home</a>';
 					foreach($data['nav'] as $key=>$val){
 						$op .= '<a href="'.$val.'">'.$key.'</a>';
 					}

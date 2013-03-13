@@ -20,33 +20,25 @@ class Render_library{
 	}
 
 	public function render_header($data){
-		$data = array(
-					'ads'	=>	array(
-									'ad1.jpg'	=> '#',
-									'ad2.jpg'	=> '#'
-								),
-					'nav'	=>	array(
-									'Featured Models'	=> '#',
-									'Agency'			=> '#',
-									'News & Gossips'	=> '#',
-									'Events'			=> '#',
-									'Music'				=> '#',
-									'Videos'			=> '#',
-								)
-				);
 
 		$op = 	'<div class="header">
 					<div class="logo">
-						<a href="#"><img src="'.IMGSPATH.'logo.png" alt="Model Nepal" title="Model Nepal" /></a>
+						<a href="'.base_url().'">
+							<img src="'.IMGSPATH.'logo.png" alt="Model Nepal" title="Model Nepal" />
+						</a>
 					</div>
 					<div class="h-ad">';
-
+//echo '<pre>';
+//print_r($data['ads']);die;
 				foreach($data['ads'] as $key=>$val){
-					$op .= '<a href="'.$val.'">
-								<img src="'.ADDSPATH.$key.'" alt="ad1" />
+//echo $key;
+//print_r($val);
+//echo '<br/>';
+					$op .= '<a href="'.$val->link.'">
+								<img src="'.ADDSPATH.$val->image.'" alt="ad1" />
 							</a>';
 				}	
-					
+//die;					
 		$op .=		'</div>
 					<div class="nav">
 						<a href="#">Home</a>';
@@ -90,44 +82,13 @@ class Render_library{
 
 
 	public function render_mainContents($data){
-
-		$data = array(
-					'add' 		=> array(
-											'img'	=>	'fullbanner.jpg',
-											'url'	=>	'#'
-								),
-					'add2'		=>	array(
-											'img'	=> 'ad3.jpg',
-											'url'	=> '#'
-								),
-					'subject'		=> array(
-											'img'	=>	'm4/m4.jpg',
-											'url'	=>	'#'
-								),
-					'featured' 	=> array(
-										0 	=> array(
-													'img'	=> 'm1/m1.jpg',
-													'title'	=> 'The Night',
-													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
-												),
-										1  	=>  array(
-													'img'	=> 'm2/m2.jpg',
-													'title'	=> 'The Night',
-													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
-												),
-										2  	=>  array(
-													'img'	=> 'm3/m3.jpg',
-													'title'	=> 'The Night',
-													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
-												),
-									)
-				);
-
+//echo '<pre>';
+//print_r($data['add2']);die;
 		$op = 	'<div class="mainContents">
 					<div class="leftPart">
 						<div class="fullbanner">
-							<a href="'.$data['add']['url'].'">
-								<img src="'.ADDSPATH.$data['add']['img'].'" alt="Banner" width="690" height="110" />
+							<a href="'.$data['add']->link.'">
+								<img src="'.ADDSPATH.$data['add']->image.'" alt="Banner" width="690" height="110" />
 							</a>
 						</div>
 						<div class="bannerthree">
@@ -163,8 +124,8 @@ class Render_library{
 							</div>
 
 						    <div class="rightadsense">
-						    	<a href="'.$data['add2']['url'].'">
-						    		<img  src="'.ADDSPATH.$data['add2']['img'].'" alt="model" width="355" height="250" />
+						    	<a href="'.$data['add2'][0]->link.'">
+						    		<img  src="'.ADDSPATH.$data['add2'][0]->image.'" alt="model" width="355" height="250" />
 					    		</a>
 						    </div>
 						</div>
@@ -197,7 +158,7 @@ class Render_library{
 						</div>
 					</div>'.
 
-	                $this->render_right(false).
+	                $this->render_right($data['render_right']).
 	               
 				'</div>';
 
@@ -206,21 +167,15 @@ class Render_library{
 
 
 	public function render_right($data){
-
-		$data = array(
-					'rad1.jpg' => '#',
-					'rad2.jpg' => '#',
-					'rad3.jpg' => '#',
-					'rad1.jpg' => '#',
-					'rad4.jpg' => '#',
-				);
-
+//echo '<pre>';
+//print_r($data);
+//die;
 		$op = 	'<div class="rightPart">';
 
 		foreach($data as $key=>$val){
 			$op .= 	'<div class="rads">
-						<a href="'.$val.'">
-							<img src="'.ADDSPATH.$key.'" alt="Ad" width="250" />
+						<a href="'.$val->link.'">
+							<img src="'.ADDSPATH.$val->image.'" alt="Ad" width="250" />
 						</a>
 					</div>';
 		}

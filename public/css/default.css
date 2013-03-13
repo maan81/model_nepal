@@ -208,7 +208,7 @@ div{
 		width:956px;
 		float:left;
 		height:auto;
-		padding-bottom:10px;	
+		padding-bottom:20px;	
 	}
 	
 		.mainContents .leftPart{
@@ -228,12 +228,12 @@ div{
 			position:relative;
 			width:706px;
 			float:left;
-			height:315px;
+			height:405px;
 		}
 		
 		.leftPart .bannerthree .models{
 			width:210px;
-			height:300px;
+			height:397px;
 			margin-right:15px !important;
 			background:url(images/model-shadow.png) no-repeat bottom;
 			float:left;

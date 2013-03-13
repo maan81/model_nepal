@@ -91,8 +91,8 @@ AND table_name='mytable';
 	}
 
 	public function index(){
-		if(($this->session->userdata('usertype')!='administrator') &&
-		   ($this->session->userdata('usertype')!='editor') ) {
+		if(($this->session->userdata('usertype')=='administrator') ||
+		   ($this->session->userdata('usertype')=='editor') ) {
 			redirect('admin/main');
 		}else{
 			$this->login();
@@ -123,7 +123,6 @@ AND table_name='mytable';
     }
 
 	public function main(){
-//echo $this->session->userdata('usertype');die;
 		if( ($this->session->userdata('usertype')!='administrator') && 
 			($this->session->userdata('usertype')!='editor') ){
 			$this->login();

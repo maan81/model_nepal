@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 12, 2013 at 05:55 PM
+-- Generation Time: Mar 13, 2013 at 04:00 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.5
 
@@ -34,7 +34,22 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `link` varchar(255) NOT NULL,
   `image` varchar(127) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `ads`
+--
+
+INSERT INTO `ads` (`id`, `title`, `category`, `dimensions`, `link`, `image`) VALUES
+(1, 'Wired 868', 'published', 'h-ad', 'http://google.com.np', '1363158059.1957.jpg'),
+(2, 'Vmail', 'published', 'h-ad', 'http://facebook.com', '1363159357.1056.jpg'),
+(3, 'Digital Dream Utopia', 'published', 'fullbanner', 'http://yahoo.com', '1363159980.0329.jpg'),
+(6, 'Car Zoom', 'published', 'rightadsense', 'http://cnn.com', '1363161795.57.jpg'),
+(8, 'Vmail 2', 'published', 'rads', 'http://stackoverflow.com', '1363162127.7703.jpg'),
+(9, 'Wired 868 2', 'published', 'rads', 'http://skype.com', '1363162394.1761.jpg'),
+(10, 'Ubuntu', 'published', 'rads', 'http://www.ubuntu.com/', '1363162466.9965.jpg'),
+(11, 'Vmail 3', 'published', 'rads', 'http://facebook.com', '1363162539.473.jpg'),
+(12, 'Digital Dream Utopia 2', 'published', 'rads', 'http://youtube.com', '1363162622.9466.jpg');
 
 -- --------------------------------------------------------
 
@@ -164,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(127) NOT NULL,
   `usertype` varchar(127) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `users`

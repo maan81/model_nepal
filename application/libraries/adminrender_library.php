@@ -10,6 +10,7 @@ class Adminrender_library{
 	private $ci = null;
 	protected $ethnicity = array();
 	protected $usertype = array();
+	protected $adddimensions	= array();
 
 	/**
 	 * __construct
@@ -32,6 +33,13 @@ class Adminrender_library{
 
 		array_push( $this->usertype,
 						'administrator', 'editor', 'user'
+					);
+
+		array_push(	$this->adddimensions,
+						'h-ad',
+						'fullbanner',
+						'rads',
+						'rightadsense'
 					);
 	}
 	
@@ -155,20 +163,13 @@ class Adminrender_library{
 					<div class="grid_6">
 						<p>
 							<label for="dimensions">Dimensions <small>( width x height )</small></label>
-							<select name="dimensions">
-								<option value="248x117" '.
-									($data?($data[0]->dimensions=='248x117'?'selected="selected"':''):'').'>248x117</option>
-								<option value="249x162" '.
-									($data?($data[0]->dimensions=='249x162'?'selected="selected"':''):'').'>249x162</option>
-								<option value="250x223" '.
-									($data?($data[0]->dimensions=='250x223'?'selected="selected"':''):'').'>250x223</option>
-								<option value="341x81"  '.
-									($data?($data[0]->dimensions=='341x81'?'selected="selected"':''):'').'>341x81</option>
-								<option value="686x107" '.
-									($data?($data[0]->dimensions=='686x107'?'selected="selected"':''):'').'>686x107</option>
-								<option value="306x78"  '.
-									($data?($data[0]->dimensions=='306x78'?'selected="selected"':''):'').'>306x78</option>
-							</select>
+							<select name="dimensions">';
+					foreach($this->adddimensions as $key=>$val){
+						$op .= 	'<option value="'.$val.'" '.
+									($data?($data[0]->dimensions==$val?'selected="selected"':''):'').'>'.ucfirst($val).
+								'</option>';
+					}							
+					$op .= 	'</select>
 						</p>
 					</div>
 					<div class="grid_16">

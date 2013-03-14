@@ -1,3 +1,5 @@
+
+
 <div class="mainContents">
    <div class="leftPart">
 
@@ -30,22 +32,22 @@
          <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
                <tr style="text-align:center">
                   <td>
-                     <select name="name" style="width:140px;">
-                        <option selected="selected">Model Name</option>
+                     <select class="modelparam" name="name" style="width:140px;">
+                        <option selected="selected" value="">Model Name</option>
                         <?php foreach($featured as $key=>$val):?>
                            <option value="<?php echo $val->name?>"><?php echo $val->name?></option>
                         <?php endforeach;?>
                      </select>
                   </td>
                   <td>
-                     <select name="gender" style="width:90px;">
-                        <option selected="selected">Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                     <select class="modelparam" name="gender" style="width:90px;">
+                        <option selected="selected" value="">Gender</option>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
                      </select>
                   </td>
                   <td>
-                     <select name="ethnicity" style="width:100px;">
+                     <select class="modelparam" name="ethnicity" style="width:100px;">
                         <option selected="selected">Ethnicity</option>
                         <?php foreach($ethnicity as $key=>$val):?>
                            <option value="<?php echo $val?>"><?php echo ucfirst($val)?></option>
@@ -53,15 +55,21 @@
                      </select>
                   </td>
                   <td>
-                     <select name="mmonth" style="width:130px;">
+                     <select class="modelparam" name="mmonth" style="width:130px;">
                         <option value="Hem">Hem</option>
                         <option value="Raj">Raj</option>
-                        <option selected="selected">Select a month</option>
+                        <option selected="selected" value="">Select a month</option>
                      </select>
                   </td>
                </tr>
          </table>
          </form>
+      </div>
+
+      <div style="text-align: center;">
+         <img class="loading" alt="loading" 
+               src="<?php echo base_url().IMGSPATH?>ajax-loader.gif" 
+               style="display:none;padding: 50px;">
       </div>
 
    </div>

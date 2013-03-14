@@ -79,12 +79,21 @@ class Featured extends MY_Controller {
 	 * @param string (search parameter) , string (search value)
 	 * @return string (html div)
 	 */
-	public function search($key,$val){
+	public function search($key=null,$val=null){
+
+		if( ($key==null) || ($val==null) ){
+			$this->load->view('site/featured_search.php',array(
+																'featured' => false,
+																'pagination' => false
+																)
+															);
+
+		}
 
 		$featured = $this->featured_model->get(array($key=>urldecode($val)));
-	
+
 		$this->load->helper('utilites_helper');
-//print_r($featured);//die;
+
 		if($featured){
 		foreach($featured as $key=>$val){
 

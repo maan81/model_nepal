@@ -89,7 +89,8 @@ class Main extends MY_Controller {
 		$op = $this->render_library->render_mainContents($data);
 		$this->template->write('mainContents',$op);
 
-
+		$this->template->add_js(JSPATH.'slider.js');
+		$this->template->add_css(CSSPATH.'slider.css');
 		//-----------------------------------------------
 		//-----------------------------------------------
 		$this->template->render();

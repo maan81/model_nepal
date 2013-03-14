@@ -12,8 +12,8 @@
 		<script type='text/javascript' src='<?php echo base_url().JSPATH?>jquery-1.8.2.min.js'></script>
 	<?php endif;?>
 
-	<script type='text/javascript' src='<?php echo base_url().JSPATH?>slider.js'></script>
-	<link rel="stylesheet" href="<?php echo base_url().CSSPATH?>slider.css" type="text/css" media="screen" charset="utf-8" />
+	<?php echo $_scripts?>
+	<?php echo $_styles?>
 </head>
 <body>
 

@@ -9,7 +9,11 @@
 
       <div class="modelspage">
          <div class="featuremodel">
-            <img src="<?php echo FEATUREDPATH.strtolower(str_replace(' ', '_', $featured[0]->name))?>/01/m1.jpg" alt="Model" width="430" height="315" />
+            <img src="<?php 
+                           $this->load->helper('utilites_helper'); 
+                           echo FEATUREDPATH.gen_folder_name($featured[0]->name)
+
+                        ?>/01/m1.jpg" alt="Model" width="430" height="315" />
          </div>
 
          <div class="featurem">Featured Model</div>
@@ -22,29 +26,29 @@
 
 
       <div class="modelfilter" style="margin-top:10px;">
+         <form action="" method="post">
          <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
-            <form action="" method="post">
                <tr style="text-align:center">
                   <td>
-                     <select name="mname" style="width:140px;">
+                     <select name="name" style="width:140px;">
                         <option selected="selected">Model Name</option>
                         <?php foreach($featured as $key=>$val):?>
-                           <option value="<?php echo $val->id?>"><?php echo $val->name?></option>
+                           <option value="<?php echo $val->name?>"><?php echo $val->name?></option>
                         <?php endforeach;?>
                      </select>
                   </td>
                   <td>
-                     <select name="mgender" style="width:90px;">
+                     <select name="gender" style="width:90px;">
                         <option selected="selected">Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
                      </select>
                   </td>
                   <td>
-                     <select name="methinicity" style="width:100px;">
+                     <select name="ethnicity" style="width:100px;">
                         <option selected="selected">Ethnicity</option>
                         <?php foreach($ethnicity as $key=>$val):?>
-                           <option value="<?php echo $key?>"><?php echo ucfirst($val)?></option>
+                           <option value="<?php echo $val?>"><?php echo ucfirst($val)?></option>
                         <?php endforeach;?>
                      </select>
                   </td>
@@ -56,54 +60,10 @@
                      </select>
                   </td>
                </tr>
-            </form>
          </table>
+         </form>
       </div>
 
-      <!--
-      <div class="modelsthumb">
-         <div class="thumb" style="margin-right:15px;">
-            <span class="title">Sakira Shrestha</span> 
-            <img src="images/thumb.jpg" />
-         </div>
-
-         <div class="thumb">
-            <span class="title">Sakira Shrestha</span> 
-            <img src="images/thumb.jpg" />
-         </div>
-         
-         <div class="thumb" style="margin-right:15px;">
-            <span class="title">Sakira Shrestha</span> 
-            <img src="images/thumb.jpg" />
-         </div>
-         
-         <div class="thumb">
-            <span class="title">Sakira Shrestha</span> 
-            <img src="images/thumb.jpg" />
-         </div>
-         
-         <div class="thumb" style="margin-right:15px;">
-            <span class="title">Sakira Shrestha</span> 
-            <img src="images/thumb.jpg" />
-         </div>
-         
-         <div class="thumb">
-            <span class="title">Sakira Shrestha</span> 
-            <img src="images/thumb.jpg" />
-         </div>
-      </div>
-      <div class="pagina">
-         <img src="images/prev.png" alt="Previous" /> 
-         
-         <a href="#">1</a>  
-         <a href="#">2</a>  
-         <a href="#">3</a>  
-         <a href="#">4</a>  
-         <a href="#">5</a> 
-
-         <img src="images/next.png" alt="Next" />
-      </div>
-      -->
    </div>
 
    <div class="rightPart">

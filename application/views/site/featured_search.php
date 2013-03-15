@@ -1,12 +1,14 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <?php //print_r($featured);?>
 <div class="modelsthumb">
    <?php if($featured) :?>
    <?php foreach($featured as $key=>$val):?>
 
       <div class="thumb" style="margin-right:15px;text-align:center;">
-         <span class="title"><?php echo $val->name?></span> 
-         <img src="<?php echo $val->thumbs?>" />
-         <!--<img src="images/thumb.jpg" />-->
+         <a href="<?php echo site_url('featured/get/'.$val->id.'/01/1')?>">
+            <span class="title"><?php echo $val->name?></span> 
+            <img src="<?php echo $val->thumbs?>" />
+         </a>
       </div>
 
    <?php endforeach?>
@@ -16,14 +18,6 @@
          <!--<img src="" />-->
       </div>
    <?php endif?>
-<?php /*   
-   <!--
-   <div class="thumb">
-      <span class="title">Sakira Shrestha</span> 
-      <img src="images/thumb.jpg" />
-   </div>
-   -->
-*/ ?>
 </div>
 
 <?php echo $pagination?>

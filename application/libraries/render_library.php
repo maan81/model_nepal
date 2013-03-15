@@ -24,7 +24,7 @@ class Render_library{
 		$op = 	'<div class="header">
 					<div class="logo">
 						<a href="'.base_url().'">
-							<img src="'.IMGSPATH.'logo.png" alt="Model Nepal" title="Model Nepal" />
+							<img src="'.base_url().IMGSPATH.'logo.png" alt="Model Nepal" title="Model Nepal" />
 						</a>
 					</div>
 					<div class="h-ad">';
@@ -35,7 +35,7 @@ class Render_library{
 //print_r($val);
 //echo '<br/>';
 					$op .= '<a href="'.$val->link.'">
-								<img src="'.ADDSPATH.$val->image.'" alt="ad1" />
+								<img src="'.base_url().ADDSPATH.$val->image.'" alt="ad1" />
 							</a>';
 				}	
 //die;					
@@ -88,7 +88,8 @@ class Render_library{
 					<div class="leftPart">
 						<div class="fullbanner">
 							<a href="'.$data['add']->link.'">
-								<img src="'.ADDSPATH.$data['add']->image.'" alt="Banner" width="690" height="110" />
+								<img src="'.base_url().ADDSPATH.$data['add']->image.'" 
+										alt="Banner" width="690" height="110" />
 							</a>
 						</div>
 						<div class="bannerthree">
@@ -175,7 +176,7 @@ class Render_library{
 		foreach($data as $key=>$val){
 			$op .= 	'<div class="rads">
 						<a href="'.$val->link.'">
-							<img src="'.ADDSPATH.$val->image.'" alt="Ad" width="250" />
+							<img src="'.base_url().ADDSPATH.$val->image.'" alt="Ad" width="250" />
 						</a>
 					</div>';
 		}
@@ -196,19 +197,19 @@ class Render_library{
 				        + 977 01-4242893 | 9851026750 </div>
 				      <div class="logos">
 				        <span class="logs">A presentation of<br />
-				          <img src="'.IMGSPATH.'fisheye.png" alt="Fish Eya" />
+				          <img src="'.base_url().IMGSPATH.'fisheye.png" alt="Fish Eya" />
 				        </span>
 				        <span class="logs">in Association with<br />
 				          <img src="'.IMGSPATH.'studiof.png" alt="Fish Eya" />
 				        </span>
 				        <span class="logs">Supported By:<br />
-				          <img src="'.IMGSPATH.'songsnepal.png" alt="Fish Eya" />
+				          <img src="'.base_url().IMGSPATH.'songsnepal.png" alt="Fish Eya" />
 				        </span>
 				        <span class="logs"><br />
-				          <img src="'.IMGSPATH.'sparrow.png" alt="Fish Eya" />
+				          <img src="'.base_url().IMGSPATH.'sparrow.png" alt="Fish Eya" />
 				        </span>
 				        <span class="logs">Hosting By<br />
-				          <img src="'.IMGSPATH.'ws.png" alt="Fish Eya" />
+				          <img src="'.base_url().IMGSPATH.'ws.png" alt="Fish Eya" />
 				        </span>
 				      </div>
 				    </div>

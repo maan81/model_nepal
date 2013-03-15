@@ -46,9 +46,6 @@ class Featured extends MY_Controller {
 
 		$featured = $this->featured_model->get();
 
-//echo '<pre>';
-//print_r($featured);
-//die;
 		$this->load->config('ethnicity');
 		$data = array(
 					'add'		=>	$tmp[0],
@@ -87,6 +84,7 @@ class Featured extends MY_Controller {
 																'pagination' => false
 																)
 															);
+			return;
 
 		}
 
@@ -157,6 +155,140 @@ $pagination =  $this->pagination->create_links();
 															'pagination' => $pagination
 															)
 														);
+	}
+
+
+
+
+	public function get($model=null,$gallery=null,$img=null){
+		if($model==null){
+			return $this->search();
+		}
+
+		$this->template->set_template('site');
+		
+
+		//-----------------------------------------------
+		$op = $this->render_library->render_toplink(false);
+		$this->template->write('toplink',$op);
+
+		//-----------------------------------------------
+		$this->load->model('ads_model');
+		
+		$tmp = $this->ads_model->get(array('dimensions'=>'h-ad'));
+		$ads = array('ads'=>array($tmp[0]));
+
+		$this->config->load('nav');
+		$data = array(
+					'nav'	=>	$this->config->item('nav'),
+					'ads'=>array($tmp[0],$tmp[1])
+				);
+
+		$op = $this->render_library->render_header($data);
+		$this->template->write('header',$op);
+
+
+		//-----------------------------------------------
+		$op = $this->render_library->render_footer(false);
+		$this->template->write('footer',$op);
+
+
+
+
+
+		//-----------------------------------------------
+		$this->load->model('ads_model');
+		
+		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
+		$featured = $this->featured_model->get(array('id' => $model));
+
+
+//================
+		$galleries = array();
+
+		foreach($featured as $key=>$val){
+	    	$imgs = array(
+		    			'gallery_cover'	=> $this->gallery_cover($val)
+					);
+
+	        array_push($galleries,$imgs);
+		}
+//=================
+
+		
+		$data = array(
+					'featured'		=>	$featured,
+					'render_right'	=>	$tmp3,
+					'galleries'		=> 	$galleries,
+				);
+//print_r($data);
+
+		$op = $this->load->view('site/featured_selected.php',$data,true);
+		$this->template->write('mainContents',$op);
+
+		//-----------------------------------------------
+		//-----------------------------------------------
+		$this->template->render();
+	}
+
+
+
+	private function gallery_cover($featured=null){
+		if($featured==null)
+			return false;
+
+
+		//--------------------------------------
+		$this->load->helper('utilites_helper');
+
+		//folders of imgs of the featuerd model
+		$albums = array();
+
+
+		foreach(scandir(dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name)) as $key=>$val){
+			if($val === "." || $val == "..")
+				continue;
+
+			array_push($albums,dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val);
+		}
+
+
+		$this->load->library('image_lib');
+
+
+		foreach($albums as $key=>$val){
+			$full_path = $val;
+
+			//imgs in that folder
+			$imgs = scandir($full_path);									
+
+			//1st img of the folder
+			$config['source_image']		= $full_path.'/'.$imgs[2];		
+			
+
+			$config['new_image'] 		= $full_path.'/thumbs/'.$imgs[2];		//thumbs of that img 
+			$config['thumb_marker']		= '';
+
+
+			$config['image_library']	= 'gd2';
+			$config['create_thumb'] 	= TRUE;
+			$config['maintain_ratio'] 	= TRUE;
+			$config['width'] 			= 323;
+			$config['height'] 			= 152;
+
+			$this->image_lib->initialize($config);
+
+
+			if ( ! $this->image_lib->resize()){
+			    echo $this->image_lib->display_errors();
+			}			
+
+			$val = FEATUREDPATH.gen_folder_name($featured->name).'/'.array_pop(explode('/',$full_path)).'/thumbs/'.$imgs[2];
+			$albums[$key] = $val;
+
+		}
+
+		return (object)$albums;
 	}
 }
 

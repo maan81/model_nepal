@@ -1,3 +1,4 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
 
 <div class="mainContents">
@@ -79,7 +80,7 @@
       <?php foreach($render_right as $key=>$val):?>
          <div class="rads">
             <a href="<?php echo $val->link?>">
-               <img src="<?php echo ADDSPATH.$val->image?>" alt="Ad" width="250" />
+               <img src="<?php echo base_url().ADDSPATH.$val->image?>" alt="Ad" width="250" />
             </a>
          </div>
       <?php endforeach;?>

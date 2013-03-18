@@ -193,9 +193,6 @@ $pagination =  $this->pagination->create_links();
 		$this->template->write('footer',$op);
 
 
-
-
-
 		//-----------------------------------------------
 		$this->load->model('ads_model');
 		
@@ -203,7 +200,7 @@ $pagination =  $this->pagination->create_links();
 		$featured = $this->featured_model->get(array('id' => $model));
 
 
-//================
+		//================
 		$galleries = array();
 
 		foreach($featured as $key=>$val){
@@ -213,16 +210,31 @@ $pagination =  $this->pagination->create_links();
 
 	        array_push($galleries,$imgs);
 		}
-//=================
+		//=================
+
+
+		//-----------------------------------------------
+		if($img==null){
+			redirect(current_url().'/1');
+		}
+
+		$this->load->helper('utilites_helper');
+		$img_links = get_img($featured[0],$gallery,$img);
+		//-----------------------------------------------
 
 		
 		$data = array(
 					'featured'		=>	$featured,
 					'render_right'	=>	$tmp3,
 					'galleries'		=> 	$galleries,
-				);
-//print_r($data);
+					'img_links'		=> 	$img_links,
 
+//					'test' 	=> get_img($featured[0]->name,$gallery,'m1'),
+					);
+echo '<pre>';
+print_r($data);
+echo '</pre>';
+//die;
 		$op = $this->load->view('site/featured_selected.php',$data,true);
 		$this->template->write('mainContents',$op);
 

@@ -228,12 +228,10 @@ $pagination =  $this->pagination->create_links();
 					'render_right'	=>	$tmp3,
 					'galleries'		=> 	$galleries,
 					'img_links'		=> 	$img_links,
-
-//					'test' 	=> get_img($featured[0]->name,$gallery,'m1'),
 					);
-echo '<pre>';
-print_r($data);
-echo '</pre>';
+//echo '<pre>';
+//print_r($data);
+//echo '</pre>';
 //die;
 		$op = $this->load->view('site/featured_selected.php',$data,true);
 		$this->template->write('mainContents',$op);
@@ -261,9 +259,8 @@ echo '</pre>';
 			if($val === "." || $val == "..")
 				continue;
 
-			array_push($albums,dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val);
+			$albums[$val] = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val;
 		}
-
 
 		$this->load->library('image_lib');
 

@@ -103,11 +103,13 @@ class Render_library{
 						foreach($data['featured'] as $key=>$val){
 							
 							$op .= 	'<div class="ps_album models" style="opacity:0;">
-										<img  src="'.FEATUREDPATH.$val['img'].'" alt="model"  />
-										<div class="ps_desc">
-											<h2>'.$val['title'].'</h2>
-											<span>'.$val['desc'].'</span>
-										</div>
+										<a href="#" style="width:inherit;height:inherit;">
+											<img  src="'.FEATUREDPATH.$val['img'].'" alt="model"  />
+											<div class="ps_desc">
+												<h2>'.$val['title'].'</h2>
+												<span>'.$val['desc'].'</span>
+											</div>
+										</a>
 									</div>';
 						}
 									
@@ -200,7 +202,7 @@ class Render_library{
 				          <img src="'.base_url().IMGSPATH.'fisheye.png" alt="Fish Eya" />
 				        </span>
 				        <span class="logs">in Association with<br />
-				          <img src="'.IMGSPATH.'studiof.png" alt="Fish Eya" />
+				          <img src="'.base_url().IMGSPATH.'studiof.png" alt="Fish Eya" />
 				        </span>
 				        <span class="logs">Supported By:<br />
 				          <img src="'.base_url().IMGSPATH.'songsnepal.png" alt="Fish Eya" />

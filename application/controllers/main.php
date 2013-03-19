@@ -59,29 +59,32 @@ class Main extends MY_Controller {
 									),
 					'featured' 	=> array(
 										0 	=> array(
-													'img'	=> 'm1/m1.jpg',
+													'img'	=> 'first_model/01/m1.jpg',
 													'title'	=> 'The Night',
 													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
 												),
-										1  	=>  array(
-													'img'	=> 'm2/m2.jpg',
+										1 	=> array(
+													'img'	=> 'first_model/01/m1.jpg',
 													'title'	=> 'The Night',
 													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
 												),
-										2  	=>  array(
-													'img'	=> 'm3/m3.jpg',
+										2 	=> array(
+													'img'	=> 'first_model/01/m1.jpg',
+													'title'	=> 'The Night',
+													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
+												),
+										3 	=> array(
+													'img'	=> 'first_model/01/m1.jpg',
+													'title'	=> 'The Night',
+													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
+												),
+										4 	=> array(
+													'img'	=> 'first_model/01/m1.jpg',
 													'title'	=> 'The Night',
 													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
 												),
 									),
 					'render_right'	=>$tmp3
-					//'render_right'=>array(
-					//					'rad1.jpg' => '#',
-					//					'rad2.jpg' => '#',
-					//					'rad3.jpg' => '#',
-					//					'rad1.jpg' => '#',
-					//					'rad4.jpg' => '#',
-					//				)
 				);
 
 

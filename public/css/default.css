@@ -373,7 +373,7 @@ div{
 			-moz-border-radius:10px;
 			-webkit-border-radius:10px;
 			color:#ffffff;
-			border:1px solid #000;
+			border:1px solid #939598;
 		}
 		
 		.footer .contact{
@@ -577,6 +577,9 @@ div{
 		text-align:center;
 		padding:5px;
 		margin:5px;
+		font-size:15px;
+		color:#fff;
+		line-height:28px;
 	}
 		
 

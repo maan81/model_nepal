@@ -47,9 +47,33 @@ class Main extends MY_Controller {
 		$tmp = $this->ads_model->get(array('dimensions'=>'fullbanner'));
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
+
+		//-----------------------------------------------
+		$this->load->model('featured_model');
+		$this->load->helper('utilites_helper');
+
+		$featured_data = $this->featured_model->get();
+		$featured = array();
+		$count=0;
+		foreach($featured_data as $key=>$val){
+			//$featured[$count++] = get_img($val,'01');
+
+			$tmp4 = get_img($val,'01');
+//print_r($tmp);
+			$featured[$count++] = array(
+									'img'	=> $tmp4['cur_img'],
+									//'title'	=>,
+									//'desc'	=>,
+									'model'	=>$val,
+									'link'	=>$tmp4['cur'],
+								);
+		};
+
 //echo '<pre>';
-//print_r($tmp3);
+//print_r($featured);
+//print_r($img_links);
 //die;
+
 		$data = array(
 					'add'		=>	$tmp[0],
 					'add2'		=>	$tmp2,
@@ -57,7 +81,7 @@ class Main extends MY_Controller {
 										'img'	=>	'm4/m4.jpg',
 										'url'	=>	'#'
 									),
-					'featured' 	=> array(
+/*					'featured' 	=> array(
 										0 	=> array(
 													'img'	=> 'first_model/01/m1.jpg',
 													'title'	=> 'The Night',
@@ -84,9 +108,9 @@ class Main extends MY_Controller {
 													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
 												),
 									),
-					'render_right'	=>$tmp3
+*/					'render_right'	=>$tmp3
 				);
-
+		$data['featured'] = $featured;
 
 
 		$op = $this->render_library->render_mainContents($data);

@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 15, 2013 at 05:54 PM
+-- Generation Time: Mar 21, 2013 at 03:46 PM
 -- Server version: 5.5.29
--- PHP Version: 5.3.10-1ubuntu3.5
+-- PHP Version: 5.3.10-1ubuntu3.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -171,7 +171,14 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `experience` text NOT NULL,
   `date_created` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `name`, `age`, `gender`, `address`, `contact_no`, `email`, `height`, `weight`, `bust`, `waist`, `hips`, `shoe`, `dress`, `hair_color`, `hair_length`, `ethnicity`, `skin`, `eyes`, `teeth`, `professional`, `additional`, `travelling_area`, `travelling_duration`, `editorial`, `runaway`, `catalog`, `print`, `showroom`, `fitness`, `fit`, `tearoom`, `body_part`, `lingerie`, `product_modelling`, `lifestyle_modelling`, `coorporate_modelling`, `product_demo`, `tradeshow`, `lingrie`, `art`, `experience`, `date_created`) VALUES
+(1, 'Aa aa aaa', 11, 0, 'Ktm, NP', '987654321', 'someone@noone.com', '11', '22', '33', '44', '55', '66', '77', '88', '99', 'gurung', '1010', '1111', '1212', 'semi-pro', 'additional info here ...........								', 'national', 'bb', 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 'No Experience', 0);
 
 -- --------------------------------------------------------
 

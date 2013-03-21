@@ -45,6 +45,11 @@ $route['admin/reset_user'] = 'admin/admin/reset_user';
 $route['admin/(:any)'] = 'admin/$1';
 $route['admin/(:any)/(:any)'] = 'admin/$1/$2';
 
+$route['subjects'] = 'site/subjects';
+$route['subjects/(:any)'] = 'site/subjects/$1';
+$route['subjects/(:any)/(:any)'] = 'site/subjects/$1/$2';
+$route['subjects/(:any)/(:any)/(:any)'] = 'site/subjects/$1/$2/$3';
+
 $route['featured'] = 'site/featured';
 $route['featured/(:any)'] = 'site/featured/$1';
 $route['featured/(:any)/(:any)'] = 'site/featured/$1/$2';

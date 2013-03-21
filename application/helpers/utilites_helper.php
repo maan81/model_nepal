@@ -26,22 +26,28 @@ if ( ! function_exists('gen_folder_name')){
 /**
  * Get the server path of the specified img.
  *
- * @param string [model_name], int [gallery_name], string [img_name]
+ * @param string [model], int [gallery_name], string [img_name]
  * @return string [path to selected img]
  */
 if(! function_exists('get_img')){
-	function get_img($model,$gallery=null,$img=null){
+	function get_img($model,$gallery=null,$img=null,$is_featured=true){
 	
-		//set the relative model path
-		$path = FEATUREDPATH.gen_folder_name($model->name).'/';
+		if($is_featured){
+			//set the relative model path
+			$path = FEATUREDPATH.gen_folder_name($model->name).'/';
+		}else{
+			//set the relative model path
+			$path = SUBJECTSPATH.gen_folder_name($model->name).'/';
+		}
 
 		//include gallery path
 		if($gallery!=null){
 			$path .= $gallery.'/';
 		}
-
-		//get the reqd. gallery's imgs
-		$arr = scandir(dirname(BASEPATH).'/'.$path);
+//echo dirname(BASEPATH).'/'.$path;die;
+			//get the reqd. gallery's imgs
+			$arr = scandir(dirname(BASEPATH).'/'.$path);
+			$gallery = '/'.$gallery;
 
 		array_shift($arr);	//remove .
 		array_shift($arr);	//remove ..
@@ -53,11 +59,11 @@ if(! function_exists('get_img')){
 
 		//set the default values
 		$imgs['prev']	= false;
-		$imgs['cur']	= site_url('featured/get/'.$model->id.'/'.$gallery.'/'.($img));
+		$imgs['cur']	= site_url('featured/get/'.$model->id.$gallery.'/'.($img));
 		$imgs['cur_img']= base_url().$path.reset($arr);
 
 		if(next($arr)!==false){
-			$imgs['next'] 	= site_url('featured/get/'.$model->id.'/'.$gallery.'/'.($img+1));
+			$imgs['next'] 	= site_url('featured/get/'.$model->id.$gallery.'/'.($img+1));
 
 		}else{
 			$imgs['next']	= false;
@@ -80,13 +86,13 @@ if(! function_exists('get_img')){
 			}
 			
 			//set variables ...
-			$imgs['prev'] = site_url('featured/get/'.$model->id.'/'.$gallery.'/'.($img-1));
+			$imgs['prev'] = site_url('featured/get/'.$model->id.$gallery.'/'.($img-1));
 			$imgs['cur']  = $imgs['next'];
 			$imgs['cur_img'] = base_url().$path.current($arr);
 
 			//increment ...
 			if(next($arr)){
-				$imgs['next'] 	= site_url('featured/get/'.$model->id.'/'.$gallery.'/'.($img+1));
+				$imgs['next'] 	= site_url('featured/get/'.$model->id.$gallery.'/'.($img+1));
 			}else{
 				$imgs['next'] = false;
 			}

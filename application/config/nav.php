@@ -6,7 +6,7 @@
 
 $config['nav'] = array(
 						'Featured Models'	=> site_url('featured'),
-						'Agency'			=> '#',
+						'Agency'			=> site_url('subjects'),
 						'News & Gossips'	=> '#',
 						'Events'			=> '#',
 						'Music'				=> '#',

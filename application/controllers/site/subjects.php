@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Featured extends MY_Controller {
+class Subjects extends MY_Controller {
 
 	public function __construct(){
 		parent::__construct();
 
-		$this->load->model('featured_model');
+		$this->load->model('subjects_model');
 	}
 
 	public function index(){
@@ -40,11 +40,11 @@ class Featured extends MY_Controller {
 
 		//-----------------------------------------------
 
-		$tmp = $this->ads_model->get(array('dimensions'=>'fullbanner'));
+		$tmp  = $this->ads_model->get(array('dimensions'=>'fullbanner'));
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
 
-		$featured = $this->featured_model->get();
+		$subjects = $this->subjects_model->get();
 
 		$this->load->config('ethnicity');
 		$data = array(
@@ -54,16 +54,16 @@ class Featured extends MY_Controller {
 										'img'	=>	'm4/m4.jpg',
 										'url'	=>	'#'
 									),
-					'featured'	=> $featured,
+					'subjects'	=> $subjects,
 					'render_right'=>$tmp3,
 					'ethnicity'	=> $this->config->item('ethnicity'),
 				);
 
 
-		$op = $this->load->view('site/featured.php',$data,true);
+		$op = $this->load->view('site/subjects.php',$data,true);
 		$this->template->write('mainContents',$op);
 
-		$this->template->add_js(JSPATH.'search.js');
+		$this->template->add_js(JSPATH.'subjects_search.js');
 		//-----------------------------------------------
 		//-----------------------------------------------
 		$this->template->render();
@@ -71,7 +71,7 @@ class Featured extends MY_Controller {
 
 
 	/**
-	 * Search Featured models
+	 * Search Subjects
 	 *
 	 * @param string (search parameter) , string (search value)
 	 * @return string (html div)
@@ -79,8 +79,8 @@ class Featured extends MY_Controller {
 	public function search($key=null,$val=null){
 
 		if( ($key==null) || ($val==null) ){
-			$this->load->view('site/featured_search.php',array(
-																'featured' => false,
+			$this->load->view('site/subjects_search.php',array(
+																'subjects' => false,
 																'pagination' => false
 																)
 															);
@@ -88,29 +88,31 @@ class Featured extends MY_Controller {
 
 		}
 
-		$featured = $this->featured_model->get(array($key=>urldecode($val)));
+		$subjects = $this->subjects_model->get(array($key=>urldecode($val)));
 
 		$this->load->helper('utilites_helper');
 
-		if($featured){
-		foreach($featured as $key=>$val){
+		if($subjects){
+		foreach($subjects as $key=>$val){
 
 			//--------------------------------------
-			$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($val->name).'/01';	//1st folder of imgs of the featuerd model
+			//folder of imgs of the subject
+			$full_path = dirname(BASEPATH).'/'.SUBJECTSPATH.gen_folder_name($val->name);	
 
-			$imgs = scandir($full_path);									//imgs in that folder
-
-			$config['image_library']	= 'gd2';
-
+			//imgs in that folder
+			$imgs = scandir($full_path);								
 
 
-			$config['source_image']		= FEATUREDPATH.gen_folder_name($val->name).'/01/'.$imgs[2];		//1st img of the 1st folder
+
+			//1st img of the 1st folder
+			$config['source_image']		= SUBJECTSPATH.gen_folder_name($val->name).'/'.$imgs[3];		
 			
+			//thumbs of that img 
+			$config['new_image'] 		= $full_path.'/thumbs/'.$imgs[3];		
 
-			$config['new_image'] 		= $full_path.'/thumbs/'.$imgs[2];		//thumbs of that img 
+			
 			$config['thumb_marker']		= '';
-
-
+			$config['image_library']	= 'gd2';
 			$config['create_thumb'] 	= TRUE;
 			$config['maintain_ratio'] 	= TRUE;
 			$config['width'] 			= 323;
@@ -123,15 +125,17 @@ class Featured extends MY_Controller {
 			}			
 			//--------------------------------------
 
-			$val->thumbs = FEATUREDPATH.gen_folder_name($val->name).'/01/thumbs/'.$imgs[2];
+			$val->thumbs = SUBJECTSPATH.gen_folder_name($val->name).'/thumbs/'.$imgs[3];
 		}
 		}
 
 
+		//------------------------------------------
+		//pagination
 		$this->load->library('pagination');
 
-		$config['base_url'] = base_url().'featured';
-		$config['total_rows'] = count($this->featured_model->get());
+		$config['base_url'] = base_url().'subjects';
+		$config['total_rows'] = count($this->subjects_model->get());
 		$config['per_page'] = 6;
 
 		$config['prev_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'prev.png" alt="Previous" />';
@@ -142,7 +146,7 @@ class Featured extends MY_Controller {
 
 		$config['full_tag_open'] = '<div class="pagina">';
 		$config['full_tag_close'] = '</div>';
-
+		//------------------------------------------
 
 
 		$this->pagination->initialize($config);
@@ -150,8 +154,8 @@ class Featured extends MY_Controller {
 		$pagination =  $this->pagination->create_links();
 
 
-		$this->load->view('site/featured_search.php',array(
-															'featured' => $featured,
+		$this->load->view('site/subjects_search.php',array(
+															'subjects' => $subjects,
 															'pagination' => $pagination
 															)
 														);
@@ -159,10 +163,20 @@ class Featured extends MY_Controller {
 
 
 
-
-	public function get($model=null,$gallery=null,$img=null){
-		if($model==null){
+	/**
+	 *  The selected subject
+	 *  @param int[subject id], int[selected ing id]
+	 *  @return void
+	 */
+	public function get($subject_id=null,$img=null){
+		//redirect to subject search if not specified
+		if($subject_id==null){
 			return $this->search();
+		}
+
+		//retirect to get the 1st img. if not specified
+		if($img==null){
+			retirect(current_url().'/1');
 		}
 
 		$this->template->set_template('site');
@@ -197,43 +211,27 @@ class Featured extends MY_Controller {
 		$this->load->model('ads_model');
 		
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
-		$featured = $this->featured_model->get(array('id' => $model));
 
+		//------------------------------------------------
 
-		//================
-		$galleries = array();
+		$subjects = $this->subjects_model->get(array('id' => $subject_id));
 
-		foreach($featured as $key=>$val){
-	    	$imgs = array(
-		    			'gallery_cover'	=> $this->gallery_cover($val)
-					);
+		$subjects = $this->subject_imgs($subjects[0],$img);
+//echo '<pre>';
+//print_r($subjects);
+//echo '</pre>';
+//die;
 
-	        array_push($galleries,$imgs);
-		}
-		//=================
-
-
-		//-----------------------------------------------
-		if($img==null){
-			redirect(current_url().'/1');
-		}
-
-		$this->load->helper('utilites_helper');
-		$img_links = get_img($featured[0],$gallery,$img);
-		//-----------------------------------------------
+		//------------------------------------------------
 
 		
 		$data = array(
-					'featured'		=>	$featured,
+					'subjects'		=>	$subjects,
 					'render_right'	=>	$tmp3,
-					'galleries'		=> 	$galleries,
-					'img_links'		=> 	$img_links,
+					//'img_links'		=> 	$img_links,
 					);
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//die;
-		$op = $this->load->view('site/featured_selected.php',$data,true);
+
+		$op = $this->load->view('site/subjects_selected.php',$data,true);
 		$this->template->write('mainContents',$op);
 
 		//-----------------------------------------------
@@ -242,43 +240,54 @@ class Featured extends MY_Controller {
 	}
 
 
+	/**
+	 *  Set the the currently displaying img & the next & previous images the subject
+	 *  @param object[subject], int[currently displayed img]
+	 *  @return object[configured subject object]
+	 */
+	private function subject_imgs($subject=null,$img=null){
 
-	private function gallery_cover($featured=null){
-		if($featured==null)
+		if($subject==null)
 			return false;
 
 
 		//--------------------------------------
 		$this->load->helper('utilites_helper');
-
-		//folders of imgs of the featuerd model
-		$albums = array();
-
-
-		foreach(scandir(dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name)) as $key=>$val){
-			if($val === "." || $val == "..")
-				continue;
-
-			$albums[$val] = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val;
-		}
-
 		$this->load->library('image_lib');
 
 
-		foreach($albums as $key=>$val){
-			$full_path = $val;
+		//subject's folders
+		$folder = dirname(BASEPATH).'/'.SUBJECTSPATH.gen_folder_name($subject->name);
 
-			//imgs in that folder
-			$imgs = scandir($full_path);									
 
-			//1st img of the folder
-			$config['source_image']		= $full_path.'/'.$imgs[2];		
+
+		//imgs in that folder
+		$imgs = scandir($folder);	
+
+
+		//get & process the img.
+		$count=0;
+		foreach($imgs as $k=>$v){
+			if($v=='.' || $v=='..' || $v=='thumbs'){
+				continue;
+			}
+
+			$count++;
+
+			//the current selected img
+			if($count==$img){
+				$subject->cur_img = base_url().SUBJECTSPATH.gen_folder_name($subject->name).'/'.$v;
+				continue;
+			}
 			
 
-			$config['new_image'] 		= $full_path.'/thumbs/'.$imgs[2];		//thumbs of that img 
+
+			//the remaining imgs
+
+			$config['source_image']		= $folder.'/'.$v;			//img
+			$config['new_image'] 		= $folder.'/thumbs/'.$v;	//thumbs of that img 
+
 			$config['thumb_marker']		= '';
-
-
 			$config['image_library']	= 'gd2';
 			$config['create_thumb'] 	= TRUE;
 			$config['maintain_ratio'] 	= TRUE;
@@ -287,19 +296,38 @@ class Featured extends MY_Controller {
 
 			$this->image_lib->initialize($config);
 
-
 			if ( ! $this->image_lib->resize()){
 			    echo $this->image_lib->display_errors();
-			}			
+			}		
 
-			$val = FEATUREDPATH.gen_folder_name($featured->name).'/'.array_pop(explode('/',$full_path)).'/thumbs/'.$imgs[2];
-			$albums[$key] = $val;
 
-		}
+			//previous img link
+			if($count>1){
+				$subject->prev = site_url('subjects/subject/get/'.$subject->id.'/'.($count-1));
+			}
 
-		return (object)$albums;
+			//next img link
+			if(next($imgs)){
+				$subject->next = site_url('subjects/subject/get/'.$subject->$id.'/'.($count+1));
+				prev($imgs);
+			}
+
+			//thumbs & links of the other imgs subject
+			$subject->thumbs=array();
+			array_push($subject->thumbs,
+						array(
+								'img'=> base_url().SUBJECTSPATH.gen_folder_name($subject->name).'/thumbs/'.$v,
+								'link'=>site_url('subjects/get/subject/'.($count)),
+							)
+						);	
+		}								
+
+
+
+
+		return $subject;
 	}
 }
 
-/* End of file featured.php */
-/* Location: ./application/controllers/site/featured.php */
+/* End of file subjects.php */
+/* Location: ./application/controllers/site/subjects.php */

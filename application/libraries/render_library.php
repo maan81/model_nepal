@@ -7,18 +7,19 @@
  
 class Render_library{
 
-	private $ci = null;
-
 	/**
 	 * __construct
 	 *
 	 * @return void
 	 **/
-	public function __construct(){
-		$this->ci =& get_instance();
-		$this->ci->load->database();
-	}
+	public function __construct(){}
 
+	/**
+	 * Render the headher
+	 *
+	 * @param array (obj[header_add], links ) 
+	 * @return string [generated html]
+	 */
 	public function render_header($data){
 
 		$op = 	'<div class="header">
@@ -28,17 +29,13 @@ class Render_library{
 						</a>
 					</div>
 					<div class="h-ad">';
-//echo '<pre>';
-//print_r($data['ads']);die;
+
 				foreach($data['ads'] as $key=>$val){
-//echo $key;
-//print_r($val);
-//echo '<br/>';
 					$op .= '<a href="'.$val->link.'">
 								<img src="'.base_url().ADDSPATH.$val->image.'" alt="ad1" />
 							</a>';
 				}	
-//die;					
+
 		$op .=		'</div>
 					<div class="nav">
 						<a href="'.base_url().'">Home</a>';
@@ -80,10 +77,10 @@ class Render_library{
 		return $op;
 	}
 
-
+	/**
+	 * Render Main conteht of the page
+	 */
 	public function render_mainContents($data){
-//echo '<pre>';
-//print_r($data['add2']);die;
 		$op = 	'<div class="mainContents">
 					<div class="leftPart">
 						<div class="fullbanner">
@@ -100,16 +97,17 @@ class Render_library{
 								<a class="next disabled"></a>
 
 								<div id="ps_albums">';
+
 						foreach($data['featured'] as $key=>$val){
 							
 							$op .= 	'<div class="ps_album models" style="opacity:0;">
-										<a href="#" style="width:inherit;height:inherit;">
-											<img  src="'.FEATUREDPATH.$val['img'].'" alt="model"  />
-											<div class="ps_desc">
-												<h2>'.$val['title'].'</h2>
-												<span>'.$val['desc'].'</span>
-											</div>
-										</a>
+										<a href="'.$val['link'].'" style="width:inherit;height:inherit;">
+											<img  src="'.$val['img'].'" alt="model"  />'.
+											//'<div class="ps_desc">'
+											//'	<h2>'.$val['title'].'</h2>'
+											//'	<span>'.$val['desc'].'</span>'
+											//'</div>'
+										'</a>
 									</div>';
 						}
 									
@@ -170,9 +168,7 @@ class Render_library{
 
 
 	public function render_right($data){
-//echo '<pre>';
-//print_r($data);
-//die;
+
 		$op = 	'<div class="rightPart">';
 
 		foreach($data as $key=>$val){
@@ -188,6 +184,10 @@ class Render_library{
 	}
 
 
+	/**
+	 *  Render Footer of the content page.
+	 *  Variables not yet set....................
+	 */
 	public function render_footer($data){
 
 		$op = 	'<div id="footer">

@@ -1048,8 +1048,8 @@ class Adminrender_library{
 							<p>
 								<label for="experience">Experience<small>Alpha-numeric characters without spaces.</small></label>
 								<textarea name="experience" style="height: 36px; resize: vertical; min-height: 100px;">'.
-									($data?$data[0]->experience:'').'
-								</textarea>
+									($data?$data[0]->experience:'').
+								'</textarea>
 							</p>
 						</div>
 						

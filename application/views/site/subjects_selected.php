@@ -64,7 +64,7 @@
               </tr>
               <tr class="bg">
                  <td>Portfolio Views</td>
-                 <td>: 100</td>
+                 <td>: <?php echo $subjects->profile_viewed?></td>
               </tr>
               <tr	>
                  <td>Availability</td>

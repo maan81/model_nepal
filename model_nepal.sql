@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2013 at 03:46 PM
+-- Generation Time: Mar 22, 2013 at 10:50 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -170,6 +170,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `art` tinyint(1) NOT NULL,
   `experience` text NOT NULL,
   `date_created` int(11) NOT NULL,
+  `profile_viewed` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
@@ -177,8 +178,29 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `name`, `age`, `gender`, `address`, `contact_no`, `email`, `height`, `weight`, `bust`, `waist`, `hips`, `shoe`, `dress`, `hair_color`, `hair_length`, `ethnicity`, `skin`, `eyes`, `teeth`, `professional`, `additional`, `travelling_area`, `travelling_duration`, `editorial`, `runaway`, `catalog`, `print`, `showroom`, `fitness`, `fit`, `tearoom`, `body_part`, `lingerie`, `product_modelling`, `lifestyle_modelling`, `coorporate_modelling`, `product_demo`, `tradeshow`, `lingrie`, `art`, `experience`, `date_created`) VALUES
-(1, 'Aa aa aaa', 11, 0, 'Ktm, NP', '987654321', 'someone@noone.com', '11', '22', '33', '44', '55', '66', '77', '88', '99', 'gurung', '1010', '1111', '1212', 'semi-pro', 'additional info here ...........								', 'national', 'bb', 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 'No Experience', 0);
+INSERT INTO `subjects` (`id`, `name`, `age`, `gender`, `address`, `contact_no`, `email`, `height`, `weight`, `bust`, `waist`, `hips`, `shoe`, `dress`, `hair_color`, `hair_length`, `ethnicity`, `skin`, `eyes`, `teeth`, `professional`, `additional`, `travelling_area`, `travelling_duration`, `editorial`, `runaway`, `catalog`, `print`, `showroom`, `fitness`, `fit`, `tearoom`, `body_part`, `lingerie`, `product_modelling`, `lifestyle_modelling`, `coorporate_modelling`, `product_demo`, `tradeshow`, `lingrie`, `art`, `experience`, `date_created`, `profile_viewed`) VALUES
+(1, 'Aa aa aaa', 11, 0, 'Ktm, NP', '987654321', 'someone@noone.com', '11', '22', '33', '44', '55', '66', '77', '88', '99', 'gurung', '1010', '1111', '1212', 'semi-pro', 'additional info here ...........								', 'national', 'bb', 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 'No Experience', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmp`
+--
+
+CREATE TABLE IF NOT EXISTS `tmp` (
+  `count` int(11) NOT NULL,
+  UNIQUE KEY `count` (`count`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tmp`
+--
+
+INSERT INTO `tmp` (`count`) VALUES
+(11),
+(12),
+(110),
+(1101);
 
 -- --------------------------------------------------------
 
@@ -203,6 +225,31 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `usertype`) VALUES
 (1, 'root', '1fd185ec2e46a16240b7544dff37aa65', 'root@root.com', 'administrator'),
 (11, 'ff', 'ece926d8c0356205276a45266d361161', 'ff@ff.com', 'administrator'),
 (12, 'ee', 'c0bdce0aca8f4f5512bb2fd78c922c24', 'pranijman@gmail.com', 'editor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visitors_count`
+--
+
+CREATE TABLE IF NOT EXISTS `visitors_count` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(20) NOT NULL COMMENT 'IP address of the visitor.',
+  `type` varchar(11) NOT NULL COMMENT 'Type of the visit -- featured vs. subject',
+  `model_id` int(11) NOT NULL COMMENT 'ID of the model',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Visited timestamp',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique` (`ip_address`,`type`,`model_id`),
+  KEY `ip_address` (`ip_address`),
+  KEY `model_id` (`model_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
+
+--
+-- Dumping data for table `visitors_count`
+--
+
+INSERT INTO `visitors_count` (`id`, `ip_address`, `type`, `model_id`, `timestamp`) VALUES
+(37, '127.0.0.1', 'subjects', 1, '2013-03-22 17:02:00');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

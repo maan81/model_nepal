@@ -215,6 +215,14 @@ class Subjects extends MY_Controller {
 
 		//------------------------------------------------
 
+		$this->load->helper('visitors_count_helper');
+
+		set_count_visitors(array(
+								'type'	  => 'subjects',
+								'model_id'=> $subject_id)
+							);
+
+		//------------------------------------------------
 
 		$subjects = $this->subjects_model->get(array('id' => $subject_id));
 

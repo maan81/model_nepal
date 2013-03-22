@@ -121,13 +121,21 @@
            </table>
         </div>
         <div class="pagination">
-           <div class="block"></div>
-           <div class="block"></div>
-           <div class="block"></div>
+          <style type="text/css">
+            .block a{width:inherit;height:inherit;}
+            .block img{width:inherit;height:inherit;}
+          </style>
+          <?php foreach($subjects->thumbs as $key=>$val):?>
+             <div class="block">
+                <a href="<?php echo $val['link']?>">
+                  <img src="<?php echo $val['img']?>"/>
+                </a>
+             </div>
+          <?php endforeach?>
         </div>
 
         <?php if(isset($subjects->prev)):?>
-        <div class="prev">
+        <div class="previous">
           <a href="<?php echo $subjects->prev?>">
             <img src="<?php echo base_url().IMGSPATH?>prev.png" alt="Previous" />
           </a>
@@ -147,12 +155,21 @@
         </div>
   
      </div>
-     <div class="bannertwo">
-        <div class="leftimg">
-           <img  src="images/m4.jpg" alt="model" width="300" height="250" />
-        </div>
-        <div class="rightadsense"><img  src="images/ad3.jpg" alt="model" width="355" height="250" /></div>
-     </div>
+
+    <div class="bannertwo">
+
+      <div class="leftimg">
+         <img  src="images/m4.jpg" alt="model" width="300" height="250" />
+      </div>
+
+      <div class="rightadsense">
+        <a href="<?php echo $add2[0]->link?>">
+          <img  src="<?php echo base_url().ADDSPATH.$add2[0]->image?>" 
+                alt="model" width="355" height="250" />
+        </a>
+      </div>
+    
+    </div>
   </div>
 
    <div class="rightPart">

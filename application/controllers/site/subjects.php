@@ -174,9 +174,9 @@ class Subjects extends MY_Controller {
 			return $this->search();
 		}
 
-		//retirect to get the 1st img. if not specified
+		//redirect to get the 1st img. if not specified
 		if($img==null){
-			retirect(current_url().'/1');
+			redirect(current_url().'/1');
 		}
 
 		$this->template->set_template('site');
@@ -210,17 +210,15 @@ class Subjects extends MY_Controller {
 		//-----------------------------------------------
 		$this->load->model('ads_model');
 		
+		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
 
 		//------------------------------------------------
 
+
 		$subjects = $this->subjects_model->get(array('id' => $subject_id));
 
 		$subjects = $this->subject_imgs($subjects[0],$img);
-//echo '<pre>';
-//print_r($subjects);
-//echo '</pre>';
-//die;
 
 		//------------------------------------------------
 
@@ -229,6 +227,7 @@ class Subjects extends MY_Controller {
 					'subjects'		=>	$subjects,
 					'render_right'	=>	$tmp3,
 					//'img_links'		=> 	$img_links,
+					'add2'			=>	$tmp2,
 					);
 
 		$op = $this->load->view('site/subjects_selected.php',$data,true);
@@ -238,6 +237,7 @@ class Subjects extends MY_Controller {
 		//-----------------------------------------------
 		$this->template->render();
 	}
+
 
 
 	/**
@@ -254,6 +254,7 @@ class Subjects extends MY_Controller {
 		//--------------------------------------
 		$this->load->helper('utilites_helper');
 		$this->load->library('image_lib');
+		$subject->thumbs=array();
 
 
 		//subject's folders
@@ -263,7 +264,6 @@ class Subjects extends MY_Controller {
 
 		//imgs in that folder
 		$imgs = scandir($folder);	
-
 
 		//get & process the img.
 		$count=0;
@@ -277,12 +277,21 @@ class Subjects extends MY_Controller {
 			//the current selected img
 			if($count==$img){
 				$subject->cur_img = base_url().SUBJECTSPATH.gen_folder_name($subject->name).'/'.$v;
-				continue;
+
+				//previous img link
+				if($count>1){
+					$subject->prev = site_url('subjects/get/'.$subject->id.'/'.($count-1));
+				}
+
+				//next img link
+				if($count<count($imgs)-3){
+					$subject->next = site_url('subjects/get/'.$subject->id.'/'.($count+1));
+				}
 			}
 			
 
 
-			//the remaining imgs
+			//the generation of thumbs of imgs ...
 
 			$config['source_image']		= $folder.'/'.$v;			//img
 			$config['new_image'] 		= $folder.'/thumbs/'.$v;	//thumbs of that img 
@@ -301,29 +310,14 @@ class Subjects extends MY_Controller {
 			}		
 
 
-			//previous img link
-			if($count>1){
-				$subject->prev = site_url('subjects/subject/get/'.$subject->id.'/'.($count-1));
-			}
-
-			//next img link
-			if(next($imgs)){
-				$subject->next = site_url('subjects/subject/get/'.$subject->$id.'/'.($count+1));
-				prev($imgs);
-			}
-
 			//thumbs & links of the other imgs subject
-			$subject->thumbs=array();
 			array_push($subject->thumbs,
 						array(
 								'img'=> base_url().SUBJECTSPATH.gen_folder_name($subject->name).'/thumbs/'.$v,
-								'link'=>site_url('subjects/get/subject/'.($count)),
+								'link'=>site_url('subjects/get/'.$subject->id.'/'.($count)),
 							)
 						);	
-		}								
-
-
-
+		}		
 
 		return $subject;
 	}

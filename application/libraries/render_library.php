@@ -45,7 +45,7 @@ class Render_library{
 		$op .=		'</div>
 					<div class="search">
 						<form>
-							<input type="button" name="">
+							<input type="button" name="" style="position:absolute;">
 							<input type="text" 
 									onfocus="this.value=\'\'" 
 									value="Type Email Address ..." 

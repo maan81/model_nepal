@@ -65,10 +65,12 @@ class Users extends MY_Controller {
 			$validated = $this->_chk_login($data['old_password'],$data['new_password'],$data['new_password_reenter']);
 
 			if(! $validated){
+
 				//invalid parameters
 				$this->session->flashdata('password_update', 'Password Updated Failure');
 		
 			}else{
+
 				$data = array(
 							'id' 		=> $this->session->userdata('userid'),
 							'username'	=> $this->session->userdata('username'),
@@ -78,6 +80,7 @@ class Users extends MY_Controller {
 
 				$this->session->flashdata('password_update', 'Password Updated Success');
 			}
+
 			redirect('admin/users/view_profile');
 		}
 
@@ -108,8 +111,8 @@ class Users extends MY_Controller {
 	 */
 	private function _chk_login($old_password,$new_password,$new_password_reenter){
 		$data = array(
-						'id'	=> $this->session->userdata('userid'),
-						'password'=>$old_password
+						'id'		=> $this->session->userdata('userid'),
+						'password'	=> md5($old_password.$this->session->userdata('username'))
 					);
 		if($this->users_model->get($data) && 
 			( count($this->users_model->get($data))==1)

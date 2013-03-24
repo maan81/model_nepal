@@ -14,7 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/model_nepal';
+$config['base_url']	= 'http://'.$_SERVER['HTTP_HOST'].'/model_nepal/';		//<<---- !!!!! put the server's adddress
+													//		when uploading to production server !!!!!
 
 /*
 |--------------------------------------------------------------------------

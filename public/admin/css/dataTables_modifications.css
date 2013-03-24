@@ -5,7 +5,7 @@
     position: relative; */    
 	font-size:inherit;
 }
-#list_data_wrapper label, #navigation, .error, .success, input[type="submit"], input[type="reset"] {
+#list_data_wrapper label, /*#navigation,*/ .error, .success, input[type="submit"], input[type="reset"] {
 /*    font-weight: bold; */
 	font-weight:normal;
 }

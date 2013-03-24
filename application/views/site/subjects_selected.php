@@ -2,6 +2,7 @@
 <!--<pre><?php //print_r($subjects)?></pre>-->
 <div class="mainContents">
   <div class="leftPart">
+    <!--
      <div class="modelfilter">
         <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
            <form action="" method="post">
@@ -38,6 +39,7 @@
            </form>
         </table>
      </div>
+    -->
      <div class="agencyDisplay">
         <div class="modelpic">
            <img src="<?php echo $subjects->cur_img?>" alt="<?php echo $subjects->name?>" 

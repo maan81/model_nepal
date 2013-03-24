@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-
+<!--<pre><?php //print_r($subjects)?></pre>-->
 <div class="mainContents">
   <div class="leftPart">
      <div class="modelfilter">
@@ -50,28 +50,60 @@
                  <td width="42%">Model ID</td>
                  <td>: <?php echo $subjects->id?></td>
               </tr>
+            <!--
               <tr>
                  <td>Language</td>
                  <td>: English, French</td>
               </tr>
-              <tr class="bg">
+            -->
+              <tr>
                  <td>Traveling Preference </td>
                  <td>: National, International</td>
               </tr>
-              <tr>
+              <tr class="bg">
                  <td>Professional Status </td>
                  <td>: <?php echo $subjects->professional?></td>
               </tr>
-              <tr class="bg">
+              <tr>
                  <td>Portfolio Views</td>
                  <td>: <?php echo $subjects->profile_viewed?></td>
               </tr>
-              <tr	>
+              <tr class="bg">
                  <td>Availability</td>
+                 <td>: <?php if($subjects->fashion_type):?>
+                          <strong>Fashion:</strong>
+                          <?php
+                            foreach($subjects->fashion_type as $key=>$val){
+                              echo $key.' ';
+                            } 
+                          ?>
+                          <br />
+                      <?php endif?>
+                      <?php if($subjects->commercial_type):?>
+                        <strong>Commercial:</strong>
+                        <?php
+                          foreach($subjects->commercial_type as $key=>$val){
+                            echo $key.' ';
+                          }
+                        ?>
+                        <br />
+                      <?php endif?>
+                      <?php if($subjects->glamour):?>
+                        <strong>Glamour:</strong>
+                        <?php
+                          foreach($subjects->glamour as $key=>$val){
+                            echo $key.' ';
+                          }
+                        ?>
+                        <br/>
+                      <?php endif?>
+                 </td>
+                 <!--
                  <td>: <strong>Fashion:</strong> Editorial, print, Runway, Catalog, Fit<br />
                     <strong>Commercial:</strong> Product, Lifestyle<br />
                     <strong>Glamour:</strong> Lingrie, Art, Swimsuit
                  </td>
+               -->
               </tr>
            </table>
 
@@ -80,50 +112,49 @@
            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:0;">
               <tr class="bgbold">
                  <td>Measurements</td>
-                 <td>Metric</td>
-                 <td>Imperial</td>
+                 <td><!--Metric--></td>
+                 <!--<td>Imperial</td>-->
               </tr>
               <tr class="bg">
                  <td>Height</td>
                  <td><?php echo $subjects->height?></td>
-                 <td>5' 10"</td>
+                 <!--<td>5' 10"</td>-->
               </tr>
               <tr>
                  <td>Weight</td>
                  <td><?php echo $subjects->weight?></td>
-                 <td>170 lbs</td>
+                 <!--<td>170 lbs</td>-->
               </tr>
               <tr class="bg">
                  <td>Bust</td>
                  <td><?php echo $subjects->bust?></td>
-                 <td>&nbsp;</td>
+                 <!--<td>&nbsp;</td>-->
               </tr>
               <tr>
                  <td>Waist</td>
                  <td><?php echo $subjects->waist?></td>
-                 <td>&nbsp;</td>
+                 <!--<td>&nbsp;</td>-->
               </tr>
               <tr class="bg">
                  <td>Hips;</td>
                  <td><?php echo $subjects->hips?></td>
-                 <td>&nbsp;</td>
+                 <!--<td>&nbsp;</td>-->
               </tr>
               <tr>
                  <td>Dress/Clothes Size</td>
                  <td><?php echo $subjects->dress?></td>
-                 <td>&nbsp;</td>
+                 <!--<td>&nbsp;</td>-->
               </tr>
               <tr class="bg">
                  <td>Shoes Size</td>
                  <td><?php echo $subjects->shoe?></td>
-                 <td>&nbsp;</td>
+                 <!--<td>&nbsp;</td>-->
               </tr>
            </table>
         </div>
         <div class="pagination">
           <style type="text/css">
-            .block a{width:inherit;height:inherit;}
-            .block img{width:inherit;height:inherit;}
+            .block img{width:54px;height:90px;}
           </style>
           <?php foreach($subjects->thumbs as $key=>$val):?>
              <div class="block">
@@ -159,7 +190,7 @@
     <div class="bannertwo">
 
       <div class="leftimg">
-         <img  src="images/m4.jpg" alt="model" width="300" height="250" />
+         <img  src="<?php echo base_url()?>tmp/m4.jpg" alt="model" width="300" height="250" />
       </div>
 
       <div class="rightadsense">

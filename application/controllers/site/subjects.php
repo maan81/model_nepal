@@ -224,7 +224,8 @@ class Subjects extends MY_Controller {
 
 		//------------------------------------------------
 
-		$subjects = $this->subjects_model->get(array('id' => $subject_id));
+		//$subjects = $this->subjects_model->get(array('id' => $subject_id));
+		$subjects = $this->subjects_model->corrected_get(array('id' => $subject_id));
 
 		$subjects = $this->subject_imgs($subjects[0],$img);
 

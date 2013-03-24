@@ -120,7 +120,8 @@ class Render_library{
 							
 							<div class="leftimg">
 						    	<a href="'.$data['subject']['url'].'">
-						    		<img  src="'.SUBJECTSPATH.$data['subject']['img'].'" alt="model" width="300" height="250" />
+						    		<!--<img  src="'.base_url().SUBJECTSPATH.$data['subject']['img'].'" alt="model" width="300" height="250" />-->
+						    		<img  src="'.base_url().'tmp/m4.jpg" alt="model" width="300" height="250" />
 					    		</a>
 							</div>
 

@@ -757,7 +757,8 @@ div{
 		margin-right:10px;
 		float:left;
 		height:90px;
-		background:#ffffff;
+		/*background:#ffffff;*/
+		text-align: center;	
 	}
 	
 	.agencyDisplay .previous{

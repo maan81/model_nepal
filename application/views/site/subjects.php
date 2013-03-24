@@ -10,25 +10,6 @@
          </a>
       </div>
 
-      <!--
-      <div class="modelspage">
-         <div class="featuremodel">
-            <img src="<?php 
-                           $this->load->helper('utilites_helper'); 
-                           echo FEATUREDPATH.gen_folder_name($featured[0]->name)
-
-                        ?>/01/m1.jpg" alt="Model" width="430" height="315" />
-         </div>
-
-         <div class="featurem">Featured Model</div>
-         
-         <div class="popularmodel">
-            <div class="title">Popular Models</div>
-            <div class="contents"></div>
-         </div>
-      </div>
-      -->
-
       <div class="modelfilter" style="margin-top:10px;">
          <form action="" method="post">
          <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">

@@ -158,9 +158,9 @@ class Subjects extends MY_Controller {
 			return false;
 		}
 		if($this->input->post()){
-echo '<pre>';
-print_r($this->input->post());
-echo '</pre>';			
+//echo '<pre>';
+//print_r($this->input->post());
+//echo '</pre>';			
 			$id = $this->session->userdata('updated_id');
 	
 			$data = array(

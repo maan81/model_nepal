@@ -96,18 +96,28 @@ class Featured extends MY_Controller {
 		foreach($featured as $key=>$val){
 
 			//--------------------------------------
+			//folder of imgs of the subject
 			$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($val->name).'/01';	//1st folder of imgs of the featuerd model
 
+			//create thumbs folder if reqd.
+			make_dir($full_path,'thumbs');
+
 			$imgs = scandir($full_path);									//imgs in that folder
+			foreach($imgs as $k=>$v){
+				if($v!='.' && $v!='..' && $v!='thumbs' ){
+					$preview_img = $v;
+					break;
+				}
+			}
 
 			$config['image_library']	= 'gd2';
 
 
 
-			$config['source_image']		= FEATUREDPATH.gen_folder_name($val->name).'/01/'.$imgs[2];		//1st img of the 1st folder
+			$config['source_image']		= FEATUREDPATH.gen_folder_name($val->name).'/01/'.$preview_img;		//1st img of the 1st folder
 			
 
-			$config['new_image'] 		= $full_path.'/thumbs/'.$imgs[2];		//thumbs of that img 
+			$config['new_image'] 		= $full_path.'/thumbs/'.$preview_img;		//thumbs of that img 
 			$config['thumb_marker']		= '';
 
 
@@ -123,7 +133,7 @@ class Featured extends MY_Controller {
 			}			
 			//--------------------------------------
 
-			$val->thumbs = FEATUREDPATH.gen_folder_name($val->name).'/01/thumbs/'.$imgs[2];
+			$val->thumbs = FEATUREDPATH.gen_folder_name($val->name).'/01/thumbs/'.$preview_img;
 		}
 		}
 

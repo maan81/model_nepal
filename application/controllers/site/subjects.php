@@ -106,7 +106,6 @@ class Subjects extends MY_Controller {
 
 			//imgs in that folder
 			$imgs = scandir($full_path);								
-print_r($imgs);
 
 			//1st img of the 1st folder
 			foreach($imgs as $k=>$v){

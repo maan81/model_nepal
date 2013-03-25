@@ -35,7 +35,10 @@ if( ! function_exists('make_dir')){
 	function make_dir($path, $name){
 
 		if( ! is_dir($path.'/'.$name)) {
-			mkdir($path.'/'.$name);
+
+			$old = umask(0);
+			mkdir($path.'/'.$name, 0777);
+			umask($old);
 		}
 	}
 }
@@ -63,10 +66,10 @@ if(! function_exists('get_img')){
 		if($gallery!=null){
 			$path .= $gallery.'/';
 		}
-//echo dirname(BASEPATH).'/'.$path;die;
-			//get the reqd. gallery's imgs
-			$arr = scandir(dirname(BASEPATH).'/'.$path);
-			$gallery = '/'.$gallery;
+
+		//get the reqd. gallery's imgs
+		$arr = scandir(dirname(BASEPATH).'/'.$path);
+		$gallery = '/'.$gallery;
 
 		array_shift($arr);	//remove .
 		array_shift($arr);	//remove ..

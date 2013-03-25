@@ -66,7 +66,8 @@ class Featured_model extends CI_Model{
 			$data = array('id'=>$this->db->insert_id());
 
 			//create new folder -- by featured model's name -- to place galleries & imgs.
-			mkdir(FEATUREDPATH.$folder_name);
+			$this->load->helper('utilites_helper');
+			make_dir(FEATUREDPATH, $folder_name);
 		}
 
 		return $this->get($data);

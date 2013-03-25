@@ -97,21 +97,28 @@ class Subjects extends MY_Controller {
 
 			//--------------------------------------
 			//folder of imgs of the subject
-			$full_path = dirname(BASEPATH).'/'.SUBJECTSPATH.gen_folder_name($val->name);	
+			$full_path = dirname(BASEPATH).'/'.SUBJECTSPATH;	
 
 			//create thumbs folder if reqd.
-			make_dir($path, $val->name);
+			make_dir($full_path.'/'.gen_folder_name($val->name),'thumbs');
+
+			$full_path .= gen_folder_name($val->name);
 
 			//imgs in that folder
 			$imgs = scandir($full_path);								
-
-
+print_r($imgs);
 
 			//1st img of the 1st folder
-			$config['source_image']		= SUBJECTSPATH.gen_folder_name($val->name).'/'.$imgs[3];		
+			foreach($imgs as $k=>$v){
+				if($v!='.' && $v!='..' && $v!='thumbs' ){
+					$preview_img = $v;
+					break;
+				}
+			}
+			$config['source_image']		= SUBJECTSPATH.gen_folder_name($val->name).'/'.$preview_img;		
 			
 			//thumbs of that img 
-			$config['new_image'] 		= $full_path.'/thumbs/'.$imgs[3];		
+			$config['new_image'] 		= $full_path.'/thumbs/'.$preview_img;		
 
 			
 			$config['thumb_marker']		= '';
@@ -128,7 +135,7 @@ class Subjects extends MY_Controller {
 			}			
 			//--------------------------------------
 
-			$val->thumbs = SUBJECTSPATH.gen_folder_name($val->name).'/thumbs/'.$imgs[3];
+			$val->thumbs = SUBJECTSPATH.gen_folder_name($val->name).'/thumbs/'.$preview_img;
 		}
 		}
 

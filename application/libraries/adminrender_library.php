@@ -248,8 +248,18 @@ class Adminrender_library{
 //echo '</pre>';
 //die;
 
+		$op = 	'<style>
+					#content .fx{
+						border: 1px solid #DDDDDD;
+						font-family: inherit;
+						font-size: inherit;
+						padding: 1.5px 4px;
+						width: 330px;
+						position:absolute;
+					}
+				</style>';
 
-		$op =	'<div class="container_16 clearfix" id="content">
+		$op .=	'<div class="container_16 clearfix" id="content">
 					'.form_open().'
 					<div class="grid_16">
 						<div class="grid_2" style="float: right;">
@@ -264,9 +274,15 @@ class Adminrender_library{
 
 					<div class="grid_6">
 						<p>
-							<label for="name">Name <small>Alpha-numeric characters without spaces.</small></label>
-							<input type="text" name="name" value="'.($data?$data[0]->name:'').'" />
-						</p>
+							<label for="name">Name <small>Alpha-numeric characters without spaces.</small></label>';
+					if($data){
+						//uneditable form input
+						$op .=		'<span class="fx">'.$data[0]->name.'</span>';
+					}else{
+						//empty form input
+						$op .=		'<input type="text" name="name" value=""/>';
+					}
+					$op .= 	'</p>
 					</div>
 
 					<div class="grid_5">
@@ -705,6 +721,14 @@ class Adminrender_library{
 				#content .page{
 					display:none;
 				}
+				#content .fx{
+					border: 1px solid #DDDDDD;
+					font-family: inherit;
+					font-size: inherit;
+					padding: 1.5px 4px;
+					width: 690px;
+					display:inline-block;
+				}
 			</style>
 			<script>
 				$(function(){
@@ -716,7 +740,11 @@ class Adminrender_library{
 							.slideUp(250)
 							.next()
 							.slideDown(250)
-						$(document).scrollTop()
+						
+						$("html").animate({
+							scrollTop : $("html").offset().top
+						},"fast")
+
 					})
 					$("#prev_btn").on("click",function(e){
 						e.preventDefault();
@@ -725,8 +753,9 @@ class Adminrender_library{
 							.slideUp(250)
 							.prev()
 							.slideDown(250)
-						$(document).scrollTop()
-					})
+						$("html").animate({
+						    scrollTop : $("html").offset().top
+						},"fast")					})
 				})
 			</script>
 				'.form_open().'
@@ -743,9 +772,15 @@ class Adminrender_library{
 
 						<div class="grid_12">
 							<p>
-								<label for="name">Name <small>Alpha-numeric characters without spaces.</small></label>
-								<input type="text" name="name" value="'.($data?$data[0]->name:'').'">
-							</p>
+								<label for="name">Name <small>Alpha-numeric characters without spaces.</small></label>';
+					if($data){
+						//uneditable form input
+						$op .=		'<span class="fx">'.$data[0]->name.'</span>';
+					}else{
+						//empty form input
+						$op .=		'<input type="text" name="name" value="">';
+					}
+					$op .= 	'</p>
 						</div>
 
 						<div class="grid_6">
@@ -781,7 +816,7 @@ class Adminrender_library{
 							<p>
 								<label for="email">Email</label>
 								<input type="text" name="email" value="'.($data?$data[0]->email:'').'" />
-							</p>x
+							</p>
 						</div>
 
 						<div class="grid_5"></div><div class="grid_6">
@@ -893,8 +928,8 @@ class Adminrender_library{
 							<p>
 								<label for="additional">Additional Info<small>Alpha-numeric characters without spaces.</small></label>
 								<textarea style="height: 36px; resize: vertical; min-height: 100px;" name="additional">'.
-									($data?$data[0]->additional:'').'
-								</textarea>
+									($data?$data[0]->additional:'').
+								'</textarea>
 							</p>
 						</div>
 						<div class="grid_16">
@@ -908,7 +943,7 @@ class Adminrender_library{
 						<div class="grid_16">
 							<div style="float: right;" class="grid_2">
 								<p>
-									<a href="#">Back</a>
+									<a href="'.site_url('admin/subjects').'">Back</a>
 								</p>
 							</div>
 							<h2>Availability</h2>

@@ -144,8 +144,9 @@ class Subjects_model extends CI_Model{
 			$data = array('id'=>$this->db->insert_id());
 
 			//create new folder -- by subject model's name -- to place imgs
-			mkdir(SUBJECTSPATH.$folder_name);			
-			mkdir(SUBJECTSPATH.$folder_name.'/thumbs');			
+			$this->load->helper('utilites_helper');
+			make_dir(SUBJECTSPATH, $folder_name);
+			make_dir(SUBJECTSPATH.'/'.$folder_name,'thumbs');
 		}
 
 		return $this->get($data);

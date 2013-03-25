@@ -271,6 +271,9 @@ class Featured extends MY_Controller {
 			//imgs in that folder
 			$imgs = scandir($full_path);									
 
+			//create folder for thumbs if reqd
+			make_dir($full_path, 'thumbs');
+
 			//1st img of the folder
 			$config['source_image']		= $full_path.'/'.$imgs[2];		
 			

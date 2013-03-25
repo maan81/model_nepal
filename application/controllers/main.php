@@ -81,6 +81,7 @@ class Main extends MY_Controller {
 										'img'	=>	'm4/m4.jpg',
 										'url'	=>	'#'
 									),
+					'featured'	=> $featured,
 /*					'featured' 	=> array(
 										0 	=> array(
 													'img'	=> 'first_model/01/m1.jpg',
@@ -110,7 +111,6 @@ class Main extends MY_Controller {
 									),
 */					'render_right'	=>$tmp3
 				);
-		$data['featured'] = $featured;
 
 
 		$op = $this->render_library->render_mainContents($data);

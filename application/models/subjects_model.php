@@ -145,6 +145,7 @@ class Subjects_model extends CI_Model{
 
 			//create new folder -- by subject model's name -- to place imgs
 			mkdir(SUBJECTSPATH.$folder_name);			
+			mkdir(SUBJECTSPATH.$folder_name.'/thumbs');			
 		}
 
 		return $this->get($data);

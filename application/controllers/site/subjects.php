@@ -99,6 +99,9 @@ class Subjects extends MY_Controller {
 			//folder of imgs of the subject
 			$full_path = dirname(BASEPATH).'/'.SUBJECTSPATH.gen_folder_name($val->name);	
 
+			//create thumbs folder if reqd.
+			make_dir($path, $val->name);
+
 			//imgs in that folder
 			$imgs = scandir($full_path);								
 

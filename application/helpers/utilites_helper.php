@@ -23,6 +23,25 @@ if ( ! function_exists('gen_folder_name')){
 }
 
 
+
+/**
+ * Create new folder if not exists
+ *
+ *	@param string [path], string[dir_name]
+ *	@return void
+ */
+if( ! function_exists('make_dir')){
+
+	function make_dir($path, $name){
+
+		if( ! is_dir($path.'/'.$name)) {
+			mkdir($path.'/'.$name);
+		}
+	}
+}
+
+
+
 /**
  * Get the server path of the specified img.
  *

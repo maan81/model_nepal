@@ -125,11 +125,20 @@ class Render_library{
 					    		</a>
 							</div>
 
-						    <div class="rightadsense">
-						    	<a href="'.$data['add2'][0]->link.'">
-						    		<img  src="'.ADDSPATH.$data['add2'][0]->image.'" alt="model" width="355" height="250" />
-					    		</a>
-						    </div>
+						    <div class="rightadsense">';
+
+					//advertizing thru image ad
+					if($data['add2'][0]->image){
+						$op .=	'<a href="'.$data['add2'][0]->link.'">
+									<img  src="'.ADDSPATH.$data['add2'][0]->image.'" alt="model" width="355" height="250" />
+							    </a>';
+					
+					//advertizing thru scrip
+					}else{
+						$op.=	$data['add2'][0]->script;
+					}
+
+			$op .= 		    '</div>
 						</div>
 
 						<div class="twia">
@@ -173,11 +182,20 @@ class Render_library{
 		$op = 	'<div class="rightPart">';
 
 		foreach($data as $key=>$val){
-			$op .= 	'<div class="rads">
-						<a href="'.$val->link.'">
+			$op .= 	'<div class="rads">';
+
+			//advertizing thru image ad
+			if($val->image){
+				$op.=	'<a href="'.$val->link.'">
 							<img src="'.base_url().ADDSPATH.$val->image.'" alt="Ad" width="250" />
-						</a>
-					</div>';
+						</a>';
+			
+			//advertizing thru scrip
+			}else{
+				$op.=	$val->script;
+			}
+
+			$op .=	'</div>';
 		}
 		$op .=	'</div>';
 

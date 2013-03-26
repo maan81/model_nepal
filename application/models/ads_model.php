@@ -43,6 +43,21 @@ class Ads_model extends CI_Model{
 
 
 	/**
+	 *  Insert new script ad
+	 *  @param record array/object
+	 *  @return the inserted/updated object
+	 */
+	private function _set_script($data){
+
+		$this->db->insert($this->table,$data);
+		unset($data);
+		$data['id'] = $this->db->insert_id();
+
+		return $this->get($data);
+	}
+
+
+	/**
 	 * set/update record's info
 	 * @param record array/object
 	 * @return the inserted/updated object
@@ -52,13 +67,19 @@ class Ads_model extends CI_Model{
 			return false;
 
 		$data = (object)$data;
-
 		//update data
 		if(isset($data->id)){
 			$data = $this->update($data);
 
 		//insert new data
 		}else{
+
+			//insert new script ad
+			if($data->type=='script'){
+				return $this->_set_script($data);
+			}
+
+			//else insert new image ad
 
 			$tmp = $_FILES['image']['name'];
 			$ext =  end(explode('.',$tmp));
@@ -82,6 +103,7 @@ class Ads_model extends CI_Model{
 			}else{
 
 				$image_data = $this->upload->data();
+				/*
 				$data = array(
 							'image' 		=> $image_data['file_name'],
 							'title' 		=> $this->input->post('title'),
@@ -89,6 +111,8 @@ class Ads_model extends CI_Model{
 							'dimensions' 	=> $this->input->post('dimensions'),
 							'link'			=> $this->input->post('link'),
 						);
+				*/
+				$data['image'] = $image_data['file_name'];
 
 				$this->db->insert($this->table,$data);
 				
@@ -105,6 +129,27 @@ class Ads_model extends CI_Model{
 	 * @param record array/object
 	 */
 	private function update($data){
+		//update existing script ad
+		if($data['type']=='script'){
+			return $this->_update_script($data);
+		}
+
+		$id = $data->id;
+		unset($data->id);
+//print_r($data);die;	
+		$this->db->where('id', $id);
+		$this->db->update($this->table, $data); 
+
+		$data->id = $id;
+		return $data;
+	}
+
+
+	/**
+	 * update record's info
+	 * @param record array/object
+	 */
+	private function _update_script($data){
 		$id = $data->id;
 		unset($data->id);
 //print_r($data);die;	
@@ -129,8 +174,11 @@ class Ads_model extends CI_Model{
 		}
 		$items = $this->get($data);
 		foreach($items as $key=>$val){
-			unlink(ADDSPATH.$val->image);
- 
+	
+			if($val->type == 'image'){
+				unlink(ADDSPATH.$val->image);
+			}
+
 			$this->db->where('id',$val->id)
 					 ->delete($this->table);
 		}

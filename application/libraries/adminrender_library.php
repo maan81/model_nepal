@@ -11,6 +11,7 @@ class Adminrender_library{
 	protected $ethnicity = array();
 	protected $usertype = array();
 	protected $adddimensions	= array();
+	protected $adddimensions_script = array();
 
 	/**
 	 * __construct
@@ -30,19 +31,23 @@ class Adminrender_library{
 						'administrator', 'editor', 'user'
 					);
 
-		array_push(	$this->adddimensions,
-						'h-ad',
-						'fullbanner',
-						'rads',
-						'rightadsense'
-					);
+		$this->adddimensions = array(
+									'h-ad'		  => 'Horizontal Ads',
+									'fullbanner'  => 'Full Banner',
+									'rads'		  => 'Right Ads',
+									'rightadsense'=> 'Right Adsense'
+								);
+
+		$this->adddimensions_script = array(
+										'rads'		  => 'Right Ads',
+										'rightadsense'=> 'Right Adsense'
+									);
 	}
 	
 	/**
 	 * admin menu
 	 */
 	public function render_navigation($selected){
-//echo $selected;		
 		$data = array(	'Home'			=> base_url().'admin',
 						'Advertizements'=> base_url().'admin/ads',
 						'Featured Models'=>base_url().'admin/featured',
@@ -73,6 +78,8 @@ class Adminrender_library{
 		return $op;
 	}
 	
+
+
 	/**
 	 * ads list
 	 */
@@ -90,13 +97,14 @@ class Adminrender_library{
 
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'["'.$val->id.'", "'.$val->category.'", "'.$val->title.'", "'.$val->dimensions.'", "<a class=\"edit\" href=\"'.site_url('admin/ads/edit/'.$val->id).'\">Edit</a>","<a class=\"delete\" href=\"'.site_url('admin/ads/del/'.$val->id).'\">Delete</a>"], ';
+			$op .=	'["'.$val->id.'", "'.$val->category.'", "'.$val->title.'", "'.$val->type.'", "'.$val->dimensions.'", "<a class=\"edit\" href=\"'.site_url('admin/ads/edit/'.$val->id).'\">Edit</a>","<a class=\"delete\" href=\"'.site_url('admin/ads/del/'.$val->id).'\">Delete</a>"], ';
 		}
 
 		$op .=  '],"aoColumns": [
 			            { "sTitle": "ID" },
 			            { "sTitle": "Category" },
 			            { "sTitle": "Title" },
+			            { "sTitle": "Type" },
 			            { "sTitle": "Dimensions"},
 			            { "sTitle": "Actions", sWidth:"5%"},
 			            { "sTitle": "" , sWidth:"5%"},
@@ -117,8 +125,27 @@ class Adminrender_library{
 //print_r($data);
 //echo '</pre>';
 //die;
-		$op =	'<div class="container_16 clearfix" id="content">
-					'.form_open_multipart().'
+		$op = '<script type="text/javascript">
+				$(function(){
+					
+					var type;
+					$("select[name=type]").change(function(){
+						type = $(this).val();
+
+						$(".is_"+type).slideDown();
+						$(".not_"+type).slideUp();
+					})
+
+					$("select[name=type]").trigger("change")
+
+					$("#content").find("form").submit(function(){
+						$(".not_"+type).remove();
+					})
+;				})
+			  </script> ';
+
+		$op .=	//'<div class="container_16 clearfix" id="content">'.
+					form_open_multipart().'
 					<div class="grid_16">
 						<div class="grid_2" style="float: right;">
 							<p>
@@ -130,7 +157,7 @@ class Adminrender_library{
 						<p class="error">Something went wrong.</p>
 					</div>
 
-					<div class="grid_5">
+					<div class="grid_6">
 						<p>
 							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>
 							<input type="text" name="title" value="'.($data?$data[0]->title:'').'" />
@@ -150,35 +177,69 @@ class Adminrender_library{
 
 					<div class="grid_6">
 						<p>
-							<label for="image">Image<small>The required Advertizement image..</small></label>
-							<input type="file" name="image">
+							<label for="type">Type<small>Select the type of ad</small></label>
+							<select name="type">'.
+								'<option value="image" '.
+									($data?($data[0]->type=='image'?'selected="selected"':''):'').'>Advertizement Image Link'.
+								'</option>'.
+								'<option value="script" '.
+									($data?($data[0]->type=='script'?'selected="selected"':''):'').'>Advertizement Script'.
+								'</option>'.
+							'</select>
 						</p>
 					</div>
+
 					<div class="grid_6">
 						<p>
 							<label for="dimensions">Dimensions <small>( width x height )</small></label>
-							<select name="dimensions">';
+							<select name="dimensions" class="is_image not_script">';
 					foreach($this->adddimensions as $key=>$val){
-						$op .= 	'<option value="'.$val.'" '.
-									($data?($data[0]->dimensions==$val?'selected="selected"':''):'').'>'.ucfirst($val).
+						$op .= 	'<option value="'.$key.'" '.
+									($data?($data[0]->dimensions==$key?'selected="selected"':''):'').'>'.$val.
+								'</option>';
+					}							
+					$op .= 	'</select>
+							<select name="dimensions" class="not_image is_script">';
+					foreach($this->adddimensions_script as $key=>$val){
+						$op .= 	'<option value="'.$key.'" '.
+									($data?($data[0]->dimensions==$key?'selected="selected"':''):'').'>'.$val.
 								'</option>';
 					}							
 					$op .= 	'</select>
 						</p>
 					</div>
-					<div class="grid_16">
+
+					<div class="grid_12 not_image is_script">
+						<p>
+							<label for="script">Advertizement Script<small>Alpha-numeric characters without spaces.</small></label>
+							<textarea name="script" style="height: 36px; resize: vertical; min-height: 100px;">'.
+								(($data && $data[0]->script)?$data[0]->script:'')
+							.'</textarea>
+						</p>
+					</div>
+
+					<div class="grid_6 not_script is_image">
+						<p>
+							<label for="image">Image<small>The required Advertizement image..</small></label>
+							<input type="file" name="image">
+						</p>
+					</div>
+
+					<div class="grid_12 not_script is_image">
 						<p>
 							<label for="link">Link<small>Must contain alpha-numeric characters.</small></label>
 							<input type="text" name="link" value="'.($data?$data[0]->link:'').'">
 						</p>
+					</div>
+
+					<div class="grid_12">
 						<p class="submit">
 							<a href="'.site_url('admin/ads').'">Cancel</a>
 							<input type="submit" value="Submit">
 						</p>
 					</div>		
-					</form>
-				</div>';
-
+					</form>';
+				//</div>';
 
 		return  $op;
 	}

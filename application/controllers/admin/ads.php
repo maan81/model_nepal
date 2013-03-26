@@ -17,9 +17,6 @@ class Ads extends MY_Controller {
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
 		$this->output->set_header('Pragma: no-cache');
 
-//echo $this->session->userdata('usertype');
-//die;
-
 		if(($this->session->userdata('usertype')!='administrator') &&
 		   ($this->session->userdata('usertype')!='editor') ) {
 			redirect('admin');
@@ -55,16 +52,63 @@ class Ads extends MY_Controller {
 		
 		$this->template->render();
 	}
-    
 
+    
+	/**
+	 * Validate adsence input
+	 * @param array[string, string]
+	 */
+	private function _validate_src($data){
+		$this->_validated_src = true;
+	}
+
+
+	/**
+	 * Store new Adsence Ad
+	 */
+	private function new_adsence(){
+
+		$data = array(
+						'title'		=>	$this->input->post('title'),
+						'category'	=>	$this->input->post('category'),
+						'type'		=>	'script',
+						'script'	=> 	$this->input->post('script'),
+						'dimensions'=> 	$this->input->post('dimensions'),
+					);
+
+		$this->_validate_src($data);
+
+		
+		if($this->_validated_src){
+			//input new data
+			$data = $this->ads_model->set($data);
+			$this->session->set_flashdata('msg', 'Data saved.');			
+	
+		}else{
+			//err in validation....
+			$this->session->set_flashdata('err', 'Error saving data.');
+
+			$data = array($data);
+		}
+
+		return $data;
+	}
+
+	/**
+	 * Store new advertizement
+	 */
     public function new_ad($data = false){
-		if($this->input->post()){
+		if($this->input->post('type')=='script'){
+			$data = $this->new_adsence();
+
+		}elseif($this->input->post()){
 			$data = array(
 							'title'		=> $this->input->post('title'),
 							'category'	=> $this->input->post('category'),
 							'dimensions'=> $this->input->post('dimensions'),
 							'link'		=> $this->input->post('link'),
-							'image'		=> $this->input->post('image')
+							'image'		=> $this->input->post('image'),
+							'type'		=> $this->input->post('type'),
 						);
 
 			$this->_validate_new($data);

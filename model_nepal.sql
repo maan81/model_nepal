@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 25, 2013 at 04:42 PM
+-- Generation Time: Mar 26, 2013 at 10:45 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -30,26 +30,29 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(127) NOT NULL,
   `category` varchar(127) NOT NULL,
+  `type` varchar(11) NOT NULL DEFAULT 'image',
   `dimensions` varchar(127) NOT NULL,
-  `link` varchar(255) NOT NULL,
-  `image` varchar(127) NOT NULL,
+  `script` text,
+  `link` varchar(255) DEFAULT NULL,
+  `image` varchar(127) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `ads`
 --
 
-INSERT INTO `ads` (`id`, `title`, `category`, `dimensions`, `link`, `image`) VALUES
-(1, 'Wired 868', 'published', 'h-ad', 'http://google.com.np', '1363158059.1957.jpg'),
-(2, 'Vmail', 'published', 'h-ad', 'http://facebook.com', '1363159357.1056.jpg'),
-(3, 'Digital Dream Utopia', 'published', 'fullbanner', 'http://yahoo.com', '1363159980.0329.jpg'),
-(6, 'Car Zoom', 'published', 'rightadsense', 'http://cnn.com', '1363161795.57.jpg'),
-(8, 'Vmail 2', 'published', 'rads', 'http://stackoverflow.com', '1363162127.7703.jpg'),
-(9, 'Wired 868 2', 'published', 'rads', 'http://skype.com', '1363162394.1761.jpg'),
-(10, 'Ubuntu', 'published', 'rads', 'http://www.ubuntu.com/', '1363162466.9965.jpg'),
-(11, 'Vmail 3', 'published', 'rads', 'http://facebook.com', '1363162539.473.jpg'),
-(12, 'Digital Dream Utopia 2', 'published', 'rads', 'http://youtube.com', '1363162622.9466.jpg');
+INSERT INTO `ads` (`id`, `title`, `category`, `type`, `dimensions`, `script`, `link`, `image`) VALUES
+(1, 'Wired 868', 'published', 'image', 'h-ad', '', 'http://google.com.np', '1363158059.1957.jpg'),
+(2, 'Vmail', 'published', 'image', 'h-ad', '', 'http://facebook.com', '1363159357.1056.jpg'),
+(3, 'Digital Dream Utopia', 'published', 'image', 'fullbanner', '', 'http://yahoo.com', '1363159980.0329.jpg'),
+(6, 'Car Zoom', 'published', 'image', 'rightadsense', '', 'http://cnn.com', '1363161795.57.jpg'),
+(8, 'Vmail 2', 'published', 'image', 'rads', '', 'http://stackoverflow.com', '1363162127.7703.jpg'),
+(9, 'Wired 868 2', 'published', 'image', 'rads', '', 'http://skype.com', '1363162394.1761.jpg'),
+(10, 'Ubuntu', 'published', 'image', 'rads', '', 'http://www.ubuntu.com/', '1363162466.9965.jpg'),
+(11, 'Vmail 3', 'published', 'image', 'rads', '', 'http://facebook.com', '1363162539.473.jpg'),
+(12, 'Digital Dream Utopia 2', 'published', 'image', 'rads', '', 'http://youtube.com', '1363162622.9466.jpg'),
+(21, 'adsence test', 'published', 'script', 'rads', '<script type="text/javascript"><!--\ngoogle_ad_client = "ca-pub-7372466155313335";\n/* 250 Ad */\ngoogle_ad_slot = "3531712710";\ngoogle_ad_width = 250;\ngoogle_ad_height = 250;\n//-->\n</script>\n<script type="text/javascript"\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js">\n</script>\n', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -244,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `visitors_count` (
   UNIQUE KEY `unique` (`ip_address`,`type`,`model_id`),
   KEY `ip_address` (`ip_address`),
   KEY `model_id` (`model_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `visitors_count`

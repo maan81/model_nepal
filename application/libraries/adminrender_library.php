@@ -55,9 +55,9 @@ class Adminrender_library{
 						'Gossips'		=> base_url().'admin/gossips',
 						'Events'		=> base_url().'admin/events',
 						'Articles'		=> base_url().'admin/articles',
-						'Projects'		=> base_url().'admin/projects',
-						'Services'		=> base_url().'admin/services',
-						'Contact'		=> base_url().'admin/contact',
+						'Projects'		=> '#',//base_url().'admin/projects',
+						'Services'		=> '#',//base_url().'admin/services',
+						'Contact'		=> '#',//base_url().'admin/contact',
 					);
 
 		if($this->ci->session->userdata('usertype')=='administrator'){
@@ -134,14 +134,43 @@ class Adminrender_library{
 
 						$(".is_"+type).slideDown();
 						$(".not_"+type).slideUp();
-					})
+					});
 
-					$("select[name=type]").trigger("change")
+					$("select[name=type]").trigger("change");
 
 					$("#content").find("form").submit(function(){
 						$(".not_"+type).remove();
-					})
-;				})
+					});';
+
+		if(isset($data)){
+			$op .=	'var $img;
+					//remove old img & add input for new image
+					$(".change_img").live("click",function(e){
+						e.preventDefault();
+						
+						var str = "<input class=\"new_img\" type=\"file\" name=\"image\">";
+						str = str + "<a class=\"cancel_change_img\" href=\"#\">cancel</a>";
+
+						$(this).after(str);
+						$img = $(".old_img").detach()+$(this).detach();
+
+						$(".new_img").trigger("click");
+					});						
+
+					//restore the earlier image 
+					$(".cancel_change_img").live("click",function(e){
+						e.preventDefault();
+						
+						var str = "<img class=\"old_img\" src=\"'.base_url().ADDSPATH.$data[0]->image.'\" />";
+						str = str + "<a href=\"#\" class=\"change_img\">Change</a>";
+
+						$(this)
+							.after(str)
+						$(".new_img").remove();
+						$(this).remove();
+					});';
+		}
+		$op .= 	'})
 			  </script> ';
 
 		$op .=	//'<div class="container_16 clearfix" id="content">'.
@@ -219,10 +248,18 @@ class Adminrender_library{
 					</div>
 
 					<div class="grid_6 not_script is_image">
-						<p>
-							<label for="image">Image<small>The required Advertizement image..</small></label>
-							<input type="file" name="image">
-						</p>
+						<p class="img">
+							<label for="image">Image<small>The required Advertizement image..</small></label>';
+			
+				if($data && $data[0]->image){
+					$op .=	'<img class="old_img" src="'.base_url().ADDSPATH.$data[0]->image.'" />
+							 <a href="#" class="change_img">Change</a>';
+				}else{
+					$op .= '<input class="new_img" type="file" name="image">';
+							//'<a href="#" class="cancel_change_img">Cancel</a>';
+				}		
+			
+			$op .= 		'</p>
 					</div>
 
 					<div class="grid_12 not_script is_image">
@@ -480,8 +517,8 @@ class Adminrender_library{
 //echo '</pre>';
 //die;
 
-		$op =	'<div class="container_16 clearfix" id="content">
-					'.form_open_multipart().'
+		$op =	//'<div class="container_16 clearfix" id="content">'.
+					form_open_multipart().'
 					<div class="grid_16">
 						<div class="grid_2" style="float: right;">
 							<p>
@@ -522,8 +559,8 @@ class Adminrender_library{
 						</p>
 					</div>	
 
-					</form>
-				</div>';//.$generated_editor;
+					</form>';
+				//</div>';//.$generated_editor;
 
 
 		return  $op;
@@ -574,8 +611,8 @@ class Adminrender_library{
 //echo '</pre>';
 //die;
 
-		$op =	'<div class="container_16 clearfix" id="content">
-					'.form_open().'
+		$op =	//'<div class="container_16 clearfix" id="content">'.
+					form_open().'
 					<div class="grid_16">
 						<div class="grid_2" style="float: right;">
 							<p>
@@ -621,8 +658,8 @@ class Adminrender_library{
 							</ul>
 						</small>
 					</div>		
-					</form>
-				</div>';
+					</form>';
+				//</div>';
 
 
 		return  $op;
@@ -674,8 +711,8 @@ class Adminrender_library{
 //echo '</pre>';
 //die;
 
-		$op =	'<div class="container_16 clearfix" id="content">
-					'.form_open().'
+		$op =	//'<div class="container_16 clearfix" id="content">'.
+					form_open().'
 					<div class="grid_16">
 						<div class="grid_2" style="float: right;">
 							<p>
@@ -714,8 +751,8 @@ class Adminrender_library{
 							<input type="submit" value="Submit">
 						</p>
 					</div>	
-					</form>
-				</div>';
+					</form>';
+				//</div>';
 
 
 		return  $op;
@@ -1157,8 +1194,8 @@ class Adminrender_library{
 							</p>
 						</div>	
 					</div>
-				</form>
-				';
+				</form>';
+
 		return  $op;
 	}
 
@@ -1231,7 +1268,7 @@ class Adminrender_library{
 		if(! $data)
 			return false;
 
-		$op =''.form_open().'
+		$op =	form_open().'
 					<div class="grid_16">
 						<div class="grid_2" style="float: right;">
 							<p>
@@ -1367,8 +1404,8 @@ class Adminrender_library{
 //print_r($data);
 //echo '</pre>';
 //die;
-		$op =	'<div class="container_16 clearfix" id="content">
-					'.form_open().'
+		$op =	//'<div class="container_16 clearfix" id="content">'.
+					form_open().'
 					<div class="grid_16">
 						<div class="grid_2" style="float: right;">
 							<p>
@@ -1411,8 +1448,8 @@ class Adminrender_library{
 							<input type="submit" value="Submit">
 						</p>
 					</div>		
-					</form>
-				</div>';
+					</form>';
+				//</div>';
 
 
 		return  $op;

@@ -4,7 +4,7 @@
 
 	<div class="leftPart">
 		
-		<div class="modeldisplay">
+		 <div class="model-display-hor">
 			<div class="name"><?php echo $featured[0]->name?></div>
 			<div class="like">
 				<div class="addthis_toolbox addthis_default_style ">
@@ -16,33 +16,8 @@
 			
 			<div class="mpic">
 				<img src="<?php echo  $img_links['cur_img']?>" alt="<?php echo $featured[0]->name?>" 
-						height="600" width="400"/>
+						height="400" width="610"/>
 			</div>
-			<div class="rtbox"></div>
-			<div class="rbbox"></div>
-
-			<table class="modelinfo">
-			    <tr>
-			        <td>Wardrobe :</td>
-			        <td><?php echo $featured[0]->wardrobe?></td>
-			    </tr>
-			    <tr>
-			        <td>Location :</td>
-			        <td><?php echo $featured[0]->location?></td>
-			    </tr>
-			    <tr>
-			        <td>Make-Up :</td>
-			        <td><?php echo $featured[0]->make_up?></td>
-			    </tr>
-			    <tr>
-			        <td>Photographer :</td>
-			        <td><?php echo $featured[0]->photographer?></td>
-			    </tr>
-			    <tr>
-			        <td>Model By :</td>
-			        <td><?php echo $featured[0]->model_by?></td>
-			    </tr>
-			</table>
 
 			<?php if($img_links['prev']):?>
 			<div class="prev">

@@ -125,7 +125,17 @@ class Adminrender_library{
 //print_r($data);
 //echo '</pre>';
 //die;
-		$op = '<script type="text/javascript">
+		$op = '<style>
+				#content .fx {
+				    border: 1px solid #DDDDDD;
+				    font-family: inherit;
+				    font-size: inherit;
+				    padding: 1.5px 4px;
+				    position: absolute;
+				    width: 330px;
+				}</style>';
+
+		$op .= '<script type="text/javascript">
 				$(function(){
 					
 					var type;
@@ -142,7 +152,7 @@ class Adminrender_library{
 						$(".not_"+type).remove();
 					});';
 
-		if(isset($data)){
+		if(is_object($data[0])){
 			$op .=	'var $img;
 					//remove old img & add input for new image
 					$(".change_img").live("click",function(e){
@@ -188,8 +198,15 @@ class Adminrender_library{
 
 					<div class="grid_6">
 						<p>
-							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>
-							<input type="text" name="title" value="'.($data?$data[0]->title:'').'" />
+							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>';
+					if($data){
+						//uneditable form input
+						$op .=		'<span class="fx">'.$data[0]->title.'</span>';
+					}else{
+						//empty form input
+						$op .=		'<input type="text" name="title" value=""/>';
+					}
+					$op .= 	'</p>
 						</p>
 					</div>
 
@@ -357,8 +374,8 @@ class Adminrender_library{
 					}
 				</style>';
 
-		$op .=	'<div class="container_16 clearfix" id="content">
-					'.form_open().'
+		$op .=	//'<div class="container_16 clearfix" id="content">'.
+					form_open().'
 					<div class="grid_16">
 						<div class="grid_2" style="float: right;">
 							<p>
@@ -464,8 +481,8 @@ class Adminrender_library{
 						</small>
 					</div>		
 
-					</form>
-				</div>';
+					</form>';
+				//</div>';
 
 
 		return  $op;

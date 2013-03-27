@@ -242,8 +242,18 @@ class Featured extends MY_Controller {
 //echo '<pre>';
 //print_r($data);
 //echo '</pre>';
+//print_r( getimagesize($img_links['cur_img']));
+//echo '<img src="'.$img_links['cur_img'].'" alt="" height="600" width="400" />';
 //die;
-		$op = $this->load->view('site/featured_selected.php',$data,true);
+		$img_dim = getimagesize($img_links['cur_img']);
+		//landscape img
+		if($img_dim[0] > $img_dim[1]){
+			$op = $this->load->view('site/featured_selected_horizontal.php',$data,true);
+
+		//potrait img
+		}else{
+			$op = $this->load->view('site/featured_selected.php',$data,true);
+		}
 		$this->template->write('mainContents',$op);
 
 		//-----------------------------------------------

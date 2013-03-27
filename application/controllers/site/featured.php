@@ -96,8 +96,8 @@ class Featured extends MY_Controller {
 		foreach($featured as $key=>$val){
 
 			//--------------------------------------
-			//folder of imgs of the subject
-			$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($val->name).'/01';	//1st folder of imgs of the featuerd model
+			//1st folder of imgs of the featured model
+			$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($val->name).'/01';	
 
 			//create thumbs folder if reqd.
 			make_dir($full_path,'thumbs');
@@ -170,10 +170,17 @@ class Featured extends MY_Controller {
 
 
 
-	public function get($model=null,$gallery=null,$img=null){
+	public function get($model=null,$gallery='01',$img=null){
 		if($model==null){
 			return $this->search();
 		}
+
+		//disp selected gallery's preview imgs
+		if($img==null){
+			//redirect(current_url().'/1');
+			return $this->_disp_gallery($model,$gallery);
+		}
+		//-----------------------------------------------
 
 		$this->template->set_template('site');
 		
@@ -224,9 +231,6 @@ class Featured extends MY_Controller {
 
 
 		//-----------------------------------------------
-		if($img==null){
-			redirect(current_url().'/1');
-		}
 
 		$this->load->helper('utilites_helper');
 		$img_links = get_img($featured[0],$gallery,$img);
@@ -262,6 +266,154 @@ class Featured extends MY_Controller {
 	}
 
 
+	/**
+	 * Display selected gallery's preview imgs
+	 * @param int [model id], string [gallery id] 
+	 */
+	private function _disp_gallery($model,$gallery){
+		$this->template->set_template('site');
+		
+
+		//-----------------------------------------------
+		$op = $this->render_library->render_toplink(false);
+		$this->template->write('toplink',$op);
+
+		//-----------------------------------------------
+		$this->load->model('ads_model');
+		
+		$tmp = $this->ads_model->get(array('dimensions'=>'h-ad'));
+		$ads = array('ads'=>array($tmp[0]));
+
+		$this->config->load('nav');
+		$data = array(
+					'nav'	=>	$this->config->item('nav'),
+					'ads'=>array($tmp[0],$tmp[1])
+				);
+
+		$op = $this->render_library->render_header($data);
+		$this->template->write('header',$op);
+
+
+		//-----------------------------------------------
+		$op = $this->render_library->render_footer(false);
+		$this->template->write('footer',$op);
+
+
+		//-----------------------------------------------
+		$this->load->model('ads_model');
+		
+		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
+		$featured = $this->featured_model->get(array('id' => $model));
+
+
+		//================
+		$galleries = array();
+
+		foreach($featured as $key=>$val){
+	    	$imgs = array(
+		    			'gallery_cover'	=> $this->gallery_cover($val)
+					);
+
+	        array_push($galleries,$imgs);
+		}
+		//=================
+
+
+//--------------------------------------
+//array to keep thumbs
+$imgs_preview = array('landscape'=>array(),'potrait'=>array());
+
+//folder of imgs of the featured model
+$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery;	
+
+//create thumbs folder inside the gallery folder if reqd.
+make_dir($full_path,'thumbs');
+
+//load image ligrary
+$this->load->library('image_lib');
+
+//imgs in that folder
+$imgs = scandir($full_path);
+
+$count_link=1;
+foreach($imgs as $k=>$v){
+	if($v=='.' || $v=='..' || $v=='thumbs' ){
+		continue;
+	}
+
+	//the current original img
+	$config['source_image']		= FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/'.$v;	
+
+	//thumbs of that img 
+	$config['new_image'] 		= $full_path.'/thumbs/'.$v;
+
+	$config['image_library']	= 'gd2';
+	$config['thumb_marker']		= '';
+	$config['create_thumb'] 	= TRUE;
+	$config['maintain_ratio'] 	= TRUE;
+	$config['width'] 			= 323;
+	$config['height'] 			= 152;
+
+	$this->image_lib->initialize($config);
+//print_r($config);
+	if ( ! $this->image_lib->resize()){
+	    echo $this->image_lib->display_errors();
+	}			
+
+	$img_dim = getimagesize(base_url().$config['source_image']);
+	//landscape img
+	if($img_dim[0] > $img_dim[1]){
+		array_push(	$imgs_preview['landscape'],
+					array('img' => FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/thumbs/'.$v,
+						  'link'=> site_url('featured/get/'.$featured[0]->id.'/'.$gallery.'/'.$count_link)
+					  )
+				);
+
+	//potrait img
+	}else{
+		array_push(	$imgs_preview['potrait'],
+					array('img'=>FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/thumbs/'.$v,
+						  'link'=>site_url('featured/get/'.$featured[0]->id.'/'.$gallery.'/'.$count_link)
+						)
+					);
+	}
+
+	$count_link++;
+}
+
+//--------------------------------------
+
+
+//		//-----------------------------------------------
+//
+//		$this->load->helper('utilites_helper');
+//		$img_links = get_img($featured[0],$gallery,$img);
+//		//-----------------------------------------------
+
+		
+		$data = array(
+					'featured'		=>	$featured,
+					'render_right'	=>	$tmp3,
+					'galleries'		=> 	$galleries,
+//					'img_links'		=> 	$img_links,
+					'imgs_preview'	=> 	$imgs_preview,
+					);
+//echo '<pre>';
+//print_r($data);
+//echo '</pre>';
+//print_r( getimagesize($img_links['cur_img']));
+//echo '<img src="'.$img_links['cur_img'].'" alt="" height="600" width="400" />';
+//die;
+		$op = $this->load->view('site/featured_selected_gallery.php',$data,true);
+
+		$this->template->write('mainContents',$op);
+
+		$this->template->add_css(CSSPATH.'/custom.css');
+		//-----------------------------------------------
+		//-----------------------------------------------
+		$this->template->render();
+	}
+
 
 	private function gallery_cover($featured=null){
 		if($featured==null)
@@ -271,7 +423,7 @@ class Featured extends MY_Controller {
 		//--------------------------------------
 		$this->load->helper('utilites_helper');
 
-		//folders of imgs of the featuerd model
+		//folders of imgs of the featured model
 		$albums = array();
 
 

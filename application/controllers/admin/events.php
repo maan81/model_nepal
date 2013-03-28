@@ -32,7 +32,7 @@ class Events extends MY_Controller {
 		$data = $this->events_model->get();
 
 		$events = $this->adminrender_library->render_eventslist($data);
-
+//print_r($events);die;
 		$this->template->set_template('admin');
 
 		$this->template->write('list',$events);
@@ -57,7 +57,7 @@ class Events extends MY_Controller {
 		if($this->input->post()){
 			$data = array(
 							'title'		=> $this->input->post('title'),
-							'summary'	=> $this->input->post('sumary'),
+							'summary'	=> $this->input->post('summary'),
 						);
 			
 			$this->_validate_new($data);
@@ -122,7 +122,7 @@ class Events extends MY_Controller {
 	
 			$data = array(
 							'id'		=> $id,
-							'title'		=> $this->input->post('title'),
+							//'title'		=> $this->input->post('title'),
 							'summary'	=> $this->input->post('summary'),
 						);
 
@@ -141,7 +141,7 @@ class Events extends MY_Controller {
 		}
 
 		$data = $this->events_model->get(array('id'=>$id));
-		$this->new_events($data);
+		$this->new_event($data);
 		$this->session->set_userdata('updated_id',$id);
 	}
 

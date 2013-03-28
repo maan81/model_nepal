@@ -601,7 +601,7 @@ class Adminrender_library{
 
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'['.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/events/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/events/del/'.$val->id).'\">Delete</a>"], ';
+			$op .=	'["'.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/events/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/events/del/'.$val->id).'\">Delete</a>"], ';
 		}
 
 		$op .=  '],"aoColumns": [
@@ -628,7 +628,19 @@ class Adminrender_library{
 //echo '</pre>';
 //die;
 
-		$op =	//'<div class="container_16 clearfix" id="content">'.
+		$op = 	'<style>
+					#content .fx{
+						border: 1px solid #DDDDDD;
+						font-family: inherit;
+						font-size: inherit;
+						padding: 1.5px 4px;
+						width: 330px;
+						position:absolute;
+					}
+				</style>';
+		$op .= '<script type="text/javascript">$(function(){$(".fx").parent().css("margin-bottom","45px")})</script>';
+
+		$op .=	//'<div class="container_16 clearfix" id="content">'.
 					form_open().'
 					<div class="grid_16">
 						<div class="grid_2" style="float: right;">
@@ -640,14 +652,20 @@ class Adminrender_library{
 						<p class="error">Something went wrong.</p>
 					</div>
 
-					<div class="grid_5">
+					<div class="grid_6">
 						<p>
-							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>
-							<input type="text" name="title" value="'.($data?$data[0]->title:'').'" />
-						</p>
+							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>';
+					if($data){
+						//uneditable form input
+						$op .=		'<span class="fx">'.$data[0]->title.'</span>';
+					}else{
+						//empty form input
+						$op .=		'<input type="text" name="title" value=""/>';
+					}
+					$op .= 	'</p>
 					</div>
 
-					<div class="grid_16">
+					<div class="grid_12">
 						<p>
 							<label>Summary <small>Will be displayed in search engine results.</small></label>
 							<textarea class="area_small" name="summary">'.

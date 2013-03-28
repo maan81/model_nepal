@@ -5,7 +5,7 @@
    <?php foreach($featured as $key=>$val):?>
 
       <div class="thumb" style="margin-right:15px;text-align:center;">
-         <a href="<?php echo site_url('featured/get/'.$val->id.'/01/1')?>">
+         <a href="<?php echo site_url('featured/get/'.$val->id.'/01')?>">
             <span class="title"><?php echo $val->name?></span> 
             <img src="<?php echo $val->thumbs?>" />
          </a>

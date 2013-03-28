@@ -171,10 +171,17 @@ class Subjects extends MY_Controller {
 	}
 
 
+	/**
+	 * Display selected subject's preview imgs
+	 * @param int [model id]
+	 */
+	private function _disp_gallery($model_id){
+	}
+
 
 	/**
 	 *  The selected subject
-	 *  @param int[subject id], int[selected ing id]
+	 *  @param int[subject id], int[selected img id]
 	 *  @return void
 	 */
 	public function get($subject_id=null,$img=null){

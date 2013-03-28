@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2013 at 06:11 PM
+-- Generation Time: Mar 28, 2013 at 08:36 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -79,7 +79,14 @@ CREATE TABLE IF NOT EXISTS `events` (
   `title` varchar(127) NOT NULL,
   `summary` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `title`, `summary`) VALUES
+(13, 'Nv asdfiuh aefw', 'uasdh oaiusdhf owefasdf fw');
 
 -- --------------------------------------------------------
 

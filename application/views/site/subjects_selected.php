@@ -72,7 +72,7 @@
               </tr>
               <tr class="bg">
                  <td>Availability</td>
-                 <td>: <?php if($subjects->fashion_type):?>
+                 <td>: <?php if(isset($subjects->fashion_type)):?>
                           <strong>Fashion:</strong>
                           <?php
                             foreach($subjects->fashion_type as $key=>$val){
@@ -81,7 +81,7 @@
                           ?>
                           <br />
                       <?php endif?>
-                      <?php if($subjects->commercial_type):?>
+                      <?php if(isset($subjects->commercial_type)):?>
                         <strong>Commercial:</strong>
                         <?php
                           foreach($subjects->commercial_type as $key=>$val){
@@ -90,7 +90,7 @@
                         ?>
                         <br />
                       <?php endif?>
-                      <?php if($subjects->glamour):?>
+                      <?php if(isset($subjects->glamour)):?>
                         <strong>Glamour:</strong>
                         <?php
                           foreach($subjects->glamour as $key=>$val){
@@ -100,12 +100,6 @@
                         <br/>
                       <?php endif?>
                  </td>
-                 <!--
-                 <td>: <strong>Fashion:</strong> Editorial, print, Runway, Catalog, Fit<br />
-                    <strong>Commercial:</strong> Product, Lifestyle<br />
-                    <strong>Glamour:</strong> Lingrie, Art, Swimsuit
-                 </td>
-               -->
               </tr>
            </table>
 

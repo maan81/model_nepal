@@ -5,9 +5,9 @@
    <?php foreach($subjects as $key=>$val):?>
 
       <div class="thumb" style="margin-right:15px;text-align:center;">
-         <a href="<?php echo site_url('subjects/get/'.$val->id.'/1')?>">
+         <a href="<?php echo site_url('subjects/get/'.$val->id)?>">
             <span class="title"><?php echo $val->name?></span> 
-            <img src="<?php echo $val->thumbs?>" />
+            <img src="<?php echo base_url().$val->thumbs?>" />
          </a>
       </div>
 

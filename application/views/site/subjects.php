@@ -6,7 +6,7 @@
 
       <div class="fullbanner">
          <a href="<?php echo $add->link?>">
-            <img src="<?php echo ADDSPATH.$add->image?>" alt="Banner" width="690" height="110" />
+            <img src="<?php echo base_url().ADDSPATH.$add->image?>" alt="Banner" width="690" height="110" />
          </a>
       </div>
 

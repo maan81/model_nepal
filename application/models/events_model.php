@@ -39,6 +39,7 @@ class Events_model extends CI_Model{
 		return count($res->result())?$res->result():false;
 	}
 
+
 	/**
 	 * set/update record's info
 	 * @param record array/object
@@ -59,10 +60,17 @@ class Events_model extends CI_Model{
 			$this->db->insert($this->table,$data);
 
 			$data = array('id'=>$this->db->insert_id());
+			$data = $this->get($data);
+
+			//create new folder -- by event title's name
+			$this->load->helper('utilites_helper');
+			$folder_name = gen_folder_name($data[0]->title);
+			make_dir(EVENTSPATH, $folder_name);
 		}
 
-		return $this->get($data);
+		return $data;
 	}
+
 
 
 	/**
@@ -79,6 +87,7 @@ class Events_model extends CI_Model{
 	}
 
 
+
 	/**
 	 * delete objects
 	 *
@@ -91,9 +100,14 @@ class Events_model extends CI_Model{
 			return false;
 		}
 		$items = $this->get($data);
+
+		$this->load->helper(array('utilites_helper','file'));
 		foreach($items as $key=>$val){
-			unlink(EVENTSPATH.$val->image);
- 
+
+			//delete the directory & all the ones in it.
+			delete_files(EVENTSPATH.gen_folder_name($val->title), true);
+			rmdir(EVENTSPATH.gen_folder_name($val->title));
+
 			$this->db->where('id',$val->id)
 					 ->delete($this->table);
 		}

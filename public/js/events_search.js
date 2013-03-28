@@ -4,7 +4,7 @@ $(function(){
          v = $(this).val();
 
       $('.pagina').remove();
-      $('.agencymodel').remove();
+      $('.modelsthumb').remove();
       $('.loading').show();
       $('.modelparam').not($(this)).prop('selectedIndex',0);
 

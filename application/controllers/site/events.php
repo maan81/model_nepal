@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Subjects extends MY_Controller {
+class Events extends MY_Controller {
 
 	public function __construct(){
 		parent::__construct();
 
-		$this->load->model('subjects_model');
+		$this->load->model('events_model');
 	}
 
 	public function index(){
@@ -44,26 +44,26 @@ class Subjects extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
 
-		$subjects = $this->subjects_model->get();
+		$events = $this->events_model->get();
 
 		$this->load->config('ethnicity');
 		$data = array(
 					'add'		=>	$tmp[0],
 					'add2'		=>	$tmp2,
-					'subject'	=> array(
+					'event'	=> array(
 										'img'	=>	'm4/m4.jpg',
 										'url'	=>	'#'
 									),
-					'subjects'	=> $subjects,
+					'events'	=> $events,
 					'render_right'=>$tmp3,
 					'ethnicity'	=> $this->config->item('ethnicity'),
 				);
 
 
-		$op = $this->load->view('site/subjects.php',$data,true);
+		$op = $this->load->view('site/events.php',$data,true);
 		$this->template->write('mainContents',$op);
 
-		$this->template->add_js(JSPATH.'subjects_search.js');
+		$this->template->add_js(JSPATH.'events_search.js');
 		//-----------------------------------------------
 		//-----------------------------------------------
 		$this->template->render();
@@ -71,7 +71,7 @@ class Subjects extends MY_Controller {
 
 
 	/**
-	 * Search Subjects
+	 * Search events
 	 *
 	 * @param string (search parameter) , string (search value)
 	 * @return string (html div)
@@ -79,8 +79,8 @@ class Subjects extends MY_Controller {
 	public function search($key=null,$val=null){
 
 		if( ($key==null) || ($val==null) ){
-			$this->load->view('site/subjects_search.php',array(
-																'subjects' => false,
+			$this->load->view('site/events_search.php',array(
+																'events' => false,
 																'pagination' => false
 																)
 															);
@@ -88,21 +88,21 @@ class Subjects extends MY_Controller {
 
 		}
 
-		$subjects = $this->subjects_model->get(array($key=>urldecode($val)));
+		$events = $this->events_model->get(array($key=>urldecode($val)));
 
 		$this->load->helper('utilites_helper');
 
-		if($subjects){
-		foreach($subjects as $key=>$val){
+		if($events){
+		foreach($events as $key=>$val){
 
 			//--------------------------------------
-			//folder of imgs of the subject
-			$full_path = dirname(BASEPATH).'/'.SUBJECTSPATH;	
+			//folder of imgs of the event
+			$full_path = dirname(BASEPATH).'/'.EVENTSPATH;	
 
 			//create thumbs folder if reqd.
-			make_dir($full_path.'/'.gen_folder_name($val->name),'thumbs');
+			make_dir($full_path.'/'.gen_folder_name($val->title),'thumbs');
 
-			$full_path .= gen_folder_name($val->name);
+			$full_path .= gen_folder_name($val->title);
 
 			//imgs in that folder
 			$imgs = scandir($full_path);								
@@ -114,7 +114,7 @@ class Subjects extends MY_Controller {
 					break;
 				}
 			}
-			$config['source_image']		= SUBJECTSPATH.gen_folder_name($val->name).'/'.$preview_img;		
+			$config['source_image']		= EVENTSPATH.gen_folder_name($val->title).'/'.$preview_img;		
 			
 			//thumbs of that img 
 			$config['new_image'] 		= $full_path.'/thumbs/'.$preview_img;		
@@ -134,7 +134,7 @@ class Subjects extends MY_Controller {
 			}			
 			//--------------------------------------
 
-			$val->thumbs = SUBJECTSPATH.gen_folder_name($val->name).'/thumbs/'.$preview_img;
+			$val->thumbs = EVENTSPATH.gen_folder_name($val->title).'/thumbs/'.$preview_img;
 		}
 		}
 
@@ -143,8 +143,8 @@ class Subjects extends MY_Controller {
 		//pagination
 		$this->load->library('pagination');
 
-		$config['base_url'] = base_url().'subjects';
-		$config['total_rows'] = count($this->subjects_model->get());
+		$config['base_url'] = base_url().'events';
+		$config['total_rows'] = count($this->events_model->get());
 		$config['per_page'] = 6;
 
 		$config['prev_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'prev.png" alt="Previous" />';
@@ -163,8 +163,8 @@ class Subjects extends MY_Controller {
 		$pagination =  $this->pagination->create_links();
 
 
-		$this->load->view('site/subjects_search.php',array(
-															'subjects' => $subjects,
+		$this->load->view('site/events_search.php',array(
+															'events' => $events,
 															'pagination' => $pagination
 															)
 														);
@@ -172,83 +172,27 @@ class Subjects extends MY_Controller {
 
 
 	/**
-	 * Display selected subject's preview imgs
+	 * Display selected event's preview imgs
 	 * @param int [model id]
 	 */
-	private function _list_imgs($model_id){
-		$this->template->set_template('site');
-
-		//-----------------------------------------------
-		$op = $this->render_library->render_toplink(false);
-		$this->template->write('toplink',$op);
-
-		//-----------------------------------------------
-		$this->load->model('ads_model');
-		
-		$tmp = $this->ads_model->get(array('dimensions'=>'h-ad'));
-		$ads = array('ads'=>array($tmp[0]));
-
-		$this->config->load('nav');
-		$data = array(
-					'nav'	=>	$this->config->item('nav'),
-					'ads'=>array($tmp[0],$tmp[1])
-				);
-
-		$op = $this->render_library->render_header($data);
-		$this->template->write('header',$op);
-
-		//-----------------------------------------------
-		$op = $this->render_library->render_footer(false);
-		$this->template->write('footer',$op);
-
-
-		//-----------------------------------------------
-		$this->load->model('ads_model');
-		
-		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
-		$subjects = $this->subjects_model->get(array('id' => $model_id));
-
-		$updated_subjects = array();
-		foreach($subjects as $key=>$val){
-			array_push($updated_subjects,$this->subject_imgs($val,1));
-		}
-
-		$data = array(
-					'subjects'		=>	$updated_subjects,
-					'render_right'	=>	$tmp3,
-//					'galleries'		=> 	$galleries,
-//					'img_links'		=> 	$img_links,
-//					'imgs_preview'	=> 	$imgs_preview,
-					);
-
-
-//print_r($data);die;
-		$op = $this->load->view('site/subjects_selected_gallery.php',$data,true);
-//echo $op;die;
-//$op='';
-		$this->template->write('mainContents',$op);
-
-		$this->template->add_css(CSSPATH.'/custom.css');
-		//-----------------------------------------------
-		//-----------------------------------------------
-		$this->template->render();
+	private function _disp_gallery($model_id){
 	}
 
 
 	/**
-	 *  The selected subject
-	 *  @param int[subject id], int[selected img id]
+	 *  The selected event
+	 *  @param int[event id], int[selected img id]
 	 *  @return void
 	 */
-	public function get($subject_id=null,$img=null){
-		//redirect to subject search if not specified
-		if($subject_id==null){
+	public function get($event_id=null,$img=null){
+		//redirect to event search if not specified
+		if($event_id==null){
 			return $this->search();
 		}
 
 		//redirect to get the 1st img. if not specified
 		if($img==null){
-			return $this->_list_imgs($subject_id);
+			redirect(current_url().'/1');
 		}
 
 		$this->template->set_template('site');
@@ -285,33 +229,33 @@ class Subjects extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
 
-		//------------------------------------------------
+//		//------------------------------------------------
+//
+//		$this->load->helper('visitors_count_helper');
+//
+//		set_count_visitors(array(
+//								'type'	  => 'events',
+//								'model_id'=> $event_id)
+//							);
+//
+//		//------------------------------------------------
 
-		$this->load->helper('visitors_count_helper');
+		//$events = $this->events_model->get(array('id' => $event_id));
+		$events = $this->events_model->get(array('id' => $event_id));
 
-		set_count_visitors(array(
-								'type'	  => 'subjects',
-								'model_id'=> $subject_id)
-							);
-
-		//------------------------------------------------
-
-		//$subjects = $this->subjects_model->get(array('id' => $subject_id));
-		$subjects = $this->subjects_model->corrected_get(array('id' => $subject_id));
-
-		$subjects = $this->subject_imgs($subjects[0],$img);
+		$events = $this->event_imgs($events[0],$img);
 
 		//------------------------------------------------
 
 		
 		$data = array(
-					'subjects'		=>	$subjects,
+					'events'		=>	$events,
 					'render_right'	=>	$tmp3,
 					//'img_links'		=> 	$img_links,
 					'add2'			=>	$tmp2,
 					);
 
-		$op = $this->load->view('site/subjects_selected.php',$data,true);
+		$op = $this->load->view('site/events_selected.php',$data,true);
 		$this->template->write('mainContents',$op);
 
 		//-----------------------------------------------
@@ -322,24 +266,24 @@ class Subjects extends MY_Controller {
 
 
 	/**
-	 *  Set the the currently displaying img & the next & previous images the subject
-	 *  @param object[subject], int[currently displayed img]
-	 *  @return object[configured subject object]
+	 *  Set the the currently displaying img & the next & previous images the event
+	 *  @param object[event], int[currently displayed img]
+	 *  @return object[configured event object]
 	 */
-	private function subject_imgs($subject=null,$img=null){
+	private function event_imgs($event=null,$img=null){
 
-		if($subject==null)
+		if($event==null)
 			return false;
 
 
 		//--------------------------------------
 		$this->load->helper('utilites_helper');
 		$this->load->library('image_lib');
-		$subject->thumbs=array();
+		$event->thumbs=array();
 
 
-		//subject's folders
-		$folder = dirname(BASEPATH).'/'.SUBJECTSPATH.gen_folder_name($subject->name);
+		//event's folders
+		$folder = dirname(BASEPATH).'/'.EVENTSPATH.gen_folder_name($event->title);
 
 
 
@@ -357,25 +301,16 @@ class Subjects extends MY_Controller {
 
 			//the current selected img
 			if($count==$img){
-				$subject->cur_img = base_url().SUBJECTSPATH.gen_folder_name($subject->name).'/'.$v;
-
-				$dim = getimagesize($subject->cur_img);
-				if($dim[0]>$dim[1]){
-					$img_type = 'landscape';
-				}else{
-					$img_type = 'potrait'; 
-				}
-
-				$subject->img_type=$img_type;
+				$event->cur_img = base_url().EVENTSPATH.gen_folder_name($event->title).'/'.$v;
 
 				//previous img link
 				if($count>1){
-					$subject->prev = site_url('subjects/get/'.$subject->id.'/'.($count-1));
+					$event->prev = site_url('events/get/'.$event->id.'/'.($count-1));
 				}
 
 				//next img link
 				if($count<count($imgs)-3){
-					$subject->next = site_url('subjects/get/'.$subject->id.'/'.($count+1));
+					$event->next = site_url('events/get/'.$event->id.'/'.($count+1));
 				}
 			}
 			
@@ -399,26 +334,19 @@ class Subjects extends MY_Controller {
 			    echo $this->image_lib->display_errors();
 			}		
 
-			$dim = getimagesize($folder.'/'.$v);
-			if($dim[0]>$dim[1]){
-				$img_type = 'landscape';
-			}else{
-				$img_type = 'potrait'; 
-			}
 
-			//thumbs & links of the other imgs subject
-			array_push($subject->thumbs,
+			//thumbs & links of the other imgs event
+			array_push($event->thumbs,
 						array(
-								'img'=> base_url().SUBJECTSPATH.gen_folder_name($subject->name).'/thumbs/'.$v,
-								'link'=>site_url('subjects/get/'.$subject->id.'/'.($count)),
-								'type'=>$img_type
+								'img'=> base_url().EVENTSPATH.gen_folder_name($event->title).'/thumbs/'.$v,
+								'link'=>site_url('events/get/'.$event->id.'/'.($count)),
 							)
 						);	
 		}		
 
-		return $subject;
+		return $event;
 	}
 }
 
-/* End of file subjects.php */
-/* Location: ./application/controllers/site/subjects.php */
+/* End of file events.php */
+/* Location: ./application/controllers/site/events.php */

@@ -8,7 +8,7 @@ $config['nav'] = array(
 						'Featured Models'	=> site_url('featured'),
 						'Agency'			=> site_url('subjects'),
 						'News & Gossips'	=> '#',
-						'Events'			=> '#',
+						'Events'			=> site_url('events'),
 						'Music'				=> '#',
 						'Videos'			=> '#',
 						);

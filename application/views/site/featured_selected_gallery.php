@@ -37,23 +37,7 @@
 
 			<?php endforeach?>
 			</div>
-<!--
-		   <img src="images/modelAlbum.jpg" width="110" height="165" alt="model album name" />
-		   <img src="images/modelAlbum.jpg" width="110" height="165" alt="model album name" />
-		   <img src="images/modelAlbum.jpg" width="110" height="165" alt="model album name" />
-		   <img src="images/modelAlbum.jpg" width="110" height="165" alt="model album name" />
-		   <img src="images/modelAlbum.jpg" width="110" height="165" alt="model album name" />
-		   <img src="images/modelAlbum.jpg" width="110" height="165" alt="model album name" />
-		   <img src="images/modelAlbum.jpg" width="110" height="165" alt="model album name" />
-		   <img src="images/modelAlbum.jpg" width="110" height="165" alt="model album name" />
-		   <img src="images/modelAlbum.jpg" width="110" height="165" alt="model album name" />
-		   <img src="images/modelAlbum.jpg" width="110" height="165" alt="model album name" />
 
-		   <img src="images/agencymodel.jpg" alt="Agency Model" width="143" height="140" />
-		   <img src="images/agencymodel.jpg" alt="Agency Model" width="142" height="140" />
-		   <img src="images/agencymodel.jpg" alt="Agency Model" width="143" height="140" />
-		   <img src="images/agencymodel.jpg" alt="Agency Model" width="142" height="140" />
--->	
 		</div>
 
 	 </div>

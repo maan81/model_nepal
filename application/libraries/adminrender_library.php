@@ -601,13 +601,22 @@ class Adminrender_library{
 
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'["'.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/events/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/events/del/'.$val->id).'\">Delete</a>"], ';
+			$op .=	'['.
+						'"'.$val->id.'", '.
+						'"'.$val->title.'", '.
+						'"'.$val->summary.'", '.
+						'"'.$val->type.'", '.
+						'"'.$val->location.'", '.
+						'"<a class=\"edit\" href=\"'.site_url('admin/events/edit/'.$val->id).'\">Edit</a>", '.
+						'"<a class=\"delete\" href=\"'.site_url('admin/events/del/'.$val->id).'\">Delete</a>"], ';
 		}
 
 		$op .=  '],"aoColumns": [
 			            { "sTitle": "ID" },
 			            { "sTitle": "Title" },
 			            { "sTitle": "Summary" },
+			            { "sTitle": "Type" },
+			            { "sTitle": "Location" },
 			            { "sTitle": "Actions", sWidth:"5%"},
 			            { "sTitle": "" , sWidth:"5%"},
 			        ]
@@ -663,6 +672,24 @@ class Adminrender_library{
 						$op .=		'<input type="text" name="title" value=""/>';
 					}
 					$op .= 	'</p>
+					</div>
+
+					<div class="grid_6">
+						<p>
+							<label for="type">Type</label>
+							<select name="type">
+								<option value="past" '.($data?($data[0]->type=='past'?'selected="selected"':''):'').'>Past</option>
+								<option value="current" '.($data?($data[0]->type=='current'?'selected="selected"':''):'').'>Current</option>
+								<option value="upcomming" '.($data?($data[0]->type=='upcomming'?'selected="selected"':''):'').'>Upcomming</option>
+							</select>
+						</p>
+					</div>
+
+					<div class="grid_6">
+						<p>
+							<label for="location">Location</label>
+							<input type="text" name="location" value="'.($data?$data[0]->location:'').'" />
+						</p>
 					</div>
 
 					<div class="grid_12">

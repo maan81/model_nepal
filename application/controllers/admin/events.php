@@ -58,6 +58,8 @@ class Events extends MY_Controller {
 			$data = array(
 							'title'		=> $this->input->post('title'),
 							'summary'	=> $this->input->post('summary'),
+							'type'		=> $this->input->post('type'),
+							'location'	=> $this->input->post('location'),
 						);
 			
 			$this->_validate_new($data);
@@ -122,8 +124,10 @@ class Events extends MY_Controller {
 	
 			$data = array(
 							'id'		=> $id,
-							//'title'		=> $this->input->post('title'),
+							//'title'	=> $this->input->post('title'),
 							'summary'	=> $this->input->post('summary'),
+							'type'		=> $this->input->post('type'),
+							'location'	=> $this->input->post('location'),
 						);
 
 			$this->_validate_new($data);

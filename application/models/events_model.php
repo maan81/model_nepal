@@ -39,6 +39,78 @@ class Events_model extends CI_Model{
 		return count($res->result())?$res->result():false;
 	}
 
+	/**
+	 * corrected get
+	 */
+	public function corrected_get($events=false){
+		$data=$this->get($events);
+		
+		if($data){
+		foreach($data as $key=>$val){
+			if($val->editorial){
+				$val->fashion_type['editorial']	= true;
+			}
+			if($val->runaway){
+				$val->fashion_type['runaway']	= true;
+			}
+			if($val->catalog){
+				$val->fashion_type['catalog']	= true;
+			}
+			if($val->print){
+				$val->fashion_type['print']		= true;
+			}
+			if($val->showroom){
+				$val->fashion_type['showroom']	= true;
+			}
+			if($val->fitness){
+				$val->fashion_type['fitness']	= true;
+			}
+			if($val->fit){
+				$val->fashion_type['fit']		= true;
+			}
+			if($val->tearoom){
+				$val->fashion_type['tearoom']	= true;
+			}
+			if($val->body_part){
+				$val->fashion_type['body_part']	= true;
+			}
+			if($val->lingerie){
+				$val->fashion_type['lingerie']	= true;
+			}
+
+
+
+			if($val->product_modelling){
+				$val->commercial_type['product_modelling']		= true;
+			}
+			if($val->lifestyle_modelling){
+				$val->commercial_type['lifestyle_modelling']	= true;
+			}
+			if($val->coorporate_modelling){
+				$val->commercial_type['coorporate_modelling']	= true;
+			}
+			if($val->product_demo){
+				$val->commercial_type['product_demo']			= true;
+			}
+			if($val->tradeshow){
+				$val->commercial_type['tradeshow']				= true;
+			}
+
+
+
+			if($val->lingrie){
+				$val->glamour['lingrie']		= true;
+			}
+			if($val->art){
+				$val->glamour['art']			= true;
+			}
+
+		}
+		}
+
+		return $data;
+	}
+
 
 	/**
 	 * set/update record's info

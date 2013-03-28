@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 28, 2013 at 08:36 AM
+-- Generation Time: Mar 28, 2013 at 05:22 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -78,15 +78,18 @@ CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(127) NOT NULL,
   `summary` varchar(255) NOT NULL,
+  `type` varchar(11) NOT NULL,
+  `location` varchar(127) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `summary`) VALUES
-(13, 'Nv asdfiuh aefw', 'uasdh oaiusdhf owefasdf fw');
+INSERT INTO `events` (`id`, `title`, `summary`, `type`, `location`) VALUES
+(13, 'Nv asdfiuh aefw', 'uasdh oaiusdhf owefasdf fw', '', ''),
+(14, 'A Big Event', 'A big event is comming ...........', 'upcomming', 'Ktm');
 
 -- --------------------------------------------------------
 
@@ -254,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `visitors_count` (
   UNIQUE KEY `unique` (`ip_address`,`type`,`model_id`),
   KEY `ip_address` (`ip_address`),
   KEY `model_id` (`model_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=128 ;
 
 --
 -- Dumping data for table `visitors_count`

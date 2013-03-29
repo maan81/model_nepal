@@ -235,6 +235,67 @@ class Events extends MY_Controller {
 	}
 
 
+	public function event_upcomming($events){
+
+		$this->template->set_template('site');
+		
+		//-----------------------------------------------
+		$op = $this->render_library->render_toplink(false);
+		$this->template->write('toplink',$op);
+
+		//-----------------------------------------------
+		$this->load->model('ads_model');
+		
+		$tmp = $this->ads_model->get(array('dimensions'=>'h-ad'));
+		$tmp1 = $this->ads_model->get(array('dimensions'=>'fullbanner'));
+		$ads = array('ads'=>array($tmp[0]));
+
+		$this->config->load('nav');
+		$data = array(
+					'nav'	=>	$this->config->item('nav'),
+					'ads'=>array($tmp[0],$tmp[1])
+				);
+
+		$op = $this->render_library->render_header($data);
+		$this->template->write('header',$op);
+
+
+		//-----------------------------------------------
+		$op = $this->render_library->render_footer(false);
+		$this->template->write('footer',$op);
+
+
+		//-----------------------------------------------
+		$this->load->model('ads_model');
+		
+		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense'));
+		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
+
+		//------------------------------------------------
+		$events = $this->event_imgs($events,1);
+//print_r($events);die;
+		//------------------------------------------------
+
+		$data = array(
+					'events'		=>	$events,
+					'render_right'	=>	$tmp3,
+					//'img_links'		=> 	$img_links,
+					'add'			=>	$tmp1[0],
+					'add2'			=>	$tmp2,
+					);
+//print_r($events->img_type);die;
+
+		$op = $this->load->view('site/events_upcomming.php',$data,true);
+
+		$this->template->write('mainContents',$op);
+
+		//-----------------------------------------------
+		//-----------------------------------------------
+		$this->template->render();
+
+	}
+
+
 	/**
 	 *  The selected event
 	 *  @param int[event id], int[selected img id]
@@ -245,6 +306,20 @@ class Events extends MY_Controller {
 		if($event_id==null){
 			return $this->search();
 		}
+
+		//----------------------------------------------
+
+		$events = $this->events_model->get(array('id' => $event_id));
+
+		//goto upcomming events function
+		if($events[0]->type=='upcomming'){
+			return $this->event_upcomming($events[0]);
+		}
+
+		//add image & previous & next links
+		$events = $this->event_imgs($events[0],$img);
+
+		//------------------------------------------------
 
 		//redirect to get the imgs. of the specified event
 		if($img==null){
@@ -285,25 +360,9 @@ class Events extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
 
-//		//------------------------------------------------
-//
-//		$this->load->helper('visitors_count_helper');
-//
-//		set_count_visitors(array(
-//								'type'	  => 'events',
-//								'model_id'=> $event_id)
-//							);
-//
-//		//------------------------------------------------
-
-		//$events = $this->events_model->get(array('id' => $event_id));
-		$events = $this->events_model->get(array('id' => $event_id));
-
-		$events = $this->event_imgs($events[0],$img);
-
 		//------------------------------------------------
 
-		
+
 		$data = array(
 					'events'		=>	$events,
 					'render_right'	=>	$tmp3,

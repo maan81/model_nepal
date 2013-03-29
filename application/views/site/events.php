@@ -2,6 +2,7 @@
 
 
 <div class="mainContents">
+
    <div class="leftPart">
 
       <div class="fullbanner">
@@ -18,9 +19,18 @@
 
                      <select class="modelparam" name="title" style="width:140px;">
                         <option selected="selected" value="">Event Name</option>
-                        <?php foreach($events as $key=>$val):?>
-                           <option value="<?php echo $val->title?>"><?php echo $val->title?></option>
-                        <?php endforeach;?>
+                        <?php 
+                           $titles=array();
+                           foreach($events as $key=>$val){
+                              
+                              if(!in_array($val->title,$titles)) { 
+                                 
+                                 array_push($titles ,$val->titles); ?>
+
+                                 <option value="<?php echo $val->title?>"><?php echo $val->title?></option>
+                                 <?php
+                           }
+                        } ?>
                      </select>
 
                   </td>
@@ -28,9 +38,19 @@
 
                      <select class="modelparam" name="type" style="width:90px;">
                         <option selected="selected" value="">Type</option>
-                        <?php foreach($events as $key=>$val):?>
-                           <option value="<?php echo $val->type?>"><?php echo ucfirst($val->type)?></option>
-                        <?php endforeach;?>
+                        <?php 
+                           $types=array();
+                           foreach($events as $key=>$val){
+                              
+                              if(!in_array($val->type,$types)) { 
+                                 
+                                 array_push($types ,$val->type); ?>
+
+                                 <option value="<?php echo $val->type?>"><?php echo ucfirst($val->type)?></option>
+                                 <?php
+                           }
+                        } ?>
+
                      </select>
 
                   </td>
@@ -38,9 +58,18 @@
 
                      <select class="modelparam" name="location" style="width:100px;">
                         <option selected="selected">Location</option>
-                        <?php foreach($events as $key=>$val):?>
-                           <option value="<?php echo $val->location?>"><?php echo ucfirst($val->location)?></option>
-                        <?php endforeach;?>
+                        <?php 
+                           $locations=array();
+                           foreach($events as $key=>$val){
+                              
+                              if(!in_array($val->location,$locations)) { 
+                                 
+                                 array_push($locations ,$val->location); ?>
+
+                                 <option value="<?php echo $val->location?>"><?php echo ucfirst($val->location)?></option>
+                                 <?php
+                           }
+                        } ?>
                      </select>
 
                   </td>

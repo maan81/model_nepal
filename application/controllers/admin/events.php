@@ -61,7 +61,14 @@ class Events extends MY_Controller {
 							'type'		=> $this->input->post('type'),
 							'location'	=> $this->input->post('location'),
 						);
-			
+
+			if($this->input->post('type')=='upcomming'){
+				$data['date'] = $this->input->post('date');
+				$data['time'] = $this->input->post('time');
+				$data['details'] = $this->input->post('details');
+			}
+
+
 			$this->_validate_new($data);
 
 			if($this->_validated){
@@ -129,6 +136,12 @@ class Events extends MY_Controller {
 							'type'		=> $this->input->post('type'),
 							'location'	=> $this->input->post('location'),
 						);
+
+			if($this->input->post('type')=='upcomming'){
+				$data['date'] = $this->input->post('date');
+				$data['time'] = $this->input->post('time');
+				$data['details'] = $this->input->post('details');
+			}
 
 			$this->_validate_new($data);
 			

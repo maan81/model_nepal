@@ -54,7 +54,7 @@ class Adminrender_library{
 						'Models'		=> base_url().'admin/subjects',
 						//'Gossips'		=> base_url().'admin/gossips',
 						'Events'		=> base_url().'admin/events',
-						'Upcomming Events'	=> base_url().'admin/upcomming',
+						//'Upcomming Events'	=> base_url().'admin/upcomming',
 						'News'		=> base_url().'admin/news',
 						//'Projects'		=> '#',//base_url().'admin/projects',
 						//'Services'		=> '#',//base_url().'admin/services',
@@ -648,7 +648,22 @@ class Adminrender_library{
 						position:absolute;
 					}
 				</style>';
-		$op .= '<script type="text/javascript">$(function(){$(".fx").parent().css("margin-bottom","45px")})</script>';
+		$op .= '<script type="text/javascript">$(function(){
+					$(".fx").parent().css("margin-bottom","45px");
+
+						function change_event_type(){
+							if($("select[name=type]").val()=="upcomming"){
+								$(".upcomming").fadeIn();
+							}else{
+								$(".upcomming").fadeOut();
+							}
+						}
+						$("select[name=type]").change(function(){
+							change_event_type();
+						})
+						change_event_type();
+
+				})</script>';
 
 		$op .=	//'<div class="container_16 clearfix" id="content">'.
 					form_open().'
@@ -686,20 +701,50 @@ class Adminrender_library{
 						</p>
 					</div>
 
-					<div class="grid_6">
+					<div class="grid_6"></div>
+					
+					<div class="grid_4">
 						<p>
 							<label for="location">Location</label>
 							<input type="text" name="location" value="'.($data?$data[0]->location:'').'" />
 						</p>
 					</div>
 
+					<div class="grid_4 upcomming">
+						<p>
+							<label for="date">Date</label>
+							<input type="text" value="'.($data?$data[0]->date:'').'" name="date">
+						</p>
+					</div>
+
+					<div class="grid_4 upcomming">
+						<p>
+							<label for="time">Time</label>
+							<input type="text" value="'.($data?$data[0]->time:'').'" name="time">
+						</p>
+					</div>
+
+					<div class="grid_16"></div>
+
 					<div class="grid_12">
 						<p>
-							<label>Summary <small>Will be displayed in search engine results.</small></label>
+							<label>Event Summary <small>Will be displayed in search engine results.</small></label>
 							<textarea class="area_small" name="summary">'.
 								($data?$data[0]->summary:'').
 							'</textarea>
 						</p>
+					</div>
+
+					<div class="grid_12 upcomming">
+						<p>
+							<label>Event Details <small>Will be displayed in search engine results.</small></label>
+							<textarea name="details" class="area_medium">'.
+								($data?$data[0]->details:'').
+							'</textarea>
+						</p>
+					</div>
+
+					<div class="grid_12">
 
 						<p class="submit">
 							<a href="'.site_url('admin/events').'">Cancel</a>

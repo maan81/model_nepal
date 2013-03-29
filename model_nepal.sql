@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 29, 2013 at 05:09 PM
+-- Generation Time: Mar 29, 2013 at 11:17 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -80,16 +80,20 @@ CREATE TABLE IF NOT EXISTS `events` (
   `summary` varchar(255) NOT NULL,
   `type` varchar(11) NOT NULL,
   `location` varchar(127) NOT NULL,
+  `date` varchar(11) DEFAULT NULL,
+  `time` varchar(11) DEFAULT NULL,
+  `details` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `summary`, `type`, `location`) VALUES
-(13, 'Nv asdfiuh aefw', 'uasdh oaiusdhf owefasdf fw', '', ''),
-(14, 'A Big Event', 'A big event is comming ...........', 'upcomming', 'Ktm');
+INSERT INTO `events` (`id`, `title`, `summary`, `type`, `location`, `date`, `time`, `details`) VALUES
+(13, 'Nv asdfiuh aefw', 'uasdh oaiusdhf owefasdf fw', 'past', 'aad', NULL, NULL, NULL),
+(14, 'A Big Event', 'A big event is comming ...........', 'past', 'Ktm', NULL, NULL, NULL),
+(15, 'cxv ao vase aw', 'asd fwe fa', 'upcomming', 'kasjdf w', 'as fwef ', 'kas fklwe ', 'lak jflak faflkasj laks flaksf lask a');
 
 -- --------------------------------------------------------
 
@@ -257,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `visitors_count` (
   UNIQUE KEY `unique` (`ip_address`,`type`,`model_id`),
   KEY `ip_address` (`ip_address`),
   KEY `model_id` (`model_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `visitors_count`

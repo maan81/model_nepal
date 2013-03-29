@@ -52,11 +52,12 @@ class Adminrender_library{
 						'Advertizements'=> base_url().'admin/ads',
 						'Featured Models'=>base_url().'admin/featured',
 						'Models'		=> base_url().'admin/subjects',
-						'Gossips'		=> base_url().'admin/gossips',
+						//'Gossips'		=> base_url().'admin/gossips',
 						'Events'		=> base_url().'admin/events',
-						'Articles'		=> base_url().'admin/articles',
-						'Projects'		=> '#',//base_url().'admin/projects',
-						'Services'		=> '#',//base_url().'admin/services',
+						'Upcomming Events'	=> base_url().'admin/upcomming',
+						'News'		=> base_url().'admin/news',
+						//'Projects'		=> '#',//base_url().'admin/projects',
+						//'Services'		=> '#',//base_url().'admin/services',
 						'Contact'		=> '#',//base_url().'admin/contact',
 					);
 

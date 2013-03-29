@@ -172,10 +172,66 @@ class Events extends MY_Controller {
 
 
 	/**
-	 * Display selected event's preview imgs
+	 * List selected event's preview imgs
 	 * @param int [model id]
 	 */
-	private function _disp_gallery($model_id){
+	private function _list_imgs($model_id){
+		$this->template->set_template('site');
+
+		//-----------------------------------------------
+		$op = $this->render_library->render_toplink(false);
+		$this->template->write('toplink',$op);
+
+		//-----------------------------------------------
+		$this->load->model('ads_model');
+		
+		$tmp = $this->ads_model->get(array('dimensions'=>'h-ad'));
+		$ads = array('ads'=>array($tmp[0]));
+
+		$this->config->load('nav');
+		$data = array(
+					'nav'	=>	$this->config->item('nav'),
+					'ads'=>array($tmp[0],$tmp[1])
+				);
+
+		$op = $this->render_library->render_header($data);
+		$this->template->write('header',$op);
+
+		//-----------------------------------------------
+		$op = $this->render_library->render_footer(false);
+		$this->template->write('footer',$op);
+
+
+		//-----------------------------------------------
+		$this->load->model('ads_model');
+		
+		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
+		$events = $this->events_model->get(array('id' => $model_id));
+
+		$updated_events = array();
+		foreach($events as $key=>$val){
+			array_push($updated_events,$this->event_imgs($val,1));
+		}
+
+		$data = array(
+					'events'		=>	$events,
+					'render_right'	=>	$tmp3,
+//					'galleries'		=> 	$galleries,
+//					'img_links'		=> 	$img_links,
+//					'imgs_preview'	=> 	$imgs_preview,
+					);
+
+
+//print_r($data);die;
+		$op = $this->load->view('site/events_selected_gallery.php',$data,true);
+//echo $op;die;
+//$op='';
+		$this->template->write('mainContents',$op);
+
+		$this->template->add_css(CSSPATH.'/custom.css');
+		//-----------------------------------------------
+		//-----------------------------------------------
+		$this->template->render();
 	}
 
 
@@ -190,9 +246,9 @@ class Events extends MY_Controller {
 			return $this->search();
 		}
 
-		//redirect to get the 1st img. if not specified
+		//redirect to get the imgs. of the specified event
 		if($img==null){
-			redirect(current_url().'/1');
+			return $this->_list_imgs($event_id);
 		}
 
 		$this->template->set_template('site');
@@ -254,8 +310,14 @@ class Events extends MY_Controller {
 					//'img_links'		=> 	$img_links,
 					'add2'			=>	$tmp2,
 					);
+//print_r($events->img_type);die;
+		if($events->img_type=='potrait'){
+			$op = $this->load->view('site/events_selected.php',$data,true);
 
-		$op = $this->load->view('site/events_selected.php',$data,true);
+		}else{
+			$op = $this->load->view('site/events_selected_hor.php',$data,true);
+		}
+
 		$this->template->write('mainContents',$op);
 
 		//-----------------------------------------------
@@ -281,7 +343,6 @@ class Events extends MY_Controller {
 		$this->load->library('image_lib');
 		$event->thumbs=array();
 
-
 		//event's folders
 		$folder = dirname(BASEPATH).'/'.EVENTSPATH.gen_folder_name($event->title);
 
@@ -303,6 +364,15 @@ class Events extends MY_Controller {
 			if($count==$img){
 				$event->cur_img = base_url().EVENTSPATH.gen_folder_name($event->title).'/'.$v;
 
+				$dim = getimagesize($event->cur_img);
+				if($dim[0]>$dim[1]){
+					$img_type = 'landscape';
+				}else{
+					$img_type = 'potrait'; 
+				}
+
+				$event->img_type=$img_type;
+
 				//previous img link
 				if($count>1){
 					$event->prev = site_url('events/get/'.$event->id.'/'.($count-1));
@@ -313,7 +383,7 @@ class Events extends MY_Controller {
 					$event->next = site_url('events/get/'.$event->id.'/'.($count+1));
 				}
 			}
-			
+
 
 
 			//the generation of thumbs of imgs ...
@@ -335,11 +405,19 @@ class Events extends MY_Controller {
 			}		
 
 
+			$dim = getimagesize($folder.'/'.$v);
+			if($dim[0]>$dim[1]){
+				$img_type = 'landscape';
+			}else{
+				$img_type = 'potrait'; 
+			}
+
 			//thumbs & links of the other imgs event
 			array_push($event->thumbs,
 						array(
 								'img'=> base_url().EVENTSPATH.gen_folder_name($event->title).'/thumbs/'.$v,
 								'link'=>site_url('events/get/'.$event->id.'/'.($count)),
+								'type'=>$img_type
 							)
 						);	
 		}		

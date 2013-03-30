@@ -187,11 +187,9 @@ class Render_library{
 
 						    while($news_count<4){
 				$op .= 	    	'<div class="contents slide" >
-									<a href="#">
-							            <span>No News</span>
-							            <img src="'.NEWSSPATH.'no_news.jpg" alt="'.$val->title.'" 
-							            		width="210" height="120" />
-									</a>
+								    <span>No News</span>
+						            <img src="'.NEWSSPATH.'no_news.jpg" alt="'.$val->title.'" 
+						            		width="210" height="120" />
 						    	</div>';
 						    	$news_count++;
 						    }

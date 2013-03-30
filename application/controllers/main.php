@@ -69,6 +69,13 @@ class Main extends MY_Controller {
 								);
 		};
 
+		//---------------------------------------------
+
+		$this->load->model('news_model');
+		$news = $this->news_model->get();
+		//---------------------------------------------
+
+
 //echo '<pre>';
 //print_r($featured);
 //print_r($img_links);
@@ -109,7 +116,8 @@ class Main extends MY_Controller {
 													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
 												),
 									),
-*/					'render_right'	=>$tmp3
+*/					'render_right'	=>$tmp3,
+					'news'		=> $news,
 				);
 
 
@@ -118,6 +126,7 @@ class Main extends MY_Controller {
 
 		$this->template->add_js(JSPATH.'slider.js');
 		$this->template->add_css(CSSPATH.'slider.css');
+		$this->template->add_js(JSPATH.'my_slider.js');
 		//-----------------------------------------------
 		//-----------------------------------------------
 		$this->template->render();

@@ -53,6 +53,7 @@ define('CKEDITOR',			'public/ckeditor/');
 define('FEATUREDPATH',		'public/featured/');
 define('EVENTSPATH',		'public/events/');
 define('SUBJECTSPATH',		'public/subjects/');
+define('NEWSSPATH',			'public/news/');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

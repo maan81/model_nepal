@@ -822,8 +822,54 @@ class Adminrender_library{
 		$this->ci->load->config('news_type');
 		$news_types = $this->ci->config->item('news_type');
 
-		$op =	//'<div class="container_16 clearfix" id="content">'.
-					form_open().'
+		$op = '<style>
+				#content .fx {
+				    border: 1px solid #DDDDDD;
+				    font-family: inherit;
+				    font-size: inherit;
+				    padding: 1.5px 4px;
+				    position: absolute;
+				    width: 330px;
+				}</style>';
+
+		$op .= '<script type="text/javascript">
+				$(function(){ ';
+					
+
+		if(is_object($data[0])){
+			$op .=	'var $img;
+					//remove old img & add input for new image
+					$(".change_img").live("click",function(e){
+						e.preventDefault();
+						
+						var str = "<input class=\"new_img\" type=\"file\" name=\"image\">";
+						str = str + "<a class=\"cancel_change_img\" href=\"#\">cancel</a>";
+
+						$(this).after(str);
+						$img = $(".old_img").detach()+$(this).detach();
+
+						$(".new_img").trigger("click");
+					});						
+
+					//restore the earlier image 
+					$(".cancel_change_img").live("click",function(e){
+						e.preventDefault();
+						
+ 						var str = "<img class=\"old_img\" src=\"'.base_url().NEWSSPATH.$data[0]->image.'\" />";
+						str = str + "<a href=\"#\" class=\"change_img\">Change</a>";
+
+						$(this)
+							.after(str)
+						$(".new_img").remove();
+						$(this).remove();
+					});';
+		}
+		$op .= 	'})
+			  </script> ';
+
+
+		$op .=	//'<div class="container_16 clearfix" id="content">'.
+					form_open_multipart().'
 					<div class="grid_16">
 						<div class="grid_2" style="float: right;">
 							<p>
@@ -836,8 +882,15 @@ class Adminrender_library{
 
 					<div class="grid_6">
 						<p>
-							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>
-							<input type="text" name="title" value="'.($data?$data[0]->title:'').'" />
+							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>';
+					if($data){
+						//uneditable form input
+						$op .=		'<span class="fx">'.$data[0]->title.'</span>';
+					}else{
+						//empty form input
+						$op .=		'<input type="text" name="title" value=""/>';
+					}
+					$op .= 	'</p>
 						</p>
 					</div>
 
@@ -857,6 +910,23 @@ class Adminrender_library{
 
 						</p>
 					</div>
+
+
+					<div class="grid_6 not_script is_image">
+						<p class="img">
+							<label for="image">Image<small>The required Advertizement image..</small></label>';
+			
+				if($data && $data[0]->image){
+					$op .=	'<img class="old_img" src="'.base_url().NEWSSPATH.$data[0]->image.'" />
+							 <a href="#" class="change_img">Change</a>';
+				}else{
+					$op .= '<input class="new_img" type="file" name="image">';
+							//'<a href="#" class="cancel_change_img">Cancel</a>';
+				}		
+			
+			$op .= 		'</p>
+					</div>
+
 
 					<div class="grid_12">
 						<p>

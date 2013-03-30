@@ -137,35 +137,75 @@ class Render_library{
 					}else{
 						$op.=	$data['add2'][0]->script;
 					}
-
+//print_r($data['news']);die;
 			$op .= 		    '</div>
 						</div>
 
 						<div class="twia">
 							<div class="heading"> 
-								<span class="left">
+								<span class="left" id="left">
 									<img src="tmp/left.png" alt="left" />
 								</span>
 						    	the world in action
-						    	<span class="right">
+						    	<span class="right" id="right">
 						    		<img src="tmp/right.png" alt="right" />
 						    	</span>
 						    </div>
 
-						    <div class="twiacontents">
-						    	<div class="contents">
-						            <span>Miss Nepal 2013! Begins</span>
-						            <img src="tmp/twia.jpg" alt="twia" width="210" height="120" />
-						    	</div>
-						    	<div class="contents">
-						            <span>Miss Nepal 2013! Begins</span>
-						        	<img src="tmp/twia.jpg" alt="twia" width="210" height="120" />
-						        </div>
-						        <div class="contents">
-						        	<span>Miss Nepal 2013! Begins</span>
-									<img src="tmp/twia.jpg" alt="twia" width="210" height="120" />
-								</div>
-						    </div>
+							<script type="text/javascript">
+							$(function(){
+								$("#twiacontents").my_slider({
+									l:"left",
+									r:"right",
+									each_width:	220,
+									each_height:120,
+									h:false,
+									autoMove:false,
+									showPlay:false,
+								});
+							});
+							</script>
+							<style>
+							#left,#right{cursor:pointer;}
+							</style>
+
+						    <div class="twiacontents" id="twiacontents">';
+
+						    $news_count=0;
+						    foreach($data['news'] as $key=>$val){
+				$op .= 	    	'<div class="contents slide" >
+									<a href="#">
+							            <span>'.$val->title.'</span>
+							            <img src="'.NEWSSPATH.$val->image.'" alt="'.$val->title.'" 
+							            		title="'.$val->content.'"
+							            		width="210" height="120" />
+									</a>
+						    	</div>';
+						    	$news_count++;
+
+						    }
+
+						    while($news_count<4){
+				$op .= 	    	'<div class="contents slide" >
+									<a href="#">
+							            <span>No News</span>
+							            <img src="'.NEWSSPATH.'no_news.jpg" alt="'.$val->title.'" 
+							            		width="210" height="120" />
+									</a>
+						    	</div>';
+						    	$news_count++;
+						    }
+
+
+				$op .=	   // 	'<div class="contents">
+						   //         <span>Miss Nepal 2013! Begins</span>
+						   //     	<img src="tmp/twia.jpg" alt="twia" width="210" height="120" />
+						   //     </div>
+						   //     <div class="contents">
+						   //     	<span>Miss Nepal 2013! Begins</span>
+							//		<img src="tmp/twia.jpg" alt="twia" width="210" height="120" />
+							//	</div>
+						    '</div>
 						</div>
 					</div>'.
 

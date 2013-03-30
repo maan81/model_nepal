@@ -81,9 +81,48 @@ class News_model extends CI_Model{
 		
 		//insert new data
 		}else{
-			$this->db->insert($this->table,$data);
 
-			$data = array('id'=>$this->db->insert_id());
+			$tmp = $_FILES['image']['name'];
+			$ext =  end(explode('.',$tmp));
+			$mtime = microtime(true).'.'.$ext;
+
+			$config = array(
+						  'allowed_types' => 'jpg|jpeg|gif|png',
+						  'upload_path' => NEWSSPATH,
+						  'maintain_ratio' => true,
+						  'max-size' => 20000,
+						  'overwrite' => true,
+						  'file_name' => $mtime
+						);	
+
+			$this->load->library('upload',$config);
+			$this->upload->initialize($config);
+
+			if(!$this->upload->do_upload('image')){
+				echo $this->upload->display_errors();
+
+			}else{
+
+				$image_data = (array)$this->upload->data();
+				/*
+				$data = array(
+							'image' 		=> $image_data['file_name'],
+							'title' 		=> $this->input->post('title'),
+							'category'		=> $this->input->post('category'),
+							'dimensions' 	=> $this->input->post('dimensions'),
+							'link'			=> $this->input->post('link'),
+						);
+				*/
+//print_r($image_data);die;
+				$data->image = $image_data['file_name'];
+
+				$this->db->insert($this->table,$data);
+				
+				unset($data);
+				$data->id = $this->db->insert_id();
+
+				return $this->get($data);
+			}
 		}
 
 		return $this->get($data);
@@ -116,6 +155,8 @@ class News_model extends CI_Model{
 		}
 		$items = $this->get($data);
 		foreach($items as $key=>$val){
+
+			unlink(NEWSSPATH.$val->image);
 
 			$this->db->where('id',$val->id)
 					 ->delete($this->table);

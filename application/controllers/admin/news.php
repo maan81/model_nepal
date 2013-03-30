@@ -124,7 +124,6 @@ class News extends MY_Controller {
 	
 			$data = array(
 							'id'		=> $id,
-							'title'		=> $this->input->post('title'),
 							'content'	=> $this->input->post('content'),
 							'summary'	=> $this->input->post('summary'),
 							'type'		=> $this->input->post('type'),

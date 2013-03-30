@@ -61,6 +61,12 @@ $route['events/(:any)/(:any)'] = 'site/events/$1/$2';
 $route['events/(:any)/(:any)/(:any)'] = 'site/events/$1/$2/$3';
 
 
+$route['news'] = 'site/news';
+$route['news/(:any)'] = 'site/news/$1';
+$route['news/(:any)/(:any)'] = 'site/news/$1/$2';
+$route['news/(:any)/(:any)/(:any)'] = 'site/news/$1/$2/$3';
+
+
 $route['default_controller'] = 'main';
 $route['404_override'] = '';
 

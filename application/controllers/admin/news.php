@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Articles extends MY_Controller {
+class News extends MY_Controller {
 
 	/**
 	 * flag for validated; for all new inputs ... 
@@ -21,21 +21,22 @@ class Articles extends MY_Controller {
 			redirect('admin');
 		}
 
-		$this->load->model('articles_model');
+		$this->load->model('news_model');
 	}
 
 	public function index(){
-		$this->list_articles();
+		$this->list_news();
 	}
 	
-	public function list_articles(){
-		$data = $this->articles_model->get();
+	public function list_news(){
+		$data = $this->news_model->get();
 
-		$articles = $this->adminrender_library->render_articleslist($data);
+		$news = $this->adminrender_library->render_newslist($data);
+//print_r($news);die;
 
 		$this->template->set_template('admin');
 
-		$this->template->write('list',$articles);
+		$this->template->write('list',$news);
 		
 		$this->template->add_js(ADMINJSPATH.'jquery.dataTables.min.js');
 
@@ -53,12 +54,13 @@ class Articles extends MY_Controller {
 	}
     
     
-    public function new_article($data = false){
+    public function new_news($data = false){
 		if($this->input->post()){
 			$data = array(
 							'title'		=> $this->input->post('title'),
 							'content'	=> $this->input->post('content'),
-							'summary'	=> $this->input->post('summary')
+							'summary'	=> $this->input->post('summary'),
+							'type'		=> $this->input->post('type'),
 						);
 			
 			$this->_validate_new($data);
@@ -66,7 +68,7 @@ class Articles extends MY_Controller {
 			if($this->_validated){
 
 				//input new data
-				$data = $this->articles_model->set($data);
+				$data = $this->news_model->set($data);
 	
 				if($data){
 					$this->session->set_flashdata('msg', 'Data saved.');			
@@ -79,9 +81,9 @@ class Articles extends MY_Controller {
 			}
 		}
 
-		$new_articles = $this->adminrender_library->render_new_article($data);
+		$new_news = $this->adminrender_library->render_new_news($data);
 		$this->template->set_template('admin');
-		$this->template->write('new_item',$new_articles);
+		$this->template->write('new_item',$new_news);
 		
 		$this->render_navigation();
 		$this->render_user_info();
@@ -99,13 +101,13 @@ class Articles extends MY_Controller {
 		//validate first .......
 		$this->_validate_del($data);
 		if($this->_validated){
-			$this->articles_model->del($data);
+			$this->news_model->del($data);
 			$this->session->set_flashdata('msg', 'Data deleted.');			
 			
 		}else{
 			$this->session->set_flashdata('err', 'Error saving data.');
 		}
-		redirect('admin/articles');
+		redirect('admin/news');
 	}
 	
 	private function _validate_del($data){
@@ -123,15 +125,16 @@ class Articles extends MY_Controller {
 			$data = array(
 							'id'		=> $id,
 							'title'		=> $this->input->post('title'),
-							'summary'	=> $this->input->post('summary'),
 							'content'	=> $this->input->post('content'),
+							'summary'	=> $this->input->post('summary'),
+							'type'		=> $this->input->post('type'),
 						);
 
 			$this->_validate_new($data);
 			
 			if($this->_validated){
 				//input new data
-				$data = $this->articles_model->set($data);
+				$data = $this->news_model->set($data);
 				$this->session->set_flashdata('msg', 'Data saved.');			
 			}else{
 				//err in validation....
@@ -141,13 +144,13 @@ class Articles extends MY_Controller {
 			unset($_POST);
 		}
 
-		$data = $this->articles_model->get(array('id'=>$id));
-		$this->new_article($data);
+		$data = $this->news_model->get(array('id'=>$id));
+		$this->new_news($data);
 		$this->session->set_userdata('updated_id',$id);
 	}
 
 	private function render_navigation(){
-		$menu = $this->adminrender_library->render_navigation('Articles');
+		$menu = $this->adminrender_library->render_navigation('News');
 		$this->template->write('menu',$menu);
 	}
 
@@ -159,5 +162,5 @@ class Articles extends MY_Controller {
 	}
 }
 
-/* End of file articles.php */
-/* Location: ./application/controllers/admin/articles.php */
+/* End of file news.php */
+/* Location: ./application/controllers/admin/news.php */

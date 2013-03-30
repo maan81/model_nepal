@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 29, 2013 at 11:17 PM
+-- Generation Time: Mar 30, 2013 at 01:28 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -57,34 +57,20 @@ INSERT INTO `ads` (`id`, `title`, `category`, `type`, `dimensions`, `script`, `l
 -- --------------------------------------------------------
 
 --
--- Table structure for table `articles`
---
-
-CREATE TABLE IF NOT EXISTS `articles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(127) NOT NULL,
-  `content` text NOT NULL,
-  `summary` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `events`
 --
 
 CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(127) NOT NULL,
-  `summary` varchar(255) NOT NULL,
+  `summary` varchar(2047) NOT NULL,
   `type` varchar(11) NOT NULL,
   `location` varchar(127) NOT NULL,
   `date` varchar(11) DEFAULT NULL,
   `time` varchar(11) DEFAULT NULL,
   `details` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `events`
@@ -93,7 +79,8 @@ CREATE TABLE IF NOT EXISTS `events` (
 INSERT INTO `events` (`id`, `title`, `summary`, `type`, `location`, `date`, `time`, `details`) VALUES
 (13, 'Nv asdfiuh aefw', 'uasdh oaiusdhf owefasdf fw', 'past', 'aad', NULL, NULL, NULL),
 (14, 'A Big Event', 'A big event is comming ...........', 'past', 'Ktm', NULL, NULL, NULL),
-(15, 'cxv ao vase aw', 'asd fwe fa', 'upcomming', 'kasjdf w', 'as fwef ', 'kas fklwe ', 'lak jflak faflkasj laks flaksf lask a');
+(15, 'cxv ao vase aw', 'asd fwe fa', 'upcomming', 'kasjdf w', 'as fwef ', 'kas fklwe ', 'lak jflak faflkasj laks flaksf lask a'),
+(16, 'A Upcomming Event', 'This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make Nepal one of the best holiday destinations and we are more than happy to welcome you in this beautiful country where people are famous for their hospitality and care towards guests. Welcome to Nepal, the country of diversity. ', 'upcomming', 'Kathmandu', '1 January 2', '12:30pm', '<p>This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make Nepal one of the best holiday destinations and we are more than happy to welcome you in this beautiful country where people are famous for their hospitality and care towards guests. Welcome to Nepal, the country of diversity.</p>\n\n<p>This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make</P>\n');
 
 -- --------------------------------------------------------
 
@@ -137,6 +124,28 @@ CREATE TABLE IF NOT EXISTS `gossips` (
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(127) NOT NULL,
+  `content` text NOT NULL,
+  `summary` varchar(255) NOT NULL,
+  `type` varchar(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `title`, `content`, `summary`, `type`) VALUES
+(1, 'Ways to Decrease your Obsiety', 'There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease the obsiety . There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease the obsiety. \n\nThere are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease the obsiety . There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease the obsiety. \n\nThere are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease the obsiety . There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease the obsiety. ', 'There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease th', 'health');
 
 -- --------------------------------------------------------
 

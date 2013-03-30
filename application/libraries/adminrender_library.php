@@ -8,6 +8,7 @@
 class Adminrender_library{
 	
 	private $ci = null;
+	protected $news_type = array();
 	protected $ethnicity = array();
 	protected $usertype = array();
 	protected $adddimensions	= array();
@@ -22,10 +23,6 @@ class Adminrender_library{
 		$this->ci =& get_instance();
 		$this->ci->load->database();
 		$this->ci->load->helper('form');
-
-		$this->ci->load->config('ethnicity');
-		$this->ethnicity = $this->ci->config->item('ethnicity');
-
 
 		array_push( $this->usertype,
 						'administrator', 'editor', 'user'
@@ -44,22 +41,13 @@ class Adminrender_library{
 									);
 	}
 	
+
 	/**
 	 * admin menu
 	 */
 	public function render_navigation($selected){
-		$data = array(	'Home'			=> base_url().'admin',
-						'Advertizements'=> base_url().'admin/ads',
-						'Featured Models'=>base_url().'admin/featured',
-						'Models'		=> base_url().'admin/subjects',
-						//'Gossips'		=> base_url().'admin/gossips',
-						'Events'		=> base_url().'admin/events',
-						//'Upcomming Events'	=> base_url().'admin/upcomming',
-						'News'		=> base_url().'admin/news',
-						//'Projects'		=> '#',//base_url().'admin/projects',
-						//'Services'		=> '#',//base_url().'admin/services',
-						'Contact'		=> '#',//base_url().'admin/contact',
-					);
+		$this->ci->load->config('nav');
+		$data = $this->ci->config->item('admin_nav');
 
 		if($this->ci->session->userdata('usertype')=='administrator'){
 			$data['Users'] = base_url().'admin/users';
@@ -172,7 +160,7 @@ class Adminrender_library{
 					$(".cancel_change_img").live("click",function(e){
 						e.preventDefault();
 						
-						var str = "<img class=\"old_img\" src=\"'.base_url().ADDSPATH.$data[0]->image.'\" />";
+ 						var str = "<img class=\"old_img\" src=\"'.base_url().ADDSPATH.$data[0]->image.'\" />";
 						str = str + "<a href=\"#\" class=\"change_img\">Change</a>";
 
 						$(this)
@@ -305,6 +293,9 @@ class Adminrender_library{
 	 */
 	public function render_featuredlist($data){
 //print_r($data);die;		
+		$this->ci->load->config('ethnicity');
+		$this->ethnicity = $this->ci->config->item('ethnicity');
+
 		$op =	'<div class="grid_2" style="float:right;">
 					<p>
 						<a href="'.site_url('admin/featured/new_featured').'">New</a>
@@ -363,6 +354,8 @@ class Adminrender_library{
 //print_r($data);
 //echo '</pre>';
 //die;
+		$this->ci->load->config('ethnicity');
+		$this->ethnicity = $this->ci->config->item('ethnicity');
 
 		$op = 	'<style>
 					#content .fx{
@@ -490,100 +483,100 @@ class Adminrender_library{
 	}
 
 
+/*
+		// 	/**
+		// 	 * gossips list
+		// 	 *
+		// 	public function render_gossipslist($data){
+		// //print_r($data);die;		
+		// 		$op =	'<div class="grid_2" style="float:right;">
+		// 					<p>
+		// 						<a href="'.site_url('admin/gossips/new_gossip').'">New</a>
+		// 					</p>
+		// 				</div>'.
+		// 				'<script type="text/javascript">
+		// 				$(function() {
+		// 				    $(\'#list_data\').dataTable( {
+		// 				        "aaData": [';
 
-	/**
-	 * gossips list
-	 */
-	public function render_gossipslist($data){
-//print_r($data);die;		
-		$op =	'<div class="grid_2" style="float:right;">
-					<p>
-						<a href="'.site_url('admin/gossips/new_gossip').'">New</a>
-					</p>
-				</div>'.
-				'<script type="text/javascript">
-				$(function() {
-				    $(\'#list_data\').dataTable( {
-				        "aaData": [';
+		// 		if($data)
+		// 		foreach($data as $key=>$val){
+		// 			$op .=	'["'.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/gossips/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/gossips/del/'.$val->id).'\">Delete</a>"], ';
+		// 		}
 
-		if($data)
-		foreach($data as $key=>$val){
-			$op .=	'["'.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/gossips/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/gossips/del/'.$val->id).'\">Delete</a>"], ';
-		}
+		// 		$op .=  '],"aoColumns": [
+		// 			            { "sTitle": "ID" },
+		// 			            { "sTitle": "Title" },
+		// 			            { "sTitle": "Summary" },
+		// 			            { "sTitle": "Actions", sWidth:"5%"},
+		// 			            { "sTitle": "" , sWidth:"5%"},
+		// 			        ]
+		// 			    } );   
+		// 			} );
+		// 			</script>';
+		// 		$op .= 	'<div class="grid_16"><table id="list_data"></table></div>';
+		// 		return $op;
+		// 	}
+			
+			
+		// 	/**
+		// 	 * new gossip form
+		// 	 *
+		// 	public function render_new_gossips($data){
+		// //echo '<pre>';
+		// //print_r($data);
+		// //echo '</pre>';
+		// //die;
 
-		$op .=  '],"aoColumns": [
-			            { "sTitle": "ID" },
-			            { "sTitle": "Title" },
-			            { "sTitle": "Summary" },
-			            { "sTitle": "Actions", sWidth:"5%"},
-			            { "sTitle": "" , sWidth:"5%"},
-			        ]
-			    } );   
-			} );
-			</script>';
-		$op .= 	'<div class="grid_16"><table id="list_data"></table></div>';
-		return $op;
-	}
-	
-	
-	/**
-	 * new gossip form
-	 */
-	public function render_new_gossips($data){
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//die;
+		// 		$op =	//'<div class="container_16 clearfix" id="content">'.
+		// 					form_open_multipart().'
+		// 					<div class="grid_16">
+		// 						<div class="grid_2" style="float: right;">
+		// 							<p>
+		// 								<a href="'.base_url('admin/gossips').'">Back</a>
+		// 							</p>
+		// 						</div>
 
-		$op =	//'<div class="container_16 clearfix" id="content">'.
-					form_open_multipart().'
-					<div class="grid_16">
-						<div class="grid_2" style="float: right;">
-							<p>
-								<a href="'.base_url('admin/gossips').'">Back</a>
-							</p>
-						</div>
+		// 						<h2>Gossip</h2>
+		// 						<p class="error">Something went wrong.</p>
+		// 					</div>
 
-						<h2>Gossip</h2>
-						<p class="error">Something went wrong.</p>
-					</div>
+		// 					<div class="grid_5">
+		// 						<p>
+		// 							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>
+		// 							<input type="text" name="title" value="'.($data?$data[0]->title:'').'" />
+		// 						</p>
+		// 					</div>
 
-					<div class="grid_5">
-						<p>
-							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>
-							<input type="text" name="title" value="'.($data?$data[0]->title:'').'" />
-						</p>
-					</div>
+		// 					<div class="grid_16">
+		// 						<p>
+		// 							<label>Summary <small>Will be displayed in search engine results.</small></label>
+		// 							<textarea class="area_small" name="summary">'.
+		// 								($data?$data[0]->summary:'').
+		// 							'</textarea>
+		// 						</p>
+		// 					</div>
 
-					<div class="grid_16">
-						<p>
-							<label>Summary <small>Will be displayed in search engine results.</small></label>
-							<textarea class="area_small" name="summary">'.
-								($data?$data[0]->summary:'').
-							'</textarea>
-						</p>
-					</div>
+		// 					<div class="grid_16">
+		// 						<p>
+		// 							<label>Article <small>Markdown Syntax.</small></label>
+		// 							<textarea class="area_medium" name="content">'.
+		// 								($data?$data[0]->content:'').
+		// 							'</textarea>
+		// 						</p>
+		// 						<p class="submit">
+		// 							<a href="'.site_url('admin/gossips').'">Cancel</a>
+		// 							<input type="submit" value="Submit">
+		// 						</p>
+		// 					</div>	
 
-					<div class="grid_16">
-						<p>
-							<label>Article <small>Markdown Syntax.</small></label>
-							<textarea class="area_medium" name="content">'.
-								($data?$data[0]->content:'').
-							'</textarea>
-						</p>
-						<p class="submit">
-							<a href="'.site_url('admin/gossips').'">Cancel</a>
-							<input type="submit" value="Submit">
-						</p>
-					</div>	
-
-					</form>';
-				//</div>';//.$generated_editor;
+		// 					</form>';
+		// 				//</div>';//.$generated_editor;
 
 
-		return  $op;
-	}
-
+		// 		return  $op;
+		// 	}
+*/
 
 	/**
 	 * events list
@@ -777,13 +770,13 @@ class Adminrender_library{
 
 
 	/**
-	 * articles list
+	 * news list
 	 */
-	public function render_articleslist($data){
-//print_r($data);die;		
+	public function render_newslist($data){
+
 		$op =	'<div class="grid_2" style="float:right;">
 					<p>
-						<a href="'.site_url('admin/articles/new_article').'">New</a>
+						<a href="'.site_url('admin/news/new_news').'">New</a>
 					</p>
 				</div>'.
 				'<script type="text/javascript">
@@ -792,11 +785,19 @@ class Adminrender_library{
 				        "aaData": [';
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'[ "'.$val->id.'", "'.$val->title.'", "'.$val->summary.'", "<a class=\"edit\" href=\"'.site_url('admin/articles/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/articles/del/'.$val->id).'\">Delete</a>" ], ';
+			$op .=	'[ '.
+						'"'.$val->id.'", '.
+						'"'.$val->type.'", '.
+						'"'.$val->title.'", '.
+						'"'.$val->summary.'", '.
+						'"<a class=\"edit\" href=\"'.site_url('admin/news/edit/'.$val->id).'\">Edit</a>", '.
+						'"<a class=\"delete\" href=\"'.site_url('admin/news/del/'.$val->id).'\">Delete</a>", '.
+					'], ';
 		}
 
-		$op .=  '],"aoColumns": [
+		$op .=  '], "aoColumns": [
 			            { "sTitle": "ID" },
+			            { "sTitle": "Type" },
 			            { "sTitle": "Title" },
 			            { "sTitle": "Summary" },
 			            { "sTitle": "Actions", sWidth:"5%"},
@@ -811,34 +812,53 @@ class Adminrender_library{
 	
 	
 	/**
-	 * new article form
+	 * new news form
 	 */
-	public function render_new_article($data){
+	public function render_new_news($data){
 //echo '<pre>';
 //print_r($data);
 //echo '</pre>';
 //die;
+		$this->ci->load->config('news_type');
+		$news_types = $this->ci->config->item('news_type');
 
 		$op =	//'<div class="container_16 clearfix" id="content">'.
 					form_open().'
 					<div class="grid_16">
 						<div class="grid_2" style="float: right;">
 							<p>
-								<a href="'.base_url('admin/articles').'">Back</a>
+								<a href="'.base_url('admin/news').'">Back</a>
 							</p>
 						</div>
-						<h2>New Article</h2>
+						<h2>New News</h2>
 						<p class="error">Something went wrong.</p>
 					</div>
 
-					<div class="grid_5">
+					<div class="grid_6">
 						<p>
 							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>
 							<input type="text" name="title" value="'.($data?$data[0]->title:'').'" />
 						</p>
 					</div>
 
-					<div class="grid_16">
+
+					<div class="grid_6">
+						<p>
+							<label for="type">Type</label>
+							<select name="type">';
+
+					foreach($news_types as $key=>$val){
+						$op .= 	'<option value="'.$key.'" '.
+									($data?($data[0]->type==$key?'selected="selected"':''):'').'>'.$val.
+								'</option>';
+					}							
+
+					$op .= 	'</select>
+
+						</p>
+					</div>
+
+					<div class="grid_12">
 						<p>
 							<label>Summary <small>Will be displayed in search engine results.</small></label>
 							<textarea class="area_small" name="summary">'.
@@ -847,15 +867,15 @@ class Adminrender_library{
 						</p>
 					</div>
 
-					<div class="grid_16">
+					<div class="grid_12">
 						<p>
-							<label>Article <small>Markdown Syntax.</small></label>
+							<label>News <small>Markdown Syntax.</small></label>
 							<textarea class="area_medium" name="content">'.
 								($data?$data[0]->content:'').
 							'</textarea>
 						</p>
 						<p class="submit">
-							<a href="'.site_url('admin/articles').'">Cancel</a>
+							<a href="'.site_url('admin/news').'">Cancel</a>
 							<input type="submit" value="Submit">
 						</p>
 					</div>	
@@ -873,6 +893,9 @@ class Adminrender_library{
 	 */
 	public function render_subjectslist($data){
 //print_r($data);die;		
+		$this->ci->load->config('ethnicity');
+		$this->ethnicity = $this->ci->config->item('ethnicity');
+
 		$op =	'<div class="grid_2" style="float:right;">
 					<p>
 						<a href="'.site_url('admin/subjects/new_subject').'">New</a>
@@ -910,6 +933,9 @@ class Adminrender_library{
 //print_r($data);
 //echo '</pre>';
 //die;
+
+		$this->ci->load->config('ethnicity');
+		$this->ethnicity = $this->ci->config->item('ethnicity');
 
 		$op ='<style>
 				#content .checkboxes *:first-child {

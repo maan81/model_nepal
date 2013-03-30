@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Articles_model extends CI_Model{
-	protected $table = 'articles';
+class News_model extends CI_Model{
+	protected $table = 'news';
 
 	public function __construct(){
 		parent::__construct();
@@ -9,19 +9,43 @@ class Articles_model extends CI_Model{
 
 
 	/**
-	 * get articles [of selected parameter]
+	 * get news [of selected parameter]
 	 * @param array of selected parameter
 	 * @return array of objects, or false 
 	 */
-	public function get($articles=false){
-		if($articles){
-			foreach($articles as $key=>$value){
+	public function get($news=false){
+		if($news){
+			foreach($news as $key=>$value){
 				$this->db->where($key,$value);
 			}
 		}
 		$res = $this->db->get($this->table);
 
-		return count($res->result())?$res->result():false;
+		if(count($res->result())){
+			//return the processed result
+			return $this->_process($res->result());
+
+		}else{
+			return false;
+		}
+	}
+
+
+	/**
+	 * Process obained data to include the news type array
+	 * @param array of objects [news array]
+	 * @return array of objects [news array with processed news type]
+	 */
+	private function _process($data){
+		$this->config->load('news_type');
+
+		$type = $this->config->item('news_type');
+
+		foreach($data as $key=>$val){
+			$val->type = $type[$val->type];
+		}
+
+		return $data;
 	}
 
 
@@ -100,5 +124,5 @@ class Articles_model extends CI_Model{
 	}
 }
 
-/* End of file articles_model.php */
-/* Location: ./application/models/articles_model.php */
+/* End of file news_model.php */
+/* Location: ./application/models/news_model.php */

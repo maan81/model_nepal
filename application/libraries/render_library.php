@@ -137,7 +137,7 @@ class Render_library{
 					}else{
 						$op.=	$data['add2'][0]->script;
 					}
-//print_r($data['news']);die;
+
 			$op .= 		    '</div>
 						</div>
 
@@ -150,26 +150,27 @@ class Render_library{
 						    	<span class="right" id="right">
 						    		<img src="tmp/right.png" alt="right" />
 						    	</span>
-						    </div>
+						    </div>';
 
-							<script type="text/javascript">
-							$(function(){
-								$("#twiacontents").my_slider({
-									l:"left",
-									r:"right",
-									each_width:	220,
-									each_height:120,
-									h:false,
-									autoMove:false,
-									showPlay:false,
-								});
-							});
-							</script>
-							<style>
-							#left,#right{cursor:pointer;}
-							</style>
-
-						    <div class="twiacontents" id="twiacontents">';
+						    if(count($data['news'])>3){
+							$op .=	'<script type="text/javascript">
+									$(function(){
+										$("#twiacontents").my_slider({
+											l:"left",
+											r:"right",
+											each_width:	220,
+											each_height:120,
+											h:false,
+											autoMove:false,
+											showPlay:false,
+										});
+									});
+									</script>
+									<style>
+									#left,#right{cursor:pointer;}
+									</style>';
+							}
+				$op .=	    '<div class="twiacontents" id="twiacontents">';
 
 						    $news_count=0;
 						    foreach($data['news'] as $key=>$val){
@@ -183,15 +184,6 @@ class Render_library{
 						    	</div>';
 						    	$news_count++;
 
-						    }
-
-						    while($news_count<4){
-				$op .= 	    	'<div class="contents slide" >
-								    <span>No News</span>
-						            <img src="'.NEWSSPATH.'no_news.jpg" alt="'.$val->title.'" 
-						            		width="210" height="120" />
-						    	</div>';
-						    	$news_count++;
 						    }
 
 

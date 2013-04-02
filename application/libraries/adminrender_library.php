@@ -367,6 +367,9 @@ class Adminrender_library{
 						position:absolute;
 					}
 				</style>';
+//echo $this->ci->session->flashdata('msg'); 
+//echo $this->ci->session->flashdata('err'); 
+//die;
 
 		$op .=	//'<div class="container_16 clearfix" id="content">'.
 					form_open().'
@@ -1681,5 +1684,11 @@ class Adminrender_library{
 					</p>
 				</div>';		
 		return $email;
+	}
+
+	public function render_flash($msg){
+
+		$op = 	'<div class="flash_msg">'.$msg.'<span class="flash_close">x</span></div>';
+		return $op;
 	}
 }

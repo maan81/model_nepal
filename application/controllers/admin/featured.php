@@ -72,11 +72,12 @@ class Featured extends MY_Controller {
 			if($this->_validated){
 				//input new data
 				$data = $this->featured_model->set($data);
-				$this->session->set_flashdata('msg','Data saved.');
+				$this->session->set_flashdata('msg','Newe Featured Model saved.');
 			}else{
 				//err in validation....
 				$this->session->set_flashdata('err','Error saving data.');
 			}
+			redirect('admin/featured/edit/'.$data[0]->id);
 		}
 	
 		$new_featured = $this->adminrender_library->render_new_featured($data);
@@ -85,7 +86,8 @@ class Featured extends MY_Controller {
 		
 		$this->render_navigation();
 		$this->render_user_info();
-		
+		$this->render_flash();
+
 		$this->template->render();
 	}
 	
@@ -161,6 +163,15 @@ class Featured extends MY_Controller {
 							'usertype'=>$this->session->userdata('usertype') );
 		$userlogged = $this->adminrender_library->render_userlogged($user_data);
 		$this->template->write('userlogged',$userlogged);
+	}
+	private function render_flash(){
+		if($flash = $this->session->flashdata('msg')){
+			$flash = $this->adminrender_library->render_flash($flash);
+			$this->template->write('flash',$flash);
+
+			$this->template->add_css(ADMINCSSPATH.'flash.css');
+			$this->template->add_js(ADMINJSPATH.'flash.js');
+		}
 	}
 }
 

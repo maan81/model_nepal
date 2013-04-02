@@ -61,7 +61,8 @@ $template['admin']['regions']	= array(
 										'menu',
 										'userlogged',
 										'list',
-										'new_item'
+										'new_item',
+										'flash'
 									);
 $template['admin']['parser'] 	= 'parser';
 $template['admin']['parser_method'] = 'parse';

@@ -125,8 +125,7 @@ class Featured extends MY_Controller {
 					continue;
 				}
 
-				$sel_featured->popular_img= FEATUREDPATH.gen_folder_name($sel_featured->name).'/01/thumbs/'.$v;
-				$sel_featured->link 	 =  site_url('featured/get/'.$sel_featured->id);
+				$sel_featured->popular_img = FEATUREDPATH.gen_folder_name($sel_featured->name).'/01/thumbs/'.$v;
 
 
 				$this->image_lib->initialize($config);
@@ -135,6 +134,12 @@ class Featured extends MY_Controller {
 				    echo $this->image_lib->display_errors();
 				}
 				break;			
+			}
+			$sel_featured->link 	 =  site_url('featured/get/'.$sel_featured->id);
+
+			//set empty if no suitable img found
+			if(!isset($sel_featured->popular_img)){
+				$sel_featured->popular_img = '';
 			}
 		}
 		return $featured;		

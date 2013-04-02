@@ -1,0 +1,30 @@
+.flash_msg {
+    background: none repeat scroll 0 0 #434A48;
+    border: 2px solid #333333;
+    border-radius: 10px 10px 10px 10px;
+    color: #EEEEEE;
+    font-weight: bold;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 550px;
+}
+
+.flash_close {
+    border: 1px solid #333333;
+    border-radius: 5px 5px 5px 5px;
+    cursor: pointer;
+    float: right;
+    font-size: 12px;
+    font-weight: normal;
+    height: 10px;
+    line-height: 7px;
+    margin-right: -6px;
+    margin-top: -9px;
+    width: 10px;
+}

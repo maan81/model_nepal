@@ -16,4 +16,14 @@ class Tmp extends CI_Controller {
 			echo 'not inserted';
 		}
 	}
+
+	public function set_flashdata($msg=null){
+		$this->session->set_flashdata('msg',$msg);
+		echo 'msg : '.$msg;
+		echo '<br/>';
+		echo '<a href="'.site_url('tmp/chk_flashdata').'">'.site_url('tmp/chk_flashdata').'</a>';
+	}
+	public function chk_flashdata(){
+		echo '<div class="flash_msg">'.$this->session->flashdata('msg').'</div>';
+	}
 }

@@ -24,60 +24,55 @@
          <div class="popularmodel">
             <div class="title">Popular Models</div>
 
-<script type="text/javascript">
-$(function(){
-   $('#contents_wrapper').my_slider({
-         'display':'vertical',
-         'showDir':false,
-         'showPlay':false,
-         'h'      : false,
-         'each_width':215,
-         'each_height':275,
-         'v_spacing':15,
-         'pause':20000,
-      });
-})
-</script>
-<style>
-.popularmodel #contents_wrapper{
-   border:none;
-   height:280px;
-   width:inherit;
-   background: none;
-   top:40px;
-   left:7px;
-}
-.popularmodel #contents_wrapper .slide{
-   border:1px solid #fff;
-   border-radius:5px;
-   background: none;
-   overflow:hidden;
-}
-.popularmodel #contents_wrapper img{
-   border-radius:5px;
-}
-</style>
+               <script type="text/javascript">
+               $(function(){
+                  $('#contents_wrapper').my_slider({
+                        'display':'vertical',
+                        'showDir':false,
+                        'showPlay':false,
+                        'h'      : false,
+                        'each_width':215,
+                        'each_height':275,
+                        'v_spacing':15,
+                        'pause':10000,
+                        'move':1000,
 
+                     });
+               })
+               </script>
+               <style>
+               .popularmodel #contents_wrapper{
+                  border:none;
+                  height:280px;
+                  width:inherit;
+                  background: none;
+                  top:40px;
+                  left:7px;
+               }
+               .popularmodel #contents_wrapper .slide{
+                  border:0;
+                  border-radius:0px;
+                  background: none;
+                  overflow:hidden;
+               }
+               .popularmodel #contents_wrapper img{
+                  border-radius:0px;
+               }
+               </style>
+               
                <!-- popular models vertical scroll start -->
                <div id="contents_wrapper">
-                  <div class="contents slide" >
-                     <a href="#">
-                        <img style="width: 100%; height: auto;" alt="popular model"
-                              src="public/featured/first_model/01/m1.jpg" />
-                     </a>
-                  </div>
-                  <div class="contents slide" >
-                     <a href="#">
-                        <img style="width: 100%; height: auto;" alt="popular model"
-                              src="public/featured/first_model/01/m1.jpg" />
-                     </a>
-                  </div>
-                  <div class="contents slide" >
-                     <a href="#">
-                        <img style="width: 100%; height: auto;" alt="popular model"
-                              src="public/featured/first_model/01/m1.jpg" />
-                     </a>
-                  </div>
+                  <?php if(count($popular_featured)) : ?>
+                  <?php foreach($popular_featured as $key=>$val) : ?>
+                     <div class="contents slide" >
+                        <a href="<?php echo $val->link?>">
+                           <img style="width: 100%; height: auto;" alt="<?php echo $val->name?>" 
+                                 title="<?php echo $val->name?>"
+                                 src="<?php echo $val->popular_img?>" />
+                        </a>
+                     </div>
+                  <?php endforeach; ?>
+                  <?php endif; ?>
                </div>
                <!-- popular models vertical scroll end -->
 

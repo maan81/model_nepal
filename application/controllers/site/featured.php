@@ -13,7 +13,6 @@ class Featured extends MY_Controller {
 
 		$this->template->set_template('site');
 		
-
 		//-----------------------------------------------
 		$op = $this->render_library->render_toplink(false);
 		$this->template->write('toplink',$op);
@@ -44,19 +43,29 @@ class Featured extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
 
+		//-----------------------------------------------
 		$featured = $this->featured_model->get();
 
+		$pop_params = array(
+							'limit'		=> array('start'=>0,'size'=>5),
+							'order_by'	=> array('coln'	=>'profile_viewed','dir'=>'desc'),
+						);
+		$popular_featured = $this->featured_model->get(false,$pop_params);
+		$popular_featured = $this->popular_img($popular_featured);
+		//-----------------------------------------------
+		
 		$this->load->config('ethnicity');
 		$data = array(
-					'add'		=>	$tmp[0],
-					'add2'		=>	$tmp2,
-					'subject'	=> array(
-										'img'	=>	'm4/m4.jpg',
-										'url'	=>	'#'
-									),
-					'featured'	=> $featured,
-					'render_right'=>$tmp3,
-					'ethnicity'	=> $this->config->item('ethnicity'),
+					'add'			=>	$tmp[0],
+					'add2'			=>	$tmp2,
+					'subject'		=> 	array(
+											'img'	=>	'm4/m4.jpg',
+											'url'	=>	'#'
+										),
+					'featured'		=>	$featured,
+					'render_right'	=>	$tmp3,
+					'ethnicity'		=> 	$this->config->item('ethnicity'),
+					'popular_featured'=>$popular_featured,
 				);
 
 
@@ -68,6 +77,67 @@ class Featured extends MY_Controller {
 		//-----------------------------------------------
 		//-----------------------------------------------
 		$this->template->render();
+	}
+
+
+	/**
+	 * Resize img. to display on popular links.
+	 * @param array of objects of popular models
+	 * @return array of objects of popular models with resized img
+	 */
+	private function popular_img($featured){
+		//load image ligrary
+		$this->load->library('image_lib');
+
+		foreach($featured as $sel_featured){
+			//folder of imgs of the featured model
+			$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($sel_featured->name).'/01';	
+
+			//create thumbs folder inside the gallery folder if reqd.
+			make_dir($full_path,'thumbs');
+
+			//imgs in that folder
+			$imgs = scandir($full_path);
+
+			foreach($imgs as $k=>$v){
+				if($v=='.' || $v=='..' || $v=='thumbs' ){
+					continue;
+				}
+
+
+				//the current original img
+				$config['source_image']		= FEATUREDPATH.gen_folder_name($sel_featured->name).'/01/'.$v;	
+
+				//thumbs of that img 
+				$config['new_image'] 		= $full_path.'/thumbs/'.$v;
+
+				$config['image_library']	= 'gd2';
+				$config['thumb_marker']		= '';
+				$config['create_thumb'] 	= TRUE;
+				$config['maintain_ratio'] 	= TRUE;
+				$config['width'] 			= 323;
+				$config['height'] 			= 152;
+
+				$img_dim = getimagesize(base_url().$config['source_image']);
+				
+				//dont use landscape img
+				if($img_dim[0] > $img_dim[1]){
+					continue;
+				}
+
+				$sel_featured->popular_img= FEATUREDPATH.gen_folder_name($sel_featured->name).'/01/thumbs/'.$v;
+				$sel_featured->link 	 =  site_url('featured/get/'.$sel_featured->id);
+
+
+				$this->image_lib->initialize($config);
+			//print_r($config);
+				if ( ! $this->image_lib->resize()){
+				    echo $this->image_lib->display_errors();
+				}
+				break;			
+			}
+		}
+		return $featured;		
 	}
 
 
@@ -184,9 +254,8 @@ class Featured extends MY_Controller {
 		//-----------------------------------------------
 
 		$this->template->set_template('site');
-		
 
-		//-----------------------------------------------
+		//------------------------------------------------
 		$op = $this->render_library->render_toplink(false);
 		$this->template->write('toplink',$op);
 
@@ -230,6 +299,14 @@ class Featured extends MY_Controller {
 		}
 		//=================
 
+		//-----------------------------------------------
+
+		$this->load->helper('visitors_count_helper');
+
+		set_count_visitors(array(
+								'type'	  => 'featured',
+								'model_id'=> $model)
+							);
 
 		//-----------------------------------------------
 

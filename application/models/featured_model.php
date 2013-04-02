@@ -24,18 +24,29 @@ class Featured_model extends CI_Model{
 		return $this->db->count_all_records($this->table);
 	}
 
+
 	/**
 	 * get featured [of selected parameter]
-	 * @param array of selected parameter
+	 * @param array of selected parameter, array of sql's parameters other than 'WHERE'
 	 * @return array of objects, or false 
 	 */
-	public function get($featured=false){
+	public function get($featured=false,$sql_params=false){
 
 		if($featured){
 			foreach($featured as $key=>$value){
 				$this->db->where($key,$value);
 			}
 		}
+
+		if($sql_params){
+			if($sql_params['order_by']){
+				$this->db->order_by($sql_params['order_by']['coln'],$sql_params['order_by']['dir']);
+			}
+			if($sql_params['limit']){
+				$this->db->limit( $sql_params['limit']['size'], $sql_params['limit']['start'] );
+			}
+		}
+
 		$res = $this->db->get($this->table);
 		return count($res->result())?$res->result():false;
 	}

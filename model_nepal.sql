@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 02, 2013 at 08:06 AM
+-- Generation Time: Apr 02, 2013 at 03:59 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -99,6 +99,7 @@ CREATE TABLE IF NOT EXISTS `featured` (
   `photographer` varchar(255) NOT NULL,
   `model_by` varchar(225) NOT NULL,
   `date_created` int(11) NOT NULL,
+  `profile_viewed` int(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
@@ -106,9 +107,9 @@ CREATE TABLE IF NOT EXISTS `featured` (
 -- Dumping data for table `featured`
 --
 
-INSERT INTO `featured` (`id`, `name`, `gender`, `ethnicity`, `wardrobe`, `location`, `make_up`, `photographer`, `model_by`, `date_created`) VALUES
-(1, 'First Model', 0, 'gurung', 'First Wardrobe', 'KTM', 'Someone', 'Somebody', 'Noone', 0),
-(2, 'nadrzr ar', 1, 'brahmin', 'd ', 'df jr', '', '', '', 0);
+INSERT INTO `featured` (`id`, `name`, `gender`, `ethnicity`, `wardrobe`, `location`, `make_up`, `photographer`, `model_by`, `date_created`, `profile_viewed`) VALUES
+(1, 'First Model', 0, 'gurung', 'First Wardrobe', 'KTM', 'Someone', 'Somebody', 'Noone', 0, 0),
+(2, 'nadrzr ar', 1, 'brahmin', 'd ', 'df jr', '', '', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -271,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `visitors_count` (
   UNIQUE KEY `unique` (`ip_address`,`type`,`model_id`),
   KEY `ip_address` (`ip_address`),
   KEY `model_id` (`model_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `visitors_count`
@@ -280,7 +281,9 @@ CREATE TABLE IF NOT EXISTS `visitors_count` (
 INSERT INTO `visitors_count` (`id`, `ip_address`, `type`, `model_id`, `timestamp`) VALUES
 (37, '127.0.0.1', 'subjects', 1, '2013-03-22 17:02:00'),
 (38, '192.168.1.3', 'subjects', 1, '2013-03-24 05:43:25'),
-(39, '127.0.0.1', 'subjects', 6, '2013-03-25 07:47:09');
+(39, '127.0.0.1', 'subjects', 6, '2013-03-25 07:47:09'),
+(40, '127.0.0.1', 'featured', 1, '2013-04-02 05:58:25'),
+(41, '127.0.0.1', 'featured', 2, '2013-04-02 10:01:28');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

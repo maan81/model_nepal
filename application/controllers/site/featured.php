@@ -64,6 +64,7 @@ class Featured extends MY_Controller {
 		$this->template->write('mainContents',$op);
 
 		$this->template->add_js(JSPATH.'search.js');
+		$this->template->add_js(JSPATH.'my_slider.js');
 		//-----------------------------------------------
 		//-----------------------------------------------
 		$this->template->render();

@@ -45,7 +45,7 @@
 				h_spacing:	15,
 				v_spacing:	15
 			};
-		
+
 			opt=$.extend(defaults,opt);
 
 			/*
@@ -67,12 +67,11 @@
 					opt.num=tmpN-1;
 				}
 			
-				if(opt.showDir){
+				//if(opt.showDir){
 					if(opt.l=='' || $('#'+opt.l).length==0){
 						var l = $('<div id="l"/>')
 						if(opt.dispaly=='horizontal') l.text('<--');
 						else if(opt.display=='vertical') l.text('down');
-						console.log(l)
 						$obj.prepend(l);
 						opt.l=l;
 					}else{
@@ -87,6 +86,10 @@
 					}else{
 						opt.r=$('#'+opt.r);
 					}
+				//}
+				if(!opt.showDir){
+					(opt.l).css('display','none');
+					(opt.r).css('display','none');
 				}
 				if(opt.showPlay){
 					if(opt.p=='' || $('#'+opt.p).length==0){
@@ -204,8 +207,8 @@
 					newCss+='#'+$objID+' {'+
 								'overflow: hidden;'+
 								'position: relative;'+
-								'background: none repeat scroll 0 0 #FFFAAE;/*editable*/'+
-								'border: 5px ridge #FFFFFF;/*editable*/'+
+								//'background: none repeat scroll 0 0 #FFFAAE;/*editable*/'+
+								//'border: 5px ridge #FFFFFF;/*editable*/'+
 
 								'height: '+parseInt(opt.each_height*opt.num+3)+'px;	/*changes at init*/'+
 								'width: '+opt.each_width+'px;	/*changes at init*/'+
@@ -219,7 +222,7 @@
 								'height:'+opt.each_height+'px;	/*changes at init*/'+
 								'width:'+opt.each_width+'px;	/*changes at init*/'+
 								'left: 0;		/*changes dynamically*/'+
-								'margin-botton:'+opt.v_spacing+';/*changes at init*/'+
+								'margin-bottom:'+opt.v_spacing+'px;/*changes at init*/'+
 							'}'+
 							
 							'#'+$objID+' #l,#r,#p{'+
@@ -417,7 +420,7 @@
 						//on hover
 					}else{
 						//on click
-						(opt.l).click(function(){
+						(opt.l).click(function(){							
 							if($obj.data('ok')){
 								clearInterval(s);
 								s=undefined;

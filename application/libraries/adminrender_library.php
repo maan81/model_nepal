@@ -586,6 +586,8 @@ class Adminrender_library{
 	 */
 	public function render_eventslist($data){
 //print_r($data);die;		
+		$this->ci->load->helper('text');
+
 		$op =	'<div class="grid_2" style="float:right;">
 					<p>
 						<a href="'.site_url('admin/events/new_event').'">New</a>
@@ -601,7 +603,7 @@ class Adminrender_library{
 			$op .=	'['.
 						'"'.$val->id.'", '.
 						'"'.$val->title.'", '.
-						'"'.$val->summary.'", '.
+						'"'.word_limiter($val->summary,10).'", '.
 						'"'.$val->type.'", '.
 						'"'.$val->location.'", '.
 						'"<a class=\"edit\" href=\"'.site_url('admin/events/edit/'.$val->id).'\">Edit</a>", '.
@@ -776,6 +778,7 @@ class Adminrender_library{
 	 * news list
 	 */
 	public function render_newslist($data){
+		$this->ci->load->helper('text');
 
 		$op =	'<div class="grid_2" style="float:right;">
 					<p>
@@ -792,7 +795,7 @@ class Adminrender_library{
 						'"'.$val->id.'", '.
 						'"'.$val->type.'", '.
 						'"'.$val->title.'", '.
-						'"'.$val->summary.'", '.
+						'"'.word_limiter($val->summary,10).'", '.
 						'"<a class=\"edit\" href=\"'.site_url('admin/news/edit/'.$val->id).'\">Edit</a>", '.
 						'"<a class=\"delete\" href=\"'.site_url('admin/news/del/'.$val->id).'\">Delete</a>", '.
 					'], ';

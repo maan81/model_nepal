@@ -2,6 +2,7 @@
 
 class Subjects_model extends CI_Model{
 	protected $table = 'subjects';
+	protected $visitors_count = 'visitors_count';
 
 	public function __construct(){
 		parent::__construct();
@@ -197,6 +198,10 @@ class Subjects_model extends CI_Model{
 
 			$this->db->where('id',$val->id)
 					 ->delete($this->table);
+
+		 	$this->db->where('type','featured')
+		 			->where('model_id',$val->id)
+		 			->delete($this->visitors_count);
 		}
 		return true;
 	}

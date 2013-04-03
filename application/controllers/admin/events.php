@@ -32,12 +32,13 @@ class Events extends MY_Controller {
 		$data = $this->events_model->get();
 
 		$events = $this->adminrender_library->render_eventslist($data);
-//print_r($events);die;
+
 		$this->template->set_template('admin');
 
 		$this->template->write('list',$events);
 		
 		$this->template->add_js(ADMINJSPATH.'jquery.dataTables.min.js');
+		$this->template->add_js(ADMINJSPATH.'functions.js');
 
 		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables.css');
 		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables_themeroller.css');
@@ -48,6 +49,7 @@ class Events extends MY_Controller {
 
 		$this->render_navigation();
 		$this->render_user_info();
+		$this->render_flash();
 		
 		$this->template->render();
 	}
@@ -76,13 +78,17 @@ class Events extends MY_Controller {
 				$data = $this->events_model->set($data);
 				
 				if($data){
-					$this->session->set_flashdata('msg', 'Data saved.');			
+					$this->session->set_flashdata('msg','New Events saved.');
+					redirect('admin/events/edit/'.$data[0]->id);
 				}else{
-					$this->session->set_flashdata('err', 'Error saving data.');
+					$this->session->set_flashdata('msg','Unable to save New Events.');
+					redirect('admin/events/new_event');
 				}
 
 			}else{
 				//err in validation....
+				$this->session->set_flashdata('msg','Unable to save New Events.');
+				redirect('admin/events/new_event');
 			}
 
 		}
@@ -93,6 +99,7 @@ class Events extends MY_Controller {
 		
 		$this->render_navigation();
 		$this->render_user_info();
+		$this->render_flash();
 		
 		$this->template->render();
 	}
@@ -109,10 +116,10 @@ class Events extends MY_Controller {
 		$this->_validate_del($data);
 		if($this->_validated){
 			$this->events_model->del($data);
-			$this->session->set_flashdata('msg', 'Data deleted.');			
+			$this->session->set_flashdata('msg', 'Event ID '.$id.' deleted.');			
 			
 		}else{
-			$this->session->set_flashdata('err', 'Error saving data.');
+			$this->session->set_flashdata('msg', 'Unable to delete Event ID '.$id.'.');
 		}
 		redirect('admin/events');
 	}
@@ -148,13 +155,16 @@ class Events extends MY_Controller {
 			if($this->_validated){
 				//input new data
 				$data = $this->events_model->set($data);
-				$this->session->set_flashdata('msg', 'Data saved.');			
+				$this->session->set_flashdata('msg', 'Event ID '.$id.' updated.');			
+
 			}else{
 				//err in validation....
 				$this->session->set_flashdata('err', 'Error saving data.');
+				$this->session->set_flashdata('msg', 'Unable to update Event ID '.$id.'.');
 			}
 			
 			unset($_POST);
+			redirect('admin/events/edit/'.$data[0]->id);
 		}
 
 		$data = $this->events_model->get(array('id'=>$id));
@@ -171,6 +181,15 @@ class Events extends MY_Controller {
 							'usertype'=>$this->session->userdata('usertype') );
 		$userlogged = $this->adminrender_library->render_userlogged($user_data);
 		$this->template->write('userlogged',$userlogged);
+	}
+	private function render_flash(){
+		if($flash = $this->session->flashdata('msg')){
+			$flash = $this->adminrender_library->render_flash($flash);
+
+			$this->template->write('flash',$flash);
+			$this->template->add_css(ADMINCSSPATH.'flash.css');
+			//$this->template->add_js(ADMINJSPATH.'flash.js');
+		}
 	}
 }
 

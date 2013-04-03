@@ -48,6 +48,7 @@ class Subjects extends MY_Controller {
 
 		$this->render_navigation();
 		$this->render_user_info();
+		$this->render_flash();
 		
 		$this->template->render();
 	}
@@ -108,13 +109,13 @@ class Subjects extends MY_Controller {
 			if($this->_validated){
 				//input new data
 				$data = $this->subjects_model->set($data);
-				$this->session->set_flashdata('msg', 'Data saved.');	
-
-
+				$this->session->set_flashdata('msg','New Agency Model saved.');
+				redirect('admin/subjects/edit/'.$data[0]->id);
 
 			}else{
 				//err in validation....
-				$this->session->set_flashdata('err', 'Error saving data.');
+				$this->session->set_flashdata('msg','Unable to save New Agency Model.');
+				redirect('admin/subjects/new_subject');
 			}
 		}
 	
@@ -140,10 +141,10 @@ class Subjects extends MY_Controller {
 
 		if($this->_validated){
 			$this->subjects_model->del($data);
-			$this->session->set_flashdata('msg', 'Data deleted.');			
+			$this->session->set_flashdata('msg', 'Agency Model ID '.$id.' deleted.');			
 			
 		}else{
-			$this->session->set_flashdata('err', 'Error saving data.');
+			$this->session->set_flashdata('msg', 'Unable to delete Agency Model ID '.$id.'.');
 		}
 		redirect('admin/subjects');
 	}
@@ -212,13 +213,14 @@ class Subjects extends MY_Controller {
 			if($this->_validated){
 				//input new data
 				$data = $this->subjects_model->set($data);
-				$this->session->set_flashdata('msg', 'Data saved.');			
+				$this->session->set_flashdata('msg', 'Agency Model ID '.$id.' updated.');			
 			}else{
 				//err in validation....
-				$this->session->set_flashdata('err', 'Error saving data.');
+				$this->session->set_flashdata('msg', 'Unable to update Agency Model ID '.$id.'.');
 			}
 
 			unset($_POST);
+			redirect('admin/subjects/edit/'.$data[0]->id);
 		}
 
 		$data = $this->subjects_model->get(array('id'=>$id));
@@ -235,6 +237,14 @@ class Subjects extends MY_Controller {
 							'usertype'=>$this->session->userdata('usertype') );
 		$userlogged = $this->adminrender_library->render_userlogged($user_data);
 		$this->template->write('userlogged',$userlogged);
+	}
+	private function render_flash(){
+		if($flash = $this->session->flashdata('msg')){
+			$flash = $this->adminrender_library->render_flash($flash);
+
+			$this->template->write('flash',$flash);
+			$this->template->add_css(ADMINCSSPATH.'flash.css');
+		}
 	}
 }
 

@@ -32,13 +32,13 @@ class News extends MY_Controller {
 		$data = $this->news_model->get();
 
 		$news = $this->adminrender_library->render_newslist($data);
-//print_r($news);die;
 
 		$this->template->set_template('admin');
 
 		$this->template->write('list',$news);
 		
 		$this->template->add_js(ADMINJSPATH.'jquery.dataTables.min.js');
+		$this->template->add_js(ADMINJSPATH.'functions.js');
 
 		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables.css');
 		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables_themeroller.css');
@@ -49,6 +49,7 @@ class News extends MY_Controller {
 
 		$this->render_navigation();
 		$this->render_user_info();
+		$this->render_flash();
 		
 		$this->template->render();
 	}
@@ -71,13 +72,18 @@ class News extends MY_Controller {
 				$data = $this->news_model->set($data);
 	
 				if($data){
-					$this->session->set_flashdata('msg', 'Data saved.');			
+					$this->session->set_flashdata('msg','New News saved.');
+					redirect('admin/news/edit/'.$data[0]->id);
+
 				}else{
-					$this->session->set_flashdata('err', 'Error saving data.');
+					$this->session->set_flashdata('msg','Unable to save New News.');
+					redirect('admin/news/new_news');
 				}
 
 			}else{
 				//err in validation....
+				$this->session->set_flashdata('msg','Unable to save New News.');
+				redirect('admin/news/new_news');
 			}
 		}
 
@@ -87,6 +93,7 @@ class News extends MY_Controller {
 		
 		$this->render_navigation();
 		$this->render_user_info();
+		$this->render_flash();
 		
 		$this->template->render();
 	}
@@ -102,10 +109,10 @@ class News extends MY_Controller {
 		$this->_validate_del($data);
 		if($this->_validated){
 			$this->news_model->del($data);
-			$this->session->set_flashdata('msg', 'Data deleted.');			
+			$this->session->set_flashdata('msg', 'News ID '.$id.' deleted.');			
 			
 		}else{
-			$this->session->set_flashdata('err', 'Error saving data.');
+			$this->session->set_flashdata('msg', 'Unable to delete News ID '.$id.'.');
 		}
 		redirect('admin/news');
 	}
@@ -134,13 +141,14 @@ class News extends MY_Controller {
 			if($this->_validated){
 				//input new data
 				$data = $this->news_model->set($data);
-				$this->session->set_flashdata('msg', 'Data saved.');			
+				$this->session->set_flashdata('msg', 'News ID '.$id.' updated.');			
 			}else{
 				//err in validation....
-				$this->session->set_flashdata('err', 'Error saving data.');
+				$this->session->set_flashdata('msg', 'Unable to update News ID '.$id.'.');
 			}
 
 			unset($_POST);
+			redirect('admin/news/edit/'.$data[0]->id);
 		}
 
 		$data = $this->news_model->get(array('id'=>$id));
@@ -152,14 +160,21 @@ class News extends MY_Controller {
 		$menu = $this->adminrender_library->render_navigation('News');
 		$this->template->write('menu',$menu);
 	}
-
 	private function render_user_info(){
 		$user_data = array(	'username'=>$this->session->userdata('username'),
 							'usertype'=>$this->session->userdata('usertype') );
 		$userlogged = $this->adminrender_library->render_userlogged($user_data);
 		$this->template->write('userlogged',$userlogged);
 	}
-}
+	private function render_flash(){
+		if($flash = $this->session->flashdata('msg')){
+			$flash = $this->adminrender_library->render_flash($flash);
+
+			$this->template->write('flash',$flash);
+			$this->template->add_css(ADMINCSSPATH.'flash.css');
+			//$this->template->add_js(ADMINJSPATH.'flash.js');
+		}
+	}}
 
 /* End of file news.php */
 /* Location: ./application/controllers/admin/news.php */

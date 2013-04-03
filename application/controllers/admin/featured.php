@@ -38,6 +38,7 @@ class Featured extends MY_Controller {
 		$this->template->write('list',$featured);
 		
 		$this->template->add_js(ADMINJSPATH.'jquery.dataTables.min.js');
+		$this->template->add_js(ADMINJSPATH.'functions.js');
 
 		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables.css');
 		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables_themeroller.css');
@@ -48,6 +49,7 @@ class Featured extends MY_Controller {
 
 		$this->render_navigation();
 		$this->render_user_info();
+		$this->render_flash();
 		
 		$this->template->render();
 	}
@@ -72,12 +74,13 @@ class Featured extends MY_Controller {
 			if($this->_validated){
 				//input new data
 				$data = $this->featured_model->set($data);
-				$this->session->set_flashdata('msg','Newe Featured Model saved.');
+				$this->session->set_flashdata('msg','New Featured Model saved.');
+				redirect('admin/featured/edit/'.$data[0]->id);
 			}else{
 				//err in validation....
-				$this->session->set_flashdata('err','Error saving data.');
+				$this->session->set_flashdata('msg','Unable to save New Featured Model.');
+				redirect('admin/featured/new_featured');
 			}
-			redirect('admin/featured/edit/'.$data[0]->id);
 		}
 	
 		$new_featured = $this->adminrender_library->render_new_featured($data);
@@ -103,10 +106,10 @@ class Featured extends MY_Controller {
 		$this->_validate_del($data);
 		if($this->_validated){
 			$this->featured_model->del($data);
-			$this->session->set_flashdata('msg', 'Data deleted.');			
+			$this->session->set_flashdata('msg', 'Featured Model ID '.$id.' deleted.');			
 			
 		}else{
-			$this->session->set_flashdata('err', 'Error saving data.');
+			$this->session->set_flashdata('msg', 'Unable to delete Featured Model ID '.$id.'.');
 		}
 		redirect('admin/featured');
 	}
@@ -140,13 +143,14 @@ class Featured extends MY_Controller {
 			if($this->_validated){
 				//input new data
 				$data = $this->featured_model->set($data);
-				$this->session->set_flashdata('msg', 'Data saved.');			
+				$this->session->set_flashdata('msg', 'Featured Model ID '.$id.' updated.');			
 			}else{
 				//err in validation....
-				$this->session->set_flashdata('err', 'Error saving data.');
+				$this->session->set_flashdata('msg', 'Unable to update Featured Model ID '.$id.'.');
 			}
 			
 			unset($_POST);
+			redirect('admin/featured/edit/'.$data[0]->id);
 		}
 
 		$data = $this->featured_model->get(array('id'=>$id));
@@ -167,10 +171,10 @@ class Featured extends MY_Controller {
 	private function render_flash(){
 		if($flash = $this->session->flashdata('msg')){
 			$flash = $this->adminrender_library->render_flash($flash);
-			$this->template->write('flash',$flash);
 
+			$this->template->write('flash',$flash);
 			$this->template->add_css(ADMINCSSPATH.'flash.css');
-			$this->template->add_js(ADMINJSPATH.'flash.js');
+			//$this->template->add_js(ADMINJSPATH.'flash.js');
 		}
 	}
 }

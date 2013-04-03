@@ -49,6 +49,7 @@ class Ads extends MY_Controller {
 
 		$this->render_navigation();
 		$this->render_user_info();
+		$this->render_flash();
 		
 		$this->template->render();
 	}
@@ -82,13 +83,13 @@ class Ads extends MY_Controller {
 		if($this->_validated_src){
 			//input new data
 			$data = $this->ads_model->set($data);
-			$this->session->set_flashdata('msg', 'Data saved.');			
-	
+			$this->session->set_flashdata('msg', 'New Ads saved.');			
+			redirect('admin/ads/edit/'.$data[0]->id);
+
 		}else{
 			//err in validation....
-			$this->session->set_flashdata('err', 'Error saving data.');
-
-			$data = array($data);
+			$this->session->set_flashdata('msg', 'Unable to save New Ads.');
+			redirect('admin/ads/new_ad');
 		}
 
 		return $data;
@@ -117,13 +118,13 @@ class Ads extends MY_Controller {
 			if($this->_validated){
 				//input new data
 				$data = $this->ads_model->set($data);
-				$this->session->set_flashdata('msg', 'Data saved.');			
+				$this->session->set_flashdata('msg', 'New Ads saved.');			
+				redirect('admin/ads/edit/'.$data[0]->id);
 		
 			}else{
 				//err in validation....
-				$this->session->set_flashdata('err', 'Error saving data.');
-
-				$data = array($data);
+				$this->session->set_flashdata('msg', 'Unable to save New Ads.');
+				redirect('admin/ads/new_ad');
 			}
 		}
 
@@ -133,6 +134,7 @@ class Ads extends MY_Controller {
 		
 		$this->render_navigation();
 		$this->render_user_info();
+		$this->render_flash();
 		
 		$this->template->render();
 	}
@@ -148,10 +150,10 @@ class Ads extends MY_Controller {
 		$this->_validate_del($data);
 		if($this->_validated){
 			$this->ads_model->del($data);
-			$this->session->set_flashdata('msg', 'Data deleted.');			
-			
+			$this->session->set_flashdata('msg', 'Ads ID '.$id.' deleted.');			
+
 		}else{
-			$this->session->set_flashdata('err', 'Error saving data.');
+			$this->session->set_flashdata('msg', 'Unable to delete Ads ID '.$id.'.');
 		}
 		redirect('admin/ads');
 	}
@@ -181,13 +183,14 @@ class Ads extends MY_Controller {
 			if($this->_validated){
 				//input new data
 				$data = $this->ads_model->set($data);
-				$this->session->set_flashdata('msg', 'Data saved.');			
+				$this->session->set_flashdata('msg', 'Ads ID '.$id.' updated.');			
 			}else{
 				//err in validation....
-				$this->session->set_flashdata('err', 'Error saving data.');
+				$this->session->set_flashdata('msg', 'Unable to update Ads ID '.$id.'.');
 			}
 
 			unset($_POST);
+			redirect('admin/ads/edit/'.$data[0]->id);
 		}
 
 		$data = $this->ads_model->get(array('id'=>$id));
@@ -200,12 +203,20 @@ class Ads extends MY_Controller {
 		$menu = $this->adminrender_library->render_navigation('Advertizements');
 		$this->template->write('menu',$menu);
 	}
-
 	private function render_user_info(){
 		$user_data = array(	'username'=>$this->session->userdata('username'),
 							'usertype'=>$this->session->userdata('usertype') );
 		$userlogged = $this->adminrender_library->render_userlogged($user_data);
 		$this->template->write('userlogged',$userlogged);
+	}
+	private function render_flash(){
+		if($flash = $this->session->flashdata('msg')){
+			$flash = $this->adminrender_library->render_flash($flash);
+
+			$this->template->write('flash',$flash);
+			$this->template->add_css(ADMINCSSPATH.'flash.css');
+			//$this->template->add_js(ADMINJSPATH.'flash.js');
+		}
 	}
 }
 

@@ -9,6 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Model Nepal Administrator Login</title>
   <link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>login-style.css">
+  <link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>flash.css">
   <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
 	<?php if(ENVIRONMENT=='production'):?>
@@ -18,6 +19,7 @@
 	<?php endif?>
 	
 	<script type='text/javascript' src='<?php echo base_url().ADMINJSPATH?>functions.js'></script>
+  <script type='text/javascript' src='<?php echo base_url().ADMINJSPATH?>flash.js'></script>
 </head>
 <body>
 	
@@ -50,5 +52,8 @@
       <a href="http://www.cssflow.com/mit-license" target="_blank">MIT License</a><br>
       Original PSD by <a href="http://365psd.com/day/2-234/" target="_blank">Rich McNabb</a>
   </section>
+
+  <?php echo $flash?>
+
 </body>
 </html>

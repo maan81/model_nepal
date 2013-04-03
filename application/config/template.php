@@ -81,6 +81,7 @@ $template['admin-login']['regions'] = array(
 											   'username',
 											   'password',
 											   'footer',
+											   'flash'
 											);
 $template['admin-login']['parser'] = 'parser';
 $template['admin-login']['parser_method'] = 'parse';

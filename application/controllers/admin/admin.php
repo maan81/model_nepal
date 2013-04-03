@@ -112,6 +112,9 @@ AND table_name='mytable';
 
 			$data['errors'] = $this->_chk_login($data['username'],$data['password']);
 			//$data['errors'] = $this->_chk_login_tmp($this->input->post());
+
+			$this->session->set_flashdata('msg',$data['errors']['login_err']);
+			redirect($this->uri->uri_string());
 		}
 		//----------------------------
 
@@ -119,6 +122,7 @@ AND table_name='mytable';
 		//$this->load->template('admin');
 		//$template['active_group'] = 'default';
 		$this->template->set_template('admin-login');
+		$this->render_flash();
 		$this->template->render();
     }
 
@@ -194,6 +198,15 @@ AND table_name='mytable';
 							'usertype'=>$this->session->userdata('usertype') );
 		$userlogged = $this->adminrender_library->render_userlogged($user_data);
 		$this->template->write('userlogged',$userlogged);
+	}
+	private function render_flash(){
+		if($flash = $this->session->flashdata('msg')){
+			$flash = $this->adminrender_library->render_flash($flash);
+
+			$this->template->write('flash',$flash);
+			$this->template->add_css(ADMINCSSPATH.'flash.css');
+			$this->template->add_js(ADMINJSPATH.'functions.js');
+		}
 	}
 		
 	//default

@@ -4,10 +4,10 @@
    <?php if($events) :?>
    <?php foreach($events as $key=>$val):?>
 
-      <div class="thumb" style="margin-right:15px;text-align:center;">
+      <div class="thumb" style="text-align:center;">
          <a href="<?php echo site_url('events/get/'.$val->id)?>">
             <span class="title"><?php echo $val->title?></span> 
-            <img src="<?php echo base_url().$val->thumbs?>" />
+            <img src="<?php echo base_url().$val->thumbs?>" width="323" height="152" />
          </a>
       </div>
 

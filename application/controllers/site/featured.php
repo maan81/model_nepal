@@ -511,10 +511,12 @@ foreach($imgs as $k=>$v){
 //echo dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val;
 //echo '<br/>';
 //echo is_dir(dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val);
-//echo '<br/>';
-			if($val === "." || $val == ".." || is_dir($val))
+			if($val === "." || $val == ".." || is_dir($val) || $val=='thumbs')
 				continue;
 			
+
+//echo $val;
+//echo '<br/>';
 			$is_dir = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val;
 
 			if(is_dir($is_dir)){

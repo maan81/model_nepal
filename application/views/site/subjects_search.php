@@ -25,7 +25,7 @@
          <?php $count_img++?>
       <?php endforeach?>
       <?php else : ?>
-         <div class="thumb" style="margin-right:15px;">
+         <div class="thumb" style="">
             <span class="title">No Results</span> 
          </div>
       <?php endif?>

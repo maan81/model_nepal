@@ -99,10 +99,9 @@ class Render_library{
 								<div id="ps_albums">';
 
 						foreach($data['featured'] as $key=>$val){
-							
 							$op .= 	'<div class="ps_album models" style="opacity:0;">
 										<a href="'.$val['link'].'" style="width:inherit;height:inherit;">
-											<img  src="'.$val['img'].'" alt="model"  />'.
+											<img  src="'.$val['img'].'" alt="'.$val['model']->name.'"  />'.
 											//'<div class="ps_desc">'
 											//'	<h2>'.$val['title'].'</h2>'
 											//'	<span>'.$val['desc'].'</span>'
@@ -210,6 +209,15 @@ class Render_library{
 	public function render_right($data){
 
 		$op = 	'<div class="rightPart">';
+
+		//events link
+		$op .= 	'<div class="rads">';
+
+		$op.=		'<a href="'.site_url('events').'">
+						<img src="'.base_url().IMGSPATH.'events.jpg" alt="Latest Events" width="250" />
+					</a>';
+		
+		$op .=	'</div>';
 
 		foreach($data as $key=>$val){
 			$op .= 	'<div class="rads">';

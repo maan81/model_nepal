@@ -98,7 +98,7 @@ class Events extends MY_Controller {
 			//--------------------------------------
 			//folder of imgs of the event
 			$full_path = dirname(BASEPATH).'/'.EVENTSPATH;	
-
+/*
 			//create thumbs folder if reqd.
 			make_dir($full_path.'/'.gen_folder_name($val->title),'thumbs');
 
@@ -135,6 +135,8 @@ class Events extends MY_Controller {
 			//--------------------------------------
 
 			$val->thumbs = EVENTSPATH.gen_folder_name($val->title).'/thumbs/'.$preview_img;
+*/
+			$val->thumbs = EVENTSPATH.gen_folder_name($val->title).'.jpg';
 		}
 		}
 

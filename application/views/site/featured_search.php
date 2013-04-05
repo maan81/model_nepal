@@ -2,9 +2,6 @@
 <?php //print_r($featured);?>
 <div class="modelsthumb">
    <?php if($featured) :?>
-<style>
-.thumb:nth-child(even){margin-right: 15px}
-</style>
    <?php foreach($featured as $key=>$val):?>
 
       <div class="thumb" style="text-align:center;">

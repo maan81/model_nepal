@@ -1,0 +1,36 @@
+#list_data_wrapper label {
+/*    display: block;
+    font-size: 17px;
+    margin: 0 0 5px;
+    position: relative; */    
+	font-size:inherit;
+}
+#list_data_wrapper label, /*#navigation,*/ .error, .success, input[type="submit"], input[type="reset"] {
+/*    font-weight: bold; */
+	font-weight:normal;
+}
+#list_data_wrapper select {
+/*    width: 940px; */
+	width:auto;
+}
+#list_data_wrapper select, .grid_16 input, .grid_16 textarea {
+/*    width: 930px; */
+	width:auto;
+}
+#list_data_wrapper select, textarea, input, td, #content, #foot {
+/*  background: url("gradient.png") repeat-x scroll 0 -28px #FFFFFF; */
+	background:none;
+}
+
+#list_data_wrapper .sorting_asc {
+    background: url("sort_asc.png") no-repeat scroll right center transparent;
+}
+#list_data_wrapper table.dataTable thead th {
+	color:#333;
+}
+#list_data_wrapper .sorting_desc {
+    background: url("sort_desc.png") no-repeat scroll right center transparent;
+}
+#list_data_wrapper .sorting {
+    background: url("sort_both.png") no-repeat scroll right center transparent;
+}

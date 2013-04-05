@@ -463,6 +463,14 @@ class Adminrender_library{
 
 					<div class="grid_16">
 						<small>
+							Add Profile Image as :
+						</small>
+						<small>
+							<ul style="list-style:none;">
+								<li><code>&lt;site&gt;\public\model_name\profile_img.jpg</code></li>
+							</ul>
+						</small>
+						<small>
 							To create a gallery, create a folder within <code>public\</code> 
 							and upload the images there using any ftp client. 
 						</small>
@@ -1396,6 +1404,25 @@ class Adminrender_library{
 							</p>
 						</div>
 						
+						<div class="grid_16">
+							<small>
+								Create a folder within <code>public\model_name</code> 
+								and upload three potrait images there using any ftp client. 
+							</small>
+							<br>
+							<small>eg.</small>  	
+							<small>
+								<ul style="list-style:none;">
+									<li><code>&lt;site&gt;\public\model_name\img1.jpg</code></li>
+									<li><code>&lt;site&gt;\public\model_name\img2.jpg</code></li>
+									<li><code>&lt;site&gt;\public\model_name\img3.jpg</code></li>
+									<li><code>&lt;site&gt;\public\another_model\img1.jpg</code></li>
+									<li><code>&lt;site&gt;\public\another_model\img2.jpg</code></li>
+									<li><code>&lt;site&gt;\public\another_model\img3.jpg</code></li>
+								</ul>
+							</small>
+						</div>		
+
 						<div class="grid_16">
 							<p class="submit">
 								<a id="prev_btn" href="#">Previous</a>

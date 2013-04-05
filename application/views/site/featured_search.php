@@ -2,12 +2,15 @@
 <?php //print_r($featured);?>
 <div class="modelsthumb">
    <?php if($featured) :?>
+<style>
+.thumb:nth-child(even){margin-right: 15px}
+</style>
    <?php foreach($featured as $key=>$val):?>
 
-      <div class="thumb" style="margin-right:15px;text-align:center;">
+      <div class="thumb" style="text-align:center;">
          <a href="<?php echo site_url('featured/get/'.$val->id.'/01')?>">
             <span class="title"><?php echo $val->name?></span> 
-            <img src="<?php echo $val->thumbs?>" />
+            <img src="<?php echo $val->thumbs?>" width="323" height="152" />
          </a>
       </div>
 

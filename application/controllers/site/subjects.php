@@ -248,7 +248,8 @@ class Subjects extends MY_Controller {
 
 		//redirect to get the 1st img. if not specified
 		if($img==null){
-			return $this->_list_imgs($subject_id);
+			//return $this->_list_imgs($subject_id);
+			redirect($this->uri->uri_string().'/1');
 		}
 
 		$this->template->set_template('site');

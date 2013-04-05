@@ -58,7 +58,8 @@ class Main extends MY_Controller {
 		foreach($featured_data as $key=>$val){
 			//$featured[$count++] = get_img($val,'01');
 
-			$tmp4 = get_img($val,'01');
+//			$tmp4 = get_img($val,'01');
+			$tmp4 = get_profile_img($val);
 //print_r($tmp);
 			$featured[$count++] = array(
 									'img'	=> $tmp4['cur_img'],
@@ -68,6 +69,8 @@ class Main extends MY_Controller {
 									'link'	=>$tmp4['cur'],
 								);
 		};
+		krsort($featured);
+
 
 		//---------------------------------------------
 
@@ -89,34 +92,7 @@ class Main extends MY_Controller {
 										'url'	=>	'#'
 									),
 					'featured'	=> $featured,
-/*					'featured' 	=> array(
-										0 	=> array(
-													'img'	=> 'first_model/01/m1.jpg',
-													'title'	=> 'The Night',
-													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
-												),
-										1 	=> array(
-													'img'	=> 'first_model/01/m1.jpg',
-													'title'	=> 'The Night',
-													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
-												),
-										2 	=> array(
-													'img'	=> 'first_model/01/m1.jpg',
-													'title'	=> 'The Night',
-													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
-												),
-										3 	=> array(
-													'img'	=> 'first_model/01/m1.jpg',
-													'title'	=> 'The Night',
-													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
-												),
-										4 	=> array(
-													'img'	=> 'first_model/01/m1.jpg',
-													'title'	=> 'The Night',
-													'desc'	=> 'Top Cat! The most effectual Top Cat! Who$#39;s intellectual close friends get to call him T.C., providing it&#39;s with dignity.Top Cat! The indisputable leader!'
-												),
-									),
-*/					'render_right'	=>$tmp3,
+					'render_right'	=>$tmp3,
 					'news'		=> $news,
 				);
 
@@ -125,8 +101,8 @@ class Main extends MY_Controller {
 		$this->template->write('mainContents',$op);
 
 		$this->template->add_js(JSPATH.'slider.js');
-		$this->template->add_css(CSSPATH.'slider.css');
 		$this->template->add_js(JSPATH.'my_slider.js');
+		$this->template->add_css(CSSPATH.'slider.css');
 		//-----------------------------------------------
 		//-----------------------------------------------
 		$this->template->render();

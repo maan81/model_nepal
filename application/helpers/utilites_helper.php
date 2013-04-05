@@ -137,6 +137,40 @@ if(! function_exists('get_img')){
 
 
 
+/**
+ * Get the server path of profile img forthe specified featured
+ *
+ * @param object [model]
+ * @return array of string [path to selected img, link to selected featured]
+ */
+if(! function_exists('get_profile_img')){
+	function get_profile_img($model){
+	
+		//set the relative model path + profile img
+		$path = FEATUREDPATH.gen_folder_name($model->name).'/profile_img.jpg';
+
+		//set the default values
+		$imgs['cur']	= site_url('featured/get/'.$model->id);
+		$imgs['cur_img']= base_url().$path;
+
+		//return the selectd img & the previous & next links
+		return $imgs;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 if(! function_exists('get_img_old')){
 	function get_img_old($model,$gallery=null,$img=null){

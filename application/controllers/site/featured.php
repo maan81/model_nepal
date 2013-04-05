@@ -91,25 +91,21 @@ class Featured extends MY_Controller {
 
 		foreach($featured as $sel_featured){
 			//folder of imgs of the featured model
-			$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($sel_featured->name).'/01';	
+			$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($sel_featured->name);	
 
 			//create thumbs folder inside the gallery folder if reqd.
 			make_dir($full_path,'thumbs');
 
 			//imgs in that folder
-			$imgs = scandir($full_path);
-
-			foreach($imgs as $k=>$v){
-				if($v=='.' || $v=='..' || $v=='thumbs' ){
-					continue;
-				}
+			$popular_img = 'popular_img.jpg';
+//print_r($popular_img);
 
 
 				//the current original img
-				$config['source_image']		= FEATUREDPATH.gen_folder_name($sel_featured->name).'/01/'.$v;	
+				$config['source_image']		= FEATUREDPATH.gen_folder_name($sel_featured->name).'/'.$popular_img;	
 
 				//thumbs of that img 
-				$config['new_image'] 		= $full_path.'/thumbs/'.$v;
+				$config['new_image'] 		= $full_path.'/thumbs/'.$popular_img;
 
 				$config['image_library']	= 'gd2';
 				$config['thumb_marker']		= '';
@@ -117,15 +113,15 @@ class Featured extends MY_Controller {
 				$config['maintain_ratio'] 	= TRUE;
 				$config['width'] 			= 323;
 				$config['height'] 			= 152;
+//print_r($config);
+//				$img_dim = getimagesize(base_url().$config['source_image']);
+//				
+//				//dont use landscape img
+//				if($img_dim[0] > $img_dim[1]){
+//					continue;
+//				}
 
-				$img_dim = getimagesize(base_url().$config['source_image']);
-				
-				//dont use landscape img
-				if($img_dim[0] > $img_dim[1]){
-					continue;
-				}
-
-				$sel_featured->popular_img = FEATUREDPATH.gen_folder_name($sel_featured->name).'/01/thumbs/'.$v;
+				$sel_featured->popular_img = base_url().FEATUREDPATH.gen_folder_name($sel_featured->name).'/thumbs/'.$popular_img;
 
 
 				$this->image_lib->initialize($config);
@@ -133,8 +129,7 @@ class Featured extends MY_Controller {
 				if ( ! $this->image_lib->resize()){
 				    echo $this->image_lib->display_errors();
 				}
-				break;			
-			}
+
 			$sel_featured->link 	 =  site_url('featured/get/'.$sel_featured->id);
 
 			//set empty if no suitable img found
@@ -172,9 +167,9 @@ class Featured extends MY_Controller {
 		foreach($featured as $key=>$val){
 
 			//--------------------------------------
-			//1st folder of imgs of the featured model
-			$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($val->name).'/01';	
-
+			//search imgs of the selected featured model
+			$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($val->name).'/search_img.jpg';	
+/*
 			//create thumbs folder if reqd.
 			make_dir($full_path,'thumbs');
 
@@ -210,6 +205,8 @@ class Featured extends MY_Controller {
 			//--------------------------------------
 
 			$val->thumbs = FEATUREDPATH.gen_folder_name($val->name).'/01/thumbs/'.$preview_img;
+*/
+			$val->thumbs = base_url().FEATUREDPATH.gen_folder_name($val->name).'/search_img.jpg';
 		}
 		}
 
@@ -511,14 +508,21 @@ foreach($imgs as $k=>$v){
 
 
 		foreach(scandir(dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name)) as $key=>$val){
-			if($val === "." || $val == "..")
+//echo dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val;
+//echo '<br/>';
+//echo is_dir(dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val);
+//echo '<br/>';
+			if($val === "." || $val == ".." || is_dir($val))
 				continue;
+			
+			$is_dir = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val;
 
-			$albums[$val] = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val;
+			if(is_dir($is_dir)){
+				$albums[$val] = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val;
+			}
 		}
-
 		$this->load->library('image_lib');
-
+//print_r($albums);
 
 		foreach($albums as $key=>$val){
 			$full_path = $val;

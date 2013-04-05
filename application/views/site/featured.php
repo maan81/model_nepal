@@ -6,7 +6,7 @@
 
       <div class="fullbanner">
          <a href="<?php echo $add->link?>">
-            <img src="<?php echo ADDSPATH.$add->image?>" alt="Banner" width="690" height="110" />
+            <img src="<?php echo base_url().ADDSPATH.$add->image?>" alt="Banner" width="690" height="110" />
          </a>
       </div>
 
@@ -14,7 +14,7 @@
          <div class="featuremodel">
             <img src="<?php 
                            $this->load->helper('utilites_helper'); 
-                           echo FEATUREDPATH.gen_folder_name($featured[0]->name)
+                           echo base_url().FEATUREDPATH.gen_folder_name($featured[0]->name)
 
                         ?>/01/m1.jpg" alt="Model" width="430" height="315" />
          </div>

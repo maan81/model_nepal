@@ -86,6 +86,7 @@ class Featured extends MY_Controller {
 		$new_featured = $this->adminrender_library->render_new_featured($data);
 		$this->template->set_template('admin');
 		$this->template->write('new_item',$new_featured);
+		$this->template->add_js(ADMINJSPATH.'functions.js');
 		
 		$this->render_navigation();
 		$this->render_user_info();

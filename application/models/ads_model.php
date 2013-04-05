@@ -130,7 +130,7 @@ class Ads_model extends CI_Model{
 	 */
 	private function update($data){
 		//update existing script ad
-		if($data['type']=='script'){
+		if($data->type=='script'){
 			return $this->_update_script($data);
 		}
 

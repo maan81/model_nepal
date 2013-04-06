@@ -86,7 +86,31 @@ class Adminrender_library{
 
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'["'.$val->id.'", "'.$val->category.'", "'.$val->title.'", "'.$val->type.'", "'.$val->dimensions.'", "<a class=\"edit\" href=\"'.site_url('admin/ads/edit/'.$val->id).'\">Edit</a>","<a class=\"delete\" href=\"'.site_url('admin/ads/del/'.$val->id).'\">Delete</a>"], ';
+			$op .=	'['.
+						'"'.$val->id.'", '.
+						'"'.$val->category.'", '.
+						'"'.$val->title.'", '.
+						'"'.$val->type.'", '.
+						'"'.$val->dimensions.'", '.
+						'"'.$val->position.'", ';
+
+			if($val->position == 1 ){
+				$op .=	'"<span class=\"disabled_positioning\">------</span>", ';
+
+			}else{
+				$op .=	'"<a class=\"up\" href=\"'.site_url('admin/ads/up/'.$val->id).'\">Up</a>", ';
+			}
+
+			if($val->position == count($data)){
+
+				$op .= 	'"<span class=\"disabled_positioning\">------</span>", ';
+			}else{
+
+				$op .= 	'"<a class=\"down\" href=\"'.site_url('admin/ads/down/'.$val->id).'\">Dn</a>", ';
+			}
+
+			$op .= 		'"<a class=\"edit\" href=\"'.site_url('admin/ads/edit/'.$val->id).'\">Edit</a>", '.
+						'"<a class=\"delete\" href=\"'.site_url('admin/ads/del/'.$val->id).'\">Delete</a>" ], ';
 		}
 
 		$op .=  '],"aoColumns": [
@@ -95,9 +119,13 @@ class Adminrender_library{
 			            { "sTitle": "Title" },
 			            { "sTitle": "Type" },
 			            { "sTitle": "Dimensions"},
+			            { "sTitle": "Position"},
+			            { "sTitle": "Move Up" , sWidth:"5%"},
+			            { "sTitle": "Move Down" , sWidth:"5%"},
 			            { "sTitle": "Actions", sWidth:"5%"},
 			            { "sTitle": "" , sWidth:"5%"},
-			        ]
+		        ]
+			    ,"aaSorting":[[5,\'asc\']],
 			    } );   
 			} );
 			</script>';

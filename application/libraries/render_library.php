@@ -30,11 +30,13 @@ class Render_library{
 					</div>
 					<div class="h-ad">';
 
+				if(isset($data['ads'])){
 				foreach($data['ads'] as $key=>$val){
 					$op .= '<a href="'.$val->link.'">
 								<img src="'.base_url().ADDSPATH.$val->image.'" alt="ad1" />
 							</a>';
 				}	
+				}
 
 		$op .=		'</div>
 					<div class="nav">

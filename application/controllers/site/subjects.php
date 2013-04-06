@@ -11,38 +11,16 @@ class Subjects extends MY_Controller {
 
 	public function index(){
 
-		$this->template->set_template('site');
-		
+		$this->render_skeleton();
 
 		//-----------------------------------------------
-		$op = $this->render_library->render_toplink(false);
-		$this->template->write('toplink',$op);
 
-		//-----------------------------------------------
 		$this->load->model('ads_model');
-		
-		$tmp = $this->ads_model->get(array('dimensions'=>'h-ad'));
-		$ads = array('ads'=>array($tmp[0]));
-
-		$this->config->load('nav');
-		$data = array(
-					'nav'	=>	$this->config->item('nav'),
-					'ads'=>array($tmp[0],$tmp[1])
-				);
-
-		$op = $this->render_library->render_header($data);
-		$this->template->write('header',$op);
 
 
-		//-----------------------------------------------
-		$op = $this->render_library->render_footer(false);
-		$this->template->write('footer',$op);
-
-		//-----------------------------------------------
-
-		$tmp  = $this->ads_model->get(array('dimensions'=>'fullbanner'));
-		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense'));
-		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
+		$tmp  = $this->ads_model->get(array('dimensions'=>'fullbanner','category'=>'published'));
+		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
+		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
 		$subjects = $this->subjects_model->get();
 
@@ -176,36 +154,14 @@ class Subjects extends MY_Controller {
 	 * @param int [model id]
 	 */
 	private function _list_imgs($model_id){
-		$this->template->set_template('site');
+
+		$this->render_skeleton();
 
 		//-----------------------------------------------
-		$op = $this->render_library->render_toplink(false);
-		$this->template->write('toplink',$op);
 
-		//-----------------------------------------------
 		$this->load->model('ads_model');
-		
-		$tmp = $this->ads_model->get(array('dimensions'=>'h-ad'));
-		$ads = array('ads'=>array($tmp[0]));
 
-		$this->config->load('nav');
-		$data = array(
-					'nav'	=>	$this->config->item('nav'),
-					'ads'=>array($tmp[0],$tmp[1])
-				);
-
-		$op = $this->render_library->render_header($data);
-		$this->template->write('header',$op);
-
-		//-----------------------------------------------
-		$op = $this->render_library->render_footer(false);
-		$this->template->write('footer',$op);
-
-
-		//-----------------------------------------------
-		$this->load->model('ads_model');
-		
-		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
+		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 		$subjects = $this->subjects_model->get(array('id' => $model_id));
 
 		$updated_subjects = array();
@@ -252,39 +208,15 @@ class Subjects extends MY_Controller {
 			redirect($this->uri->uri_string().'/1');
 		}
 
-		$this->template->set_template('site');
-		
+		$this->render_skeleton();
 
 		//-----------------------------------------------
-		$op = $this->render_library->render_toplink(false);
-		$this->template->write('toplink',$op);
 
-		//-----------------------------------------------
 		$this->load->model('ads_model');
+
 		
-		$tmp = $this->ads_model->get(array('dimensions'=>'h-ad'));
-		$ads = array('ads'=>array($tmp[0]));
-
-		$this->config->load('nav');
-		$data = array(
-					'nav'	=>	$this->config->item('nav'),
-					'ads'=>array($tmp[0],$tmp[1])
-				);
-
-		$op = $this->render_library->render_header($data);
-		$this->template->write('header',$op);
-
-
-		//-----------------------------------------------
-		$op = $this->render_library->render_footer(false);
-		$this->template->write('footer',$op);
-
-
-		//-----------------------------------------------
-		$this->load->model('ads_model');
-		
-		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense'));
-		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
+		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
+		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
 		//------------------------------------------------
 

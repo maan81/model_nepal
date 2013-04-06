@@ -15,12 +15,17 @@ class Ads_model extends CI_Model{
 	 * @param array of selected parameter
 	 * @return array of objects, or false 
 	 */
-	public function get($ads=false){
+	public function get($ads=false,$order_by=false,$order_type=false){
 		if($ads){
 			foreach($ads as $key=>$value){
 				$this->db->where($key,$value);
 			}
 		}
+
+		if($order_by){
+			$this->db->order_by($order_by.' '.$order_type);			
+		}
+		
 		$res = $this->db->get($this->table);
 
 		return count($res->result())?$res->result():false;
@@ -69,7 +74,7 @@ class Ads_model extends CI_Model{
 		$data = (object)$data;
 		//update data
 		if(isset($data->id)){
-			$data = $this->update($data);
+			return $this->update($data);
 
 		//insert new data
 		}else{
@@ -136,12 +141,16 @@ class Ads_model extends CI_Model{
 
 		$id = $data->id;
 		unset($data->id);
-//print_r($data);die;	
+		unset($data->title);
+
+
 		$this->db->where('id', $id);
 		$this->db->update($this->table, $data); 
 
-		$data->id = $id;
-		return $data;
+		return $this->get(array('id'=>$id));
+
+		//$data->id = $id;
+		//return $data;
 	}
 
 
@@ -152,7 +161,8 @@ class Ads_model extends CI_Model{
 	private function _update_script($data){
 		$id = $data->id;
 		unset($data->id);
-//print_r($data);die;	
+		unset($data->title);
+
 		$this->db->where('id', $id);
 		$this->db->update($this->table, $data); 
 
@@ -184,7 +194,47 @@ class Ads_model extends CI_Model{
 		}
 		return true;
 	}
+
+
+	/**
+	 * Decrement the position of the selected id
+	 * @param int id ofthe ad
+	 * @return boolean
+	 */
+	public function decrement($id=false){
+
+		if(!$id){
+			return false;
+		}
+
+		$this->db->set('position', 'position - 1', FALSE);
+		$this->db->where('id', $id);
+		$this->db->update($this->table);
+
+		return true;
+	}
+
+
+	/**
+	 * Increment the position of the selected id
+	 * @param int id ofthe ad
+	 * @return boolean
+	 */
+	public function increment($id=false){
+
+		if(!$id){
+			return false;
+		}
+
+		$this->db->set('position', 'position + 1', FALSE);
+		$this->db->where('id', $id);
+		$this->db->update($this->table);
+
+		return true;
+	}
+
 }
+
 
 /* End of file ads_model.php */
 /* Location: ./application/models/ads_model.php */

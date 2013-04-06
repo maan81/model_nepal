@@ -44,6 +44,7 @@ $route['admin/reset_user'] = 'admin/admin/reset_user';
 
 $route['admin/(:any)'] = 'admin/$1';
 $route['admin/(:any)/(:any)'] = 'admin/$1/$2';
+$route['admin/(:any)/(:any)/(:any)'] = 'admin/$1/$2/$3';
 
 $route['subjects'] = 'site/subjects';
 $route['subjects/(:any)'] = 'site/subjects/$1';

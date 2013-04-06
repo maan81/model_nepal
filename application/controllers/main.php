@@ -7,48 +7,21 @@ class Main extends MY_Controller {
 	}
 
 	public function index(){
-
-		$this->template->set_template('site');
-		
+		$this->render_skeleton();
 
 		//-----------------------------------------------
-		$op = $this->render_library->render_toplink(false);
-		$this->template->write('toplink',$op);
 
-		//-----------------------------------------------
 		$this->load->model('ads_model');
-		$tmp = $this->ads_model->get(array('dimensions'=>'h-ad'));
-		$ads = array('ads'=>array($tmp[0]));
-//echo '<pre>';
-//print_r($tmp);
-//die;
-//echo '<pre>';
-//print_r($tmp[0]);die;
 
-		$this->config->load('nav');
-		$data = array(
-					'nav'	=>	$this->config->item('nav'),
-					'ads'=>array($tmp[0],$tmp[1])
-				);
-//echo '<pre>';		
-//print_r($data);die;
-		$op = $this->render_library->render_header($data);
-		$this->template->write('header',$op);
+		//get different dimensions of banner
+
+		$tmp = $this->ads_model->get(array('dimensions'=>'fullbanner','category'=>'published'));
+		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
+		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
 
 		//-----------------------------------------------
-		$op = $this->render_library->render_footer(false);
-		$this->template->write('footer',$op);
-
-
-
-
-		//-----------------------------------------------
-		$tmp = $this->ads_model->get(array('dimensions'=>'fullbanner'));
-		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense'));
-		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'));
-
-		//-----------------------------------------------
+		//get the featured data
 		$this->load->model('featured_model');
 		$this->load->helper('utilites_helper');
 
@@ -56,33 +29,28 @@ class Main extends MY_Controller {
 		$featured = array();
 		$count=0;
 		foreach($featured_data as $key=>$val){
-			//$featured[$count++] = get_img($val,'01');
 
-//			$tmp4 = get_img($val,'01');
 			$tmp4 = get_profile_img($val);
-//print_r($tmp);
+
 			$featured[$count++] = array(
 									'img'	=> $tmp4['cur_img'],
-									//'title'	=>,
-									//'desc'	=>,
 									'model'	=>$val,
 									'link'	=>$tmp4['cur'],
 								);
 		};
+
+		//sort featured to put latest at the first
 		krsort($featured);
 
 
 		//---------------------------------------------
-
+		//get the news to be shown in the lower part
 		$this->load->model('news_model');
 		$news = $this->news_model->get();
+
 		//---------------------------------------------
 
 
-//echo '<pre>';
-//print_r($featured);
-//print_r($img_links);
-//die;
 
 		$data = array(
 					'add'		=>	$tmp[0],
@@ -97,6 +65,8 @@ class Main extends MY_Controller {
 				);
 
 
+
+		//render
 		$op = $this->render_library->render_mainContents($data);
 		$this->template->write('mainContents',$op);
 
@@ -105,6 +75,7 @@ class Main extends MY_Controller {
 		$this->template->add_css(CSSPATH.'slider.css');
 		//-----------------------------------------------
 		//-----------------------------------------------
+
 		$this->template->render();
 	}
 }

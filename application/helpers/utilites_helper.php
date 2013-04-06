@@ -102,7 +102,7 @@ if(! function_exists('get_img')){
 		for($i=0;$i<count($arr);$i++){
 			$img_no++;
 
-			//current positon reached ...
+			//current position reached ...
 			if($img == $img_no){
 				break;
 			}

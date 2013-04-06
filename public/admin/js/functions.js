@@ -32,6 +32,6 @@ $(function(){
 	$('.flash_close').click(function(e){
 		e.preventDefault();
 
-		$('.flash_msg').remove();
+		$('.flash_msg').fadeOut('fast',function(){$(this).remove()});
 	})
 })

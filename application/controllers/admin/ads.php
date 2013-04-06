@@ -29,8 +29,12 @@ class Ads extends MY_Controller {
 		$this->list_ads();
 	}
 	
+
+	/**
+	 *  List the all ads in the system
+	 */
 	public function list_ads(){
-		$data = $this->ads_model->get();
+		$data = $this->ads_model->get(false,'position','asc');
 
 		$ads = $this->adminrender_library->render_adslist($data);
 
@@ -39,6 +43,7 @@ class Ads extends MY_Controller {
 		$this->template->write('list',$ads);
 		
 		$this->template->add_js(ADMINJSPATH.'jquery.dataTables.min.js');
+		$this->template->add_js(ADMINJSPATH.'functions.js');
 
 		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables.css');
 		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables_themeroller.css');
@@ -62,6 +67,97 @@ class Ads extends MY_Controller {
 	private function _validate_src($data){
 		$this->_validated_src = true;
 	}
+
+
+	/**
+	 * Shift the given ad ID 1 setp up
+	 * @param int -- ad id
+	 * @return
+	 */
+	public function up($id=false){
+		if(!$id){
+			redirect('admin/ads');
+		}
+
+		$data = array(
+						'id'		=> $id,
+						'position'	=> '`position` + 1'
+					);
+
+		//validaton of the id & position.
+		//currently used
+		$this->_validated=true;
+
+
+		if($this->_validated){
+			//the data to be moved up
+			$cur_data = $this->ads_model->get(array('id'=>$id));
+
+			//the data to be moved down			
+			$upper_data = $this->ads_model->get(array('position'=>$cur_data[0]->position - 1));
+
+			//move the data down
+			$this->ads_model->increment($upper_data[0]->id);
+
+			//move the data up
+			$this->ads_model->decrement($cur_data[0]->id);
+
+
+			$this->session->set_flashdata('msg', 'Ads ID '.$id.' updated.');			
+		}else{
+			//err in validation....
+			$this->session->set_flashdata('msg', 'Unable to update Ads ID '.$id.'.');
+		}
+
+		unset($_POST);
+		redirect('admin/ads');
+	}
+
+
+
+	/**
+	 * Shift the given ad ID 1 setp down
+	 * @param int -- ad id
+	 * @return
+	 */
+	public function down($id=false){
+		if(!$id){
+			redirect('admin/ads');
+		}
+
+		$data = array(
+						'id'		=> $id,
+						'position'	=> '`position` - 1'
+					);
+		
+		//validaton of the id & position.
+		//currently used
+		$this->_validated=true;
+
+		
+		if($this->_validated){
+			//the data to be moved down
+			$cur_data = $this->ads_model->get(array('id'=>$id));
+
+			//the data to be moved up			
+			$lower_data = $this->ads_model->get(array('position'=>$cur_data[0]->position + 1 ));
+
+			//move the data up
+			$this->ads_model->decrement($lower_data[0]->id);
+
+			//move the data down
+			$this->ads_model->increment($cur_data[0]->id);
+
+			$this->session->set_flashdata('msg', 'Ads ID '.$id.' updated.');			
+		}else{
+			//err in validation....
+			$this->session->set_flashdata('msg', 'Unable to update Ads ID '.$id.'.');
+		}
+
+		unset($_POST);
+		redirect('admin/ads');
+	}
+
 
 
 	/**
@@ -131,6 +227,7 @@ class Ads extends MY_Controller {
 		$new_ads = $this->adminrender_library->render_new_ads($data);
 		$this->template->set_template('admin');
 		$this->template->write('new_item',$new_ads);
+		$this->template->add_js(ADMINJSPATH.'functions.js');
 		
 		$this->render_navigation();
 		$this->render_user_info();
@@ -169,22 +266,23 @@ class Ads extends MY_Controller {
 		}
 		if($this->input->post()){
 			$id = $this->session->userdata('updated_id');
-	
+
 			$data = array(
 							'id'		=> $id,
 							'title'		=> $this->input->post('title'),
 							'category'	=> $this->input->post('category'),
 							'dimensions'=> $this->input->post('dimensions'),
-							'link'		=> $this->input->post('link')
+							'link'		=> $this->input->post('link'),
+							'type'		=> $this->input->post('type')
 						);
 
 			$this->_validate_new($data);
-			
+
 			if($this->_validated){
 				//input new data
-				$data = $this->ads_model->set($data);
-				$this->session->set_flashdata('msg', 'Ads ID '.$id.' updated.');			
-			}else{
+					$data = $this->ads_model->set($data);
+					$this->session->set_flashdata('msg', 'Ads ID '.$id.' updated.');			
+				}else{
 				//err in validation....
 				$this->session->set_flashdata('msg', 'Unable to update Ads ID '.$id.'.');
 			}

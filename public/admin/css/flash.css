@@ -28,3 +28,8 @@
     margin-top: -9px;
     width: 10px;
 }
+
+.disabled_positioning{
+    color: #888888;
+    padding: 4px;
+}

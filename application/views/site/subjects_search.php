@@ -18,7 +18,7 @@
             <h1><?php echo $val->name?></h1>
             Height:<?php echo $val->height?><br />
             Weight: <?php echo $val->weight?><br />
-            <a href="<?php echo site_url('subjects/get/'.$val->id)?>">More &raquo;</a> 
+            <a href="<?php echo site_url('subjects/'.$val->id)?>">More &raquo;</a> 
 
          </div>
 

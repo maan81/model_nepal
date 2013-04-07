@@ -231,10 +231,10 @@ class Events extends MY_Controller {
 	 *  @param int[event id], int[selected img id]
 	 *  @return void
 	 */
-	public function get($event_id=null,$img=null){
+	public function get($event_id=null,$img=null,$param2=null){
 		//redirect to event search if not specified
-		if($event_id==null){
-			return $this->search();
+		if($event_id==null || $event_id=='search'){
+			return $this->search($img,$param2);
 		}
 
 		//----------------------------------------------
@@ -338,12 +338,12 @@ class Events extends MY_Controller {
 
 				//previous img link
 				if($count>1){
-					$event->prev = site_url('events/get/'.$event->id.'/'.($count-1));
+					$event->prev = site_url('events/'.$event->id.'/'.($count-1));
 				}
 
 				//next img link
 				if($count<count($imgs)-3){
-					$event->next = site_url('events/get/'.$event->id.'/'.($count+1));
+					$event->next = site_url('events/'.$event->id.'/'.($count+1));
 				}
 			}
 
@@ -379,7 +379,7 @@ class Events extends MY_Controller {
 			array_push($event->thumbs,
 						array(
 								'img'=> base_url().EVENTSPATH.gen_folder_name($event->title).'/thumbs/'.$v,
-								'link'=>site_url('events/get/'.$event->id.'/'.($count)),
+								'link'=>site_url('events/'.$event->id.'/'.($count)),
 								'type'=>$img_type
 							)
 						);	

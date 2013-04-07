@@ -129,7 +129,7 @@ class Render_library{
 						    <div class="rightadsense">';
 
 					//advertizing thru image ad
-					if($data['add2'][0]->image){
+					if($data['add2'][0]->type=='image'){
 						$op .=	'<a href="'.$data['add2'][0]->link.'">
 									<img  src="'.ADDSPATH.$data['add2'][0]->image.'" alt="model" width="355" height="250" />
 							    </a>';
@@ -222,10 +222,11 @@ class Render_library{
 		$op .=	'</div>';
 
 		foreach($data as $key=>$val){
+
 			$op .= 	'<div class="rads">';
 
 			//advertizing thru image ad
-			if($val->image){
+			if($val->type=='image'){
 				$op.=	'<a href="'.$val->link.'">
 							<img src="'.base_url().ADDSPATH.$val->image.'" alt="Ad" width="250" />
 						</a>';

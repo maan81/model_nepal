@@ -166,8 +166,10 @@ class Ads_model extends CI_Model{
 		$this->db->where('id', $id);
 		$this->db->update($this->table, $data); 
 
-		$data->id = $id;
-		return $data;
+		return $this->get(array('id'=>$id));
+
+		//$data->id = $id;
+		//return $data;
 	}
 
 

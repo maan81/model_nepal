@@ -1,0 +1,76 @@
+Featured Models
+
+Once the information has been saved through the administrator, a folder
+will be created in ./public/featured/ with the submitted name.
+
+To add a gallery, create a gallery [folder] inside the model [model's 
+folder] with two digit folder name -- ie, 01, 02, 03, ...
+Add images each galleries images in the gallery's folder.
+
+The Featured Model should have a "popular_img.jpg" , "profile_img.jpg" 
+and "search_img.jpg" present in the featured model's folder.
+
+The dimensions of the images should be as follows : 
+	profile_img.jpg = width : 210px, height : 397px
+	popular_img.jpg = width : 215px, height : 275px
+	search_img.jpg	= width : 323px, height : 152px
+	
+	Inside the gallery folders :
+	potrait images 	= width 400px, height 600px
+	landscape images= width 610px, height 400px
+	
+	
+========================================================================
+
+Agency Models
+
+Once the information has been saved through the administrator, a folder
+will be created in ./public/subjects/ with the submitted name.
+
+Add three images in the folder.
+
+The the images should have width of 33px and height od 496px.
+
+========================================================================
+
+Events
+
+After the information has been saved through the administrator, a folder
+will be created in ./public/events/ with the submitted name.
+
+Add images in that folder.
+
+The dimensions of the images should be : 
+	
+	potrait images 	= width 400px, height 600px
+	landscape images= width 610px, height 400px
+
+There should also be a image ./public/events/<event_name.jpg> having
+width 323px & height 152px. This will be used for search results.
+
+========================================================================
+
+News/Articles/Gossips
+
+.......................
+
+========================================================================
+
+Types of News
+
+You can add/remove/edit types of news available by editing file
+./application/config/news_type.php
+
+========================================================================
+
+Ethnicities
+
+You can add/remove/edit Ethnicities available for models by editing file
+./application/config/ethnicity.php
+The first letter should NOT be capitalized.
+
+========================================================================
+
+Advertizements
+
+The images uploaded should have the following dimensions : 

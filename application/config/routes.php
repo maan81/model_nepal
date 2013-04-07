@@ -47,19 +47,19 @@ $route['admin/(:any)/(:any)'] = 'admin/$1/$2';
 $route['admin/(:any)/(:any)/(:any)'] = 'admin/$1/$2/$3';
 
 $route['subjects'] = 'site/subjects';
-$route['subjects/(:any)'] = 'site/subjects/$1';
-$route['subjects/(:any)/(:any)'] = 'site/subjects/$1/$2';
-$route['subjects/(:any)/(:any)/(:any)'] = 'site/subjects/$1/$2/$3';
+$route['subjects/(:any)'] = 'site/subjects/get/$1';
+$route['subjects/(:any)/(:any)'] = 'site/subjects/get/$1/$2';
+$route['subjects/(:any)/(:any)/(:any)'] = 'site/subjects/get/$1/$2/$3';
 
 $route['featured'] = 'site/featured';
-$route['featured/(:any)'] = 'site/featured/$1';
-$route['featured/(:any)/(:any)'] = 'site/featured/$1/$2';
-$route['featured/(:any)/(:any)/(:any)'] = 'site/featured/$1/$2/$3';
+$route['featured/(:any)'] = 'site/featured/get/$1';
+$route['featured/(:any)/(:any)'] = 'site/featured/get/$1/$2';
+$route['featured/(:any)/(:any)/(:any)'] = 'site/featured/get/$1/$2/$3';
 
 $route['events'] = 'site/events';
-$route['events/(:any)'] = 'site/events/$1';
-$route['events/(:any)/(:any)'] = 'site/events/$1/$2';
-$route['events/(:any)/(:any)/(:any)'] = 'site/events/$1/$2/$3';
+$route['events/(:any)'] = 'site/events/get/$1';
+$route['events/(:any)/(:any)'] = 'site/events/get/$1/$2';
+$route['events/(:any)/(:any)/(:any)'] = 'site/events/get/$1/$2/$3';
 
 
 $route['news'] = 'site/news';

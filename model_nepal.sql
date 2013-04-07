@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 02, 2013 at 03:59 PM
+-- Generation Time: Apr 07, 2013 at 08:18 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -35,24 +35,26 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `script` text,
   `link` varchar(255) DEFAULT NULL,
   `image` varchar(127) DEFAULT NULL,
+  `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `ads`
 --
 
-INSERT INTO `ads` (`id`, `title`, `category`, `type`, `dimensions`, `script`, `link`, `image`) VALUES
-(1, 'Wired 868', 'published', 'image', 'h-ad', '', 'http://google.com.np', '1363158059.1957.jpg'),
-(2, 'Vmail', 'published', 'image', 'h-ad', '', 'http://facebook.com', '1363159357.1056.jpg'),
-(3, 'Digital Dream Utopia', 'published', 'image', 'fullbanner', '', 'http://yahoo.com', '1363159980.0329.jpg'),
-(6, 'Car Zoom', 'published', 'image', 'rightadsense', '', 'http://cnn.com', '1363161795.57.jpg'),
-(8, 'Vmail 2', 'published', 'image', 'rads', '', 'http://stackoverflow.com', '1363162127.7703.jpg'),
-(9, 'Wired 868 2', 'published', 'image', 'rads', '', 'http://skype.com', '1363162394.1761.jpg'),
-(10, 'Ubuntu', 'published', 'image', 'rads', '', 'http://www.ubuntu.com/', '1363162466.9965.jpg'),
-(11, 'Vmail 3', 'published', 'image', 'rads', '', 'http://facebook.com', '1363162539.473.jpg'),
-(12, 'Digital Dream Utopia 2', 'published', 'image', 'rads', '', 'http://youtube.com', '1363162622.9466.jpg'),
-(21, 'adsence test', 'published', 'script', 'rads', '<script type="text/javascript"><!--\ngoogle_ad_client = "ca-pub-7372466155313335";\n/* 250 Ad */\ngoogle_ad_slot = "3531712710";\ngoogle_ad_width = 250;\ngoogle_ad_height = 250;\n//-->\n</script>\n<script type="text/javascript"\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js">\n</script>\n', NULL, NULL);
+INSERT INTO `ads` (`id`, `title`, `category`, `type`, `dimensions`, `script`, `link`, `image`, `position`) VALUES
+(1, 'Wired 868', 'published', 'image', 'h-ad', '', 'http://google.com.np', '1363158059.1957.jpg', 3),
+(2, 'Vmail', 'published', 'image', 'h-ad', '', 'http://facebook.com', '1363159357.1056.jpg', 4),
+(3, 'Digital Dream Utopia', 'published', 'image', 'fullbanner', '', 'http://yahoo.com', '1363159980.0329.jpg', 6),
+(6, 'Car Zoom', 'published', 'image', 'rightadsense', '', 'http://cnn.com', '1363161795.57.jpg', 7),
+(8, 'Vmail 2', 'draft', 'image', 'rads', '', 'http://stackoverflow.com', '1363162127.7703.jpg', 10),
+(9, 'Wired 868 2', 'draft', 'image', 'rads', '', 'http://skype.com', '1363162394.1761.jpg', 8),
+(10, 'Ubuntu', 'published', 'image', 'rads', '<script>\nalert(''hi'');\n</script>', 'http://ubuntu.com', '1363162466.9965.jpg', 5),
+(11, 'Vmail 3', 'draft', 'image', 'rads', '', 'http://facebook.com', '1363162539.473.jpg', 9),
+(12, 'Digital Dream Utopia 2', 'draft', 'image', 'rads', '', 'http://youtube.com', '1363162622.9466.jpg', 11),
+(21, 'adsence test', 'published', 'script', 'rads', '<script type="text/javascript"><!--\ngoogle_ad_client = "ca-pub-7372466155313335";\n/* 250 Ad */\ngoogle_ad_slot = "3531712710";\ngoogle_ad_width = 250;\ngoogle_ad_height = 250;\n//-->\n</script>\n<script type="text/javascript"\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js">\n</script>\n', NULL, NULL, 1),
+(22, 'Adsence test 2', 'published', 'script', 'rads', '<script type="text/javascript"><!--\ngoogle_ad_client = "ca-pub-7372466155313335";\n/* 250 Ad */\ngoogle_ad_slot = "3531712710";\ngoogle_ad_width = 250;\ngoogle_ad_height = 250;\n//-->\n</script>\n<script type="text/javascript"\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js">\n</script>\n', '0', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -101,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `featured` (
   `date_created` int(11) NOT NULL,
   `profile_viewed` int(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `featured`
@@ -109,7 +111,10 @@ CREATE TABLE IF NOT EXISTS `featured` (
 
 INSERT INTO `featured` (`id`, `name`, `gender`, `ethnicity`, `wardrobe`, `location`, `make_up`, `photographer`, `model_by`, `date_created`, `profile_viewed`) VALUES
 (1, 'First Model', 0, 'gurung', 'First Wardrobe', 'KTM', 'Someone', 'Somebody', 'Noone', 0, 0),
-(2, 'nadrzr ar', 1, 'brahmin', 'd ', 'df jr', '', '', '', 0, 1);
+(3, 'Test Model 2', 0, 'gurung', 'Personal', 'Kathmandu', 'Mr. Designer', 'The Fashion Plus', 'The Fashion Plus', 0, 1),
+(5, 'Model Nepal', 0, 'gurung', 'Personal', 'Kathmandu', 'Mr. Designer', 'The Fashion Plus', 'The Fashion Plus', 0, 1),
+(6, 'Kritika', 0, 'limbu', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 0, 1),
+(7, 'Gunjun', 0, 'gurung', 'The Fashion Plus', 'Kathmandu', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -140,14 +145,15 @@ CREATE TABLE IF NOT EXISTS `news` (
   `type` varchar(11) NOT NULL,
   `image` varchar(127) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `title`, `content`, `summary`, `type`, `image`) VALUES
-(9, 'Ways to Decrease your Obsiety', '<p>There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease the obsiety </p>\r\n<p>There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease the obsiety </p>', 'There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease th', 'health', '1364635223.73.jpg');
+(9, 'Ways to Decrease your Obsiety', '<p>There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease the obsiety </p>\r\n<p>There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease the obsiety </p>', 'There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease th', 'health', '1364635223.73.jpg'),
+(10, 'qqqqqqqq', 'a sdfawe fasef awef fasf w', 'asd fasdf e', 'health', '1365228551.5597.jpg');
 
 -- --------------------------------------------------------
 
@@ -272,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `visitors_count` (
   UNIQUE KEY `unique` (`ip_address`,`type`,`model_id`),
   KEY `ip_address` (`ip_address`),
   KEY `model_id` (`model_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=102 ;
 
 --
 -- Dumping data for table `visitors_count`
@@ -283,7 +289,11 @@ INSERT INTO `visitors_count` (`id`, `ip_address`, `type`, `model_id`, `timestamp
 (38, '192.168.1.3', 'subjects', 1, '2013-03-24 05:43:25'),
 (39, '127.0.0.1', 'subjects', 6, '2013-03-25 07:47:09'),
 (40, '127.0.0.1', 'featured', 1, '2013-04-02 05:58:25'),
-(41, '127.0.0.1', 'featured', 2, '2013-04-02 10:01:28');
+(57, '127.0.0.1', 'featured', 3, '2013-04-04 11:34:18'),
+(61, '127.0.0.1', 'featured', 5, '2013-04-05 03:32:13'),
+(65, '127.0.0.1', 'featured', 6, '2013-04-05 11:29:38'),
+(76, '127.0.0.1', 'featured', 7, '2013-04-05 11:32:21'),
+(81, '127.0.0.1', 'featured', 2, '2013-04-07 01:51:01');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -196,10 +196,10 @@ class Subjects extends MY_Controller {
 	 *  @param int[subject id], int[selected img id]
 	 *  @return void
 	 */
-	public function get($subject_id=null,$img=null){
+	public function get($subject_id=null,$img=null,$param2=null){
 		//redirect to subject search if not specified
-		if($subject_id==null){
-			return $this->search();
+		if($subject_id==null || $subject_id=='search'){
+			return $this->search($img,$param2);
 		}
 
 		//redirect to get the 1st img. if not specified
@@ -303,12 +303,12 @@ class Subjects extends MY_Controller {
 
 				//previous img link
 				if($count>1){
-					$subject->prev = site_url('subjects/get/'.$subject->id.'/'.($count-1));
+					$subject->prev = site_url('subjects/'.$subject->id.'/'.($count-1));
 				}
 
 				//next img link
 				if($count<count($imgs)-3){
-					$subject->next = site_url('subjects/get/'.$subject->id.'/'.($count+1));
+					$subject->next = site_url('subjects/'.$subject->id.'/'.($count+1));
 				}
 			}
 			
@@ -343,7 +343,7 @@ class Subjects extends MY_Controller {
 			array_push($subject->thumbs,
 						array(
 								'img'=> base_url().SUBJECTSPATH.gen_folder_name($subject->name).'/thumbs/'.$v,
-								'link'=>site_url('subjects/get/'.$subject->id.'/'.($count)),
+								'link'=>site_url('subjects/'.$subject->id.'/'.($count)),
 								'type'=>$img_type
 							)
 						);	

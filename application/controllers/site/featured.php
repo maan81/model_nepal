@@ -108,7 +108,7 @@ class Featured extends MY_Controller {
 				    echo $this->image_lib->display_errors();
 				}
 
-			$sel_featured->link 	 =  site_url('featured/get/'.$sel_featured->id);
+			$sel_featured->link 	 =  site_url('featured/'.$sel_featured->id);
 
 			//set empty if no suitable img found
 			if(!isset($sel_featured->popular_img)){
@@ -222,8 +222,8 @@ class Featured extends MY_Controller {
 
 
 	public function get($model=null,$gallery='01',$img=null){
-		if($model==null){
-			return $this->search();
+		if($model==null || $model=='search'){
+			return $this->search($gallery,$img);
 		}
 
 		//disp selected gallery's preview imgs
@@ -376,7 +376,7 @@ foreach($imgs as $k=>$v){
 	if($img_dim[0] > $img_dim[1]){
 		array_push(	$imgs_preview['landscape'],
 					array('img' => FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/thumbs/'.$v,
-						  'link'=> site_url('featured/get/'.$featured[0]->id.'/'.$gallery.'/'.$count_link)
+						  'link'=> site_url('featured/'.$featured[0]->id.'/'.$gallery.'/'.$count_link)
 					  )
 				);
 
@@ -384,7 +384,7 @@ foreach($imgs as $k=>$v){
 	}else{
 		array_push(	$imgs_preview['potrait'],
 					array('img'=>FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/thumbs/'.$v,
-						  'link'=>site_url('featured/get/'.$featured[0]->id.'/'.$gallery.'/'.$count_link)
+						  'link'=>site_url('featured/'.$featured[0]->id.'/'.$gallery.'/'.$count_link)
 						)
 					);
 	}

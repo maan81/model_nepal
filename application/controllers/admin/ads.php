@@ -259,12 +259,44 @@ class Ads extends MY_Controller {
 		$this->_validated = true;
 	}
 
+
+	private function edit_adsence($id){
+		$data = array(
+						'id'		=>	$id,
+						'title'		=>	$this->input->post('title'),
+						'category'	=>	$this->input->post('category'),
+						'type'		=>	'script',
+						'script'	=> 	$this->input->post('script'),
+						'dimensions'=> 	$this->input->post('dimensions'),
+					);
+
+		$this->_validate_src($data);
+
+		unset($_POST);
+		
+		if($this->_validated_src){
+			//update data
+			$data = $this->ads_model->set($data);
+			$this->session->set_flashdata('msg', 'New Ads saved.');			
+			redirect('admin/ads/edit/'.$data[0]->id);
+
+		}else{
+			//err in validation....
+			$this->session->set_flashdata('msg', 'Unable to save New Ads.');
+			redirect('admin/ads/edit/'.$id);
+		}
+	}
+
 	public function edit($id=false){
 		// id error
 		if(!$id){
 			return false;
 		}
-		if($this->input->post()){
+
+		if($this->input->post('type')=='script'){
+			return $this->edit_adsence($id);
+
+		}elseif($this->input->post()){
 			$id = $this->session->userdata('updated_id');
 
 			$data = array(
@@ -282,11 +314,11 @@ class Ads extends MY_Controller {
 				//input new data
 					$data = $this->ads_model->set($data);
 					$this->session->set_flashdata('msg', 'Ads ID '.$id.' updated.');			
-				}else{
+			}else{
 				//err in validation....
 				$this->session->set_flashdata('msg', 'Unable to update Ads ID '.$id.'.');
 			}
-
+//print_r($data);
 			unset($_POST);
 			redirect('admin/ads/edit/'.$data[0]->id);
 		}

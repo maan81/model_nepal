@@ -1,4 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ *
+ *	THIS CLASS IS CURRENTLY NOT REQUIRED ............
+ *	AND SHOULD NOT BE REQUIRED IN THE FUTURE TOO ....
+ *
+ */
+
 class Gossips extends MY_Controller {
 
 	/**

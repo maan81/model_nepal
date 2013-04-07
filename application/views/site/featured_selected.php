@@ -18,7 +18,13 @@
 				<img src="<?php echo  $img_links['cur_img']?>" alt="<?php echo $featured[0]->name?>" 
 						height="600" width="400"/>
 			</div>
-			<div class="rtbox"></div>
+			<div class="rtbox">
+		        <?php 
+		        if($rtbbox[0] && $rtbbox[0]->type=='script'): 
+					echo $rtbbox[0]->script;
+				endif;
+				?>
+			</div>
 			<div class="rbbox"></div>
 
 			<table class="modelinfo">

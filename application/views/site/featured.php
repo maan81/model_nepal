@@ -11,12 +11,33 @@
       </div>
 
       <div class="modelspage">
-         <div class="featuremodel">
-            <img src="<?php 
-                           $this->load->helper('utilites_helper'); 
-                           echo base_url().FEATUREDPATH.gen_folder_name($featured[0]->name)
+<style>
+.featuredimg_wrapper {
+    border: 5px solid #FFFFFF;
+    border-radius: 5px 5px 5px 5px;
+    height: 315px;
+    overflow: hidden;
+    position: inherit;
+    width: 430px;
+}
+.featuredimg_wrapper a{
+   height:inherit;
+}
 
-                        ?>/01/m1.jpg" alt="Model" width="430" height="315" />
+.featuredimg_wrapper img {
+    height: inherit;
+    position: absolute;
+    left: -25%;
+}
+</style>         
+         <div class="featuremodel">
+            <div class="featuredimg_wrapper">
+               <a href="<?php echo $latest_featured[0]->link?>">
+                  <img src="<?php echo $latest_featured[0]->latest_img?>" 
+                        alt="<?php echo $latest_featured[0]->name?>" 
+                        title="<?php echo $latest_featured[0]->name?>" />
+               </a>
+            </div>
          </div>
 
          <div class="featurem">Featured Model</div>

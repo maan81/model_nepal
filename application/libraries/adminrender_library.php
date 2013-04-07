@@ -32,12 +32,13 @@ class Adminrender_library{
 									'h-ad'		  => 'Horizontal Ads',
 									'fullbanner'  => 'Full Banner',
 									'rads'		  => 'Right Ads',
-									'rightadsense'=> 'Right Adsense'
+									'rightadsense'=> 'Right Adsense',
 								);
 
 		$this->adddimensions_script = array(
 										'rads'		  => 'Right Ads',
-										'rightadsense'=> 'Right Adsense'
+										'rightadsense'=> 'Right Adsense',
+										'rtbbox'	  => 'Right Upper/Lower Box'
 									);
 	}
 	

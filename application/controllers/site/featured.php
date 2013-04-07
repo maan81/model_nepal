@@ -30,6 +30,14 @@ class Featured extends MY_Controller {
 						);
 		$popular_featured = $this->featured_model->get(false,$pop_params);
 		$popular_featured = $this->popular_img($popular_featured);
+
+		$latest_params = array(
+							'limit'		=> array('start'=>0,'size'=>1),
+							'order_by'	=> array('coln'	=>'id','dir'=>'desc'),
+						);
+		$latest_featured  = $this->featured_model->get(false,$latest_params);
+		$latest_featured = $this->latest_featured($latest_featured);
+
 		//-----------------------------------------------
 		
 		$this->load->config('ethnicity');
@@ -44,6 +52,7 @@ class Featured extends MY_Controller {
 					'render_right'	=>	$tmp3,
 					'ethnicity'		=> 	$this->config->item('ethnicity'),
 					'popular_featured'=>$popular_featured,
+					'latest_featured'=> $latest_featured,
 				);
 
 
@@ -55,6 +64,33 @@ class Featured extends MY_Controller {
 		//-----------------------------------------------
 		//-----------------------------------------------
 		$this->template->render();
+	}
+
+
+	/**
+	 * Resize img. to display on latest ing & its links.
+	 * @param array of object of latest models
+	 * @return array of objects of latest models with formatted.
+	 */
+	private function latest_featured($latest_featured){
+
+		//folder of imgs of the featured model
+		$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($latest_featured[0]->name);	
+
+		//imgs in that folder
+		$search_img = 'search_img.jpg';
+
+
+		$latest_featured[0]->latest_img = base_url().FEATUREDPATH.gen_folder_name($latest_featured[0]->name).'/'.$search_img;
+		$latest_featured[0]->link 	 =  site_url('featured/'.$latest_featured[0]->id);
+
+
+		//set empty if no suitable img found
+		if(!isset($latest_featured[0]->latest_img)){
+			$latest_featured[0]->latest_img = '';
+		}
+
+		return $latest_featured;		
 	}
 
 
@@ -76,39 +112,11 @@ class Featured extends MY_Controller {
 
 			//imgs in that folder
 			$popular_img = 'popular_img.jpg';
-//print_r($popular_img);
 
 
-				//the current original img
-				$config['source_image']		= FEATUREDPATH.gen_folder_name($sel_featured->name).'/'.$popular_img;	
-
-				//thumbs of that img 
-				$config['new_image'] 		= $full_path.'/thumbs/'.$popular_img;
-
-				$config['image_library']	= 'gd2';
-				$config['thumb_marker']		= '';
-				$config['create_thumb'] 	= TRUE;
-				$config['maintain_ratio'] 	= TRUE;
-				$config['width'] 			= 323;
-				$config['height'] 			= 152;
-//print_r($config);
-//				$img_dim = getimagesize(base_url().$config['source_image']);
-//				
-//				//dont use landscape img
-//				if($img_dim[0] > $img_dim[1]){
-//					continue;
-//				}
-
-				$sel_featured->popular_img = base_url().FEATUREDPATH.gen_folder_name($sel_featured->name).'/thumbs/'.$popular_img;
-
-
-				$this->image_lib->initialize($config);
-			//print_r($config);
-				if ( ! $this->image_lib->resize()){
-				    echo $this->image_lib->display_errors();
-				}
-
+			$sel_featured->popular_img = base_url().FEATUREDPATH.gen_folder_name($sel_featured->name).'/'.$popular_img;
 			$sel_featured->link 	 =  site_url('featured/'.$sel_featured->id);
+
 
 			//set empty if no suitable img found
 			if(!isset($sel_featured->popular_img)){
@@ -147,7 +155,8 @@ class Featured extends MY_Controller {
 			//--------------------------------------
 			//search imgs of the selected featured model
 			$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($val->name).'/search_img.jpg';	
-/*
+
+		/*
 			//create thumbs folder if reqd.
 			make_dir($full_path,'thumbs');
 
@@ -183,7 +192,8 @@ class Featured extends MY_Controller {
 			//--------------------------------------
 
 			$val->thumbs = FEATUREDPATH.gen_folder_name($val->name).'/01/thumbs/'.$preview_img;
-*/
+		*/
+			
 			$val->thumbs = base_url().FEATUREDPATH.gen_folder_name($val->name).'/search_img.jpg';
 		}
 		}
@@ -241,8 +251,8 @@ class Featured extends MY_Controller {
 
 		
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
+		$rtbbox = $this->ads_model->get(array('dimensions'=>'rtbbox','category'=>'published','type'=>'script'));
 		$featured = $this->featured_model->get(array('id' => $model));
-
 
 		//================
 		$galleries = array();
@@ -277,6 +287,7 @@ class Featured extends MY_Controller {
 					'render_right'	=>	$tmp3,
 					'galleries'		=> 	$galleries,
 					'img_links'		=> 	$img_links,
+					'rtbbox'		=>  $rtbbox,
 					);
 //echo '<pre>';
 //print_r($data);
@@ -284,6 +295,7 @@ class Featured extends MY_Controller {
 //print_r( getimagesize($img_links['cur_img']));
 //echo '<img src="'.$img_links['cur_img'].'" alt="" height="600" width="400" />';
 //die;
+
 		$img_dim = getimagesize($img_links['cur_img']);
 		//landscape img
 		if($img_dim[0] > $img_dim[1]){

@@ -198,6 +198,7 @@ class Events extends MY_Controller {
 		//-----------------------------------------------
 		$this->load->model('ads_model');
 		
+		$tmp1 = $this->ads_model->get(array('dimensions'=>'fullbanner','category'=>'published'));
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
@@ -263,7 +264,7 @@ class Events extends MY_Controller {
 		
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
-
+		$rtbbox = $this->ads_model->get(array('dimensions'=>'rtbbox','category'=>'published'));
 		//------------------------------------------------
 
 
@@ -272,6 +273,7 @@ class Events extends MY_Controller {
 					'render_right'	=>	$tmp3,
 					//'img_links'		=> 	$img_links,
 					'add2'			=>	$tmp2,
+					'rtbbox'		=> $rtbbox,
 					);
 //print_r($events->img_type);die;
 		if($events->img_type=='potrait'){

@@ -32,7 +32,13 @@
                width="400" height="600" />
          </div>
          
-         <div class="rtbox"></div>
+         <div class="rtbox">
+              <?php 
+              if($rtbbox[0] && $rtbbox[0]->type=='script'): 
+               echo $rtbbox[0]->script;
+            endif;
+            ?>
+         </div>
          <div class="rbbox"></div>
          
          <div class="modelinfo">

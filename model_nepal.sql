@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 07, 2013 at 08:18 AM
+-- Generation Time: Apr 07, 2013 at 04:54 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `image` varchar(127) DEFAULT NULL,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `ads`
@@ -54,7 +54,8 @@ INSERT INTO `ads` (`id`, `title`, `category`, `type`, `dimensions`, `script`, `l
 (11, 'Vmail 3', 'draft', 'image', 'rads', '', 'http://facebook.com', '1363162539.473.jpg', 9),
 (12, 'Digital Dream Utopia 2', 'draft', 'image', 'rads', '', 'http://youtube.com', '1363162622.9466.jpg', 11),
 (21, 'adsence test', 'published', 'script', 'rads', '<script type="text/javascript"><!--\ngoogle_ad_client = "ca-pub-7372466155313335";\n/* 250 Ad */\ngoogle_ad_slot = "3531712710";\ngoogle_ad_width = 250;\ngoogle_ad_height = 250;\n//-->\n</script>\n<script type="text/javascript"\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js">\n</script>\n', NULL, NULL, 1),
-(22, 'Adsence test 2', 'published', 'script', 'rads', '<script type="text/javascript"><!--\ngoogle_ad_client = "ca-pub-7372466155313335";\n/* 250 Ad */\ngoogle_ad_slot = "3531712710";\ngoogle_ad_width = 250;\ngoogle_ad_height = 250;\n//-->\n</script>\n<script type="text/javascript"\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js">\n</script>\n', '0', NULL, 2);
+(22, 'Adsence test 2', 'published', 'script', 'rads', '<script type="text/javascript"><!--\ngoogle_ad_client = "ca-pub-7372466155313335";\n/* 250 Ad */\ngoogle_ad_slot = "3531712710";\ngoogle_ad_width = 250;\ngoogle_ad_height = 250;\n//-->\n</script>\n<script type="text/javascript"\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js">\n</script>\n', '0', NULL, 2),
+(23, 'Google Adsence 3', 'published', 'script', 'rtbbox', '<script type="text/javascript"><!--\ngoogle_ad_client = "ca-pub-7372466155313335";\n/* 200x200 */\ngoogle_ad_slot = "2498494592";\ngoogle_ad_width = 200;\ngoogle_ad_height = 200;\n//-->\n</script>\n<script type="text/javascript"\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js">\n</script>', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,6 @@ CREATE TABLE IF NOT EXISTS `events` (
 INSERT INTO `events` (`id`, `title`, `summary`, `type`, `location`, `date`, `time`, `details`) VALUES
 (13, 'Nv asdfiuh aefw', 'uasdh oaiusdhf owefasdf fw', 'past', 'aad', NULL, NULL, NULL),
 (14, 'A Big Event', 'A big event is comming ...........', 'past', 'Ktm', NULL, NULL, NULL),
-(15, 'cxv ao vase aw', 'asd fwe fa', 'upcomming', 'kasjdf w', 'as fwef ', 'kas fklwe ', 'lak jflak faflkasj laks flaksf lask a'),
 (16, 'A Upcomming Event', 'This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make Nepal one of the best holiday destinations and we are more than happy to welcome you in this beautiful country where people are famous for their hospitality and care towards guests. Welcome to Nepal, the country of diversity. ', 'upcomming', 'Kathmandu', '1 January 2', '12:30pm', '<p>This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make Nepal one of the best holiday destinations and we are more than happy to welcome you in this beautiful country where people are famous for their hospitality and care towards guests. Welcome to Nepal, the country of diversity.</p>\n\n<p>This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make</P>\n');
 
 -- --------------------------------------------------------
@@ -278,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `visitors_count` (
   UNIQUE KEY `unique` (`ip_address`,`type`,`model_id`),
   KEY `ip_address` (`ip_address`),
   KEY `model_id` (`model_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=102 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=107 ;
 
 --
 -- Dumping data for table `visitors_count`

@@ -7,6 +7,8 @@ To add a gallery, create a gallery [folder] inside the model [model's
 folder] with two digit folder name -- ie, 01, 02, 03, ...
 Add images each galleries images in the gallery's folder.
 
+The first image in the gallery [alphebetically] SHOULD BE a potrit image.
+
 The Featured Model should have a "popular_img.jpg" , "profile_img.jpg" 
 and "search_img.jpg" present in the featured model's folder.
 

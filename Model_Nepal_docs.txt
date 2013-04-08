@@ -5,12 +5,12 @@ will be created in ./public/featured/ with the submitted name.
 
 To add a gallery, create a gallery [folder] inside the model [model's 
 folder] with two digit folder name -- ie, 01, 02, 03, ...
-Add images each galleries images in the gallery's folder.
+Add the potrait/landscape images in the gallery's folder.
 
-The first image in the gallery [alphebetically] SHOULD BE a potrit image.
+The first image [alphebetically] in every gallery SHOULD BE a potrit image.
 
-The Featured Model should have a "popular_img.jpg" , "profile_img.jpg" 
-and "search_img.jpg" present in the featured model's folder.
+Every Featured Model should have one "popular_img.jpg" , "profile_img.jpg" 
+and "search_img.jpg" each present in the featured model's folder.
 
 The dimensions of the images should be as follows : 
 	profile_img.jpg = width : 210px, height : 397px
@@ -20,7 +20,6 @@ The dimensions of the images should be as follows :
 	Inside the gallery folders :
 	potrait images 	= width 400px, height 600px
 	landscape images= width 610px, height 400px
-	
 	
 ========================================================================
 

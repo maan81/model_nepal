@@ -53,11 +53,20 @@ class Ads_model extends CI_Model{
 	 *  @return the inserted/updated object
 	 */
 	private function _set_script($data){
-
+		//insert new data
 		$this->db->insert($this->table,$data);
+
+		//unset the data & get tne new id
 		unset($data);
 		$data['id'] = $this->db->insert_id();
 
+		//configure data for positioning & update db
+		$data2 = array(
+		               'position' => $this->db->count_all_results($this->table),
+		            );
+		$this->db->update($this->table, $data2, 'id = '.$data['id']); 
+
+		//get the new inserted data
 		return $this->get($data);
 	}
 

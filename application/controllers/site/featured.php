@@ -232,13 +232,14 @@ class Featured extends MY_Controller {
 
 
 	public function get($model=null,$gallery='01',$img=null){
+		//goto search featured if no featured id is present
 		if($model==null || $model=='search'){
 			return $this->search($gallery,$img);
 		}
 
-		//disp selected gallery's preview imgs
+		//goto listing 1st gallery's img's preview if no gallery 
+		//and/or imgs is specified
 		if($img==null){
-			//redirect(current_url().'/1');
 			return $this->_disp_gallery($model,$gallery);
 		}
 		//-----------------------------------------------
@@ -289,12 +290,6 @@ class Featured extends MY_Controller {
 					'img_links'		=> 	$img_links,
 					'rtbbox'		=>  $rtbbox,
 					);
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//print_r( getimagesize($img_links['cur_img']));
-//echo '<img src="'.$img_links['cur_img'].'" alt="" height="600" width="400" />';
-//die;
 
 		$img_dim = getimagesize($img_links['cur_img']);
 		//landscape img
@@ -342,91 +337,86 @@ class Featured extends MY_Controller {
 		//=================
 
 
-//--------------------------------------
-//array to keep thumbs
-$imgs_preview = array('landscape'=>array(),'potrait'=>array());
+		//--------------------------------------
+		//array to keep thumbs
+		$imgs_preview = array('landscape'=>array(),'potrait'=>array());
 
-//folder of imgs of the featured model
-$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery;	
+		//folder of imgs of the featured model
+		$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery;	
 
-//create thumbs folder inside the gallery folder if reqd.
-make_dir($full_path,'thumbs');
+		//create thumbs folder inside the gallery folder if reqd.
+		make_dir($full_path,'thumbs');
 
-//load image ligrary
-$this->load->library('image_lib');
+		//load image ligrary
+		$this->load->library('image_lib');
 
-//imgs in that folder
-$imgs = scandir($full_path);
+		//imgs in that folder
+		$imgs = scandir($full_path);
 
-$count_link=1;
-foreach($imgs as $k=>$v){
-	if($v=='.' || $v=='..' || $v=='thumbs' ){
-		continue;
-	}
+		$count_link=1;
+		foreach($imgs as $k=>$v){
+			if($v=='.' || $v=='..' || $v=='thumbs' ){
+				continue;
+			}
 
-	//the current original img
-	$config['source_image']		= FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/'.$v;	
+			//the current original img
+			$config['source_image']		= FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/'.$v;	
 
-	//thumbs of that img 
-	$config['new_image'] 		= $full_path.'/thumbs/'.$v;
+			//thumbs of that img 
+			$config['new_image'] 		= $full_path.'/thumbs/'.$v;
 
-	$config['image_library']	= 'gd2';
-	$config['thumb_marker']		= '';
-	$config['create_thumb'] 	= TRUE;
-	$config['maintain_ratio'] 	= TRUE;
-	$config['width'] 			= 323;
-	$config['height'] 			= 152;
+			$config['image_library']	= 'gd2';
+			$config['thumb_marker']		= '';
+			$config['create_thumb'] 	= TRUE;
+			$config['maintain_ratio'] 	= TRUE;
+			$config['width'] 			= 323;
+			$config['height'] 			= 152;
 
-	$this->image_lib->initialize($config);
-//print_r($config);
-	if ( ! $this->image_lib->resize()){
-	    echo $this->image_lib->display_errors();
-	}			
+			$this->image_lib->initialize($config);
 
-	$img_dim = getimagesize(base_url().$config['source_image']);
-	//landscape img
-	if($img_dim[0] > $img_dim[1]){
-		array_push(	$imgs_preview['landscape'],
-					array('img' => FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/thumbs/'.$v,
-						  'link'=> site_url('featured/'.$featured[0]->id.'/'.$gallery.'/'.$count_link)
-					  )
-				);
+			if ( ! $this->image_lib->resize()){
+			    echo $this->image_lib->display_errors();
+			}			
 
-	//potrait img
-	}else{
-		array_push(	$imgs_preview['potrait'],
-					array('img'=>FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/thumbs/'.$v,
-						  'link'=>site_url('featured/'.$featured[0]->id.'/'.$gallery.'/'.$count_link)
-						)
-					);
-	}
+			$img_dim = getimagesize(base_url().$config['source_image']);
+			//landscape img
+			if($img_dim[0] > $img_dim[1]){
+				array_push(	$imgs_preview['landscape'],
+							array('img' => FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/thumbs/'.$v,
+								  'link'=> site_url('featured/'.$featured[0]->id.'/'.$gallery.'/'.$count_link)
+							  )
+						);
 
-	$count_link++;
-}
+			//potrait img
+			}else{
+				array_push(	$imgs_preview['potrait'],
+							array('img'=>FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/thumbs/'.$v,
+								  'link'=>site_url('featured/'.$featured[0]->id.'/'.$gallery.'/'.$count_link)
+								)
+							);
+			}
 
-//--------------------------------------
+			$count_link++;
+		}
+
+		//--------------------------------------
 
 
-//		//-----------------------------------------------
-//
-//		$this->load->helper('utilites_helper');
-//		$img_links = get_img($featured[0],$gallery,$img);
-//		//-----------------------------------------------
+		//-----------------------------------------------
+		//
+		//$this->load->helper('utilites_helper');
+		//$img_links = get_img($featured[0],$gallery,$img);
+		////-----------------------------------------------
 
 		
 		$data = array(
 					'featured'		=>	$featured,
 					'render_right'	=>	$tmp3,
 					'galleries'		=> 	$galleries,
-//					'img_links'		=> 	$img_links,
+					//'img_links'		=> 	$img_links,
 					'imgs_preview'	=> 	$imgs_preview,
 					);
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//print_r( getimagesize($img_links['cur_img']));
-//echo '<img src="'.$img_links['cur_img'].'" alt="" height="600" width="400" />';
-//die;
+
 		$op = $this->load->view('site/featured_selected_gallery.php',$data,true);
 
 		$this->template->write('mainContents',$op);
@@ -451,15 +441,11 @@ foreach($imgs as $k=>$v){
 
 
 		foreach(scandir(dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name)) as $key=>$val){
-//echo dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val;
-//echo '<br/>';
-//echo is_dir(dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val);
+
 			if($val === "." || $val == ".." || is_dir($val) || $val=='thumbs')
 				continue;
 			
 
-//echo $val;
-//echo '<br/>';
 			$is_dir = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured->name).'/'.$val;
 
 			if(is_dir($is_dir)){
@@ -467,7 +453,6 @@ foreach($imgs as $k=>$v){
 			}
 		}
 		$this->load->library('image_lib');
-//print_r($albums);
 
 		foreach($albums as $key=>$val){
 			$full_path = $val;

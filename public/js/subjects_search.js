@@ -8,7 +8,7 @@ $(function(){
       $('.loading').show();
       $('.modelparam').not($(this)).prop('selectedIndex',0);
 
-      $.post(window.location.href+'/search/'+k+'/'+v)
+      $.get(window.location.href+'/search/'+k+'/'+v)
          .done(function(data){
 
             $('.loading').hide();

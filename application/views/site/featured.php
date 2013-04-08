@@ -102,7 +102,7 @@
 
 
       <div class="modelfilter" style="margin-top:10px;">
-         <form action="" method="post">
+         <?php $this->load->helper('form'); echo form_open()?>
          <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
                <tr style="text-align:center">
                   <td>

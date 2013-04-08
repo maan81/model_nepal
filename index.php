@@ -19,7 +19,7 @@
  * 
  * plus the link to jquery file ....
  */
-	define('ENVIRONMENT', 'development');
+	define('ENVIRONMENT', 'production');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

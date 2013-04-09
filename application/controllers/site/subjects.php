@@ -24,6 +24,13 @@ class Subjects extends MY_Controller {
 
 		$subjects = $this->subjects_model->get();
 
+		//-----------------------------------------------
+		//get the date's dropdown
+		$this->load->helper('date_helper');
+		$date_dropdown = date_dropdown();		
+
+		//-----------------------------------------------
+
 		$this->load->config('ethnicity');
 		$data = array(
 					'add'		=>	$tmp[0],
@@ -35,6 +42,7 @@ class Subjects extends MY_Controller {
 					'subjects'	=> $subjects,
 					'render_right'=>$tmp3,
 					'ethnicity'	=> $this->config->item('ethnicity'),
+					'date_dropdown'	=>	$date_dropdown,
 				);
 
 
@@ -66,7 +74,15 @@ class Subjects extends MY_Controller {
 
 		}
 
-		$subjects = $this->subjects_model->get(array($key=>urldecode($val)));
+		$subjects = $this->subjects_model->get(
+												array(	$key	  => urldecode($val),
+													), 
+												array(	'order_by'=> array(
+																		'coln'=>'name',
+																		'dir'=>'asc'
+																		)
+													)
+												);
 
 		$this->load->helper('utilites_helper');
 

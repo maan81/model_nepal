@@ -23,7 +23,13 @@
 </head>
 <body>
 	
-  <form method="post" action="" class="login" id="admin-login">
+  <?php 
+    $attr = array(
+                'id'=>'admin-login',
+                'class'=>'login'
+            );
+    echo form_open(false,$attr)
+  ?>
     <p>
       <label for="username">Username:</label>
       <input type="text" name="username" id="username" value="Username">

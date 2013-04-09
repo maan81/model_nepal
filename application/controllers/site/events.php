@@ -22,6 +22,13 @@ class Events extends MY_Controller {
 
 		$events = $this->events_model->get();
 
+		//-----------------------------------------------
+		//get the date's dropdown
+		$this->load->helper('date_helper');
+		$date_dropdown = date_dropdown();		
+
+		//-----------------------------------------------
+
 		$this->load->config('ethnicity');
 		$data = array(
 					'add'		=>	$tmp[0],
@@ -33,6 +40,7 @@ class Events extends MY_Controller {
 					'events'	=> $events,
 					'render_right'=>$tmp3,
 					'ethnicity'	=> $this->config->item('ethnicity'),
+					'date_dropdown'	=>	$date_dropdown,
 				);
 
 
@@ -64,7 +72,16 @@ class Events extends MY_Controller {
 
 		}
 
-		$events = $this->events_model->get(array($key=>urldecode($val)));
+
+		$events = $this->events_model->get(
+											array(	$key	  => urldecode($val),
+												), 
+											array(	'order_by'=> array(
+																	'coln'=>'title',
+																	'dir'=>'asc'
+																	)
+												)
+											);
 
 		$this->load->helper('utilites_helper');
 

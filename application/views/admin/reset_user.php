@@ -46,7 +46,13 @@
 </head>
 <body>
 	
-  <form id="admin-login" class="login" action="" method="post">
+  <?php 
+    $attr = array(
+                'id'='admin-login',
+                'class'='login'
+            );
+    echo form_open(false,$attr)
+  ?>
     <h2 style="font-size: 1.5em; font-weight: bold; text-align: center; padding-bottom: 30px;">Enter your email</h2>
     <p>
       <label for="email">Email</label>

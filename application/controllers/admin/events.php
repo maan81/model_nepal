@@ -31,9 +31,9 @@ class Events extends MY_Controller {
 	public function list_events(){
 		$data = $this->events_model->get();
 
-		$events = $this->adminrender_library->render_eventslist($data);
-
 		$this->template->set_template('admin');
+
+		$events = $this->adminrender_library->render_eventslist($data);
 
 		$this->template->write('list',$events);
 		
@@ -62,6 +62,7 @@ class Events extends MY_Controller {
 							'summary'	=> $this->input->post('summary'),
 							'type'		=> $this->input->post('type'),
 							'location'	=> $this->input->post('location'),
+							'date_created'	=> $this->input->post('date_created'),
 						);
 
 			if($this->input->post('type')=='upcomming'){
@@ -93,8 +94,8 @@ class Events extends MY_Controller {
 
 		}
 
-		$new_events = $this->adminrender_library->render_new_events($data);
 		$this->template->set_template('admin');
+		$new_events = $this->adminrender_library->render_new_events($data);
 		$this->template->write('new_item',$new_events);
 		
 		$this->render_navigation();
@@ -142,6 +143,7 @@ class Events extends MY_Controller {
 							'summary'	=> $this->input->post('summary'),
 							'type'		=> $this->input->post('type'),
 							'location'	=> $this->input->post('location'),
+							'date_created'	=> $this->input->post('date_created'),
 						);
 
 			if($this->input->post('type')=='upcomming'){

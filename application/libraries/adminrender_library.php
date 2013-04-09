@@ -386,7 +386,21 @@ class Adminrender_library{
 		$this->ci->load->config('ethnicity');
 		$this->ethnicity = $this->ci->config->item('ethnicity');
 
-		$op = 	'<style>
+		$this->ci->template->add_css(ADMINJSPATH.'jquery-ui.css');
+		$this->ci->template->add_js(ADMINJSPATH.'jquery-ui.js');
+
+		$op = '';
+		$op .= 	'<script type="text/javascript">
+					$(function() {
+						$( "#date_created" ).datepicker({
+														dateFormat: "yy-mm-dd",
+														showAnim:	"fadeIn"
+													});
+					});
+				</script>';
+
+
+		$op .= 	'<style>
 					#content .fx{
 						border: 1px solid #DDDDDD;
 						font-family: inherit;
@@ -395,10 +409,12 @@ class Adminrender_library{
 						width: 330px;
 						position:absolute;
 					}
-				</style>';
-//echo $this->ci->session->flashdata('msg'); 
-//echo $this->ci->session->flashdata('err'); 
-//die;
+					#ui-datepicker-div {
+						font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
+						font-size: inherit;
+					}
+		</style>';
+
 
 		$op .=	//'<div class="container_16 clearfix" id="content">'.
 					form_open().'
@@ -452,7 +468,12 @@ class Adminrender_library{
 				$op .=		'</select>
 						</p>
 					</div>
-					<div class="grid_12"></div>
+					<div class="grid_6">
+						<p>
+							<label for="date_created">Date Created</label>
+							<input id="date_created" type="text" name="date_created" value="'.($data?$data[0]->date_created:'').'" />
+						</p>
+					</div>
 					<div class="grid_6">
 						<p>
 							<label for="wardrobe">Wardrobe<small>Alpha-numeric characters without spaces.</small></label>
@@ -672,6 +693,8 @@ class Adminrender_library{
 //print_r($data);
 //echo '</pre>';
 //die;
+		$this->ci->template->add_css(ADMINJSPATH.'jquery-ui.css');
+		$this->ci->template->add_js(ADMINJSPATH.'jquery-ui.js');
 
 		$op = 	'<style>
 					#content .fx{
@@ -682,7 +705,20 @@ class Adminrender_library{
 						width: 330px;
 						position:absolute;
 					}
+					#ui-datepicker-div {
+						font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
+						font-size: inherit;
+					}
 				</style>';
+		$op .= 	'<script type="text/javascript">
+					$(function() {
+						$( "#date_created" ).datepicker({
+														dateFormat: "yy-mm-dd",
+														showAnim:	"fadeIn"
+													});
+					});
+				</script>';
+
 		$op .= '<script type="text/javascript">$(function(){
 					$(".fx").parent().css("margin-bottom","45px");
 
@@ -736,7 +772,12 @@ class Adminrender_library{
 						</p>
 					</div>
 
-					<div class="grid_6"></div>
+					<div class="grid_6">
+						<p>
+							<label for="date_created">Date Created</label>
+							<input id="date_created" type="text" name="date_created" value="'.($data?$data[0]->date_created:'').'" />
+						</p>
+					</div>
 					
 					<div class="grid_4">
 						<p>
@@ -863,6 +904,9 @@ class Adminrender_library{
 //echo '</pre>';
 //die;
 		$this->ci->load->config('news_type');
+		$this->ci->template->add_css(ADMINJSPATH.'jquery-ui.css');
+		$this->ci->template->add_js(ADMINJSPATH.'jquery-ui.js');
+
 		$news_types = $this->ci->config->item('news_type');
 
 		$op = '<style>
@@ -873,8 +917,21 @@ class Adminrender_library{
 				    padding: 1.5px 4px;
 				    position: absolute;
 				    width: 330px;
-				}</style>';
+				}
+				#ui-datepicker-div {
+					font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
+					font-size: inherit;
+				}
+				</style>';
 
+		$op .= 	'<script type="text/javascript">
+					$(function() {
+						$( "#date_created" ).datepicker({
+														dateFormat: "yy-mm-dd",
+														showAnim:	"fadeIn"
+													});
+					});
+				</script>';
 		$op .= '<script type="text/javascript">
 				$(function(){ ';
 					
@@ -970,6 +1027,12 @@ class Adminrender_library{
 			$op .= 		'</p>
 					</div>
 
+					<div class="grid_6">
+						<p>
+							<label for="date_created">Date Created</label>
+							<input id="date_created" type="text" name="date_created" value="'.($data?$data[0]->date_created:'').'" />
+						</p>
+					</div>
 
 					<div class="grid_12">
 						<p>
@@ -1050,7 +1113,19 @@ class Adminrender_library{
 		$this->ci->load->config('ethnicity');
 		$this->ethnicity = $this->ci->config->item('ethnicity');
 
-		$op ='<style>
+		$this->ci->template->add_css(ADMINJSPATH.'jquery-ui.css');
+		$this->ci->template->add_js(ADMINJSPATH.'jquery-ui.js');
+
+		$op = '';
+		$op .= 	'<script type="text/javascript">
+					$(function() {
+						$( "#date_created" ).datepicker({
+														dateFormat: "yy-mm-dd",
+														showAnim:	"fadeIn"
+													});
+					});
+				</script>';
+		$op .='<style>
 				#content .checkboxes *:first-child {
 				    font-size: 17px;
 				    font-weight: bold;
@@ -1073,6 +1148,10 @@ class Adminrender_library{
 					padding: 1.5px 4px;
 					width: 690px;
 					display:inline-block;
+				}
+				#ui-datepicker-div {
+					font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
+					font-size: inherit;
 				}
 			</style>
 			<script>
@@ -1269,6 +1348,14 @@ class Adminrender_library{
 								</select>
 							</p>
 						</div>
+
+						<div class="grid_6">
+							<p>
+								<label for="date_created">Date Created</label>
+								<input id="date_created" type="text" name="date_created" value="'.($data?$data[0]->date_created:'').'" />
+							</p>
+						</div>
+
 						<div class="grid_12">
 							<p>
 								<label for="additional">Additional Info<small>Alpha-numeric characters without spaces.</small></label>

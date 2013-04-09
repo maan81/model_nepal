@@ -31,9 +31,9 @@ class News extends MY_Controller {
 	public function list_news(){
 		$data = $this->news_model->get();
 
-		$news = $this->adminrender_library->render_newslist($data);
-
 		$this->template->set_template('admin');
+
+		$news = $this->adminrender_library->render_newslist($data);
 
 		$this->template->write('list',$news);
 		
@@ -62,6 +62,7 @@ class News extends MY_Controller {
 							'content'	=> $this->input->post('content'),
 							'summary'	=> $this->input->post('summary'),
 							'type'		=> $this->input->post('type'),
+							'date_created'=>$this->input->post('date_created'),
 						);
 			
 			$this->_validate_new($data);
@@ -87,8 +88,8 @@ class News extends MY_Controller {
 			}
 		}
 
-		$new_news = $this->adminrender_library->render_new_news($data);
 		$this->template->set_template('admin');
+		$new_news = $this->adminrender_library->render_new_news($data);
 		$this->template->write('new_item',$new_news);
 		
 		$this->render_navigation();
@@ -134,6 +135,7 @@ class News extends MY_Controller {
 							'content'	=> $this->input->post('content'),
 							'summary'	=> $this->input->post('summary'),
 							'type'		=> $this->input->post('type'),
+							'date_created'	=> $this->input->post('date_created'),
 						);
 
 			$this->_validate_new($data);

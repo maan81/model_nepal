@@ -22,6 +22,11 @@ class News extends MY_Controller {
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 		$news = $this->news_model->get();
 
+		//-----------------------------------------------
+		//get the date's dropdown
+		$this->load->helper('date_helper');
+		$date_dropdown = date_dropdown();		
+
 		//-------------------------------------------------
 		$data = array(
 					'add'		=>	$tmp[0],
@@ -32,6 +37,7 @@ class News extends MY_Controller {
 					//				),
 					'news'		=> $news,
 					'render_right'=>$tmp3,
+					'date_dropdown'	=>	$date_dropdown,
 				);
 
 		$op = $this->load->view('site/news.php',$data,true);
@@ -62,7 +68,15 @@ class News extends MY_Controller {
 
 		}
 
-		$news = $this->news_model->get(array($key=>urldecode($val)));
+		$news = $this->news_model->get(
+												array(	$key	  => urldecode($val),
+													), 
+												array(	'order_by'=> array(
+																		'coln'=>'title',
+																		'dir'=>'asc'
+																		)
+													)
+												);
 
 		$this->load->helper('utilites_helper');
 

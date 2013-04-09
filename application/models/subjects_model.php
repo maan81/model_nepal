@@ -16,16 +16,32 @@ class Subjects_model extends CI_Model{
 	 * @param array of selected parameter
 	 * @return array of objects, or false 
 	 */
-	public function get($subjects=false){
+	public function get($subjects=false,$sql_params=false){
 //print_r($subjects);
 		if($subjects){
 			foreach($subjects as $key=>$value){
+				if($key=='date_created'){
+					$this->db->where($key.' >=',$value.'-01');
+					$this->db->where($key.' <=',$value.'-31');
+
+					continue;
+				}
+
 				$this->db->where($key,$value);
+			}
+		}
+		if($sql_params){
+			if(isset($sql_params['order_by'])){
+				$this->db->order_by($sql_params['order_by']['coln'],$sql_params['order_by']['dir']);
+			}
+			if(isset($sql_params['limit'])){
+				$this->db->limit( $sql_params['limit']['size'], $sql_params['limit']['start'] );
 			}
 		}
 		$res = $this->db->get($this->table);
 		return count($res->result())?$res->result():false;
 	}
+
 
 
 	/**

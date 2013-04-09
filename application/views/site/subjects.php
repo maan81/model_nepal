@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+<?php $this->template->add_js(JSPATH.'default_search.js')?>
 
 
 <div class="mainContents">
@@ -38,10 +39,9 @@
                      </select>
                   </td>
                   <td>
-                     <select class="modelparam" name="mmonth" style="width:130px;">
-                        <option value="Hem">Hem</option>
-                        <option value="Raj">Raj</option>
+                     <select class="modelparam" name="date_created" style="width:130px;">
                         <option selected="selected" value="">Select a month</option>
+                        <?php echo $date_dropdown?>
                      </select>
                   </td>
                </tr>

@@ -11,6 +11,8 @@ class Admin extends MY_Controller {
 		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
 		$this->output->set_header('Pragma: no-cache');
+
+		$this->load->helper('form');
 	}
 
 	/**
@@ -76,13 +78,7 @@ class Admin extends MY_Controller {
 				}else{
 					$this->session->flashdata('sending_email','There was an error while sending email.');
 				};
-
-/*
-SELECT update_time
-FROM information_schema.tables
-WHERE table_schema='mydb'
-AND table_name='mytable';
-*/			}
+			}
 		}
 
 		//render form

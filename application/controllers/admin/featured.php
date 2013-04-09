@@ -67,6 +67,7 @@ class Featured extends MY_Controller {
 							'make_up'		=> $this->input->post('make_up'),
 							'photographer'	=> $this->input->post('photographer'),
 							'model_by'		=> $this->input->post('model_by'),
+							'date_created'	=> $this->input->post('date_created'),
 						);
 
 			$this->_validate_new($data);
@@ -83,8 +84,8 @@ class Featured extends MY_Controller {
 			}
 		}
 	
-		$new_featured = $this->adminrender_library->render_new_featured($data);
 		$this->template->set_template('admin');
+		$new_featured = $this->adminrender_library->render_new_featured($data);
 		$this->template->write('new_item',$new_featured);
 		$this->template->add_js(ADMINJSPATH.'functions.js');
 		
@@ -137,6 +138,7 @@ class Featured extends MY_Controller {
 							'make_up'		=> $this->input->post('make_up'),
 							'photographer'	=> $this->input->post('photographer'),
 							'model_by'		=> $this->input->post('model_by'),
+							'date_created'	=> $this->input->post('date_created'),
 						);
 
 			$this->_validate_new($data);

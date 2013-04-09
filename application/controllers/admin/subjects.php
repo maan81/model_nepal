@@ -31,9 +31,9 @@ class Subjects extends MY_Controller {
 	public function list_subjects(){
 		$data = $this->subjects_model->get();
 
-		$subjects = $this->adminrender_library->render_subjectslist($data);
-
 		$this->template->set_template('admin');
+
+		$subjects = $this->adminrender_library->render_subjectslist($data);
 
 		$this->template->write('list',$subjects);
 		
@@ -102,6 +102,7 @@ class Subjects extends MY_Controller {
 							'lingrie' 		=> $this->input->post('lingrie'),
 							'art' 			=> $this->input->post('art'),
 							'experience' 	=> $this->input->post('experience'),
+							'date_created'	=> $this->input->post('date_created'),
 						);
 
 			$this->_validate_new($data);
@@ -119,8 +120,8 @@ class Subjects extends MY_Controller {
 			}
 		}
 	
-		$new_subjects = $this->adminrender_library->render_new_subjects($data);
 		$this->template->set_template('admin');
+		$new_subjects = $this->adminrender_library->render_new_subjects($data);
 		$this->template->write('new_item',$new_subjects);
 
 		$this->render_navigation();
@@ -206,6 +207,7 @@ class Subjects extends MY_Controller {
 							'lingrie' 		=> $this->input->post('lingrie'),
 							'art' 			=> $this->input->post('art'),
 							'experience' 	=> $this->input->post('experience'),
+							'date_created'	=> $this->input->post('date_created'),
 						);
 
 			$this->_validate_new($data);

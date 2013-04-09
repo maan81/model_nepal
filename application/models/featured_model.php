@@ -35,15 +35,22 @@ class Featured_model extends CI_Model{
 
 		if($featured){
 			foreach($featured as $key=>$value){
+				if($key=='date_created'){
+					$this->db->where($key.' >=',$value.'-01');
+					$this->db->where($key.' <=',$value.'-31');
+
+					continue;
+				}
+
 				$this->db->where($key,$value);
 			}
 		}
 
 		if($sql_params){
-			if($sql_params['order_by']){
+			if(isset($sql_params['order_by'])){
 				$this->db->order_by($sql_params['order_by']['coln'],$sql_params['order_by']['dir']);
 			}
-			if($sql_params['limit']){
+			if(isset($sql_params['limit'])){
 				$this->db->limit( $sql_params['limit']['size'], $sql_params['limit']['start'] );
 			}
 		}

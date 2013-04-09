@@ -22,7 +22,13 @@ class Featured extends MY_Controller {
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
 		//-----------------------------------------------
-		$featured = $this->featured_model->get();
+		//get the featured in order of their names
+		$featured = $this->featured_model->get(false,array(
+														'order_by'=>array(
+																		'coln'=>'name',
+																		'dir'=>'asc')
+														)
+												);
 
 		$pop_params = array(
 							'limit'		=> array('start'=>0,'size'=>5),
@@ -39,7 +45,12 @@ class Featured extends MY_Controller {
 		$latest_featured = $this->latest_featured($latest_featured);
 
 		//-----------------------------------------------
-		
+		//get the date's dropdown
+		$this->load->helper('date_helper');
+		$date_dropdown = date_dropdown();		
+
+		//-----------------------------------------------
+
 		$this->load->config('ethnicity');
 		$data = array(
 					'add'			=>	$tmp[0],
@@ -53,6 +64,7 @@ class Featured extends MY_Controller {
 					'ethnicity'		=> 	$this->config->item('ethnicity'),
 					'popular_featured'=>$popular_featured,
 					'latest_featured'=> $latest_featured,
+					'date_dropdown'	=>	$date_dropdown,
 				);
 
 
@@ -145,7 +157,15 @@ class Featured extends MY_Controller {
 
 		}
 
-		$featured = $this->featured_model->get(array($key=>urldecode($val)));
+		$featured = $this->featured_model->get(
+												array(	$key	  => urldecode($val),
+													), 
+												array(	'order_by'=> array(
+																		'coln'=>'name',
+																		'dir'=>'asc'
+																		)
+													)
+												);
 
 		$this->load->helper('utilites_helper');
 

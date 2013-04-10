@@ -81,6 +81,7 @@ class Ads_model extends CI_Model{
 			return false;
 
 		$data = (object)$data;
+
 		//update data
 		if(isset($data->id)){
 			return $this->update($data);

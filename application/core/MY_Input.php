@@ -15,4 +15,4 @@ class MY_Input extends CI_Input {
 }
 
 /* End of file MY_input.php */
-/* Location: ./application/core/My_input.php */
+/* Location: ./application/core/MY_input.php */

@@ -288,6 +288,7 @@ class Ads extends MY_Controller {
 	}
 
 	public function edit($id=false){
+
 		// id error
 		if(!$id){
 			return false;
@@ -296,7 +297,8 @@ class Ads extends MY_Controller {
 		if($this->input->post('type')=='script'){
 			return $this->edit_adsence($id);
 
-		}elseif($this->input->post()){
+		}elseif($this->input->post('category')){//??????????????????????????????
+
 			$id = $this->session->userdata('updated_id');
 
 			$data = array(

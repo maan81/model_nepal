@@ -97,6 +97,7 @@ class Events extends MY_Controller {
 		$this->template->set_template('admin');
 		$new_events = $this->adminrender_library->render_new_events($data);
 		$this->template->write('new_item',$new_events);
+		$this->template->add_js(ADMINJSPATH.'functions.js');
 		
 		$this->render_navigation();
 		$this->render_user_info();
@@ -130,11 +131,12 @@ class Events extends MY_Controller {
 	}
 
 	public function edit($id=false){
+
 		// id error
 		if(!$id){
 			return false;
 		}
-		if($this->input->post()){
+		if($this->input->post('type')){
 			$id = $this->session->userdata('updated_id');
 	
 			$data = array(

@@ -225,7 +225,6 @@ class Adminrender_library{
 						$op .=		'<input type="text" name="title" value=""/>';
 					}
 					$op .= 	'</p>
-						</p>
 					</div>
 
 					<div class="grid_6">

@@ -57,9 +57,7 @@ class Subjects extends MY_Controller {
     public function new_subject($data = false){
 		
 		if($this->input->post()){
-//echo '<pre>';
-//print_r($this->input->post());
-//echo '</pre>';			
+
 			$data = array(
 							'name'			=> $this->input->post('name'),
 							'gender'		=> $this->input->post('gender'),
@@ -161,10 +159,8 @@ class Subjects extends MY_Controller {
 		if(!$id){
 			return false;
 		}
-		if($this->input->post()){
-//echo '<pre>';
-//print_r($this->input->post());
-//echo '</pre>';			
+		if($this->input->post('professional')){
+
 			$id = $this->session->userdata('updated_id');
 	
 			$data = array(

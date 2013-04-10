@@ -92,6 +92,7 @@ class News extends MY_Controller {
 		$new_news = $this->adminrender_library->render_new_news($data);
 		$this->template->write('new_item',$new_news);
 		
+		$this->template->add_js(ADMINJSPATH.'functions.js');
 		$this->render_navigation();
 		$this->render_user_info();
 		$this->render_flash();
@@ -127,7 +128,7 @@ class News extends MY_Controller {
 		if(!$id){
 			return false;
 		}
-		if($this->input->post()){
+		if($this->input->post('type')){
 			$id = $this->session->userdata('updated_id');
 	
 			$data = array(

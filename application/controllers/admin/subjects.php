@@ -123,9 +123,11 @@ class Subjects extends MY_Controller {
 		$this->template->set_template('admin');
 		$new_subjects = $this->adminrender_library->render_new_subjects($data);
 		$this->template->write('new_item',$new_subjects);
+		$this->template->add_js(ADMINJSPATH.'functions.js');
 
 		$this->render_navigation();
 		$this->render_user_info();
+		$this->render_flash();
 		
 		$this->template->render();
 	}
@@ -166,6 +168,7 @@ class Subjects extends MY_Controller {
 			$id = $this->session->userdata('updated_id');
 	
 			$data = array(
+							'id'			=> $id,
 							'name'			=> $this->input->post('name'),
 							'gender'		=> $this->input->post('gender'),
 							'ethnicity'		=> $this->input->post('ethnicity'),

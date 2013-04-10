@@ -169,7 +169,7 @@ class Ads extends MY_Controller {
 						'title'		=>	$this->input->post('title'),
 						'category'	=>	$this->input->post('category'),
 						'type'		=>	'script',
-						'script'	=> 	$this->input->post('script'),
+						'script'	=> 	$this->input->post('script',false), //false to prevent xss clean
 						'dimensions'=> 	$this->input->post('dimensions'),
 					);
 
@@ -266,7 +266,7 @@ class Ads extends MY_Controller {
 						'title'		=>	$this->input->post('title'),
 						'category'	=>	$this->input->post('category'),
 						'type'		=>	'script',
-						'script'	=> 	$this->input->post('script'),
+						'script'	=> 	$this->input->post('script',false), //false to prevent xss clean
 						'dimensions'=> 	$this->input->post('dimensions'),
 					);
 

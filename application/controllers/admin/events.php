@@ -164,9 +164,8 @@ class Events extends MY_Controller {
 				$this->session->set_flashdata('err', 'Error saving data.');
 				$this->session->set_flashdata('msg', 'Unable to update Event ID '.$id.'.');
 			}
-			
 			unset($_POST);
-			redirect('admin/events/edit/'.$data[0]->id);
+			redirect('admin/events/edit/'.$id);
 		}
 
 		$data = $this->events_model->get(array('id'=>$id));

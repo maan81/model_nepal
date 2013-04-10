@@ -177,17 +177,18 @@ class Subjects_model extends CI_Model{
 		$this->load->helper('utilites_helper');
 		$id = $data->id;
 		unset($data->id);
+		unset($data->name);
 	
-		$old_data = $this->get(array('id'=>$id));
-		$old_folder_name = gen_folder_name($old_data[0]->name);
+		//$old_data = $this->get(array('id'=>$id));
+		//$old_folder_name = gen_folder_name($old_data[0]->name);
 
 		$this->db->where('id', $id);
 		$this->db->update($this->table, $data); 
-		$new_folder_name = gen_folder_name($data->name);
+		//$new_folder_name = gen_folder_name($data->name);
 
-		rename(SUBJECTSPATH.$old_folder_name, SUBJECTSPATH.$new_folder_name);
+		//rename(SUBJECTSPATH.$old_folder_name, SUBJECTSPATH.$new_folder_name);
 
-		return $data;
+		return array('id'=>$id);
 	}
 
 	/**

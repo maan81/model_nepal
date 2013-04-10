@@ -280,7 +280,7 @@ $config['cookie_secure']	= FALSE;
 | COOKIE data is encountered
 |
 */
-$config['global_xss_filtering'] = true;
+$config['global_xss_filtering'] = false;	//false, coz. filtering is done selectively. uses 2nd. param.
 
 /*
 |--------------------------------------------------------------------------

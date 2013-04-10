@@ -150,7 +150,7 @@ class News extends MY_Controller {
 			}
 
 			unset($_POST);
-			redirect('admin/news/edit/'.$data[0]->id);
+			redirect('admin/news/edit/'.$id);
 		}
 
 		$data = $this->news_model->get(array('id'=>$id));

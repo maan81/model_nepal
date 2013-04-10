@@ -142,7 +142,10 @@ class Events_model extends CI_Model{
 
 		//update data
 		if(isset($data->id)){
-			$this->update($data);
+			if($updated_id=$this->update($data)){
+				$data = array('id'=>$updated_id);
+				$data = $this->get($data);
+			}
 		
 		//insert new data
 		}else{

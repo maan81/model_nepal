@@ -20,7 +20,12 @@ class News extends MY_Controller {
  		$tmp  = $this->ads_model->get(array('dimensions'=>'fullbanner','category'=>'published'));
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
-		$news = $this->news_model->get();
+		$news = $this->news_model->get(false,array(
+														'order_by'=>array(
+																		'coln'=>'title',
+																		'dir'=>'asc')
+														)
+												);
 
 		//-----------------------------------------------
 		//get the date's dropdown
@@ -43,7 +48,7 @@ class News extends MY_Controller {
 		$op = $this->load->view('site/news.php',$data,true);
 		$this->template->write('mainContents',$op);
 
-		$this->template->add_js(JSPATH.'news_search.js');
+		//$this->template->add_js(JSPATH.'news_search.js');
 		//-----------------------------------------------
 		//-----------------------------------------------
 		$this->template->render();

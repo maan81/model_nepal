@@ -14,7 +14,7 @@
 
 <div style="width: 140px; height: 160px; overflow: hidden; position: relative;">
   <img style="height: auto; width: 140px; position: absolute; top: -10%;" 
-      src="<?php echo $val->thumbs?>" alt="<?php echo $val->name?>">
+      src="<?php echo base_url().$val->thumbs?>" alt="<?php echo $val->name?>">
 </div>
 <!--
             <img src="<?php echo $val->thumbs?>" 

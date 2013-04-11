@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 11, 2013 at 12:54 AM
+-- Generation Time: Apr 11, 2013 at 03:27 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `image` varchar(127) NOT NULL,
   `date_created` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `news`
@@ -155,7 +155,8 @@ CREATE TABLE IF NOT EXISTS `news` (
 
 INSERT INTO `news` (`id`, `title`, `content`, `summary`, `type`, `image`, `date_created`) VALUES
 (9, 'Ways to Decrease your Obsiety', '<p>There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease the obsiety </p>\r\n<p>There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease the obsiety </p>', 'There are many ways to decrease the obsiety. There are many ways to ecrease the obsiety There are many ways to decrease the obsiety There are many ways to decrease the obsiety. There are many ways to decrease the obsiety There are many ways to decrease th', 'health', '1364635223.73.jpg', '2013-04-03'),
-(10, 'qqqqqqqq', 'nn', 'ss', 'health', '1365228551.5597.jpg', '2013-04-09');
+(10, 'qqqqqqqq', 'nn', 'ss', 'health', '1365228551.5597.jpg', '2013-04-09'),
+(11, 'asd fawef awe', '33333333333', '2222222222', 'health', '1365667723.6356.jpg', '2013-04-11');
 
 -- --------------------------------------------------------
 
@@ -209,15 +210,15 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `date_created` date NOT NULL,
   `profile_viewed` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `subjects`
 --
 
 INSERT INTO `subjects` (`id`, `name`, `age`, `gender`, `address`, `contact_no`, `email`, `height`, `weight`, `bust`, `waist`, `hips`, `shoe`, `dress`, `hair_color`, `hair_length`, `ethnicity`, `skin`, `eyes`, `teeth`, `professional`, `additional`, `travelling_area`, `travelling_duration`, `editorial`, `runaway`, `catalog`, `print`, `showroom`, `fitness`, `fit`, `tearoom`, `body_part`, `lingerie`, `product_modelling`, `lifestyle_modelling`, `coorporate_modelling`, `product_demo`, `tradeshow`, `lingrie`, `art`, `experience`, `date_created`, `profile_viewed`) VALUES
-(1, 'Aa aa aaa', 11, 0, 'Ktm, NP', '987654321', 'someone@noone.com', '11', '22', '33', '44', '55', '66', '77', '88', '99', 'gurung', '1010', '1111', '1212', 'semi-pro', 'additional info here ...........								', 'national', 'bb', 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 'No Experience', '2013-04-03', 2),
-(6, 'asdf', 19, 1, 'Nowhere', '', '', '', '', '', '', '', '', '', '', '', 'brahmin', '', '', 'Black', 'armateur', '', 'local', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2013-04-07', 1);
+(8, 'sss', 0, 1, '', '', '', '', '', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00', 0),
+(10, 'as dfas dawe ', 0, 1, '', '', '', '', '', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -287,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `visitors_count` (
   UNIQUE KEY `unique` (`ip_address`,`type`,`model_id`),
   KEY `ip_address` (`ip_address`),
   KEY `model_id` (`model_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=93 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=97 ;
 
 --
 -- Dumping data for table `visitors_count`
@@ -297,11 +298,10 @@ INSERT INTO `visitors_count` (`id`, `ip_address`, `type`, `model_id`, `timestamp
 (37, '127.0.0.1', 'subjects', 1, '2013-03-22 17:02:00'),
 (38, '192.168.1.3', 'subjects', 1, '2013-03-24 05:43:25'),
 (39, '127.0.0.1', 'subjects', 6, '2013-03-25 07:47:09'),
-(40, '127.0.0.1', 'featured', 1, '2013-04-02 05:58:25'),
 (57, '127.0.0.1', 'featured', 3, '2013-04-04 11:34:18'),
 (61, '127.0.0.1', 'featured', 5, '2013-04-05 03:32:13'),
-(65, '127.0.0.1', 'featured', 6, '2013-04-05 11:29:38'),
-(81, '127.0.0.1', 'featured', 2, '2013-04-07 01:51:01');
+(81, '127.0.0.1', 'featured', 2, '2013-04-07 01:51:01'),
+(96, '127.0.0.1', 'subjects', 7, '2013-04-11 09:12:47');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

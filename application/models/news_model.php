@@ -152,9 +152,10 @@ class News_model extends CI_Model{
 	private function update($data){
 		$id = $data->id;
 		unset($data->id);
-	
+
 		$this->db->where('id', $id);
 		$this->db->update($this->table, $data); 
+
 		return true;
 	}
 

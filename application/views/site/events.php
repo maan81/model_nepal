@@ -26,7 +26,7 @@
                               
                               if(!in_array($val->title,$titles)) { 
                                  
-                                 array_push($titles ,$val->titles); ?>
+                                 array_push($titles ,$val->title); ?>
 
                                  <option value="<?php echo $val->title?>"><?php echo $val->title?></option>
                                  <?php

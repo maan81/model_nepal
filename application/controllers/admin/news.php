@@ -56,7 +56,7 @@ class News extends MY_Controller {
     
     
     public function new_news($data = false){
-		if($this->input->post()){
+		if($this->input->post('type')){
 			$data = array(
 							'title'		=> $this->input->post('title'),
 							'content'	=> $this->input->post('content'),

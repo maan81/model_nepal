@@ -22,7 +22,12 @@ class Subjects extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
-		$subjects = $this->subjects_model->get();
+		$subjects = $this->subjects_model->get(false,array(
+														'order_by'=>array(
+																		'coln'=>'name',
+																		'dir'=>'asc')
+														)
+												);
 
 		//-----------------------------------------------
 		//get the date's dropdown

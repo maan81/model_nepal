@@ -56,7 +56,7 @@ class Subjects extends MY_Controller {
     
     public function new_subject($data = false){
 		
-		if($this->input->post()){
+		if($this->input->post('professional')){
 
 			$data = array(
 							'name'			=> $this->input->post('name'),

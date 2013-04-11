@@ -208,7 +208,20 @@
 
     <div class="leftimg">
        
-       <img  src="<?php echo base_url()?>tmp/m4.jpg" alt="model" width="300" height="250" />
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-7372466155313335";
+        /* 300 Ad */
+        google_ad_slot = "5624517025";
+        google_ad_width = 300;
+        google_ad_height = 250;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+
+
+       <!-- <img  src="<?php echo base_url()?>tmp/m4.jpg" alt="model" width="300" height="250" /> -->
     </div>
 
     <div class="rightadsense">

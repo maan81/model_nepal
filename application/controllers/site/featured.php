@@ -223,7 +223,7 @@ class Featured extends MY_Controller {
 
 		$config['base_url'] = base_url().'featured';
 		$config['total_rows'] = count($this->featured_model->get());
-		$config['per_page'] = 6;
+		$config['per_page'] = 100000;
 
 		$config['prev_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'prev.png" alt="Previous" />';
 		$config['prev_tag_close'] = '</a>';

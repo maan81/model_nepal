@@ -57,7 +57,7 @@ class Featured extends MY_Controller {
     
     public function new_featured($data = false){
 		
-		if($this->input->post()){
+		if($this->input->post('ethnicity')){
 			$data = array(
 							'name'			=> $this->input->post('name'),
 							'gender'		=> $this->input->post('gender'),
@@ -125,7 +125,7 @@ class Featured extends MY_Controller {
 		if(!$id){
 			return false;
 		}
-		if($this->input->post()){
+		if($this->input->post('ethnicity')){
 			$id = $this->session->userdata('updated_id');
 	
 			$data = array(

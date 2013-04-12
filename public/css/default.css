@@ -425,9 +425,11 @@ div{
 	}
 	
 	.modeldisplay .like{
-		right:200px;
-		top:35px;
+		right:250px;	/* changed from 200 */
+		top:25px;		/* changed from 25 */
 		position:absolute;
+		overflow: hidden;/* added */
+		width: 53px;	/* added */
 	}
 	
 	.modeldisplay .mpic{
@@ -509,11 +511,13 @@ div{
 	}
 	
 	.model-display-hor .like{
-		right:35px;
-		top:35px;
+		right:30px; /* changed from 35 */
+		top:25px;	/* changed from 35 */
 		position:absolute;
-	}
-	
+ 		overflow: hidden; /* added */
+ 		width: 53px; /* added */
+ 	}
+
 	.model-display-hor .mpic{
 		width:610px;
 		background:#ffffff;

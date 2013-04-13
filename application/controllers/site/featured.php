@@ -71,6 +71,16 @@ class Featured extends MY_Controller {
 		$op = $this->load->view('site/featured.php',$data,true);
 		$this->template->write('mainContents',$op);
 
+		//---------------------------------------------
+		//generate meta tags
+		$meta = array(
+		        array('name' => 'keywords', 'content' => 'nepal, college, featured models'),
+		        array('name' => 'description', 'content' => 'College Featured Models of Nepal'),
+		        array('name' => 'author', 'content' => 'The Fashion Plus'),
+		    );
+		$this->template->add_meta($meta);
+
+
 		$this->template->add_js(JSPATH.'search.js');
 		$this->template->add_js(JSPATH.'my_slider.js');
 		//-----------------------------------------------
@@ -322,6 +332,17 @@ class Featured extends MY_Controller {
 		}
 		$this->template->write('mainContents',$op);
 
+		//---------------------------------------------
+		//generate meta tags
+		$meta = array(
+		        array('name' => 'keywords', 'content' => 'nepal, college, model'),
+		        array('name' => 'description', 'content' => 'College Models Events in Nepal'),
+		        array('name' => 'description', 'content' => $featured[0]->name),
+		        array('name' => 'author', 'content' => 'The Fashion Plus'),
+		    );
+
+		$this->template->add_meta($meta);
+
 		//-----------------------------------------------
 		//-----------------------------------------------
 		$this->template->render();
@@ -442,6 +463,18 @@ class Featured extends MY_Controller {
 		$this->template->write('mainContents',$op);
 
 		$this->template->add_css(CSSPATH.'/custom.css');
+
+		//---------------------------------------------
+		//generate meta tags
+		$meta = array(
+		        array('name' => 'keywords', 'content' => 'nepal, college, model'),
+		        array('name' => 'description', 'content' => 'College Models Events in Nepal'),
+		        array('name' => 'description', 'content' => $featured[0]->name),
+		        array('name' => 'author', 'content' => 'The Fashion Plus'),
+		    );
+
+		$this->template->add_meta($meta);
+
 		//-----------------------------------------------
 		//-----------------------------------------------
 		$this->template->render();

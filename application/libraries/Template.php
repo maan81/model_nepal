@@ -672,6 +672,30 @@ class CI_Template {
       return $output;
    }
    
+   // --------------------------------------------------------------------
+   
+   /**
+    * Dynamically generate meta tags in the template
+    * 
+    * @author maan81
+    * @access  public
+    * @param   array 
+    * @return  TRUE on success, FALSE otherwise
+    */
+   
+   function add_meta($meta=null){
+
+      $success = TRUE;
+      
+      $this->CI->load->helper('html');
+            
+      $meta = meta($meta); 
+
+      $this->meta[] = $meta;
+      $this->write('_meta', $meta);
+      
+      return $success;
+   }
 }
 // END Template Class
 

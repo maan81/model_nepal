@@ -15,6 +15,7 @@
 
 	<?php echo $_scripts?>
 	<?php echo $_styles?>
+	<?php echo $_meta?>
 </head>
 <body>
 

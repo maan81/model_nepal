@@ -111,6 +111,7 @@ $template['reset_user']['parse_template'] = FALSE;
 
 $template['site']['template'] = 'site/index.php';
 $template['site']['regions'] = array(
+	'_meta',
    'toplink',
    'header',
    'mainContents',

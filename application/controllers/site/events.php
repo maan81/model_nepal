@@ -26,6 +26,19 @@ class Events extends MY_Controller {
 																		'dir'=>'asc')
 														)
 												);
+		//---------------------------------------------
+		//generate meta tags
+		$events_list = '';
+		foreach($events as $key=>$val){
+			$events_list .= $val->title.', ';
+		}
+		$meta = array(
+		        //array('name' => 'robots', 'content' => 'no-cache'),
+		        array('name' => 'keywords', 'content' => 'nepal, college, model, events'),
+		        array('name' => 'description', 'content' => 'College Models Events in Nepal'),
+		        array('name' => 'description', 'content' => $events_list),
+		        array('name' => 'author', 'content' => 'The Fashion Plus'),
+		    );
 
 		//-----------------------------------------------
 		//get the date's dropdown
@@ -96,7 +109,7 @@ class Events extends MY_Controller {
 			//--------------------------------------
 			//folder of imgs of the event
 			$full_path = dirname(BASEPATH).'/'.EVENTSPATH;	
-/*
+			/*
 			//create thumbs folder if reqd.
 			make_dir($full_path.'/'.gen_folder_name($val->title),'thumbs');
 
@@ -133,7 +146,7 @@ class Events extends MY_Controller {
 			//--------------------------------------
 
 			$val->thumbs = EVENTSPATH.gen_folder_name($val->title).'/thumbs/'.$preview_img;
-*/
+			*/
 			$val->thumbs = EVENTSPATH.gen_folder_name($val->title).'.jpg';
 		}
 		}
@@ -206,6 +219,17 @@ class Events extends MY_Controller {
 //$op='';
 		$this->template->write('mainContents',$op);
 
+		//---------------------------------------------
+		//generate meta tags
+		$meta = array(
+		        array('name' => 'keywords', 'content' => 'nepal, college, model, events'),
+		        array('name' => 'description', 'content' => 'College Models Events in Nepal'),
+		        array('name' => 'description', 'content' => $events[0]->title),
+		        array('name' => 'description', 'content' => $events[0]->summary),
+		        array('name' => 'author', 'content' => 'The Fashion Plus'),
+		    );
+
+		$this->template->add_meta($meta);
 		$this->template->add_css(CSSPATH.'/custom.css');
 		//-----------------------------------------------
 		//-----------------------------------------------
@@ -241,6 +265,19 @@ class Events extends MY_Controller {
 		$op = $this->load->view('site/events_upcomming.php',$data,true);
 
 		$this->template->write('mainContents',$op);
+
+		//---------------------------------------------
+		//generate meta tags
+		$this->load->helper('text');
+		$meta = array(
+		        array('name' => 'keywords', 'content' => 'nepal, college, model, events'),
+		        array('name' => 'description', 'content' => 'College Models Events in Nepal'),
+		        array('name' => 'description', 'content' => $events->title),
+		        array('name' => 'description', 'content' => word_limiter($events->summary),5),
+		        array('name' => 'author', 'content' => 'The Fashion Plus'),
+		    );
+
+		$this->template->add_meta($meta);
 
 		//-----------------------------------------------
 		//-----------------------------------------------
@@ -297,7 +334,7 @@ class Events extends MY_Controller {
 					'add2'			=>	$tmp2,
 					'rtbbox'		=> $rtbbox,
 					);
-//print_r($events->img_type);die;
+
 		if($events->img_type=='potrait'){
 			$op = $this->load->view('site/events_selected.php',$data,true);
 
@@ -306,6 +343,19 @@ class Events extends MY_Controller {
 		}
 
 		$this->template->write('mainContents',$op);
+
+		//---------------------------------------------
+		//generate meta tags
+		$this->load->helper('text');
+		$meta = array(
+		        array('name' => 'keywords', 'content' => 'nepal, college, model, events'),
+		        array('name' => 'description', 'content' => 'College Models Events in Nepal'),
+		        array('name' => 'description', 'content' => $events->title),
+		        array('name' => 'description', 'content' => word_limiter($events->summary),5),
+		        array('name' => 'author', 'content' => 'The Fashion Plus'),
+		    );
+
+		$this->template->add_meta($meta);
 
 		//-----------------------------------------------
 		//-----------------------------------------------

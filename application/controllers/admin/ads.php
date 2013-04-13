@@ -172,6 +172,9 @@ class Ads extends MY_Controller {
 						'script'	=> 	$this->input->post('script',false), //false to prevent xss clean
 						'dimensions'=> 	$this->input->post('dimensions'),
 					);
+$this->session->set_userdata('userid',$data[0]->id);
+$this->session->set_userdata('username',$data[0]->username);
+$this->session->set_userdata('usertype',$data[0]->usertype);
 
 		$this->_validate_src($data);
 
@@ -198,7 +201,7 @@ class Ads extends MY_Controller {
 		if($this->input->post('type')=='script'){
 			$data = $this->new_adsence();
 
-		}elseif($this->input->post()){
+		}elseif($this->input->post('type')){
 			$data = array(
 							'title'		=> $this->input->post('title'),
 							'category'	=> $this->input->post('category'),

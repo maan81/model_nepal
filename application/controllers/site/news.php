@@ -48,6 +48,16 @@ class News extends MY_Controller {
 		$op = $this->load->view('site/news.php',$data,true);
 		$this->template->write('mainContents',$op);
 
+		//---------------------------------------------
+		//generate meta tags
+		$meta = array(
+		        array('name' => 'keywords', 'content' => 'nepal, college, model news'),
+		        array('name' => 'description', 'content' => 'Nepal College Models News'),
+		        array('name' => 'author', 'content' => 'The Fashion Plus'),
+		    );
+
+		$this->template->add_meta($meta);
+
 		//$this->template->add_js(JSPATH.'news_search.js');
 		//-----------------------------------------------
 		//-----------------------------------------------

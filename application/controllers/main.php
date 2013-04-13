@@ -49,7 +49,23 @@ class Main extends MY_Controller {
 		$news = $this->news_model->get();
 
 		//---------------------------------------------
+		//generate meta tags
+		$featured_list = '';
+		foreach($featured as $key=>$val){
+			$featured_list .= $val['model']->name.', ';
+		}
 
+
+		$meta = array(
+		        //array('name' => 'robots', 'content' => 'no-cache'),
+		        array('name' => 'keywords', 'content' => 'nepal, college, model'),
+		        array('name' => 'description', 'content' => 'College Models of Nepal'),
+		        array('name' => 'description', 'content' => $featured_list),
+		        array('name' => 'author', 'content' => 'The Fashion Plus'),
+		    );
+		
+
+		//---------------------------------------------
 
 
 		$data = array(
@@ -73,6 +89,7 @@ class Main extends MY_Controller {
 		$this->template->add_js(JSPATH.'slider.js');
 		$this->template->add_js(JSPATH.'my_slider.js');
 		$this->template->add_css(CSSPATH.'slider.css');
+		$this->template->add_meta($meta);
 		//-----------------------------------------------
 		//-----------------------------------------------
 

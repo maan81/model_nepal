@@ -9,8 +9,8 @@ Add the potrait/landscape images in the gallery's folder.
 
 The first image [alphebetically] in every gallery SHOULD BE a potrit image.
 
-Every Featured Model should have one "popular_img.jpg" , "profile_img.jpg" 
-and "search_img.jpg" each present in the featured model's folder.
+Every Featured Model should have one "popular_img.jpg" , one "profile_img.jpg" 
+and one "search_img.jpg" each present in the featured model's folder.
 
 The dimensions of the images should be as follows : 
 	profile_img.jpg = width : 210px, height : 397px
@@ -30,7 +30,7 @@ will be created in ./public/subjects/ with the submitted name.
 
 Add three images in the folder.
 
-The the images should have width of 33px and height od 496px.
+The the images should have width of 330px and height od 496px.
 
 ========================================================================
 

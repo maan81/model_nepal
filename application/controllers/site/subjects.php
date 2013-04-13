@@ -54,6 +54,18 @@ class Subjects extends MY_Controller {
 		$op = $this->load->view('site/subjects.php',$data,true);
 		$this->template->write('mainContents',$op);
 
+		//---------------------------------------------
+		//generate meta tags
+		$meta = array(
+		        array('name' => 'keywords', 'content' => 'nepal, college, model'),
+		        array('name' => 'description', 'content' => 'College Models in Nepal'),
+		        array('name' => 'author', 'content' => 'The Fashion Plus'),
+		    );
+
+		$this->template->add_meta($meta);
+
+		//-----------------------------------------------
+
 		$this->template->add_js(JSPATH.'subjects_search.js');
 		//-----------------------------------------------
 		//-----------------------------------------------
@@ -267,6 +279,17 @@ class Subjects extends MY_Controller {
 
 		$op = $this->load->view('site/subjects_selected.php',$data,true);
 		$this->template->write('mainContents',$op);
+
+		//---------------------------------------------
+		//generate meta tags
+		$meta = array(
+		        array('name' => 'keywords', 'content' => 'nepal, college, model'),
+		        array('name' => 'description', 'content' => 'College Models in Nepal'),
+		        array('name' => 'description', 'content' => $subjects->name),
+		        array('name' => 'author', 'content' => 'The Fashion Plus'),
+		    );
+
+		$this->template->add_meta($meta);
 
 		//-----------------------------------------------
 		//-----------------------------------------------

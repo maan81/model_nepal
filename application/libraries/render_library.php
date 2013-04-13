@@ -71,7 +71,8 @@ class Render_library{
 								<a class="addthis_button_facebook_like"></a>
 							</div>
 							<script type="text/javascript" 
-									src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-512a3fd75f430942">
+									src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-512a3fd75f430942"
+									data-href="'.base_url().'">
 							</script>
 						</div>
 				    </div>

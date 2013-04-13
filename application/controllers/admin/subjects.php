@@ -38,6 +38,7 @@ class Subjects extends MY_Controller {
 		$this->template->write('list',$subjects);
 		
 		$this->template->add_js(ADMINJSPATH.'jquery.dataTables.min.js');
+		$this->template->add_js(ADMINJSPATH.'functions.js');
 
 		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables.css');
 		$this->template->add_css(ADMINCSSPATH.'jquery.dataTables_themeroller.css');

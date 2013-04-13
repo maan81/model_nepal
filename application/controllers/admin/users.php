@@ -57,7 +57,7 @@ class Users extends MY_Controller {
 //print_r($this->session->userdata);
 //echo '</pre>';	
 //die;	
-		if($this->input->post()){
+		if($this->input->post('new_password')){
 			$data['old_password']=$this->input->post('old_password');
 			$data['new_password']=$this->input->post('new_password');
 			$data['new_password_reenter']=$this->input->post('new_password_reenter');
@@ -173,7 +173,7 @@ class Users extends MY_Controller {
 			redirect('admin');
 		}
 		
-		if($this->input->post()){
+		if($this->input->post('username')){
 //echo '<pre>';
 //print_r($this->input->post());
 //echo '</pre>';			
@@ -243,7 +243,7 @@ class Users extends MY_Controller {
 		if(!$id){
 			return false;
 		}
-		if($this->input->post()){
+		if($this->input->post('username')){
 //echo '<pre>';
 //print_r($this->input->post());
 //echo '</pre>';			

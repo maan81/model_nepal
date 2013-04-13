@@ -56,7 +56,7 @@ class Events extends MY_Controller {
     
     
     public function new_event($data = false){
-		if($this->input->post()){
+		if($this->input->post('type')){
 			$data = array(
 							'title'		=> $this->input->post('title'),
 							'summary'	=> $this->input->post('summary'),

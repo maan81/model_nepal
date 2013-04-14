@@ -721,17 +721,19 @@ class Adminrender_library{
 		$op .= '<script type="text/javascript">$(function(){
 					$(".fx").parent().css("margin-bottom","45px");
 
-						function change_event_type(){
-							if($("select[name=type]").val()=="upcomming"){
-								$(".upcomming").fadeIn();
-							}else{
-								$(".upcomming").fadeOut();
-							}
+					function change_event_type($param){
+						if($param==1){
+							$(".upcomming").fadeIn();
+						}else{
+							$(".upcomming").fadeOut();
 						}
-						$("select[name=type]").change(function(){
-							change_event_type();
-						})
-						change_event_type();
+					}
+					$("input[name=upcomming]").click(function(){
+						change_event_type($(this).val());
+					})
+
+					'.($data?(($data[0]->upcomming=='0')?'$(".upcomming").hide();':''):'').'
+
 
 				})</script>';
 
@@ -763,11 +765,18 @@ class Adminrender_library{
 					<div class="grid_6">
 						<p>
 							<label for="type">Type</label>
-							<select name="type">
-								<option value="past" '.($data?($data[0]->type=='past'?'selected="selected"':''):'').'>Past</option>
-								<option value="current" '.($data?($data[0]->type=='current'?'selected="selected"':''):'').'>Current</option>
-								<option value="upcomming" '.($data?($data[0]->type=='upcomming'?'selected="selected"':''):'').'>Upcomming</option>
-							</select>
+							<select name="type">';
+
+				$this->ci->load->config('eventstype');
+				$eventstype = $this->ci->config->item('eventstype');
+
+				foreach($eventstype as $key=>$val){
+					$op .= '<option value="'.$key.'" '.
+								($data?($data[0]->type==$key?'selected="selected"':''):'').'>'.$val
+							.'</option>';					
+				}
+
+				$op .=		'</select>
 						</p>
 					</div>
 
@@ -778,21 +787,35 @@ class Adminrender_library{
 						</p>
 					</div>
 					
-					<div class="grid_4">
+					<div class="grid_6">
 						<p>
 							<label for="location">Location</label>
 							<input type="text" name="location" value="'.($data?$data[0]->location:'').'" />
 						</p>
 					</div>
 
-					<div class="grid_4 upcomming">
+					<div class="grid_12">
+						<p>
+							<label>Event Category</label>
+							<span>
+							     <input type="radio" name="upcomming" value="1" '.($data?($data[0]->upcomming=='1'?'checked="checked"':''):'').' />
+							     <span>Upcoming Event</span>
+							</span>							
+							<span class="grid_6">
+							     <input type="radio" name="upcomming" value="0" '.($data?($data[0]->upcomming=='0'?'checked="checked"':''):'').' />
+							     <span>Past Event</span>
+							</span>
+						</p>
+					</div>
+
+					<div class="grid_6 upcomming">
 						<p>
 							<label for="date">Date</label>
 							<input type="text" value="'.($data?$data[0]->date:'').'" name="date">
 						</p>
 					</div>
 
-					<div class="grid_4 upcomming">
+					<div class="grid_6 upcomming">
 						<p>
 							<label for="time">Time</label>
 							<input type="text" value="'.($data?$data[0]->time:'').'" name="time">

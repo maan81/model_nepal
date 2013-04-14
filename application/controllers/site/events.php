@@ -48,6 +48,7 @@ class Events extends MY_Controller {
 		//-----------------------------------------------
 
 		$this->load->config('ethnicity');
+		$this->load->config('eventstype');
 		$data = array(
 					'add'		=>	$tmp[0],
 					'add2'		=>	$tmp2,
@@ -59,6 +60,7 @@ class Events extends MY_Controller {
 					'render_right'=>$tmp3,
 					'ethnicity'	=> $this->config->item('ethnicity'),
 					'date_dropdown'	=>	$date_dropdown,
+					'types'		=>	$this->config->item('eventstype'),
 				);
 
 

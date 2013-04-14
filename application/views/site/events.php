@@ -27,11 +27,13 @@
                               if(!in_array($val->title,$titles)) { 
                                  
                                  array_push($titles ,$val->title); ?>
-
-                                 <option value="<?php echo $val->title?>"><?php echo $val->title?></option>
                                  <?php
+                              }
+                           } 
+                           foreach($titles as $key=>$val){
+                              ?><option value="<?php echo $val?>"><?php echo $val?></option><?php
                            }
-                        } ?>
+                        ?>
                      </select>
 
                   </td>
@@ -40,18 +42,10 @@
                      <select class="modelparam" name="type" style="width:90px;">
                         <option selected="selected" value="">Type</option>
                         <?php 
-                           $types=array();
-                           foreach($events as $key=>$val){
-                              
-                              if(!in_array($val->type,$types)) { 
-                                 
-                                 array_push($types ,$val->type); ?>
-
-                                 <option value="<?php echo $val->type?>"><?php echo ucfirst($val->type)?></option>
-                                 <?php
+                           foreach($types as $key=>$val){
+                              ?><option value="<?php echo $key?>"><?php echo $val?></option><?php
                            }
-                        } ?>
-
+                        ?>
                      </select>
 
                   </td>
@@ -64,13 +58,14 @@
                            foreach($events as $key=>$val){
                               
                               if(!in_array($val->location,$locations)) { 
-                                 
-                                 array_push($locations ,$val->location); ?>
-
-                                 <option value="<?php echo $val->location?>"><?php echo ucfirst($val->location)?></option>
-                                 <?php
+                                 array_push($locations ,$val->location);
+                              }
+                           } 
+                           natcasesort($locations);
+                           foreach($locations as $key=>$val){
+                              ?><option value="<?php echo $val?>"><?php echo ucfirst($val)?></option><?php
                            }
-                        } ?>
+                        ?>
                      </select>
 
                   </td>

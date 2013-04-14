@@ -63,9 +63,10 @@ class Events extends MY_Controller {
 							'type'		=> $this->input->post('type'),
 							'location'	=> $this->input->post('location'),
 							'date_created'	=> $this->input->post('date_created'),
+							'upcomming'	=> $this->input->post('upcomming'),
 						);
 
-			if($this->input->post('type')=='upcomming'){
+			if($this->input->post('upcomming')=='1'){
 				$data['date'] = $this->input->post('date');
 				$data['time'] = $this->input->post('time');
 				$data['details'] = $this->input->post('details');
@@ -146,9 +147,10 @@ class Events extends MY_Controller {
 							'type'		=> $this->input->post('type'),
 							'location'	=> $this->input->post('location'),
 							'date_created'	=> $this->input->post('date_created'),
+							'upcomming'	=> $this->input->post('upcomming'),
 						);
 
-			if($this->input->post('type')=='upcomming'){
+			if($this->input->post('upcomming')=='1'){
 				$data['date'] = $this->input->post('date');
 				$data['time'] = $this->input->post('time');
 				$data['details'] = $this->input->post('details');

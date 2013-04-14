@@ -107,12 +107,13 @@
           </div>
           <div class="pagination">
             <style type="text/css">
-              .block img{width:54px;height:90px;}
+              .block img{width:100%;}
+              .block div{width:106px;height:90px;overflow:hidden;}
             </style>
             <?php foreach($subjects->thumbs as $key=>$val):?>
                <div class="block">
                   <a href="<?php echo $val['link']?>">
-                    <img src="<?php echo $val['img']?>"/>
+                    <div class=""><img src="<?php echo $val['img']?>"/></div>
                   </a>
                </div>
             <?php endforeach?>

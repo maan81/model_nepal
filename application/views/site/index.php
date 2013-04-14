@@ -5,6 +5,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Model Nepal</title>
 
+	<link rel="shortcut icon" href="<?php echo base_url().IMGSPATH?>favicon.ico" />
+	
 	<link href="<?php echo base_url().CSSPATH?>style.css" rel="stylesheet" type="text/css" />
 
 	<?php if(ENVIRONMENT=='production'):?>

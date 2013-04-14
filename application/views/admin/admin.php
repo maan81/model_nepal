@@ -8,7 +8,8 @@
 	<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>960.css" type="text/css" media="screen" charset="utf-8" />
 	<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>template.css" type="text/css" media="screen" charset="utf-8" />
 	<link rel="stylesheet" href="<?php echo base_url().ADMINCSSPATH?>colour.css" type="text/css" media="screen" charset="utf-8" />
-	
+	<link rel="shortcut icon" href="<?php echo base_url().IMGSPATH?>favicon.ico" />
+
 	<?php if(ENVIRONMENT=='production'):?>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<?php else:?>

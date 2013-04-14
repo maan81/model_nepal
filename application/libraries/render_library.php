@@ -275,10 +275,14 @@ class Render_library{
 				        + 977 01-4242893 | 9851026750 </div>
 				      <div class="logos">
 				        <span class="logs">A presentation of<br />
-				          <img src="'.base_url().IMGSPATH.'fisheye.png" alt="Fish Eya" />
+				          <a href="http://www.facebook.com/fisheye.interactive">
+				          	<img src="'.base_url().IMGSPATH.'fisheye.png" alt="Fish Eya" />
+			          	  </a>
 				        </span>
 				        <span class="logs">in Association with<br />
-				          <img src="'.base_url().IMGSPATH.'studiof.png" alt="Fish Eya" />
+				          <a href="http://www.facebook.com/photographyf8">
+				          	<img src="'.base_url().IMGSPATH.'studiof.png" alt="Fish Eya" />
+				          </a>
 				        </span>
 				        <span class="logs">Supported By:<br />
 				          <img src="'.base_url().IMGSPATH.'songsnepal.png" alt="Fish Eya" />
@@ -287,7 +291,9 @@ class Render_library{
 				          <img src="'.base_url().IMGSPATH.'sparrow.png" alt="Fish Eya" />
 				        </span>
 				        <span class="logs">Hosting By<br />
-				          <img src="'.base_url().IMGSPATH.'ws.png" alt="Fish Eya" />
+				          <a href="http://websansar.com">
+					          <img src="'.base_url().IMGSPATH.'ws.png" alt="Fish Eya" />
+				          </a>
 				        </span>
 				      </div>
 				    </div>

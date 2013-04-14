@@ -39,6 +39,7 @@ class Events extends MY_Controller {
 		        array('name' => 'description', 'content' => $events_list),
 		        array('name' => 'author', 'content' => 'The Fashion Plus'),
 		    );
+		$this->template->add_meta($meta);
 
 		//-----------------------------------------------
 		//get the date's dropdown

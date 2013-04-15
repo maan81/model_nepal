@@ -425,13 +425,18 @@ div{
 	}
 	
 	.modeldisplay .like{
-		right:250px;	/* changed from 200 */
+		right:255px;	/* changed from 200 */
 		top:25px;		/* changed from 25 */
 		position:absolute;
-		overflow: hidden;/* added */
-		width: 53px;	/* added */
 	}
 	
+	/* added ... */
+	.modeldisplay .addthis_button_facebook_like{
+		overflow: hidden;
+		width:47px;
+		height:20px;
+	}
+
 	.modeldisplay .mpic{
 		width:400px;
 		background:#ffffff;
@@ -511,12 +516,17 @@ div{
 	}
 	
 	.model-display-hor .like{
-		right:30px; /* changed from 35 */
+		right:35px; /* changed from 35 */
 		top:25px;	/* changed from 35 */
 		position:absolute;
- 		overflow: hidden; /* added */
- 		width: 53px; /* added */
  	}
+
+	/* added ... */
+	.model-display-hor .addthis_button_facebook_like{
+		overflow: hidden;
+		width:47px;
+		height:20px;
+	}
 
 	.model-display-hor .mpic{
 		width:610px;

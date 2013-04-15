@@ -280,9 +280,9 @@ class Featured extends MY_Controller {
 
 		$this->load->model('ads_model');
 
-		
+		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
-		$rtbbox = $this->ads_model->get(array('dimensions'=>'rtbbox','category'=>'published','type'=>'script'));
+		$rtbbox = $this->ads_model->get(array('dimensions'=>'rtbbox','category'=>'published'));
 		$featured = $this->featured_model->get(array('id' => $model));
 
 		//================
@@ -319,6 +319,7 @@ class Featured extends MY_Controller {
 					'galleries'		=> 	$galleries,
 					'img_links'		=> 	$img_links,
 					'rtbbox'		=>  $rtbbox,
+					'add2'			=>	$tmp2,
 					);
 
 		$img_dim = getimagesize($img_links['cur_img']);

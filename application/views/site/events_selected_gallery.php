@@ -13,22 +13,6 @@
 
          <div class="contents">
 
-            <div class="landscape">
-
-               <?php $count_img=1?>
-               <?php foreach($events[0]->thumbs as $key=>$val):?>
-
-                  <?php if($val['type']=='landscape'):?>
-                     <a href="<?php echo $val['link']?>">
-                        <img src="<?php echo $val['img']?>" width="143" height="145" alt="model album name" />
-                     </a>
-                  <?php endif?>
-
-                  <?php $count_img++?>
-               <?php endforeach?>
-
-            </div>
-
             <div class="potrait">
 
                <?php $count_img=1?>
@@ -37,6 +21,22 @@
                   <?php if($val['type']=='potrait'):?>
                      <a href="<?php echo $val['link']?>">
                         <img src="<?php echo $val['img']?>" width="110" height="165" alt="model album name" />
+                     </a>
+                  <?php endif?>
+
+                  <?php $count_img++?>
+               <?php endforeach?>
+
+            </div>
+
+            <div class="landscape">
+
+               <?php $count_img=1?>
+               <?php foreach($events[0]->thumbs as $key=>$val):?>
+
+                  <?php if($val['type']=='landscape'):?>
+                     <a href="<?php echo $val['link']?>">
+                        <img src="<?php echo $val['img']?>" width="143" height="145" alt="model album name" />
                      </a>
                   <?php endif?>
 

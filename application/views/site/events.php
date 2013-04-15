@@ -6,10 +6,11 @@
 
    <div class="leftPart">
 
-      <div class="fullbanner">
-         <a href="<?php echo $add->link?>">
-            <img src="<?php echo base_url().ADDSPATH.$add->image?>" alt="Banner" width="690" height="110" />
-         </a>
+      <div class="upcoming">
+         <div class="eventpic">
+            <span class="title">Featured Events</span>
+            <img title="" alt="upcoming event" src="tmp/up-coming.jpg" />
+         </div>
       </div>
 
       <div class="modelfilter" style="margin-top:10px;">

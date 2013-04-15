@@ -33,6 +33,7 @@ class Adminrender_library{
 									'fullbanner'  => 'Full Banner',
 									'rads'		  => 'Right Ads',
 									'rightadsense'=> 'Right Adsense',
+									'rtbbox'	  => 'Right Upper/Lower Box'
 								);
 
 		$this->adddimensions_script = array(
@@ -99,7 +100,7 @@ class Adminrender_library{
 				$op .=	'"<span class=\"disabled_positioning\">------</span>", ';
 
 			}else{
-				$op .=	'"<a class=\"up\" href=\"'.site_url('admin/ads/up/'.$val->id).'\">Up</a>", ';
+				$op .=	'"<a class=\"up\" href=\"'.site_url('admin/ads/up/'.$val->id).'\" title=\"Shift the ad one step up\" >Up</a>", ';
 			}
 
 			if($val->position == count($data)){
@@ -107,11 +108,11 @@ class Adminrender_library{
 				$op .= 	'"<span class=\"disabled_positioning\">------</span>", ';
 			}else{
 
-				$op .= 	'"<a class=\"down\" href=\"'.site_url('admin/ads/down/'.$val->id).'\">Dn</a>", ';
+				$op .= 	'"<a class=\"down\" href=\"'.site_url('admin/ads/down/'.$val->id).'\" title=\"Shift the ad one step down\" >Dn</a>", ';
 			}
 
-			$op .= 		'"<a class=\"edit\" href=\"'.site_url('admin/ads/edit/'.$val->id).'\">Edit</a>", '.
-						'"<a class=\"delete\" href=\"'.site_url('admin/ads/del/'.$val->id).'\">Delete</a>" ], ';
+			$op .= 		'"<a class=\"edit\" href=\"'.site_url('admin/ads/edit/'.$val->id).'\" title=\"Edit element ID '.$val->id.'\" >Edit</a>", '.
+						'"<a class=\"delete\" href=\"'.site_url('admin/ads/del/'.$val->id).'\" title=\"Delete element ID '.$val->id.'\" >Delete</a>" ], ';
 		}
 
 		$op .=  '],"aoColumns": [

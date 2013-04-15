@@ -16,7 +16,7 @@ class Events extends MY_Controller {
 		//-----------------------------------------------
 		$this->load->model('ads_model');
 
-		$tmp  = $this->ads_model->get(array('dimensions'=>'fullbanner','category'=>'published'));
+		//$tmp  = $this->ads_model->get(array('dimensions'=>'fullbanner','category'=>'published'));
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
@@ -51,17 +51,17 @@ class Events extends MY_Controller {
 		$this->load->config('ethnicity');
 		$this->load->config('eventstype');
 		$data = array(
-					'add'		=>	$tmp[0],
-					'add2'		=>	$tmp2,
-					'event'	=> array(
-										'img'	=>	'm4/m4.jpg',
-										'url'	=>	'#'
-									),
-					'events'	=> $events,
-					'render_right'=>$tmp3,
-					'ethnicity'	=> $this->config->item('ethnicity'),
+					//'add'			=>	$tmp[0],
+					'add2'			=>	$tmp2,
+					'event'			=> array(
+											'img'	=>	'm4/m4.jpg',
+											'url'	=>	'#'
+										),
+					'events'		=> $events,
+					'render_right'	=> $tmp3,
+					'ethnicity'		=> $this->config->item('ethnicity'),
 					'date_dropdown'	=>	$date_dropdown,
-					'types'		=>	$this->config->item('eventstype'),
+					'types'			=>	$this->config->item('eventstype'),
 				);
 
 
@@ -199,7 +199,7 @@ class Events extends MY_Controller {
 
 		$this->load->model('ads_model');
 		
-		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads'),'position','asc');
+		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 		$events = $this->events_model->get(array('id' => $model_id));
 
 		$updated_events = array();

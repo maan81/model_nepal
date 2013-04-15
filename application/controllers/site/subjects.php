@@ -18,7 +18,7 @@ class Subjects extends MY_Controller {
 		$this->load->model('ads_model');
 
 
-		$tmp  = $this->ads_model->get(array('dimensions'=>'fullbanner','category'=>'published'));
+		//$tmp  = $this->ads_model->get(array('dimensions'=>'fullbanner','category'=>'published'));
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
@@ -38,7 +38,7 @@ class Subjects extends MY_Controller {
 
 		$this->load->config('ethnicity');
 		$data = array(
-					'add'		=>	$tmp[0],
+					//'add'		=>	$tmp[0],
 					'add2'		=>	$tmp2,
 					'subject'	=> array(
 										'img'	=>	'm4/m4.jpg',

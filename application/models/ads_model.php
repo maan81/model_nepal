@@ -116,17 +116,18 @@ class Ads_model extends CI_Model{
 				echo $this->upload->display_errors();
 
 			}else{
-
+				unset($data);
 				$image_data = $this->upload->data();
-				/*
+				
 				$data = array(
 							'image' 		=> $image_data['file_name'],
 							'title' 		=> $this->input->post('title'),
 							'category'		=> $this->input->post('category'),
 							'dimensions' 	=> $this->input->post('dimensions'),
 							'link'			=> $this->input->post('link'),
+							'position'		=> $this->db->count_all($this->table),
 						);
-				*/
+				
 				$data['image'] = $image_data['file_name'];
 
 				$this->db->insert($this->table,$data);
@@ -203,6 +204,11 @@ class Ads_model extends CI_Model{
 
 			$this->db->where('id',$val->id)
 					 ->delete($this->table);
+
+			//readjust the positions of the ads
+			$update_position = array('position'=>'position - 1');
+			$this->db->where('position > ',$val->position);
+		 	$this->db->update($table,$update_position);
 		}
 		return true;
 	}

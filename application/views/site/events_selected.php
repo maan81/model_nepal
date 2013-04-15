@@ -34,13 +34,37 @@
          </div>
          
          <div class="rtbox">
-              <?php 
-              if($rtbbox[0] && $rtbbox[0]->type=='script'): 
+            <?php 
+             if($rtbbox[0] && $rtbbox[0]->type=='script'): 
                echo $rtbbox[0]->script;
+            elseif($rtbbox[0] && $rtbbox[0]->type=='image'): 
+            ?>
+               <a href="<?php echo $rtbbox[0]->link?>">
+                  <img src="<?php echo base_url().ADDSPATH.$rtbbox[0]->image?>" 
+                        title="<?php echo $rtbbox[0]->title?>" 
+                        alt="<?php echo $rtbbox[0]->title?>"
+                        width="200" height="200" />
+               </a>
+            <?php
             endif;
             ?>
          </div>
-         <div class="rbbox"></div>
+         <div class="rbbox">
+            <?php 
+            if($rtbbox[1] && $rtbbox[1]->type=='script'): 
+               echo $rtbbox[1]->script;
+            elseif($rtbbox[1] && $rtbbox[1]->type=='image'): 
+            ?>
+               <a href="<?php echo $rtbbox[1]->link?>">
+                  <img src="<?php echo base_url().ADDSPATH.$rtbbox[1]->image?>" 
+                        title="<?php echo $rtbbox[1]->title?>" 
+                        alt="<?php echo $rtbbox[1]->title?>"
+                        width="200" height="200" />
+               </a>
+            <?php
+            endif;
+            ?>
+         </div>
          
          <div class="modelinfo">
             <h1>Event Info</h1>

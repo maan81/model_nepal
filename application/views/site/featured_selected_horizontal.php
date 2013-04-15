@@ -63,6 +63,44 @@
 			</div>
 		</div>
 
+			
+
+		<div class="bannertwo">
+			
+			<div class="leftimg">
+				<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-7372466155313335";
+					/* 300 Ad */
+					google_ad_slot = "5624517025";
+					google_ad_width = 300;
+					google_ad_height = 250;
+				//-->
+				</script>
+				<script type="text/javascript"
+						src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+				</script>
+			</div>
+
+			
+			<div class="rightadsense">
+			<?php
+				//advertizing thru image ad
+				if($add2[0]->type=='image'):?>
+					<a href="<?php echo $add2[0]->link?>">
+							<img  src="<?php echo base_url().ADDSPATH.$add2[0]->image?>" 
+									alt="model" width="355" height="250" />
+						</a>
+
+				<?php
+				//advertizing thru scrip
+				else:
+					echo $add2[0]->script;
+				endif;
+			?>
+			</div>
+		</div>
+
+
 	</div>
 
    <?php $this->view('site/right_part.php')?>

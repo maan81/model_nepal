@@ -2,7 +2,7 @@
 
 <div class="agencymodel">
 
-   <div class="title">Gallery of <strong>Agency Models</strong></div>
+   <div class="title">Search Results :</div>
 
    <div class="contents">
 
@@ -12,14 +12,15 @@
 
          <div class="aModel">
 
-<div style="width: 140px; height: 160px; overflow: hidden; position: relative;">
-  <img style="height: auto; width: 140px; position: absolute; top: -10%;" 
-      src="<?php echo base_url().$val->thumbs?>" alt="<?php echo $val->name?>">
-</div>
-<!--
+            <div style="width: 140px; height: 160px; overflow: hidden; position: relative;">
+              <img style="height: auto; width: 140px; position: absolute; top: -10%;" 
+                  src="<?php echo base_url().$val->thumbs?>" alt="<?php echo $val->name?>">
+            </div>
+            
+            <!--
             <img src="<?php echo $val->thumbs?>" 
                   alt="<?php echo $val->name?>" width="140" height="160" />
--->
+            -->
 
             <h1><?php echo $val->name?></h1>
             Height:<?php echo $val->height?><br />

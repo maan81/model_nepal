@@ -121,24 +121,25 @@ class Render_library{
 						<div class="bannertwo">
 							
 							<div class="leftimg">
-						    	<!-- <a href="'.$data['subject']['url'].'">
-						    		<!--<img  src="'.base_url().SUBJECTSPATH.$data['subject']['img'].'" alt="model" width="300" height="250" /> ->
+						    	<!-- 
+						    	<a href="'.$data['subject']['url'].'">
+						    		<!--<img  src="'.base_url().SUBJECTSPATH.$data['subject']['img'].'" 
+						    					alt="model" width="300" height="250" /> ->
 						    		<img  src="'.base_url().'tmp/m4.jpg" alt="model" width="300" height="250" />
 					    		</a>
 					    		-->
 								
 								<script type="text/javascript"><!--
-								google_ad_client = "ca-pub-7372466155313335";
-								/* 300 Ad */
-								google_ad_slot = "5624517025";
-								google_ad_width = 300;
-								google_ad_height = 250;
+									google_ad_client = "ca-pub-7372466155313335";
+									/* 300 Ad */
+									google_ad_slot = "5624517025";
+									google_ad_width = 300;
+									google_ad_height = 250;
 								//-->
 								</script>
 								<script type="text/javascript"
-								src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+										src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 								</script>
-
 
 							</div>
 
@@ -185,6 +186,9 @@ class Render_library{
 									</script>
 									<style>
 									#left,#right{cursor:pointer;}
+									.twia #twiacontents{
+										width:690px;
+									}
 									</style>';
 							}
 				$op .=	    '<div class="twiacontents" id="twiacontents">';
@@ -280,7 +284,7 @@ class Render_library{
 			          	  </a>
 				        </span>
 				        <span class="logs">in Association with<br />
-				          <a href="http://www.facebook.com/photographyf8">
+				          <a href="http://www.facebook.com/f8photography">
 				          	<img src="'.base_url().IMGSPATH.'studiof.png" alt="Fish Eya" />
 				          </a>
 				        </span>

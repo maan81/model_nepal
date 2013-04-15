@@ -450,7 +450,7 @@ div{
 	.modeldisplay .rtbox{
 		width:200px;
 		height:200px;
-		background:#cacaca;
+		background:#000;
 		position:absolute;
 		right:25px;
 		top:70px;
@@ -459,7 +459,7 @@ div{
 	.modeldisplay .rbbox{
 		width:200px;
 		height:200px;
-		background:#cacaca;
+		background:#000;
 		position:absolute;
 		right:25px;
 		bottom:80px;

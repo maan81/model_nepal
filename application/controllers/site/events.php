@@ -305,7 +305,7 @@ class Events extends MY_Controller {
 		$events = $this->events_model->get(array('id' => $event_id));
 
 		//goto upcomming events function
-		if($events[0]->type=='upcomming'){
+		if($events[0]->upcomming=='1'){
 			return $this->event_upcomming($events[0]);
 		}
 

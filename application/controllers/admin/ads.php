@@ -171,10 +171,13 @@ class Ads extends MY_Controller {
 						'type'		=>	'script',
 						'script'	=> 	$this->input->post('script',false), //false to prevent xss clean
 						'dimensions'=> 	$this->input->post('dimensions'),
+						'created_by'=>  $this->session->userdata('username'),
 					);
-$this->session->set_userdata('userid',$data[0]->id);
-$this->session->set_userdata('username',$data[0]->username);
-$this->session->set_userdata('usertype',$data[0]->usertype);
+		//????????????????
+		//$this->session->set_userdata('userid',$data[0]->id);
+		//$this->session->set_userdata('username',$data[0]->username);
+		//$this->session->set_userdata('usertype',$data[0]->usertype);
+		//????????????????
 
 		$this->_validate_src($data);
 
@@ -209,6 +212,7 @@ $this->session->set_userdata('usertype',$data[0]->usertype);
 							'link'		=> $this->input->post('link'),
 							'image'		=> $this->input->post('image'),
 							'type'		=> $this->input->post('type'),
+							'created_by'=> $this->session->userdata('username'),
 						);
 
 			$this->_validate_new($data);

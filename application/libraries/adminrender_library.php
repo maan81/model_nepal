@@ -114,7 +114,8 @@ class Adminrender_library{
 						'"<a class=\"delete\" href=\"'.site_url('admin/ads/del/'.$val->id).'\" title=\"Delete element ID '.$val->id.'\" >Delete</a>" ], ';
 		}
 
-		$op .=  '],"aoColumns": [
+		$op .=  '],
+				"aoColumns": [
 			            { "sTitle": "ID" },
 			            { "sTitle": "Category" },
 			            { "sTitle": "Title" },
@@ -125,8 +126,9 @@ class Adminrender_library{
 			            { "sTitle": "Move Down" , sWidth:"5%"},
 			            { "sTitle": "Actions", sWidth:"5%"},
 			            { "sTitle": "" , sWidth:"5%"},
-		        ]
-			    ,"aaSorting":[[5,\'asc\']],
+		        ],
+			    "aaSorting":[[5,\'asc\']],
+				"bStateSave": true,
 			    } );   
 			} );
 			</script>';

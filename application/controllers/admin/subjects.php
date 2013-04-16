@@ -102,6 +102,7 @@ class Subjects extends MY_Controller {
 							'art' 			=> $this->input->post('art'),
 							'experience' 	=> $this->input->post('experience'),
 							'date_created'	=> $this->input->post('date_created'),
+							'created_by'	=> $this->session->userdata('username'),
 						);
 
 			$this->_validate_new($data);

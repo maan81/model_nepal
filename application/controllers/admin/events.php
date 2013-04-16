@@ -66,6 +66,7 @@ class Events extends MY_Controller {
 							'date_created'	=> $this->input->post('date_created'),
 							'upcomming'	=> $this->input->post('upcomming'),
 							'featured'	=> $this->input->post('featured'),
+							'created_by'=>  $this->session->userdata('username'),
 						);
 
 			if($this->input->post('upcomming')=='1'){

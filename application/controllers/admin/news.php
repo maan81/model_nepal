@@ -63,6 +63,7 @@ class News extends MY_Controller {
 							'summary'	=> $this->input->post('summary'),
 							'type'		=> $this->input->post('type'),
 							'date_created'=>$this->input->post('date_created'),
+							'created_by'=>  $this->session->userdata('username'),
 						);
 			
 			$this->_validate_new($data);

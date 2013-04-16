@@ -45,6 +45,7 @@ class Render_library{
 						$op .= '<a href="'.$val.'">'.$key.'</a>';
 					}
 		$op .=		'</div>
+					<!--
 					<div class="search">
 						<form>
 							<input type="button" name="" style="position:absolute;">
@@ -53,7 +54,23 @@ class Render_library{
 									value="Type Email Address ..." 
 									id="search" name="search" />
 						</form>
-					</div>				
+					</div>
+					-->
+
+					<!-- Google custom search box Start -by BloggerSentral.com -->
+					<div class="cse search" style="color:#000000;float:right;/*margin:6px 10px 0 0;*/">
+						<form action="http://www.google.com/cse" id="cse-search-box">
+							<input name="cx" type="hidden" value="012904614657930534599:m9nt-ujiieu"/>
+							<input type="text" name="q" />
+							<input name="ie" type="hidden" value="ISO-8859-1"/>
+							<input type="submit" name="sa" value="&nbsp;&nbsp;" />
+						</form>
+						<script type="text/javascript" 
+								src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en">
+						</script>
+					</div>
+					<!-- Google custom search box End -->
+
 				</div>';
 		return $op;
 	}

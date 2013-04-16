@@ -110,3 +110,43 @@ ERROR - 2013-04-16 11:03:19 --> Severity: Warning  --> chmod() [<a href='functio
 ERROR - 2013-04-16 11:03:19 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
 ERROR - 2013-04-16 11:03:19 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
 ERROR - 2013-04-16 11:03:20 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:20:04 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:20:04 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:20:04 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:16 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:16 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:16 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:16 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:16 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:16 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:23 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:23 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:23 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:23 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:23 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:23 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:23 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:23 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:23 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 11:29:23 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 12:35:58 --> 404 Page Not Found --> public
+ERROR - 2013-04-16 12:35:58 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-04-16 12:35:58 --> 404 Page Not Found --> public
+ERROR - 2013-04-16 12:35:58 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-04-16 12:35:58 --> 404 Page Not Found --> public
+ERROR - 2013-04-16 12:35:58 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-04-16 12:35:58 --> 404 Page Not Found --> public
+ERROR - 2013-04-16 12:35:58 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-04-16 13:12:11 --> 404 Page Not Found --> public
+ERROR - 2013-04-16 13:12:11 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-04-16 13:12:11 --> 404 Page Not Found --> public
+ERROR - 2013-04-16 13:12:11 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-04-16 13:12:11 --> 404 Page Not Found --> public
+ERROR - 2013-04-16 13:12:11 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-04-16 13:12:11 --> 404 Page Not Found --> public
+ERROR - 2013-04-16 13:12:11 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-04-16 13:31:54 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 13:31:54 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 15:02:09 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 15:02:09 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-04-16 15:02:14 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543

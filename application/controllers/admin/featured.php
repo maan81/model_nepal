@@ -68,6 +68,7 @@ class Featured extends MY_Controller {
 							'photographer'	=> $this->input->post('photographer'),
 							'model_by'		=> $this->input->post('model_by'),
 							'date_created'	=> $this->input->post('date_created'),
+							'created_by'=>  $this->session->userdata('username'),
 						);
 
 			$this->_validate_new($data);

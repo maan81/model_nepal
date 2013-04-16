@@ -190,10 +190,11 @@ div{
 		width:165px;
 		float:right;
 		color:#979797;
-
+		height:20px;	/* added */
 	}
 	
-	.header .search input[type="button"] {
+	.header .search input[type="submit"] { /* changed "button" to "submit" */
+		cursor:pointer;	/* added */
 		margin:0;
 		width:22px;
 		height:22px;
@@ -202,7 +203,7 @@ div{
 		background:url(../imgs/search.jpg) no-repeat;
 		border:0;
 		margin-right:10px;
-}
+	}
 			
 	.mainin .mainContents{
 		width:956px;

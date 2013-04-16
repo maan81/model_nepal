@@ -83,6 +83,7 @@ class Render_library{
 		$op = 	'<div id="toplink">
 					<div class="toplink">
 						<div class="date">'.date('j F Y').'</div>
+						<!--
 						<div class="like">
 							<div class="addthis_toolbox addthis_default_style ">
 								<a class="addthis_button_facebook_like"></a>
@@ -91,6 +92,15 @@ class Render_library{
 									src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-512a3fd75f430942"
 									data-href="'.base_url().'">
 							</script>
+						</div>
+						-->
+						<div class="like">
+						<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fmodelnepal.com&amp;send=false&amp;layout=standard&amp;width=53&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=25" 
+								scrolling="no" 
+								frameborder="0" 
+								style="border:none; overflow:hidden; width:53px; height:25px;" 
+								allowTransparency="true">
+						</iframe>
 						</div>
 				    </div>
 				</div>';	

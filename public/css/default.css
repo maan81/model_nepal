@@ -91,10 +91,20 @@ div{
 		top:5px;
 	}
 	
+	/*
 	.toplink .like{
 		right:0px;
 		top:5px;
 		position:absolute;
+	}
+	*/
+	.toplink .like{
+		right:0px;
+		top:3px;
+		position:absolute;
+		width:53px;
+		height:25px;
+		overflow:hidden;
 	}
 
 	#main .mainin{

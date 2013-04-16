@@ -19,12 +19,12 @@
          <div class="model-display">
             <div class="name"><?php echo $events->title?></div>
             <div class="like">
-               <div class="addthis_toolbox addthis_default_style ">
-                  <a class="addthis_button_facebook_like"></a>
-               </div>
-               <script type="text/javascript" 
-                  src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-512a3fd75f430942"
-                  data-url="<?php echo current_url()?>"></script>
+               <iframe src="//www.facebook.com/plugins/like.php?href=<?php echo urlencode(current_url())?>&amp;send=false&amp;layout=standard&amp;width=53&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=25" 
+                     scrolling="no" 
+                     frameborder="0" 
+                     style="border:none; overflow:hidden; width:53px; height:25px;" 
+                     allowTransparency="true">
+               </iframe>
             </div>
          </div>
          

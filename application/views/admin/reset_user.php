@@ -48,8 +48,8 @@
 	
   <?php 
     $attr = array(
-                'id'='admin-login',
-                'class'='login'
+                'id'=>'admin-login',
+                'class'=>'login'
             );
     echo form_open(false,$attr)
   ?>

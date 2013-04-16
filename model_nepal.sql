@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 15, 2013 at 06:08 PM
+-- Generation Time: Apr 16, 2013 at 11:17 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -75,17 +75,18 @@ CREATE TABLE IF NOT EXISTS `events` (
   `details` text,
   `date_created` date NOT NULL,
   `upcomming` tinyint(4) NOT NULL,
+  `featured` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `summary`, `type`, `location`, `date`, `time`, `details`, `date_created`, `upcomming`) VALUES
-(13, 'Nv asdfiuh aefw', 'Was a nice event', 'pagent', 'aad', NULL, NULL, NULL, '2013-04-01', 0),
-(14, 'A Big Event', 'A big event is comming ...........', 'fashion', 'Kathmandu', NULL, NULL, NULL, '2013-04-09', 0),
-(16, 'A Upcomming Event', 'This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make Nepal one of the best holiday destinations and we are more than happy to welcome you in this beautiful country where people are famous for their hospitality and care towards guests. Welcome to Nepal, the country of diversity. ', 'dance', 'Kathmandu', '1 January 2', '12:30pm', '<p>This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make Nepal one of the best holiday destinations and we are more than happy to welcome you in this beautiful country where people are famous for their hospitality and care towards guests. Welcome to Nepal, the country of diversity.</p>\n\n<p>This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make</P>\n', '2013-04-08', 1);
+INSERT INTO `events` (`id`, `title`, `summary`, `type`, `location`, `date`, `time`, `details`, `date_created`, `upcomming`, `featured`) VALUES
+(13, 'Nv asdfiuh aefw', 'Was a nice event', 'pagent', 'aad', NULL, NULL, NULL, '2013-04-01', 0, 0),
+(14, 'A Big Event', 'A big event is comming ...........', 'fashion', 'Kathmandu', NULL, NULL, NULL, '2013-04-09', 0, 1),
+(16, 'A Upcomming Event', 'This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make Nepal one of the best holiday destinations and we are more than happy to welcome you in this beautiful country where people are famous for their hospitality and care towards guests. Welcome to Nepal, the country of diversity. ', 'dance', 'Kathmandu', '1 January 2', '12:30pm', '<p>This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make Nepal one of the best holiday destinations and we are more than happy to welcome you in this beautiful country where people are famous for their hospitality and care towards guests. Welcome to Nepal, the country of diversity.</p>\n\n<p>This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make</P>\n', '2013-04-08', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -266,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(127) NOT NULL,
   `usertype` varchar(127) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `users`
@@ -275,7 +276,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `usertype`) VALUES
 (1, 'root', '9d9e9979efe032e23a07cd2623574417', 'root@root.com', 'administrator'),
 (11, 'ff', 'ece926d8c0356205276a45266d361161', 'ff@ff.com', 'administrator'),
-(12, 'ee', 'c0bdce0aca8f4f5512bb2fd78c922c24', 'pranijman@gmail.com', 'editor');
+(12, 'ee', 'c0bdce0aca8f4f5512bb2fd78c922c24', 'pranijman@gmail.com', 'editor'),
+(13, '', '273d66dbc1b9256fbd1a1dd755d9b254', '', '');
 
 -- --------------------------------------------------------
 
@@ -293,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `visitors_count` (
   UNIQUE KEY `unique` (`ip_address`,`type`,`model_id`),
   KEY `ip_address` (`ip_address`),
   KEY `model_id` (`model_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=158 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=138 ;
 
 --
 -- Dumping data for table `visitors_count`

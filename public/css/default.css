@@ -897,8 +897,16 @@ div{
 		-webkit-border-radius:5px;
 		-moz-border-radius:5px;
 	}
-	
-		.pagina{
+
+	/* added as featured event's tag */
+	.modelsthumb .thumb .featured_event{
+		position: absolute; 
+		top: 0px; 
+		right: 0px; 
+		border: 0px none;
+	}
+
+	.pagina{
 		width:690px;
 		float:left;
 		height:30px;

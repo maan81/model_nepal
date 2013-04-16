@@ -8,6 +8,7 @@
          <a href="<?php echo site_url('events/'.$val->id)?>">
             <span class="title"><?php echo $val->title?></span> 
             <img src="<?php echo base_url().$val->thumbs?>" width="323" height="152" />
+            <?php echo $val->featured?>
          </a>
       </div>
 

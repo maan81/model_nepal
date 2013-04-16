@@ -56,6 +56,7 @@ class Events extends MY_Controller {
     
     
     public function new_event($data = false){
+
 		if($this->input->post('type')){
 			$data = array(
 							'title'		=> $this->input->post('title'),
@@ -64,6 +65,7 @@ class Events extends MY_Controller {
 							'location'	=> $this->input->post('location'),
 							'date_created'	=> $this->input->post('date_created'),
 							'upcomming'	=> $this->input->post('upcomming'),
+							'featured'	=> $this->input->post('featured'),
 						);
 
 			if($this->input->post('upcomming')=='1'){
@@ -148,6 +150,7 @@ class Events extends MY_Controller {
 							'location'	=> $this->input->post('location'),
 							'date_created'	=> $this->input->post('date_created'),
 							'upcomming'	=> $this->input->post('upcomming'),
+							'featured'	=> $this->input->post('featured'),
 						);
 
 			if($this->input->post('upcomming')=='1'){

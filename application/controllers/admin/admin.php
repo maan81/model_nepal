@@ -37,7 +37,7 @@ class Admin extends MY_Controller {
 	public function reset_user(){
 		$data = array();
 
-		if($this->input->post()){
+		if($this->input->post('email')){
 			$email = $this->input->post('email');
 			//validate email
 			$this->_validate_email($email);

@@ -151,6 +151,11 @@ class Events extends MY_Controller {
 			$val->thumbs = EVENTSPATH.gen_folder_name($val->title).'/thumbs/'.$preview_img;
 			*/
 			$val->thumbs = EVENTSPATH.gen_folder_name($val->title).'.jpg';
+			if($val->featured=='1'){
+				$val->featured = '<img src="'.base_url().IMGSPATH.'featured_events.png" class="featured_event" />';
+			}else{
+				$val->featured = '';
+			}
 		}
 		}
 

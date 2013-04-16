@@ -75,7 +75,6 @@ class Adminrender_library{
 	 * ads list
 	 */
 	public function render_adslist($data){
-//print_r($data);die;		
 		$op =	'<div class="grid_2" style="float:right;">
 					<p>
 						<a href="'.site_url('admin/ads/new_ad').'">New</a>
@@ -140,10 +139,6 @@ class Adminrender_library{
 	 * new ads form
 	 */
 	public function render_new_ads($data){
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//die;
 		$op = '<style>
 				#content .fx {
 				    border: 1px solid #DDDDDD;
@@ -321,7 +316,7 @@ class Adminrender_library{
 	 * featured list
 	 */
 	public function render_featuredlist($data){
-//print_r($data);die;		
+
 		$this->ci->load->config('ethnicity');
 		$this->ethnicity = $this->ci->config->item('ethnicity');
 
@@ -379,10 +374,7 @@ class Adminrender_library{
 	 * new featured form
 	 */
 	public function render_new_featured($data){
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//die;
+
 		$this->ci->load->config('ethnicity');
 		$this->ethnicity = $this->ci->config->item('ethnicity');
 
@@ -544,7 +536,7 @@ class Adminrender_library{
 	}
 
 
-/*
+	/*
 		// 	/**
 		// 	 * gossips list
 		// 	 *
@@ -637,7 +629,7 @@ class Adminrender_library{
 
 		// 		return  $op;
 		// 	}
-*/
+	*/
 
 	/**
 	 * events list
@@ -663,6 +655,7 @@ class Adminrender_library{
 						'"'.$val->title.'", '.
 						'"'.word_limiter($val->summary,10).'", '.
 						'"'.$val->type.'", '.
+						'"'.($val->featured=='1'?'Yes':'No').'", '.
 						'"'.$val->location.'", '.
 						'"<a class=\"edit\" href=\"'.site_url('admin/events/edit/'.$val->id).'\">Edit</a>", '.
 						'"<a class=\"delete\" href=\"'.site_url('admin/events/del/'.$val->id).'\">Delete</a>"], ';
@@ -673,6 +666,7 @@ class Adminrender_library{
 			            { "sTitle": "Title" },
 			            { "sTitle": "Summary" },
 			            { "sTitle": "Type" },
+			            { "sTitle": "Featured" },
 			            { "sTitle": "Location" },
 			            { "sTitle": "Actions", sWidth:"5%"},
 			            { "sTitle": "" , sWidth:"5%"},
@@ -732,8 +726,8 @@ class Adminrender_library{
 					$("input[name=upcomming]").click(function(){
 						change_event_type($(this).val());
 					})
-
-					'.($data?(($data[0]->upcomming=='0')?'$(".upcomming").hide();':''):'').'
+					$(".upcomming").hide();
+					'.($data?(($data[0]->upcomming=='1')?'$(".upcomming").show();':''):'').'
 
 
 				})</script>';
@@ -795,26 +789,28 @@ class Adminrender_library{
 						</p>
 					</div>
 
+
 					<div class="grid_12">
 						<p>
 							<label>Event Category</label>
 							<span>
-							     <input type="radio" name="upcomming" value="1" '.($data?($data[0]->upcomming=='1'?'checked="checked"':''):'').' />
+							     <input type="radio" value="1" name="upcomming" '.
+							     									($data?($data[0]->upcomming==1?'checked="checked"':''):'').' />
 							     <span>Upcoming Event</span>
 							</span>							
-							<span class="grid_6">
-							     <input type="radio" name="upcomming" value="0" '.($data?($data[0]->upcomming=='0'?'checked="checked"':''):'').' />
+							<span class="grid_4">
+							     <input type="radio" value="0" name="upcomming" '.
+							     									($data?($data[0]->upcomming==0?'checked="checked"':''):'').' />
 							     <span>Past Event</span>
+							</span>
+							<span class="grid_4" style="float:right;">
+							     <input type="checkbox" name="featured" value="1" '.
+							     									($data?($data[0]->featured==1?'checked="checked"':''):'').' />
+							     <span>Featured Event</span>
 							</span>
 						</p>
 					</div>
 
-					<div class="grid_6 upcomming">
-						<p>
-							<label for="date">Date</label>
-							<input type="text" value="'.($data?$data[0]->date:'').'" name="date">
-						</p>
-					</div>
 
 					<div class="grid_6 upcomming">
 						<p>
@@ -873,8 +869,6 @@ class Adminrender_library{
 	}
 
 
-
-
 	/**
 	 * news list
 	 */
@@ -922,10 +916,7 @@ class Adminrender_library{
 	 * new news form
 	 */
 	public function render_new_news($data){
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//die;
+
 		$this->ci->load->config('news_type');
 		$this->ci->template->add_css(ADMINJSPATH.'jquery-ui.css');
 		$this->ci->template->add_js(ADMINJSPATH.'jquery-ui.js');
@@ -1091,7 +1082,7 @@ class Adminrender_library{
 	 * subjects list
 	 */
 	public function render_subjectslist($data){
-//print_r($data);die;		
+
 		$this->ci->load->config('ethnicity');
 		$this->ethnicity = $this->ci->config->item('ethnicity');
 
@@ -1128,10 +1119,6 @@ class Adminrender_library{
 	 * new subjects form
 	 */
 	public function render_new_subjects($data){
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//die;
 
 		$this->ci->load->config('ethnicity');
 		$this->ethnicity = $this->ci->config->item('ethnicity');
@@ -1742,7 +1729,7 @@ class Adminrender_library{
 	 * users list
 	 */
 	public function render_userslist($data){
-//print_r($data);die;		
+
 		$op =	'<div class="grid_2" style="float:right;">
 					<p>
 						<a href="'.site_url('admin/users/new_user').'">New</a>
@@ -1776,10 +1763,7 @@ class Adminrender_library{
 	 * new users form
 	 */
 	public function render_new_user($data){
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//die;
+
 		$op =	//'<div class="container_16 clearfix" id="content">'.
 					form_open().'
 					<div class="grid_16">

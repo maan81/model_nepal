@@ -13,10 +13,9 @@
 
 
 		<div class="upcoming">
-			<div class="eventpic">
-				<span class="title">Featured articles</span>
-				<img src="tmp/up-coming.jpg" alt="upcoming event" title="" />
-			</div>
+
+			<?php $this->view('site/news_slideshow')?>
+
 			<div class="articles">
 				
 				<?php foreach($news as $key=>$val) :?>

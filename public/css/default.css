@@ -185,6 +185,7 @@ div{
 		background:#fff;
 		padding:1px;
 		font-size:11px;
+		position:absolute; /* added */
 	}
 	
 	.header .search form{

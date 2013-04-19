@@ -83,8 +83,16 @@ class Render_library{
 	public function render_toplink($data){
 		$op = 	'<div id="toplink">
 					<div class="toplink">
-						<div class="date">'.date('j F Y').'</div>
-						<!--
+						<div class="date">'.date('j F Y').'</div>';
+
+
+		//facebook disabled ... for offline use
+		$op .=		'</div>
+				</div>';
+		return $op;
+
+
+		$op .=			'<!--
 						<div class="like">
 							<div class="addthis_toolbox addthis_default_style ">
 								<a class="addthis_button_facebook_like"></a>
@@ -209,6 +217,7 @@ class Render_library{
 											h:false,
 											autoMove:false,
 											showPlay:false,
+											move:750,
 										});
 									});
 									</script>

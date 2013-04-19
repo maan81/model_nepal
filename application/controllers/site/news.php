@@ -57,6 +57,8 @@ class News extends MY_Controller {
 		    );
 
 		$this->template->add_meta($meta);
+		$this->template->add_js(JSPATH.'news_slideshow.js');
+		$this->template->add_css(CSSPATH.'news_slideshow.css');
 
 		//$this->template->add_js(JSPATH.'news_search.js');
 		//-----------------------------------------------

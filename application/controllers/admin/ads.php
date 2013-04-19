@@ -185,7 +185,11 @@ class Ads extends MY_Controller {
 		if($this->_validated_src){
 			//input new data
 			$data = $this->ads_model->set($data);
-			$this->session->set_flashdata('msg', 'New Ads saved.');			
+			if($this->input->post('id')){
+				$this->session->set_flashdata('msg', 'Ads ID '.$this->input->post('id').' updated.');			
+			}else{
+				$this->session->set_flashdata('msg', 'New Ads saved.');			
+			}
 			redirect('admin/ads/edit/'.$data[0]->id);
 
 		}else{

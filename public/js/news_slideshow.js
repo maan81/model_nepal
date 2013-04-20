@@ -1,7 +1,7 @@
 $(function(){
 
     var fade=500,
-        disp=3000,
+        disp=5000,
         $event = $('#event_pics').find('.event').eq(0),
         $event_thumbs = $('#event_thumbs').find('.selected'),
         next_index=0,
@@ -10,6 +10,7 @@ $(function(){
     $('#event_pics').find('.event').css({'opacity':0})
     $event.css({'opacity':1});
 
+    //fn to repeat the animation
     function news_ani_fn(){
         var index = $event.index();
 
@@ -94,6 +95,7 @@ $(function(){
         .eq(0)
             .trigger('mouseover');
 
+    //repeat the animation
     news_ani = setInterval(news_ani_fn,disp)
 
 })

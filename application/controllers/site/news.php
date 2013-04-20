@@ -22,8 +22,8 @@ class News extends MY_Controller {
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 		$news = $this->news_model->get(false,array(
 														'order_by'=>array(
-																		'coln'=>'title',
-																		'dir'=>'asc')
+																		'coln'=>'date_created',
+																		'dir'=>'desc')
 														)
 												);
 

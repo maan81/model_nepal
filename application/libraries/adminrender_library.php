@@ -1030,7 +1030,7 @@ class Adminrender_library{
 
 					<div class="grid_6 not_script is_image">
 						<p class="img">
-							<label for="image">Image<small>The required Advertizement image..</small></label>';
+							<label for="image">Image<small>610x400</small></label>';
 			
 				if($data && $data[0]->image){
 					$op .=	'<img class="old_img" src="'.base_url().NEWSSPATH.$data[0]->image.'" />

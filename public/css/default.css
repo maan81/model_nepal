@@ -1005,7 +1005,7 @@ div{
 		font-family:"Myriad Pro", "Trebuchet MS";
 	}
 	
-		.upcoming .highlights{
+	.upcoming .highlights{
 		width:670px;
 		float:left;
 		height:auto;
@@ -1112,6 +1112,8 @@ div{
 		padding:4px;
 		border:1px solid #e2e4d7;
 		background:#fff;
+		width:auto;		/* added */
+		height:100px;	/* added */
 	}
 	
 	

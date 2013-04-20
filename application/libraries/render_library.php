@@ -86,10 +86,10 @@ class Render_library{
 						<div class="date">'.date('j F Y').'</div>';
 
 
-		//facebook disabled ... for offline use
-		$op .=		'</div>
-				</div>';
-		return $op;
+		////facebook disabled ... for offline use
+		//$op .=		'</div>
+		//		</div>';
+		//return $op;
 
 
 		$op .=			'<!--

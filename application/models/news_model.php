@@ -60,6 +60,7 @@ class News_model extends CI_Model{
 
 		foreach($data as $key=>$val){
 			$val->type = $type[$val->type];
+			$val->image = base_url().NEWSSPATH.'/'.$val->image;
 		}
 
 		return $data;

@@ -21,7 +21,7 @@
 				<?php foreach($news as $key=>$val) :?>
 
 				<div class="block">
-					<img src="tmp/article.jpg" alt="articles" />
+					<img src="<?php echo $val->image?>" alt="articles" />
 					<h1>
 						<a href="#"><?php echo $val->title?></a> 
 						<span>Posted Under: <?php echo $val->type?></span>

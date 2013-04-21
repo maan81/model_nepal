@@ -91,7 +91,7 @@ div{
 		top:5px;
 	}
 	
-	/*
+	/* removed 
 	.toplink .like{
 		right:0px;
 		top:5px;
@@ -99,12 +99,16 @@ div{
 	}
 	*/
 	.toplink .like{
-		right:0px;
-		top:3px;
-		position:absolute;
-		width:53px;
-		height:25px;
-		overflow:hidden;
+		float: right;		/* added */
+		padding-top: 3px;	/* added */
+		/*					/* removed 
+			right:0px;
+			top:3px;
+			position:absolute;
+			width:450px;
+			height:25px;
+			overflow:hidden;
+		*/
 	}
 
 	#main .mainin{

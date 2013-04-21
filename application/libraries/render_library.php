@@ -103,13 +103,21 @@ class Render_library{
 							</script>
 						</div>
 						-->
-						<div class="like">
-						<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fmodelnepal.com&amp;send=false&amp;layout=standard&amp;width=53&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=25" 
+						<!--
+						<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fmodelsnepal&amp;send=false&amp;layout=standard&amp;width=53&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=25" 
 								scrolling="no" 
 								frameborder="0" 
 								style="border:none; overflow:hidden; width:53px; height:25px;" 
 								allowTransparency="true">
 						</iframe>
+						-->
+						<div class="like">
+							<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fmodelsnepal&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;font&amp;colorscheme=dark&amp;action=like&amp;height=35" 
+									scrolling="no" 
+									frameborder="0" 
+									style="border:none; overflow:hidden; width:450px; height:35px;" 
+									allowTransparency="true">
+							</iframe>
 						</div>
 				    </div>
 				</div>';	
@@ -235,7 +243,7 @@ class Render_library{
 				$op .= 	    	'<div class="contents slide" >
 									<a href="#">
 							            <span>'.$val->title.'</span>
-							            <img src="'.NEWSSPATH.$val->image.'" alt="'.$val->title.'" 
+							            <img src="'.$val->image.'" alt="'.$val->title.'" 
 							            		title="'.$val->content.'"
 							            		width="210" height="120" />
 									</a>

@@ -26,6 +26,13 @@ class Events extends MY_Controller {
 																		'dir'=>'asc')
 														)
 												);
+		$events_slideshow = $this->events_model->get(array('featured'=>'1'),
+													array(
+															'order_by'=>array(
+																		'coln'=>'title',
+																		'dir'=>'asc')
+														)
+												);
 		//---------------------------------------------
 		//generate meta tags
 		$events_list = '';
@@ -51,17 +58,14 @@ class Events extends MY_Controller {
 		$this->load->config('ethnicity');
 		$this->load->config('eventstype');
 		$data = array(
-					//'add'			=>	$tmp[0],
-					'add2'			=>	$tmp2,
-					'event'			=> array(
-											'img'	=>	'm4/m4.jpg',
-											'url'	=>	'#'
-										),
-					'events'		=> $events,
-					'render_right'	=> $tmp3,
-					'ethnicity'		=> $this->config->item('ethnicity'),
-					'date_dropdown'	=>	$date_dropdown,
-					'types'			=>	$this->config->item('eventstype'),
+					//'add'				=> $tmp[0],
+					'add2'				=> $tmp2,
+					'events'			=> $events,
+					'events_slideshow'	=> $events_slideshow,
+					'render_right'		=> $tmp3,
+					'ethnicity'			=> $this->config->item('ethnicity'),
+					'date_dropdown'		=> $date_dropdown,
+					'types'				=> $this->config->item('eventstype'),
 				);
 
 
@@ -113,42 +117,42 @@ class Events extends MY_Controller {
 			//folder of imgs of the event
 			$full_path = dirname(BASEPATH).'/'.EVENTSPATH;	
 			/*
-			//create thumbs folder if reqd.
-			make_dir($full_path.'/'.gen_folder_name($val->title),'thumbs');
+				//create thumbs folder if reqd.
+				make_dir($full_path.'/'.gen_folder_name($val->title),'thumbs');
 
-			$full_path .= gen_folder_name($val->title);
+				$full_path .= gen_folder_name($val->title);
 
-			//imgs in that folder
-			$imgs = scandir($full_path);								
+				//imgs in that folder
+				$imgs = scandir($full_path);								
 
-			//1st img of the 1st folder
-			foreach($imgs as $k=>$v){
-				if($v!='.' && $v!='..' && $v!='thumbs' ){
-					$preview_img = $v;
-					break;
+				//1st img of the 1st folder
+				foreach($imgs as $k=>$v){
+					if($v!='.' && $v!='..' && $v!='thumbs' ){
+						$preview_img = $v;
+						break;
+					}
 				}
-			}
-			$config['source_image']		= EVENTSPATH.gen_folder_name($val->title).'/'.$preview_img;		
-			
-			//thumbs of that img 
-			$config['new_image'] 		= $full_path.'/thumbs/'.$preview_img;		
+				$config['source_image']		= EVENTSPATH.gen_folder_name($val->title).'/'.$preview_img;		
+				
+				//thumbs of that img 
+				$config['new_image'] 		= $full_path.'/thumbs/'.$preview_img;		
 
-			
-			$config['thumb_marker']		= '';
-			$config['image_library']	= 'gd2';
-			$config['create_thumb'] 	= TRUE;
-			$config['maintain_ratio'] 	= TRUE;
-			$config['width'] 			= 323;
-			$config['height'] 			= 152;
+				
+				$config['thumb_marker']		= '';
+				$config['image_library']	= 'gd2';
+				$config['create_thumb'] 	= TRUE;
+				$config['maintain_ratio'] 	= TRUE;
+				$config['width'] 			= 323;
+				$config['height'] 			= 152;
 
-			$this->load->library('image_lib', $config);
+				$this->load->library('image_lib', $config);
 
-			if ( ! $this->image_lib->resize()){
-			    echo $this->image_lib->display_errors();
-			}			
-			//--------------------------------------
+				if ( ! $this->image_lib->resize()){
+				    echo $this->image_lib->display_errors();
+				}			
+				//--------------------------------------
 
-			$val->thumbs = EVENTSPATH.gen_folder_name($val->title).'/thumbs/'.$preview_img;
+				$val->thumbs = EVENTSPATH.gen_folder_name($val->title).'/thumbs/'.$preview_img;
 			*/
 			$val->thumbs = EVENTSPATH.gen_folder_name($val->title).'.jpg';
 			if($val->featured=='1'){

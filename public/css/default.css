@@ -978,7 +978,7 @@ div{
 .leftPart .upcoming{
 	width:690px;
 	float:left;
-	height:auto;
+	height:340px;
 }
 
 	.upcoming .eventpic{
@@ -989,7 +989,8 @@ div{
 		padding:8px;
 		background:#ffffff;
 		float:left;
-		position:relative;
+		/* position:relative; */
+		position: absolute;/* edited */
 		height:315px;
 	}
 	

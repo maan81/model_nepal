@@ -1,24 +1,40 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
 <?php $this->template->add_js(JSPATH.'default_search.js')?>
+<?php $this->template->add_js(JSPATH.'events_slideshow.js')?>
+
 
 <div class="mainContents">
 
    <div class="leftPart">
 
-      <div class="upcoming">
+      <?php if(($events_slideshow)): ?>
+         <div class="upcoming">
+            <?php foreach($events_slideshow as $key=>$val): ?>
+               <div class="eventpic">
+                  <a href="<?php echo site_url('events/'.$val->id)?>">
+                     <span class="title"><?php echo $val->title?></span>
+                     <img  title="<?php echo $val->title?>" 
+                           alt="<?php echo $val->title?>" 
+                           width="674" height="315"
+                           src="<?php echo base_url().EVENTSPATH.gen_folder_name($val->title)?>.jpg" />
+                  </a>
+               </div>
+            <?php endforeach?>
+         </div>
+      <?php endif?>
+         <!--
          <div class="eventpic">
             <span class="title">Featured Events</span>
             <img title="" alt="upcoming event" src="tmp/up-coming.jpg" />
          </div>
-      </div>
+         -->
 
       <div class="modelfilter" style="margin-top:10px;">
          <form action="" method="post">
          <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
                <tr style="text-align:center">
                   <td>
-
                      <select class="modelparam" name="title" style="width:140px;">
                         <option selected="selected" value="">Event Name</option>
                         <?php 

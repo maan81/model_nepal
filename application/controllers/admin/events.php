@@ -70,7 +70,7 @@ class Events extends MY_Controller {
 						);
 
 			if($this->input->post('upcomming')=='1'){
-				$data['date'] = $this->input->post('date');
+				//$data['date'] = $this->input->post('date');
 				$data['time'] = $this->input->post('time');
 				$data['details'] = $this->input->post('details');
 			}
@@ -155,7 +155,7 @@ class Events extends MY_Controller {
 						);
 
 			if($this->input->post('upcomming')=='1'){
-				$data['date'] = $this->input->post('date');
+				//$data['date'] = $this->input->post('date');
 				$data['time'] = $this->input->post('time');
 				$data['details'] = $this->input->post('details');
 			}

@@ -111,6 +111,7 @@ class Render_library{
 								allowTransparency="true">
 						</iframe>
 						-->
+						<!--
 						<div class="like">
 							<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fmodelsnepal&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;font&amp;colorscheme=dark&amp;action=like&amp;height=35" 
 									scrolling="no" 
@@ -119,6 +120,16 @@ class Render_library{
 									allowTransparency="true">
 							</iframe>
 						</div>
+						-->
+						<div class="like">	
+							<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fmodelsnepal&amp;send=false&amp;layout=button_count&amp;amp;show_faces=false&amp;font&amp;colorscheme=dark&amp;action=like&amp;height=21" 
+									scrolling="no" 
+									frameborder="0" 
+									style="border:none; overflow:hidden; height:21px;" 
+									allowTransparency="true">
+							</iframe>
+						</div>
+
 				    </div>
 				</div>';	
 		return $op;
@@ -128,7 +139,19 @@ class Render_library{
 	 * Render Main conteht of the page
 	 */
 	public function render_mainContents($data){
-		$op = 	'<div class="mainContents">
+		$op =	'<script type="text/javascript">
+				$(function(){
+					$(".ps_album .ps_desc",".ps_slider").hover(
+						function(){
+							$(this).animate({"opacity":0.75},250)
+						},
+						function(){
+							$(this).animate({"opacity":0},250)
+						}
+					)
+				})
+				</script>';
+		$op .= 	'<div class="mainContents">
 					<div class="leftPart">
 						<div class="fullbanner">
 							<a href="'.$data['add']->link.'">
@@ -149,10 +172,18 @@ class Render_library{
 							$op .= 	'<div class="ps_album models" style="opacity:0;">
 										<a href="'.$val['link'].'" style="width:inherit;height:inherit;">
 											<img  src="'.$val['img'].'" alt="'.$val['model']->name.'"  />'.
-											//'<div class="ps_desc">'
-											//'	<h2>'.$val['title'].'</h2>'
-											//'	<span>'.$val['desc'].'</span>'
-											//'</div>'
+											'<div class="ps_desc">'.
+											'	<h2>'.$val['model']->name.'</h2>'.
+											'	<table>
+													<tr><td>Wardrobe :</td><td>'.$val['model']->wardrobe.'</td></tr>
+													<tr><td>Location :</td><td>'.$val['model']->location.'</td></tr>
+													<tr><td>Make-Up :</td><td>'.$val['model']->make_up.'</td></tr>
+													<tr><td>Photographer:</td><td>'.$val['model']->photographer.'</td></tr>
+													<tr><td>Model By :</td><td>'.$val['model']->model_by.'</td></tr>
+													<tr><td>Date Created:</td><td>'.$val['model']->date_created.'</td></tr>
+													<tr><td>Profile Viewed:</td><td>'.$val['model']->profile_viewed.'</td></tr>
+												</table>'.
+											'</div>'.
 										'</a>
 									</div>';
 						}

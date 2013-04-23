@@ -1033,7 +1033,7 @@ class Adminrender_library{
 							<label for="image">Image<small>610x400</small></label>';
 			
 				if($data && $data[0]->image){
-					$op .=	'<img class="old_img" src="'.base_url().NEWSSPATH.$data[0]->image.'" />
+					$op .=	'<img class="old_img" src="'.$data[0]->image.'" />
 							 <a href="#" class="change_img">Change</a>';
 				}else{
 					$op .= '<input class="new_img" type="file" name="image">';

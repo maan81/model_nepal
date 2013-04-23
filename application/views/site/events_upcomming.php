@@ -15,7 +15,7 @@
 
       <div class="upcoming">
          
-         <div class="eventpic">
+         <div class="eventpic" style="position:relative;">
             <span class="title"><?php echo ucfirst($events->title)?></span>
             <img src="<?php echo $events->cur_img?>" alt="<?php echo $events->title?>" />
 
@@ -37,7 +37,7 @@
                <div class="block">
                   <div class="title">When &amp; Where</div>
                   <div class="contents">
-                  Date: <?php echo $events->date?><br />
+                  Date: <?php echo $events->date_created?><br />
                   Time: <?php echo $events->time?><br />
                   Venue: <?php echo $events->location?><br />
                   </div>

@@ -183,12 +183,17 @@ a.ps_close:hover{
 .ps_slider .ps_album:hover .ps_desc{
 	background-image:none;
 }
-.ps_slider .ps_album .ps_desc span{
-	display:block;
-	margin:0px 10px 10px 10px;
-	border-top:1px solid #333;
-	padding-top:5px;
+.ps_slider .ps_album .ps_desc td{
+	/*display:block;*/
+	/*margin:0px 10px 10px 10px;*/
+	/*border-top:1px solid #333;*/
+	/*padding-top:5px;*/
+	margin:0 10px 10px 10px;
+	padding:10px;
 }
+.ps_slider .ps_album .ps_desc :hover{
+}
+
 .ps_slider .ps_album .ps_desc h2{
 	margin:10px 10px 0px 10px;
 	text-align:left;

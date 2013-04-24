@@ -409,6 +409,59 @@ class Adminrender_library{
 					}
 		</style>';
 
+$op .=
+'
+	<link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-responsive.min.css">
+
+<div class="container">
+
+    <!-- The file upload form used as target for the file upload widget -->
+    <form id="fileupload" action="<?=base_url()?>index.php/home/upload" method="POST" enctype="multipart/form-data">
+        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+        <div class="row fileupload-buttonbar">
+            <div class="span7">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button">
+                    <i class="icon-plus icon-white"></i>
+                    <span>Add files...</span>
+                    <input type="file" name="files[]" multiple>
+                </span>
+                <button type="submit" class="btn btn-primary start">
+                    <i class="icon-upload icon-white"></i>
+                    <span>Start upload</span>
+                </button>
+                <button type="reset" class="btn btn-warning cancel">
+                    <i class="icon-ban-circle icon-white"></i>
+                    <span>Cancel upload</span>
+                </button>
+                <button type="button" class="btn btn-danger delete">
+                    <i class="icon-trash icon-white"></i>
+                    <span>Delete</span>
+                </button>
+                <input type="checkbox" class="toggle">
+            </div>
+            <!-- The global progress information -->
+            <div class="span5 fileupload-progress fade">
+                <!-- The global progress bar -->
+                <div class="progress progress-success progress-striped active">
+                    <div class="bar" style="width:0%;"></div>
+                </div>
+                <!-- The extended global progress information -->
+                <div class="progress-extended">&nbsp;</div>
+            </div>
+        </div>
+        <!-- The loading indicator is shown during file processing -->
+        <div class="fileupload-loading"></div>
+        <br>
+        <!-- The table listing the files available for upload/download -->
+        <table class="table table-striped">
+			<tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+		</table>
+    </form>
+    <br>
+    
+</div>
+';
 
 		$op .=	//'<div class="container_16 clearfix" id="content">'.
 					form_open().'
@@ -657,7 +710,7 @@ class Adminrender_library{
 						'"'.$val->title.'", '.
 						'"'.word_limiter($val->summary,10).'", '.
 						'"'.$val->type.'", '.
-						'"'.($val->featured=='1'?'Yes':'No').'", '.
+						'"'.($val->upcomming=='1'?'Yes':'No').'", '.
 						'"'.$val->location.'", '.
 						'"<a class=\"edit\" href=\"'.site_url('admin/events/edit/'.$val->id).'\">Edit</a>", '.
 						'"<a class=\"delete\" href=\"'.site_url('admin/events/del/'.$val->id).'\">Delete</a>"], ';
@@ -668,7 +721,7 @@ class Adminrender_library{
 			            { "sTitle": "Title" },
 			            { "sTitle": "Summary" },
 			            { "sTitle": "Type" },
-			            { "sTitle": "Featured" },
+			            { "sTitle": "Upcomming" },
 			            { "sTitle": "Location" },
 			            { "sTitle": "Actions", sWidth:"5%"},
 			            { "sTitle": "" , sWidth:"5%"},
@@ -805,11 +858,13 @@ class Adminrender_library{
 							     									($data?($data[0]->upcomming==0?'checked="checked"':''):'').' />
 							     <span>Past Event</span>
 							</span>
+							<!--
 							<span class="grid_4" style="float:right;">
 							     <input type="checkbox" name="featured" value="1" '.
 							     									($data?($data[0]->featured==1?'checked="checked"':''):'').' />
 							     <span>Featured Event</span>
 							</span>
+							-->
 						</p>
 					</div>
 

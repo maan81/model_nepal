@@ -23,7 +23,7 @@ $config['admin_nav'] = array(	'Home'			=> base_url().'admin',
 $config['nav'] = array(
 						'Featured Models'	=> site_url('featured'),
 						'Agency'			=> site_url('subjects'),
-						'News & Gossips'	=> site_url('news'),
+						'News &amp; Gossips'=> site_url('news'),
 						'Events'			=> site_url('events'),
 						'Music'				=> '#',
 						'Videos'			=> '#',

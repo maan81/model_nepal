@@ -1,0 +1,49 @@
+.box{
+    border: 1px solid #BBBBBB;
+    border-radius: 0 0 10px 10px;
+}
+.user_hist {
+    float: right;
+    position: relative;
+    right: -30px;
+    top: -5px;
+}
+.overlay:hover {
+    opacity: 0;
+}
+.overlay {
+    background: none repeat scroll 0 0 black;
+    height: 100%;
+    left: 0;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.icon-box .value {
+    padding-top: 5px;
+    text-align: center;
+}
+.icon-box img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:48px;
+    height:48px;
+}
+a:hover {
+    background-color: #FFFFFF;
+    text-decoration: none;
+	text-decoration: underline;
+}
+.icon-box {
+    border: 1px solid #777777;
+    border-radius: 5px 5px 5px 5px;
+    display: inline-block;
+    margin: 16px;
+    padding: 15px 0 15px 0;
+    position: relative;
+    width: 97px;
+    text-align: center;
+	text-decoration: none;
+}

@@ -174,15 +174,15 @@ class Render_library{
 											<img  src="'.$val['img'].'" alt="'.$val['model']->name.'"  />'.
 											'<div class="ps_desc">'.
 											'	<h2>'.$val['model']->name.'</h2>'.
-											'	<table>
-													<tr><td>Wardrobe :</td><td>'.$val['model']->wardrobe.'</td></tr>
-													<tr><td>Location :</td><td>'.$val['model']->location.'</td></tr>
-													<tr><td>Make-Up :</td><td>'.$val['model']->make_up.'</td></tr>
-													<tr><td>Photographer:</td><td>'.$val['model']->photographer.'</td></tr>
-													<tr><td>Model By :</td><td>'.$val['model']->model_by.'</td></tr>
-													<tr><td>Date Created:</td><td>'.$val['model']->date_created.'</td></tr>
-													<tr><td>Profile Viewed:</td><td>'.$val['model']->profile_viewed.'</td></tr>
-												</table>'.
+											//'	<table>
+											//		<tr><td>Wardrobe :</td><td>'.$val['model']->wardrobe.'</td></tr>
+											//		<tr><td>Location :</td><td>'.$val['model']->location.'</td></tr>
+											//		<tr><td>Make-Up :</td><td>'.$val['model']->make_up.'</td></tr>
+											//		<tr><td>Photographer:</td><td>'.$val['model']->photographer.'</td></tr>
+											//		<tr><td>Model By :</td><td>'.$val['model']->model_by.'</td></tr>
+											//		<tr><td>Date Created:</td><td>'.$val['model']->date_created.'</td></tr>
+											//		<tr><td>Profile Viewed:</td><td>'.$val['model']->profile_viewed.'</td></tr>
+											//	</table>'.
 											'</div>'.
 										'</a>
 									</div>';

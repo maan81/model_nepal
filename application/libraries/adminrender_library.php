@@ -72,6 +72,63 @@ class Adminrender_library{
 
 
 	/**
+	 * Admin's homepage
+	 */
+	public function render_adminhome($data){
+		$this->ci->template->add_css(ADMINCSSPATH.'adminhome.css');
+
+		$op = 	'<div class="grid_5 user_hist">
+					<div class="box">
+						<h2>'.$data->username.'</h2>
+						<p>
+							<strong>Last Signed In : </strong>'.$data->last_loggedin.'<br>
+							<strong>IP Address : </strong> '.$data->last_location.'
+						</p>
+					</div>
+				</div>
+				<h2>Select a Task</h2>
+				<div style="float: left; position: relative; left: 50%;">
+					<div class="grid_12" style="border: 1px solid black; border-radius: 25px 25px 25px 25px; position: relative; left: -50%; margin: 20px 0px; padding-left: 25px; padding-top: 10px; padding-bottom: 10px; float: left;">
+
+						<a class="icon-box" href="'.site_url('admin/featured/new_featured').'">
+							<img alt="new featured" src="'.base_url().ADMINIMGSPATH.'woman_slim3.png" title="Create New Featured Model">
+							<div class="value">New Model</div>
+						</a>
+
+						<a class="icon-box" href="'.site_url('admin/events/new_event').'">
+							<img alt="new event" src="'.base_url().ADMINIMGSPATH.'show_reel.png" title="Create New Event">
+							<div class="value">New Event</div>
+						</a>
+
+						<a class="icon-box" href="'.site_url('admin/news/new_news').'">
+							<img alt="new news" src="'.base_url().ADMINIMGSPATH.'news.png" title="Create New News">
+							<div class="value">New News</div>
+						</a>
+
+						<a href="'.site_url('admin/subjects/new_subject').'" class="icon-box">
+							<img alt="new agency" src="'.base_url().ADMINIMGSPATH.'users_2.png" title="Create New Agency">
+							<div class="value">New Agency</div>
+						</a>
+
+						<a href="'.site_url('admin/ads/new_ad').'" class="icon-box">
+							<img alt="new advertizement" src="'.base_url().ADMINIMGSPATH.'clipping_picture.png" title="Create New Advertizement">
+							<div class="value">New Ads</div>
+						</a>
+
+						<a href="'.site_url('admin/users/new_user').'" class="icon-box">
+							<img alt="new user" src="'.base_url().ADMINIMGSPATH.'user3.png" title="Create New User">
+							<div class="value">New User</div>
+						</a>
+
+					</div>
+
+				</div>
+				<hr/>';
+
+		return $op;
+	}
+
+	/**
 	 * ads list
 	 */
 	public function render_adslist($data){
@@ -303,7 +360,7 @@ class Adminrender_library{
 
 					<div class="grid_12">
 						<p class="submit">
-							<a href="'.site_url('admin/ads').'">Cancel</a>
+							<a href="javascript:history.back()">Cancel</a>
 							<input type="submit" value="Submit">
 						</p>
 					</div>		
@@ -553,7 +610,7 @@ $op .=
 					</div>
 					<div class="grid_16">
 						<p class="submit">
-							<a href="'.site_url('admin/featured').'">Cancel</a>
+							<a href="javascript:history.back()">Cancel</a>
 							<input type="submit" value="Submit">
 						</p>
 					</div>	
@@ -899,7 +956,7 @@ $op .=
 					<div class="grid_12">
 
 						<p class="submit">
-							<a href="'.site_url('admin/events').'">Cancel</a>
+							<a href="javascript:history.back()">Cancel</a>
 							<input type="submit" value="Submit">
 						</p>
 					</div>
@@ -1122,7 +1179,7 @@ $op .=
 							'</textarea>
 						</p>
 						<p class="submit">
-							<a href="'.site_url('admin/news').'">Cancel</a>
+							<a href="javascript:history.back()">Cancel</a>
 							<input type="submit" value="Submit">
 						</p>
 					</div>	
@@ -1609,7 +1666,7 @@ $op .=
 						<div class="grid_16">
 							<p class="submit">
 								<a id="prev_btn" href="#">Previous</a>
-								<a href="http://localhost/model_nepal/admin/subjects">Cancel</a>
+								<a href="javascript:history.back()">Cancel</a>
 								<input type="submit" value="Submit">
 							</p>
 						</div>	
@@ -1776,6 +1833,7 @@ $op .=
 				<div class="grid_6">
 					<p>
 						<input type="submit" value="Update" name="submit">
+						<a href="javascript:history.back()">Cancel</a>
 					</p>
 				</div>
 			</form>';
@@ -1861,7 +1919,7 @@ $op .=
 
 					<div class="grid_16">
 						<p class="submit">
-							<a href="'.site_url('admin/users').'">Cancel</a>
+							<a href="javascript:history.back()">Cancel</a>
 							<input type="submit" value="Submit">
 						</p>
 					</div>		

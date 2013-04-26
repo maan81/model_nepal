@@ -9,23 +9,61 @@
       <?php if($subjects) :?>
       <?php $count_img=1?>
       <?php foreach($subjects as $key=>$val):?>
+<?php //print_r($val)?>
+         <div class="aModel" style="overflow:hidden;position:relative;">
+  
+              <div>
+                <img style="width: 140px;" alt="<?php echo $val->name?>" title="<?php echo $val->name?>"
+                    src="<?php echo base_url().$val->thumbs?>" />
+                <h1><?php echo $val->name?></h1>              
+              </div>
 
-         <div class="aModel">
-
-            <div style="width: 140px; height: 160px; overflow: hidden; position: relative;">
-              <img style="height: auto; width: 140px; position: absolute; top: -10%;" 
-                  src="<?php echo base_url().$val->thumbs?>" alt="<?php echo $val->name?>">
-            </div>
-            
-            <!--
-            <img src="<?php echo $val->thumbs?>" 
-                  alt="<?php echo $val->name?>" width="140" height="160" />
-            -->
-
-            <h1><?php echo $val->name?></h1>
-            Height:<?php echo $val->height?><br />
-            Weight: <?php echo $val->weight?><br />
-            <a href="<?php echo site_url('subjects/'.$val->id)?>">More &raquo;</a> 
+<style>
+.contents .desc {
+    background: none repeat scroll 0 0 black;
+    color: #999;
+    height: 228px;
+    left: -5px;
+    opacity: 0;
+    overflow: hidden;
+    padding: 10px;
+    position: absolute;
+    text-decoration: none;
+    top: 0;
+    z-index: 1;
+    text-decoration: none;
+}
+</style>
+<script>
+$(function(){
+  $('.desc','.contents').hover(
+    function(){
+      $(this).animate(
+                {'opacity':0.75},
+                {duration:400,queue:false}
+              );
+    },function(){
+      $(this).animate(
+                {'opacity':0},
+                {duration:400,queue:false}
+              );
+    }
+  )
+})
+</script>
+<a href="<?php echo site_url('subjects/'.$val->id)?>" class="desc">
+  <h1><?php echo $val->name?></h1>              
+  <table>
+    <tr><td>Age</td>    <td><?php echo $val->age?></td></tr>
+    <tr><td>Height</td> <td><?php echo $val->height?></td></tr>
+    <tr><td>Weight</td> <td><?php echo $val->weight?></td></tr>
+    <tr><td>Bust</td>   <td><?php echo $val->bust?></td></tr>
+    <tr><td>Waist</td>  <td><?php echo $val->waist?></td></tr>
+    <tr><td>Hips</td>   <td><?php echo $val->hips?></td></tr>
+    <tr><td>Ethnicity</td><td><?php echo $val->ethnicity?></td></tr>
+    <tr><td>Profile Viewed</td><td><?php echo $val->profile_viewed?></td></tr>
+  </table>
+</a> 
 
          </div>
 

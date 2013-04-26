@@ -136,6 +136,15 @@ class Admin extends MY_Controller {
 		
 		$this->render_user_info();
 
+		$data = (object)array(	'username'		=>	$this->session->userdata('username'),
+								'usertype'		=>	$this->session->userdata('usertype'),
+								'last_loggedin'	=> 	$this->session->userdata('last_loggedin'),
+								'last_location'	=>	$this->session->userdata('last_location'),
+							);
+
+		$adminhome = $this->adminrender_library->render_adminhome($data);
+		$this->template->write('adminhome',$adminhome);
+
 		$this->template->render();
 	}
 
@@ -181,6 +190,16 @@ class Admin extends MY_Controller {
 
 			}else{
 //die('b');				
+				$data = $this->users_model->get(array('id'=>$this->session->userdata('userid')));
+
+				$this->users_model->set(array(	'id'			=> $data[0]->id,
+												'last_loggedin'	=> date('Y-m-d H:i:s'),
+												'last_location'	=> $this->input->ip_address()
+										));
+
+				$this->session->set_userdata('last_loggedin', $data[0]->last_loggedin);
+				$this->session->set_userdata('last_location', $data[0]->last_location);
+
 				//redirect to admin's main page
 				redirect('admin/main');
 			}

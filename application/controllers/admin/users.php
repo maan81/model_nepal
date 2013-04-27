@@ -12,7 +12,7 @@ class Users extends MY_Controller {
 		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
 		$this->output->set_header('Pragma: no-cache');
-//echo $this->session->userdata('usertype');die;
+
 		if( ($this->session->userdata('usertype')!='administrator') && 
 			($this->session->userdata('usertype')!='editor') ) {
 			redirect('admin');
@@ -163,6 +163,7 @@ class Users extends MY_Controller {
 
 		$this->render_navigation();
 		$this->render_user_info();
+		$this->render_flash();
 		
 		$this->template->render();
 	}
@@ -174,9 +175,7 @@ class Users extends MY_Controller {
 		}
 		
 		if($this->input->post('username')){
-//echo '<pre>';
-//print_r($this->input->post());
-//echo '</pre>';			
+
 			$data = array(
 							'username'	=> $this->input->post('username'),
 							'password'	=> md5('password'.$this->input->post('username')),
@@ -189,11 +188,12 @@ class Users extends MY_Controller {
 			if($this->_validated){
 				//input new data
 				$data = $this->users_model->set($data);
-				$this->session->set_flashdata('msg', 'Data saved.');			
+				$this->session->set_flashdata('msg', 'New User saved.');			
 			}else{
 				//err in validation....
-				$this->session->set_flashdata('err', 'Error saving data.');
+				$this->session->set_flashdata('msg', 'Error saving New User.');
 			}
+			redirect('admin/users');
 		}
 	
 		$new_user = $this->adminrender_library->render_new_user($data);
@@ -202,6 +202,7 @@ class Users extends MY_Controller {
 
 		$this->render_navigation();
 		$this->render_user_info();
+		$this->render_flash();
 		
 		$this->template->render();
 	}
@@ -222,10 +223,10 @@ class Users extends MY_Controller {
 
 		if($this->_validated){
 			$this->users_model->del($data);
-			$this->session->set_flashdata('msg', 'Data deleted.');			
+			$this->session->set_flashdata('msg', 'User ID '.$id.' deleted.');			
 			
 		}else{
-			$this->session->set_flashdata('err', 'Error saving data.');
+			$this->session->set_flashdata('msg', 'Error Deleting User ID '.$id.' .');
 		}
 		redirect('admin/users');
 	}
@@ -244,12 +245,11 @@ class Users extends MY_Controller {
 			return false;
 		}
 		if($this->input->post('username')){
-//echo '<pre>';
-//print_r($this->input->post());
-//echo '</pre>';			
-			$id = $this->session->userdata('updated_id');
-	
+
+			$update_id = $this->session->userdata('update_id');
+
 			$data = array(
+							'id'		=> $update_id,
 							'username'	=> $this->input->post('username'),
 							'password'	=> $this->input->post('password'),
 							'email' 	=> $this->input->post('email'),
@@ -261,18 +261,19 @@ class Users extends MY_Controller {
 			if($this->_validated){
 				//input new data
 				$data = $this->users_model->set($data);
-				$this->session->set_flashdata('msg', 'Data saved.');			
+				$this->session->set_flashdata('msg', 'User ID '.$update_id.' updated.');			
 			}else{
 				//err in validation....
-				$this->session->set_flashdata('err', 'Error saving data.');
+				$this->session->set_flashdata('msg', 'Error updating User ID '.$update_id.'.');
 			}
 
-			unset($_POST);
+			redirect('admin/users');
 		}
 
 		$data = $this->users_model->get(array('id'=>$id));
 		$this->new_user($data);
-		$this->session->set_userdata('updated_id',$id);
+		$this->render_flash();
+		$this->session->set_userdata('update_id',$id);
 	}
 
 	private function render_navigation(){
@@ -284,6 +285,15 @@ class Users extends MY_Controller {
 							'usertype'=>$this->session->userdata('usertype') );
 		$userlogged = $this->adminrender_library->render_userlogged($user_data);
 		$this->template->write('userlogged',$userlogged);
+	}
+	private function render_flash(){
+		if($flash = $this->session->flashdata('msg')){
+			$flash = $this->adminrender_library->render_flash($flash);
+
+			$this->template->write('flash',$flash);
+			$this->template->add_css(ADMINCSSPATH.'flash.css');
+			$this->template->add_js(ADMINJSPATH.'functions.js');
+		}
 	}
 
 //---------------------------------------------------------------------------------

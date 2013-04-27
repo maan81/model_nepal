@@ -19,9 +19,9 @@ class Logout extends MY_Controller {
 	public function index(){
 		$this->session->sess_destroy();
 		$this->session->flashdata('userlogged','You have just logged out.');
-		redirect(base_url());
+		redirect(site_url('admin'));
 	}
 }
 
 /* End of file admin.php */
-/* Location: ./application/controllers/admin/admin.php */
+/* Location: ./application/controllers/admin/logout.php */

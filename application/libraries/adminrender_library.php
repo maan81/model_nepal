@@ -86,11 +86,15 @@ class Adminrender_library{
 						</p>
 					</div>
 				</div>
-				<h2>Select a Task</h2>
+				<h2>Select a Task</h2>';
 
-				<div class="grid_14" style="border: 1px solid black; border-radius: 25px 25px 25px 25px; position: relative; margin: 20px 0 20px 60px; padding-left: 25px; padding-top: 10px; padding-bottom: 10px;">
+		if( $this->ci->session->userdata('usertype')=='administrator'){
+		$op .=	'<div class="grid_14" style="border: 1px solid black; border-radius: 25px 25px 25px 25px; position: relative; margin: 20px 0 20px 60px; padding-left: 25px; padding-top: 10px; padding-bottom: 10px;">';
+		}else{
+		$op .=	'<div class="grid_12" style="border: 1px solid black; border-radius: 25px 25px 25px 25px; position: relative; margin: 20px 0 20px 100px; padding-left: 25px; padding-top: 10px; padding-bottom: 10px;">';
+		}
 
-					<a class="icon-box" href="'.site_url('admin/featured/new_featured').'">
+		$op .=		'<a class="icon-box" href="'.site_url('admin/featured/new_featured').'">
 						<img alt="new featured" src="'.base_url().ADMINIMGSPATH.'woman_slim3.png" title="Create New Featured Model">
 						<div class="value">New Model</div>
 					</a>
@@ -113,14 +117,17 @@ class Adminrender_library{
 					<a href="'.site_url('admin/ads/new_ad').'" class="icon-box">
 						<img alt="new advertizement" src="'.base_url().ADMINIMGSPATH.'clipping_picture.png" title="Create New Advertizement">
 						<div class="value">New Ads</div>
-					</a>
+					</a>';
 
-					<a href="'.site_url('admin/users/new_user').'" class="icon-box">
+		if( $this->ci->session->userdata('usertype')=='administrator'){
+			$op .=	'<a href="'.site_url('admin/users/new_user').'" class="icon-box">
 						<img alt="new user" src="'.base_url().ADMINIMGSPATH.'user3.png" title="Create New User">
 						<div class="value">New User</div>
-					</a>
+					</a>';
+		}
 
-					<a class="icon-box" href="'.site_url('admin/featured').'">
+
+			$op .=	'<a class="icon-box" href="'.site_url('admin/featured').'">
 						<img alt="list featured" src="'.base_url().ADMINIMGSPATH.'onebit_39.png" title="List Existing Featured Model">
 						<div class="value">List Models</div>
 					</a>
@@ -143,13 +150,16 @@ class Adminrender_library{
 					<a href="'.site_url('admin/ads').'" class="icon-box">
 						<img alt="list advertizement" src="'.base_url().ADMINIMGSPATH.'onebit_39.png" title="List Existing Advertizements">
 						<div class="value">List Ads</div>
-					</a>
+					</a>';
 
-					<a href="'.site_url('admin/users').'" class="icon-box">
+	if( $this->ci->session->userdata('usertype')=='administrator'){
+		$op .=		'<a href="'.site_url('admin/users').'" class="icon-box">
 						<img alt="list users" src="'.base_url().ADMINIMGSPATH.'onebit_39.png" title="List Existing Users">
 						<div class="value">List Users</div>
-					</a>
-				</div>
+					</a>';
+	}
+
+	$op .=		'</div>
 
 				<hr/>';
 
@@ -1753,7 +1763,7 @@ $op .=
 						window.location = "'.site_url('admin/users/view_profile').'";
 					})
 					$("#logout").click(function(){
-						window.location = "'.site_url('logout').'";
+						window.location = "'.site_url('admin/logout').'";
 					})
 				})
 				</script>

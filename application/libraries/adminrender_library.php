@@ -87,42 +87,70 @@ class Adminrender_library{
 					</div>
 				</div>
 				<h2>Select a Task</h2>
-				<div style="float: left; position: relative; left: 50%;">
-					<div class="grid_12" style="border: 1px solid black; border-radius: 25px 25px 25px 25px; position: relative; left: -50%; margin: 20px 0px; padding-left: 25px; padding-top: 10px; padding-bottom: 10px; float: left;">
 
-						<a class="icon-box" href="'.site_url('admin/featured/new_featured').'">
-							<img alt="new featured" src="'.base_url().ADMINIMGSPATH.'woman_slim3.png" title="Create New Featured Model">
-							<div class="value">New Model</div>
-						</a>
+				<div class="grid_14" style="border: 1px solid black; border-radius: 25px 25px 25px 25px; position: relative; margin: 20px 0 20px 60px; padding-left: 25px; padding-top: 10px; padding-bottom: 10px;">
 
-						<a class="icon-box" href="'.site_url('admin/events/new_event').'">
-							<img alt="new event" src="'.base_url().ADMINIMGSPATH.'show_reel.png" title="Create New Event">
-							<div class="value">New Event</div>
-						</a>
+					<a class="icon-box" href="'.site_url('admin/featured/new_featured').'">
+						<img alt="new featured" src="'.base_url().ADMINIMGSPATH.'woman_slim3.png" title="Create New Featured Model">
+						<div class="value">New Model</div>
+					</a>
 
-						<a class="icon-box" href="'.site_url('admin/news/new_news').'">
-							<img alt="new news" src="'.base_url().ADMINIMGSPATH.'news.png" title="Create New News">
-							<div class="value">New News</div>
-						</a>
+					<a class="icon-box" href="'.site_url('admin/events/new_event').'">
+						<img alt="new event" src="'.base_url().ADMINIMGSPATH.'show_reel.png" title="Create New Event">
+						<div class="value">New Event</div>
+					</a>
 
-						<a href="'.site_url('admin/subjects/new_subject').'" class="icon-box">
-							<img alt="new agency" src="'.base_url().ADMINIMGSPATH.'users_2.png" title="Create New Agency">
-							<div class="value">New Agency</div>
-						</a>
+					<a class="icon-box" href="'.site_url('admin/news/new_news').'">
+						<img alt="new news" src="'.base_url().ADMINIMGSPATH.'news.png" title="Create New News">
+						<div class="value">New News</div>
+					</a>
 
-						<a href="'.site_url('admin/ads/new_ad').'" class="icon-box">
-							<img alt="new advertizement" src="'.base_url().ADMINIMGSPATH.'clipping_picture.png" title="Create New Advertizement">
-							<div class="value">New Ads</div>
-						</a>
+					<a href="'.site_url('admin/subjects/new_subject').'" class="icon-box">
+						<img alt="new agency" src="'.base_url().ADMINIMGSPATH.'users_2.png" title="Create New Agency">
+						<div class="value">New Agency</div>
+					</a>
 
-						<a href="'.site_url('admin/users/new_user').'" class="icon-box">
-							<img alt="new user" src="'.base_url().ADMINIMGSPATH.'user3.png" title="Create New User">
-							<div class="value">New User</div>
-						</a>
+					<a href="'.site_url('admin/ads/new_ad').'" class="icon-box">
+						<img alt="new advertizement" src="'.base_url().ADMINIMGSPATH.'clipping_picture.png" title="Create New Advertizement">
+						<div class="value">New Ads</div>
+					</a>
 
-					</div>
+					<a href="'.site_url('admin/users/new_user').'" class="icon-box">
+						<img alt="new user" src="'.base_url().ADMINIMGSPATH.'user3.png" title="Create New User">
+						<div class="value">New User</div>
+					</a>
 
+					<a class="icon-box" href="'.site_url('admin/featured').'">
+						<img alt="list featured" src="'.base_url().ADMINIMGSPATH.'onebit_39.png" title="List Existing Featured Model">
+						<div class="value">List Models</div>
+					</a>
+
+					<a class="icon-box" href="'.site_url('admin/events').'">
+						<img alt="list events" src="'.base_url().ADMINIMGSPATH.'onebit_39.png" title="List Existing Events">
+						<div class="value">List Events</div>
+					</a>
+
+					<a class="icon-box" href="'.site_url('admin/news').'">
+						<img alt="list news" src="'.base_url().ADMINIMGSPATH.'onebit_39.png" title="List Existing News">
+						<div class="value">List News</div>
+					</a>
+
+					<a href="'.site_url('admin/subjects').'" class="icon-box">
+						<img alt="list agency" src="'.base_url().ADMINIMGSPATH.'onebit_39.png" title="List Existing Agencies">
+						<div class="value">List Agency</div>
+					</a>
+
+					<a href="'.site_url('admin/ads').'" class="icon-box">
+						<img alt="list advertizement" src="'.base_url().ADMINIMGSPATH.'onebit_39.png" title="List Existing Advertizements">
+						<div class="value">List Ads</div>
+					</a>
+
+					<a href="'.site_url('admin/users').'" class="icon-box">
+						<img alt="list users" src="'.base_url().ADMINIMGSPATH.'onebit_39.png" title="List Existing Users">
+						<div class="value">List Users</div>
+					</a>
 				</div>
+
 				<hr/>';
 
 		return $op;

@@ -2,6 +2,7 @@ $(function(){
 	$('.modelparam')
 		.last()
 		.children()
+		.removeAttr('selected')
 		.eq(1)
 		.attr('selected','selected');
 

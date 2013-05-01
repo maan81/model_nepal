@@ -61,13 +61,39 @@ class Render_library{
 					<div class="cse search" style="color:#000000;float:right;/*margin:6px 10px 0 0;*/">
 						<form action="'.site_url('search').'" id="cse-search-box">
 							<input name="cx" type="hidden" value="012904614657930534599:m9nt-ujiieu"/>
-							<input type="text" name="q" />
+							<input id="q" type="text" name="q" />
 							<input name="ie" type="hidden" value="ISO-8859-1"/>
 							<input type="submit" name="sa" value="&nbsp;&nbsp;" />
 							<input type="hidden" name="cof" value="FORID:10" />
 						</form>
 						<script type="text/javascript" 
 								src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en">
+						</script>
+						<script>
+						$(function(){
+						
+							$("#cse-search-box").submit(function(){
+								document.cookie = "s" + "=" + $("#q").val() + "; path=/";
+							})
+
+							c_name = "s";							
+							c_start = document.cookie.indexOf(c_name + "=");
+							if (c_start != -1) {
+							    var s;
+							    c_start = c_start + c_name.length + 1;
+							    c_end = document.cookie.indexOf(";", c_start);
+							    if (c_end == -1) {
+							        c_end = document.cookie.length;
+							    }
+							    s = unescape(document.cookie.substring(c_start, c_end));
+							    document.cookie = "s" + "=" + "";
+							}
+        
+    						s = "";
+    						if(window.location.search.length)
+    							s = window.location.search.split("&")[1].split("=")[1];
+							$("#q").delay(250).css({border:0,"padding-top":"2px"}).val(s);
+						})
 						</script>
 					</div>
 					<!-- Google custom search box End -->

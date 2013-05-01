@@ -101,6 +101,7 @@ div{
 	.toplink .like{
 		float: right;		/* added */
 		padding-top: 3px;	/* added */
+		margin-right: -210px/* added */
 		/*					/* removed 
 			right:0px;
 			top:3px;
@@ -205,13 +206,14 @@ div{
 		width:165px;
 		float:right;
 		color:#979797;
-		height:20px;	/* added */
+		height:16px;	/* added */
+        padding-top:0px;/* added */
 	}
 	
 	.header .search input[type="submit"] { /* changed "button" to "submit" */
 		cursor:pointer;	/* added */
 		margin:0;
-		width:22px;
+		width:19px;		/* edited */
 		height:22px;
 		padding:0;
 		outline:none;

@@ -164,11 +164,11 @@ a.ps_close:hover{
 	display:block;
 	color:#666;
 	background:#111 url(../css/images/photostack/overlay.png) no-repeat bottom right;
-	bottom:0;
-	height:96%;
+	bottom:6px;
+	height:95%;
 	margin:5px;
 	text-align:left;
-	line-height:20px;
+	line-height:190px;
 	opacity: 0;
 	overflow:hidden;
 	position:absolute;
@@ -178,7 +178,7 @@ a.ps_close:hover{
 	-webkit-box-shadow:0px 0px 2px #000 inset;
 	box-shadow:0px 0px 2px #000 inset;
 	top:0;
-	width:100%;
+	width:99%;
 }
 .ps_slider .ps_album:hover .ps_desc{
 	background-image:none;

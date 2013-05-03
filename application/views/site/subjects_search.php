@@ -23,7 +23,7 @@
     background: none repeat scroll 0 0 black;
     color: #999;
     height: 228px;
-    left: -5px;
+    left: 0;
     opacity: 0;
     overflow: hidden;
     padding: 10px;
@@ -32,6 +32,7 @@
     top: 0;
     z-index: 1;
     text-decoration: none;
+    width: inherit;
 }
 </style>
 <script>

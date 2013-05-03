@@ -6,7 +6,7 @@
         <?php if($subjects->img_type == 'potrait') : ?>
           <div class="modelpic">
              <img src="<?php echo $subjects->cur_img?>" alt="<?php echo $subjects->name?>" 
-                  width="330" height="496" />
+                  alt="<?php echo $subjects->name?>" width="330" height="496" />
           </div>
           <div class="agencymodeldetail">
              <h1><?php echo $subjects->name?></h1>
@@ -113,7 +113,9 @@
             <?php foreach($subjects->thumbs as $key=>$val):?>
                <div class="block">
                   <a href="<?php echo $val['link']?>">
-                    <div class=""><img src="<?php echo $val['img']?>"/></div>
+                    <div class="">
+                      <img src="<?php echo $val['img']?>" alt="<?php echo $val['name']?>" title="<?php echo $val{'name'}?>" />
+                    </div>
                   </a>
                </div>
             <?php endforeach?>
@@ -135,7 +137,7 @@
           <?php endif?>
           <div class="book">
             <a href="#">
-              <img src="<?php echo base_url().IMGSPATH?>book.png" alt="Book this model" />
+              <img src="<?php echo base_url().IMGSPATH?>book.png" alt="book" title="Book this model" />
             </a>
           </div>
 
@@ -175,7 +177,7 @@
           
           <div class="mpic">
             <img src="<?php echo  $subjects->cur_img?>" alt="<?php echo $subjects->name?>" 
-                height="400" width="610"/>
+                title="<?php echo $subjects->name?>" height="400" width="610"/>
           </div>
 
           <?php if(isset($subjects->prev)):?>
@@ -188,7 +190,7 @@
           
           <div class="book-hor">
             <a href="#">
-              <img src="<?php echo base_url().IMGSPATH?>book.png" alt="Book this model" />
+              <img src="<?php echo base_url().IMGSPATH?>book.png" alt="book" title="Book this model" />
             </a>
           </div>
           

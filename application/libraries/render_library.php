@@ -196,8 +196,8 @@ class Render_library{
 
 						foreach($data['featured'] as $key=>$val){
 							$op .= 	'<div class="ps_album models" style="opacity:0;">
-										<a href="'.$val['link'].'" style="width:inherit;height:inherit;">
-											<img  src="'.$val['img'].'" alt="'.$val['model']->name.'"  />'.
+										<a href="'.$val['link'].'" style="width:inherit;height:inherit;" title="'.$val['model']->name.'">
+											<img src="'.$val['img'].'" alt="'.$val['model']->name.'" title="'.$val['model']->name.'"  />'.
 											'<div class="ps_desc">'.
 											'	<h2>'.$val['model']->name.'</h2>'.
 											//'	<table>
@@ -338,7 +338,7 @@ class Render_library{
 		$op .= 	'<div class="rads">';
 
 		$op.=		'<a href="'.site_url('events').'">
-						<img src="'.base_url().IMGSPATH.'events.jpg" alt="Latest Events" width="250" />
+						<img src="'.base_url().IMGSPATH.'events.jpg" alt="Latest Events" title="Latest Events" width="250" />
 					</a>';
 		
 		$op .=	'</div>';

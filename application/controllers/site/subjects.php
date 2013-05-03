@@ -158,10 +158,10 @@ class Subjects extends MY_Controller {
 		$config['total_rows'] = count($this->subjects_model->get());
 		$config['per_page'] = 100000;
 
-		$config['prev_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'prev.png" alt="Previous" />';
+		$config['prev_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'prev.png" alt="Previous" title="Previous" />';
 		$config['prev_tag_close'] = '</a>';
 
-		$config['next_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'next.png" alt="Next" />';
+		$config['next_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'next.png" alt="Next" title="Next" />';
 		$config['next_tag_close'] = '</a>';
 
 		$config['full_tag_open'] = '<div class="pagina">';

@@ -29,7 +29,7 @@
          </div>
          
          <div class="mpic" style="top:70px;">
-            <img src="<?php echo $events->cur_img?>" alt="<?php echo $events->title?>" 
+            <img src="<?php echo $events->cur_img?>" alt="<?php echo $events->title?>" title="<?php echo $events->title?>"
                width="400" height="600" />
          </div>
          

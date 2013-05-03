@@ -7,7 +7,10 @@
       <div class="thumb" style="text-align:center;">
          <a href="<?php echo site_url('events/'.$val->id)?>">
             <span class="title"><?php echo $val->title?></span> 
-            <img src="<?php echo base_url().$val->thumbs?>" width="323" height="152" />
+            <img src="<?php echo base_url().$val->thumbs?>" 
+                  alt="<?php echo $val->title?>" 
+                  title="<?php echo $val->title?>" 
+                  width="323" height="152" />
             <?php //echo $val->featured?>
          </a>
       </div>

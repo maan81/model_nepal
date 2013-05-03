@@ -156,7 +156,7 @@ class Events extends MY_Controller {
 			*/
 			$val->thumbs = EVENTSPATH.gen_folder_name($val->title).'.jpg';
 			if($val->featured=='1'){
-				$val->featured = '<img src="'.base_url().IMGSPATH.'featured_events.png" class="featured_event" />';
+				$val->featured = '<img src="'.base_url().IMGSPATH.'featured_events.png" alt="'.$val->title.'" title="'.$val->title.'" class="featured_event" />';
 			}else{
 				$val->featured = '';
 			}
@@ -172,10 +172,10 @@ class Events extends MY_Controller {
 		$config['total_rows'] = count($this->events_model->get());
 		$config['per_page'] = 100000;
 
-		$config['prev_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'prev.png" alt="Previous" />';
+		$config['prev_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'prev.png" alt="Previous" title="Previous" />';
 		$config['prev_tag_close'] = '</a>';
 
-		$config['next_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'next.png" alt="Next" />';
+		$config['next_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'next.png" alt="Next" title="Next"/>';
 		$config['next_tag_close'] = '</a>';
 
 		$config['full_tag_open'] = '<div class="pagina">';

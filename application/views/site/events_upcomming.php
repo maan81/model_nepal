@@ -17,7 +17,8 @@
          
          <div class="eventpic" style="position:relative;">
             <span class="title"><?php echo ucfirst($events->title)?></span>
-            <img src="<?php echo $events->cur_img?>" alt="<?php echo $events->title?>" />
+            <img src="<?php echo $events->cur_img?>" 
+                  alt="<?php echo $events->title?>" title="<?php echo $events->title?>" />
 
          </div>
          

@@ -944,12 +944,12 @@ $op .=
 						<p>
 							<label>Event Category</label>
 							<span>
-							     <input type="radio" value="1" name="upcomming" '.
+							     <input class="radio" type="radio" value="1" name="upcomming" '.
 							     									($data?($data[0]->upcomming==1?'checked="checked"':''):'').' />
 							     <span>Upcoming Event</span>
 							</span>							
 							<span class="grid_4">
-							     <input type="radio" value="0" name="upcomming" '.
+							     <input class="radio" type="radio" value="0" name="upcomming" '.
 							     									($data?($data[0]->upcomming==0?'checked="checked"':''):'').' />
 							     <span>Past Event</span>
 							</span>

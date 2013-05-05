@@ -201,3 +201,6 @@ body, textarea{color:#333;font:13px/1.5 'Helvetica Neue',Arial,'Liberation Sans'
 .area_small{
 	height:75px;
 }
+#content .radio{
+	width:auto;
+}

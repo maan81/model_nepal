@@ -2,14 +2,20 @@
 
 <?php $this->template->add_js(JSPATH.'default_search.js')?>
 <?php $this->template->add_js(JSPATH.'events_slideshow.js')?>
+<?php $this->template->add_css(CSSPATH.'events_upcoming.css')?>
 
 
 <div class="mainContents">
 
    <div class="leftPart">
 
-      <?php if(($events_slideshow)): ?>
+      <?php if($events_slideshow): ?>
          <div class="upcoming">
+            <div class="upcoming_selectors">
+               <?php foreach($events_slideshow as $key=>$val):?>
+                  <div class="upcoming_selector"></div>
+               <?php endforeach?>
+            </div>
             <?php foreach($events_slideshow as $key=>$val): ?>
                <div class="eventpic">
                   <a href="<?php echo site_url('events/'.$val->id)?>">

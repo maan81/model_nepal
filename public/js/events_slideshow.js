@@ -3,7 +3,9 @@ $(function(){
     var fade=500,
         disp=8000,
         $event = $('.upcoming').find('.eventpic'),
-        index=0;
+        $selectors = $('.upcoming').find('.upcoming_selector'),
+        index=0,
+        nu_index=-1;
 
     //show first event
     $event
@@ -11,10 +13,12 @@ $(function(){
         .end()
         .eq(index)
         .css({'opacity':1,'z-index':1})
-        
+
+    //select 1st selector
+    $selectors.eq(0).css('background-color','#00f');
 
     //repeat the animation
-    events_ani = setInterval(events_ani_fn,disp)
+    events_ani = setInterval(events_ani_fn,disp);
 
     //fn to repeat the animation
     function events_ani_fn(){
@@ -28,7 +32,10 @@ $(function(){
             .animate(
                 {'opacity':0,'z-index':-1},
                 { duration: fade, queue: false }
-            )
+            );
+        //unselect the displayed selector
+        $selectors.eq(index).css('background-color','#008');
+
 
         //select next
         if($event.eq(index).next().length=='1'){
@@ -41,6 +48,12 @@ $(function(){
         }                                    
 
 
+        //get index if clicked
+        if(nu_index!=-1){
+            index = nu_index;
+            nu_index=-1;
+        }
+
         //show the selected one
         $event
             .eq(index)
@@ -49,5 +62,13 @@ $(function(){
                 {'opacity':1},
                 {duratin:fade,queue:false}
             )
+        //select the reqd. selector
+        $selectors.eq(index).css('background-color','#00f');
     }
+
+    //trigger by selecting
+    $selectors.click(function(){
+        nu_index = $(this).index();
+        events_ani_fn();
+    });
 })

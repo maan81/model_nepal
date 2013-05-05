@@ -26,7 +26,7 @@ class Events extends MY_Controller {
 																		'dir'=>'asc')
 														)
 												);
-		$events_slideshow = $this->events_model->get(array('featured'=>'1'),
+		$events_slideshow = $this->events_model->get(array('upcomming'=>'1'),
 													array(
 															'order_by'=>array(
 																		'coln'=>'title',

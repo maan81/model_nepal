@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-<?php $this->template->add_js(JSPATH.'default_search.js')?>
 
 
 <div class="mainContents">
@@ -12,25 +11,25 @@
       </div>
 
       <div class="modelspage">
-<style>
-.featuredimg_wrapper {
-    border: 5px solid #FFFFFF;
-    border-radius: 5px 5px 5px 5px;
-    height: 315px;
-    overflow: hidden;
-    position: inherit;
-    width: 430px;
-}
-.featuredimg_wrapper a{
-   height:inherit;
-}
+         <style>
+         .featuredimg_wrapper {
+             border: 5px solid #FFFFFF;
+             border-radius: 5px 5px 5px 5px;
+             height: 315px;
+             overflow: hidden;
+             position: inherit;
+             width: 430px;
+         }
+         .featuredimg_wrapper a{
+            height:inherit;
+         }
 
-.featuredimg_wrapper img {
-    height: inherit;
-    position: absolute;
-    left: -25%;
-}
-</style>         
+         .featuredimg_wrapper img {
+             height: inherit;
+             position: absolute;
+             left: -25%;
+         }
+         </style>         
          <div class="featuremodel">
             <div class="featuredimg_wrapper">
                <a href="<?php echo $latest_featured[0]->link?>">

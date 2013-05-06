@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-<?php $this->template->add_js(JSPATH.'default_search.js')?>
 
 
 <div class="mainContents">

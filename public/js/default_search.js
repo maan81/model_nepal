@@ -1,10 +1,10 @@
 $(function(){
-	$('.modelparam')
-		.last()
-		.children()
-		.removeAttr('selected')
-		.eq(1)
-		.attr('selected','selected');
+//	$('.modelparam')
+//		.last()
+//		.children()
+//		.removeAttr('selected')
+//		.eq(1)
+//		.attr('selected','selected');
 
 
 	setTimeout(function(){

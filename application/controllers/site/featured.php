@@ -82,6 +82,7 @@ class Featured extends MY_Controller {
 
 
 		$this->template->add_js(JSPATH.'search.js');
+		$this->template->add_js(JSPATH.'default_search.js');
 		$this->template->add_js(JSPATH.'my_slider.js');
 		//-----------------------------------------------
 		//-----------------------------------------------
@@ -157,6 +158,7 @@ class Featured extends MY_Controller {
 	 */
 	public function search($key=null,$val=null){
 
+		/*
 		if( ($key==null) || ($val==null) ){
 			$this->load->view('site/featured_search.php',array(
 																'featured' => false,
@@ -166,16 +168,29 @@ class Featured extends MY_Controller {
 			return;
 
 		}
+		*/
 
-		$featured = $this->featured_model->get(
-												array(	$key	  => urldecode($val),
-													), 
-												array(	'order_by'=> array(
-																		'coln'=>'name',
-																		'dir'=>'asc'
-																		)
-													)
+		if( ($key==null) || ($val==null) ){
+			$featured = $this->featured_model->get(	false,
+													array(	'order_by'=> array(
+																			'coln'=>'name',
+																			'dir'=>'asc'
+																			)
+														)
 												);
+		
+		}else{
+			$featured = $this->featured_model->get(
+													array(	$key	  => urldecode($val),
+														), 
+													array(	'order_by'=> array(
+																			'coln'=>'name',
+																			'dir'=>'asc'
+																			)
+														)
+													);
+		}
+
 
 		$this->load->helper('utilites_helper');
 

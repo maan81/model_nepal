@@ -72,6 +72,7 @@ class Events extends MY_Controller {
 		$op = $this->load->view('site/events.php',$data,true);
 		$this->template->write('mainContents',$op);
 
+		$this->template->add_js(JSPATH.'default_search.js');
 		$this->template->add_js(JSPATH.'events_search.js');
 		//-----------------------------------------------
 		//-----------------------------------------------
@@ -86,7 +87,7 @@ class Events extends MY_Controller {
 	 * @return string (html div)
 	 */
 	public function search($key=null,$val=null){
-
+		/*
 		if( ($key==null) || ($val==null) ){
 			$this->load->view('site/events_search.php',array(
 																'events' => false,
@@ -96,17 +97,30 @@ class Events extends MY_Controller {
 			return;
 
 		}
+		*/
+
+		if( ($key==null) || ($val==null) ){
+			$events = $this->events_model->get(	false, 
+												array(	'order_by'=> array(
+																		'coln'=>'title',
+																		'dir'=>'asc'
+																		)
+													)
+												);
+		}else{
+			
+			$events = $this->events_model->get(
+												array(	$key	  => urldecode($val),
+													), 
+												array(	'order_by'=> array(
+																		'coln'=>'title',
+																		'dir'=>'asc'
+																		)
+													)
+												);
+		}
 
 
-		$events = $this->events_model->get(
-											array(	$key	  => urldecode($val),
-												), 
-											array(	'order_by'=> array(
-																	'coln'=>'title',
-																	'dir'=>'asc'
-																	)
-												)
-											);
 
 		$this->load->helper('utilites_helper');
 

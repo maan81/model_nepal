@@ -65,7 +65,7 @@ class Subjects extends MY_Controller {
 		$this->template->add_meta($meta);
 
 		//-----------------------------------------------
-
+		$this->template->add_js(JSPATH.'default_search.js');
 		$this->template->add_js(JSPATH.'subjects_search.js');
 		//-----------------------------------------------
 		//-----------------------------------------------
@@ -80,7 +80,7 @@ class Subjects extends MY_Controller {
 	 * @return string (html div)
 	 */
 	public function search($key=null,$val=null){
-
+		/*
 		if( ($key==null) || ($val==null) ){
 			$this->load->view('site/subjects_search.php',array(
 																'subjects' => false,
@@ -90,16 +90,28 @@ class Subjects extends MY_Controller {
 			return;
 
 		}
+		*/
 
-		$subjects = $this->subjects_model->get(
-												array(	$key	  => urldecode($val),
-													), 
-												array(	'order_by'=> array(
-																		'coln'=>'name',
-																		'dir'=>'asc'
-																		)
-													)
+		if( ($key==null) || ($val==null) ){
+			$subjects = $this->subjects_model->get(	false,
+													array(	'order_by'=> array(
+																			'coln'=>'name',
+																			'dir'=>'asc'
+																			)
+														)
 												);
+		
+		}else{
+			$subjects = $this->subjects_model->get(
+													array(	$key	  => urldecode($val),
+														), 
+													array(	'order_by'=> array(
+																			'coln'=>'name',
+																			'dir'=>'asc'
+																			)
+														)
+													);
+		}
 
 		$this->load->helper('utilites_helper');
 

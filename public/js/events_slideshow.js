@@ -2,8 +2,8 @@ $(function(){
 
     var fade=500,
         disp=8000,
-        $event = $('.upcoming').find('.eventpic'),
-        $selectors = $('.upcoming').find('.upcoming_selector'),
+        $event = $('.upcomming').find('.eventpic'),
+        $selectors = $('.upcomming').find('.upcomming_selector'),
         index=0,
         nu_index=-1;
 

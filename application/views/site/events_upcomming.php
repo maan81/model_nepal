@@ -13,7 +13,7 @@
          </a>
       </div>
 
-      <div class="upcoming">
+      <div class="upcomming">
          
          <div class="eventpic" style="position:relative;">
             <span class="title"><?php echo ucfirst($events->title)?></span>

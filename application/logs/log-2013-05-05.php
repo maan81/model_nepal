@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
-ERROR - 2013-05-05 08:48:38 --> Query error: Unknown column 'upcoming' in 'where clause'
+ERROR - 2013-05-05 08:48:38 --> Query error: Unknown column 'upcomming' in 'where clause'
 ERROR - 2013-05-05 08:53:01 --> 404 Page Not Found --> public
 ERROR - 2013-05-05 08:53:01 --> 404 Page Not Found --> public
 ERROR - 2013-05-05 08:53:42 --> 404 Page Not Found --> public

@@ -12,7 +12,7 @@
 		</div>
 
 
-		<div class="upcoming">
+		<div class="upcomming">
 
 			<?php $this->view('site/news_slideshow')?>
 

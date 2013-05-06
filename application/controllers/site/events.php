@@ -100,7 +100,7 @@ class Events extends MY_Controller {
 		*/
 
 		if( ($key==null) || ($val==null) ){
-			$events = $this->events_model->get(	false, 
+			$events = $this->events_model->get(	array(	'upcomming'=>'0'), 
 												array(	'order_by'=> array(
 																		'coln'=>'title',
 																		'dir'=>'asc'
@@ -111,6 +111,7 @@ class Events extends MY_Controller {
 			
 			$events = $this->events_model->get(
 												array(	$key	  => urldecode($val),
+														'upcomming'=> '0',
 													), 
 												array(	'order_by'=> array(
 																		'coln'=>'title',

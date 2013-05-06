@@ -2,7 +2,7 @@
 
 <?php $this->template->add_js(JSPATH.'default_search.js')?>
 <?php $this->template->add_js(JSPATH.'events_slideshow.js')?>
-<?php $this->template->add_css(CSSPATH.'events_upcoming.css')?>
+<?php $this->template->add_css(CSSPATH.'events_upcomming.css')?>
 
 
 <div class="mainContents">
@@ -10,10 +10,10 @@
    <div class="leftPart">
 
       <?php if($events_slideshow): ?>
-         <div class="upcoming">
-            <div class="upcoming_selectors">
+         <div class="upcomming">
+            <div class="upcomming_selectors">
                <?php foreach($events_slideshow as $key=>$val):?>
-                  <div class="upcoming_selector"></div>
+                  <div class="upcomming_selector"></div>
                <?php endforeach?>
             </div>
             <?php foreach($events_slideshow as $key=>$val): ?>
@@ -32,7 +32,7 @@
          <!--
          <div class="eventpic">
             <span class="title">Featured Events</span>
-            <img title="" alt="upcoming event" src="tmp/up-coming.jpg" />
+            <img title="" alt="upcomming event" src="tmp/up-coming.jpg" />
          </div>
          -->
 

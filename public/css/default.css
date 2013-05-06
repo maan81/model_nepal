@@ -975,15 +975,15 @@ div{
 	}
 	
 		
-/* upcoming events */
+/* upcomming events */
 
-.leftPart .upcoming{
+.leftPart .upcomming{
 	width:690px;
 	float:left;
 	height:340px;
 }
 
-	.upcoming .eventpic{
+	.upcomming .eventpic{
 		width:674px;
 		border-radius:5px;
 		-webkit-border-radius:5px;
@@ -996,7 +996,7 @@ div{
 		height:315px;
 	}
 	
-	.upcoming .eventpic .title{
+	.upcomming .eventpic .title{
 		width:674px;
 		position:absolute;
 		background:url(../imgs/modelspage-bg.png);
@@ -1012,7 +1012,7 @@ div{
 		font-family:"Myriad Pro", "Trebuchet MS";
 	}
 	
-	.upcoming .highlights{
+	.upcomming .highlights{
 		width:670px;
 		float:left;
 		height:auto;
@@ -1022,18 +1022,18 @@ div{
 	}
 	
 	
-	.upcoming .highlights h1{
+	.upcomming .highlights h1{
 		color:#000000;
 		font-family:"Myriad Pro", "Trebuchet MS";
 	}
 
-	.upcoming .details{
+	.upcomming .details{
 		width:690px;
 		margin-top:15px;
 		float:left;
 	}
 	
-	.upcoming .details .desc, .upcoming .details .descright .block{
+	.upcomming .details .desc, .upcomming .details .descright .block{
 		width:430px;
 		float:left;
 		height:auto;
@@ -1043,7 +1043,7 @@ div{
 		-webkit-border-radius:0 0 5px 5px;
 	}
 	
-	.upcoming .details .desc .title, .upcoming .details .descright .block .title{
+	.upcomming .details .desc .title, .upcomming .details .descright .block .title{
 		width:430px;
 		float:left;
 		height:35px;
@@ -1056,35 +1056,35 @@ div{
 		
 	}
 	
-	.upcoming .details .desc .contents, .upcoming .details .descright .block .contents{
+	.upcomming .details .desc .contents, .upcomming .details .descright .block .contents{
 		width:410px;
 		float:left;
 		height:auto;
 		padding:10px;
 	}
 	
-	.upcoming .details .descright{
+	.upcomming .details .descright{
 		padding-left:15px;
 		width:245px;
 		float:left;
 		height:auto;
 	}
 	
-	.upcoming .details .descright .block{
+	.upcomming .details .descright .block{
 		width:245px !important;
 		margin-bottom:10px;
 	}
 	
-	.upcoming .details .descright .block .title{
+	.upcomming .details .descright .block .title{
 		width:245px !important;
 	}
 	
 		
-	.upcoming .details .descright .block .contents{
+	.upcomming .details .descright .block .contents{
 		width:225px !important;
 	}
 	
-	.upcoming .details .descright .block a.link{
+	.upcomming .details .descright .block a.link{
 		display:inline-block;
 		text-align:center;
 		padding:10px 25px;
@@ -1097,7 +1097,7 @@ div{
 	
 	/* articles */
 	
-	.upcoming .articles{
+	.upcomming .articles{
 		width:660px;
 		float:left;
 		height:auto;
@@ -1106,14 +1106,14 @@ div{
 		padding:5px 15px;
 	}
 	
-	.upcoming .articles .block{
+	.upcomming .articles .block{
 		width:660px;
 		float:left;
 		height:auto;
 		padding:10px 0;
 	}
 	
-	.upcoming .articles .block img{
+	.upcomming .articles .block img{
 		float:left;
 		margin-right:15px;
 		padding:4px;
@@ -1124,22 +1124,22 @@ div{
 	}
 	
 	
-	.upcoming .articles .block h1{
+	.upcomming .articles .block h1{
 		font-family:"Myriad Pro", "Trebuchet MS";
 		padding-top:0;
 	}
 	
-	.upcoming .articles .block h1 a{
+	.upcomming .articles .block h1 a{
 		color:#086bbc;
 		text-decoration:none;
 		font-size:15px;
 	}
 	
-	.upcoming .articles .block h1 a:hover{
+	.upcomming .articles .block h1 a:hover{
 		text-decoration:underline;
 	}
 	
-	.upcoming .articles .block h1 span{
+	.upcomming .articles .block h1 span{
 		display:block;
 		font-size:12px;
 	}

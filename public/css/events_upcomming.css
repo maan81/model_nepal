@@ -1,4 +1,4 @@
-.upcoming_selectors {
+.upcomming_selectors {
     border: 1px solid gray;
     border-radius: 5px;
     float: right;
@@ -9,7 +9,7 @@
     z-index: 5;
 }
 
-.upcoming_selector {
+.upcomming_selector {
     background: none repeat scroll 0 0 #008;
     border: 2px solid gray;
     border-radius: 4.5px;

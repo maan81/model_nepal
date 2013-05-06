@@ -55,6 +55,96 @@ class Featured extends MY_Controller {
 	}
     
     
+	/**
+	 * Shift the given ad ID 1 setp up
+	 * @param int -- ad id
+	 * @return
+	 */
+	public function up($id=false){
+		if(!$id){
+			redirect('admin/featured');
+		}
+
+		$data = array(
+						'id'		=> $id,
+						'position'	=> '`position` + 1'
+					);
+
+		//validaton of the id & position.
+		//currently used
+		$this->_validated=true;
+
+
+		if($this->_validated){
+			//the data to be moved up
+			$cur_data = $this->featured_model->get(array('id'=>$id));
+
+			//the data to be moved down			
+			$upper_data = $this->featured_model->get(array('position'=>$cur_data[0]->position - 1));
+
+			//move the data down
+			$this->featured_model->increment($upper_data[0]->id);
+
+			//move the data up
+			$this->featured_model->decrement($cur_data[0]->id);
+
+
+			$this->session->set_flashdata('msg', 'Featured ID '.$id.' updated.');			
+		}else{
+			//err in validation....
+			$this->session->set_flashdata('msg', 'Unable to update Featured ID '.$id.'.');
+		}
+
+		unset($_POST);
+		redirect('admin/featured');
+	}
+
+
+
+	/**
+	 * Shift the given ad ID 1 setp down
+	 * @param int -- ad id
+	 * @return
+	 */
+	public function down($id=false){
+		if(!$id){
+			redirect('admin/featured');
+		}
+
+		$data = array(
+						'id'		=> $id,
+						'position'	=> '`position` - 1'
+					);
+		
+		//validaton of the id & position.
+		//currently used
+		$this->_validated=true;
+
+		
+		if($this->_validated){
+			//the data to be moved down
+			$cur_data = $this->featured_model->get(array('id'=>$id));
+
+			//the data to be moved up			
+			$lower_data = $this->featured_model->get(array('position'=>$cur_data[0]->position + 1 ));
+
+			//move the data up
+			$this->featured_model->decrement($lower_data[0]->id);
+
+			//move the data down
+			$this->featured_model->increment($cur_data[0]->id);
+
+			$this->session->set_flashdata('msg', 'Featured ID '.$id.' updated.');			
+		}else{
+			//err in validation....
+			$this->session->set_flashdata('msg', 'Unable to update Featured ID '.$id.'.');
+		}
+
+		unset($_POST);
+		redirect('admin/featured');
+	}
+
+
     public function new_featured($data = false){
 		
 		if($this->input->post('ethnicity')){
@@ -68,7 +158,7 @@ class Featured extends MY_Controller {
 							'photographer'	=> $this->input->post('photographer'),
 							'model_by'		=> $this->input->post('model_by'),
 							'date_created'	=> $this->input->post('date_created'),
-							'created_by'=>  $this->session->userdata('username'),
+							'created_by'	=> $this->session->userdata('username'),
 						);
 
 			$this->_validate_new($data);

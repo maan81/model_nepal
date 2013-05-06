@@ -160,6 +160,96 @@ class News extends MY_Controller {
 		$this->session->set_userdata('updated_id',$id);
 	}
 
+
+	/**
+	 * Shift the given news ID 1 setp up
+	 * @param int -- news id
+	 * @return
+	 */
+	public function up($id=false){
+		if(!$id){
+			redirect('admin/news');
+		}
+
+		$data = array(
+						'id'		=> $id,
+						'position'	=> '`position` + 1'
+					);
+
+		//validaton of the id & position.
+		//currently used
+		$this->_validated=true;
+
+
+		if($this->_validated){
+			//the data to be moved up
+			$cur_data = $this->news_model->get(array('id'=>$id));
+
+			//the data to be moved down			
+			$upper_data = $this->news_model->get(array('position'=>$cur_data[0]->position - 1));
+
+			//move the data down
+			$this->news_model->increment($upper_data[0]->id);
+
+			//move the data up
+			$this->news_model->decrement($cur_data[0]->id);
+
+
+			$this->session->set_flashdata('msg', 'News ID '.$id.' updated.');			
+		}else{
+			//err in validation....
+			$this->session->set_flashdata('msg', 'Unable to update News ID '.$id.'.');
+		}
+
+		unset($_POST);
+		redirect('admin/news');
+	}
+
+
+
+	/**
+	 * Shift the given news ID 1 setp down
+	 * @param int -- news id
+	 * @return
+	 */
+	public function down($id=false){
+		if(!$id){
+			redirect('admin/news');
+		}
+
+		$data = array(
+						'id'		=> $id,
+						'position'	=> '`position` - 1'
+					);
+		
+		//validaton of the id & position.
+		//currently used
+		$this->_validated=true;
+
+		
+		if($this->_validated){
+			//the data to be moved down
+			$cur_data = $this->news_model->get(array('id'=>$id));
+
+			//the data to be moved up			
+			$lower_data = $this->news_model->get(array('position'=>$cur_data[0]->position + 1 ));
+
+			//move the data up
+			$this->news_model->decrement($lower_data[0]->id);
+
+			//move the data down
+			$this->news_model->increment($cur_data[0]->id);
+
+			$this->session->set_flashdata('msg', 'News ID '.$id.' updated.');			
+		}else{
+			//err in validation....
+			$this->session->set_flashdata('msg', 'Unable to update News ID '.$id.'.');
+		}
+
+		unset($_POST);
+		redirect('admin/news');
+	}
+
 	private function render_navigation(){
 		$menu = $this->adminrender_library->render_navigation('News');
 		$this->template->write('menu',$menu);

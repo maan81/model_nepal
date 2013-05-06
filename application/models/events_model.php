@@ -149,6 +149,8 @@ class Events_model extends CI_Model{
 		
 		//insert new data
 		}else{
+			$data->position	= $this->db->count_all($this->table);
+
 			$this->db->insert($this->table,$data);
 
 			$data = array('id'=>$this->db->insert_id());
@@ -202,7 +204,50 @@ class Events_model extends CI_Model{
 
 			$this->db->where('id',$val->id)
 					 ->delete($this->table);
+
+			//readjust the positions of the ads
+			$update_position = array('position'=>'position - 1');
+			$this->db->where('position > ',$val->position);
+		 	$this->db->update($table,$update_position);
 		}
+		return true;
+	}
+
+
+	/**
+	 * Decrement the position of the selected id
+	 * @param int id ofthe ad
+	 * @return boolean
+	 */
+	public function decrement($id=false){
+
+		if(!$id){
+			return false;
+		}
+
+		$this->db->set('position', 'position - 1', FALSE);
+		$this->db->where('id', $id);
+		$this->db->update($this->table);
+
+		return true;
+	}
+
+
+	/**
+	 * Increment the position of the selected id
+	 * @param int id ofthe ad
+	 * @return boolean
+	 */
+	public function increment($id=false){
+
+		if(!$id){
+			return false;
+		}
+
+		$this->db->set('position', 'position + 1', FALSE);
+		$this->db->where('id', $id);
+		$this->db->update($this->table);
+
 		return true;
 	}
 }

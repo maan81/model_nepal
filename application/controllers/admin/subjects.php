@@ -231,6 +231,94 @@ class Subjects extends MY_Controller {
 		$this->session->set_userdata('updated_id',$id);
 	}
 
+	/**
+	 * Shift the given ad ID 1 setp up
+	 * @param int -- subject id
+	 * @return
+	 */
+	public function up($id=false){
+		if(!$id){
+			redirect('admin/subjects');
+		}
+
+		$data = array(
+						'id'		=> $id,
+						'position'	=> '`position` + 1'
+					);
+
+		//validaton of the id & position.
+		//currently used
+		$this->_validated=true;
+
+
+		if($this->_validated){
+			//the data to be moved up
+			$cur_data = $this->subjects_model->get(array('id'=>$id));
+
+			//the data to be moved down			
+			$upper_data = $this->subjects_model->get(array('position'=>$cur_data[0]->position - 1));
+
+			//move the data down
+			$this->subjects_model->increment($upper_data[0]->id);
+
+			//move the data up
+			$this->subjects_model->decrement($cur_data[0]->id);
+
+
+			$this->session->set_flashdata('msg', 'Subject ID '.$id.' updated.');			
+		}else{
+			//err in validation....
+			$this->session->set_flashdata('msg', 'Unable to update Subject ID '.$id.'.');
+		}
+
+		unset($_POST);
+		redirect('admin/subjects');
+	}
+
+
+
+	/**
+	 * Shift the given subject ID 1 step down
+	 * @param int -- subject id
+	 * @return
+	 */
+	public function down($id=false){
+		if(!$id){
+			redirect('admin/subjects');
+		}
+
+		$data = array(
+						'id'		=> $id,
+						'position'	=> '`position` - 1'
+					);
+		
+		//validaton of the id & position.
+		//currently used
+		$this->_validated=true;
+
+		
+		if($this->_validated){
+			//the data to be moved down
+			$cur_data = $this->subjects_model->get(array('id'=>$id));
+
+			//the data to be moved up			
+			$lower_data = $this->subjects_model->get(array('position'=>$cur_data[0]->position + 1 ));
+
+			//move the data up
+			$this->subjects_model->decrement($lower_data[0]->id);
+
+			//move the data down
+			$this->subjects_model->increment($cur_data[0]->id);
+
+			$this->session->set_flashdata('msg', 'Subject ID '.$id.' updated.');			
+		}else{
+			//err in validation....
+			$this->session->set_flashdata('msg', 'Unable to update Subject ID '.$id.'.');
+		}
+
+		unset($_POST);
+		redirect('admin/subjects');
+	}
 	private function render_navigation(){
 		$menu = $this->adminrender_library->render_navigation('Models');
 		$this->template->write('menu',$menu);

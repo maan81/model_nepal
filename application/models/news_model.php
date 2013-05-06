@@ -130,9 +130,10 @@ class News_model extends CI_Model{
 							'dimensions' 	=> $this->input->post('dimensions'),
 							'link'			=> $this->input->post('link'),
 						);
+				print_r($image_data);die;
 				*/
-//print_r($image_data);die;
 				$data->image = $image_data['file_name'];
+				$data->position	= $this->db->count_all($this->table);
 
 				$this->db->insert($this->table,$data);
 				
@@ -179,7 +180,49 @@ class News_model extends CI_Model{
 
 			$this->db->where('id',$val->id)
 					 ->delete($this->table);
+
+			//readjust the positions of the news
+			$update_position = array('position'=>'position - 1');
+			$this->db->where('position > ',$val->position);
+		 	$this->db->update($table,$update_position);
 		}
+		return true;
+	}
+
+	/**
+	 * Decrement the position of the selected id
+	 * @param int id ofthe news
+	 * @return boolean
+	 */
+	public function decrement($id=false){
+
+		if(!$id){
+			return false;
+		}
+
+		$this->db->set('position', 'position - 1', FALSE);
+		$this->db->where('id', $id);
+		$this->db->update($this->table);
+
+		return true;
+	}
+
+
+	/**
+	 * Increment the position of the selected id
+	 * @param int id ofthe news
+	 * @return boolean
+	 */
+	public function increment($id=false){
+
+		if(!$id){
+			return false;
+		}
+
+		$this->db->set('position', 'position + 1', FALSE);
+		$this->db->where('id', $id);
+		$this->db->update($this->table);
+
 		return true;
 	}
 }

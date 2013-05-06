@@ -152,14 +152,14 @@ class Adminrender_library{
 						<div class="value">List Ads</div>
 					</a>';
 
-	if( $this->ci->session->userdata('usertype')=='administrator'){
-		$op .=		'<a href="'.site_url('admin/users').'" class="icon-box">
+		if( $this->ci->session->userdata('usertype')=='administrator'){
+			$op .=	'<a href="'.site_url('admin/users').'" class="icon-box">
 						<img alt="list users" src="'.base_url().ADMINIMGSPATH.'onebit_39.png" title="List Existing Users">
 						<div class="value">List Users</div>
 					</a>';
-	}
+		}
 
-	$op .=		'</div>
+		$op .=	'</div>
 
 				<hr/>';
 
@@ -432,14 +432,34 @@ class Adminrender_library{
 			$op .=	'[ '.
 						'"'.$val->id.'", '.
 						'"'.$val->name.'", '.
-						'"'.($val->gender==1?'Male':'Female').'", '.
-						'"'.$val->wardrobe.'", '.
+						'/*"'.($val->gender==1?'Male':'Female').'", */'.
+						
+						'/*"'.$val->wardrobe.'", */'.
 						'"'.$val->location.'", '.
 						'"'.$val->make_up.'", '.
 						'"'.$val->photographer.'", '.
 						'"'.$val->model_by.'", '.
 						'"'.ucfirst($val->ethnicity).'", '.
-						'"<a class=\"edit\" href=\"'.site_url('admin/featured/edit/'.$val->id).'\">Edit</a>", '.
+
+						'"'.$val->position.'", ';
+
+					if($val->position == 1 ){
+						$op .=	'"<span class=\"disabled_positioning\">------</span>", ';
+
+					}else{
+						$op .=	'"<a class=\"up\" href=\"'.site_url('admin/featured/up/'.$val->id).'\" title=\"Shift the ad one step up\" >Up</a>", ';
+					}
+
+					if($val->position == count($data)){
+
+						$op .= 	'"<span class=\"disabled_positioning\">------</span>", ';
+					}else{
+
+						$op .= 	'"<a class=\"down\" href=\"'.site_url('admin/featured/down/'.$val->id).'\" title=\"Shift the ad one step down\" >Dn</a>", ';
+					}
+
+
+				$op .=	'"<a class=\"edit\" href=\"'.site_url('admin/featured/edit/'.$val->id).'\">Edit</a>", '.
 						'"<a class=\"delete\" href=\"'.site_url('admin/featured/del/'.$val->id).'\">Delete</a>"'.
 					'],';
 		}
@@ -447,18 +467,24 @@ class Adminrender_library{
 		$op .=  '],"aoColumns": [
 			            { "sTitle": "ID" },
 			            { "sTitle": "Name" },
-			            { "sTitle": "Gender" },
+			            /*{ "sTitle": "Gender" },*/
 
-			            { "sTitle": "Wardrobe"},
+			            /*{ "sTitle": "Wardrobe"},*/
 			            { "sTitle": "Location"},
 			            { "sTitle": "Make-Up"},
 			            { "sTitle": "Photographer"},
 			            { "sTitle": "Model By"},
-
 			            { "sTitle": "Ethnicity"},
+
+			            { "sTitle": "Position"},
+			            { "sTitle": "Move Up" , sWidth:"5%"},
+			            { "sTitle": "Move Down" , sWidth:"5%"},
+
 			            { "sTitle": "Actions", sWidth:"5%"},
 			            { "sTitle": "" , sWidth:"5%"},
-			        ]
+			        ],
+				    "aaSorting":[[7,\'asc\']],
+					"bStateSave": true,
 			    } );   
 			} );
 			</script>';
@@ -807,7 +833,25 @@ $op .=
 						'"'.$val->type.'", '.
 						'"'.($val->upcomming=='1'?'Yes':'No').'", '.
 						'"'.$val->location.'", '.
-						'"<a class=\"edit\" href=\"'.site_url('admin/events/edit/'.$val->id).'\">Edit</a>", '.
+
+						'"'.$val->position.'", ';
+
+			if($val->position == 1 ){
+				$op .=	'"<span class=\"disabled_positioning\">------</span>", ';
+
+			}else{
+				$op .=	'"<a class=\"up\" href=\"'.site_url('admin/events/up/'.$val->id).'\" title=\"Shift the ad one step up\" >Up</a>", ';
+			}
+
+			if($val->position == count($data)){
+
+				$op .= 	'"<span class=\"disabled_positioning\">------</span>", ';
+			}else{
+
+				$op .= 	'"<a class=\"down\" href=\"'.site_url('admin/events/down/'.$val->id).'\" title=\"Shift the ad one step down\" >Dn</a>", ';
+			}
+
+			$op .= 		'"<a class=\"edit\" href=\"'.site_url('admin/events/edit/'.$val->id).'\">Edit</a>", '.
 						'"<a class=\"delete\" href=\"'.site_url('admin/events/del/'.$val->id).'\">Delete</a>"], ';
 		}
 
@@ -818,9 +862,15 @@ $op .=
 			            { "sTitle": "Type" },
 			            { "sTitle": "Upcomming" },
 			            { "sTitle": "Location" },
+
+			            { "sTitle": "Position"},
+			            { "sTitle": "Move Up" , sWidth:"5%"},
+			            { "sTitle": "Move Down" , sWidth:"5%"},
 			            { "sTitle": "Actions", sWidth:"5%"},
 			            { "sTitle": "" , sWidth:"5%"},
-			        ]
+			        ],
+			    "aaSorting":[[6,\'asc\']],
+				"bStateSave": true,
 			    } );   
 			} );
 			</script>';
@@ -1043,7 +1093,23 @@ $op .=
 						'"'.$val->type.'", '.
 						'"'.$val->title.'", '.
 						'"'.word_limiter($val->summary,10).'", '.
-						'"<a class=\"edit\" href=\"'.site_url('admin/news/edit/'.$val->id).'\">Edit</a>", '.
+						'"'.$val->position.'", ';
+
+			if($val->position == 1 ){
+				$op .=	'"<span class=\"disabled_positioning\">------</span>", ';
+
+			}else{
+				$op .=	'"<a class=\"up\" href=\"'.site_url('admin/news/up/'.$val->id).'\" title=\"Shift the news one step up\" >Up</a>", ';
+			}
+
+			if($val->position == count($data)){
+
+				$op .= 	'"<span class=\"disabled_positioning\">------</span>", ';
+			}else{
+
+				$op .= 	'"<a class=\"down\" href=\"'.site_url('admin/news/down/'.$val->id).'\" title=\"Shift the news one step down\" >Dn</a>", ';
+			}
+				$op .=	'"<a class=\"edit\" href=\"'.site_url('admin/news/edit/'.$val->id).'\">Edit</a>", '.
 						'"<a class=\"delete\" href=\"'.site_url('admin/news/del/'.$val->id).'\">Delete</a>", '.
 					'], ';
 		}
@@ -1053,9 +1119,15 @@ $op .=
 			            { "sTitle": "Type" },
 			            { "sTitle": "Title" },
 			            { "sTitle": "Summary" },
+
+			            { "sTitle": "Position"},
+			            { "sTitle": "Move Up" , sWidth:"5%"},
+			            { "sTitle": "Move Down" , sWidth:"5%"},
 			            { "sTitle": "Actions", sWidth:"5%"},
 			            { "sTitle": "" , sWidth:"5%"},
-			        ]
+			        ],
+			    "aaSorting":[[4,\'asc\']],
+				"bStateSave": true,
 			    } );   
 			} );
 			</script>';
@@ -1249,16 +1321,45 @@ $op .=
 				        "aaData": [';
 				if($data)
 				foreach($data as $key=>$val){
-			        $op .= '[ "'.$val->id.'", "'.$val->name.'", "'.($val->gender==1?'Male':'Female').'", "'.ucfirst($val->ethnicity).'", "<a class=\"edit\" href=\"'.site_url('admin/subjects/edit/'.$val->id).'\">Edit</a>", "<a class=\"delete\" href=\"'.site_url('admin/subjects/del/'.$val->id).'\">Delete</a>" ],';
-		        }
+			        $op .= '['.
+			        			'"'.$val->id.'", '.
+			        			'"'.$val->name.'", '.
+			        			'"'.($val->gender==1?'Male':'Female').'", '.
+			        			'"'.ucfirst($val->ethnicity).'", '.
+			        			'"'.$val->position.'", ';
+
+			if($val->position == 1 ){
+				$op .=	'"<span class=\"disabled_positioning\">------</span>", ';
+
+			}else{
+				$op .=	'"<a class=\"up\" href=\"'.site_url('admin/subjects/up/'.$val->id).'\" title=\"Shift the ad one step up\" >Up</a>", ';
+			}
+
+			if($val->position == count($data)){
+
+				$op .= 	'"<span class=\"disabled_positioning\">------</span>", ';
+			}else{
+
+				$op .= 	'"<a class=\"down\" href=\"'.site_url('admin/subjects/down/'.$val->id).'\" title=\"Shift the ad one step down\" >Dn</a>", ';
+			}
+
+
+					$op .= 		'"<a class=\"edit\" href=\"'.site_url('admin/subjects/edit/'.$val->id).'\">Edit</a>", 
+			        			"<a class=\"delete\" href=\"'.site_url('admin/subjects/del/'.$val->id).'\">Delete</a>" ],';
+    			}
 		$op .=  '],"aoColumns": [
 			            { "sTitle": "ID" },
 			            { "sTitle": "Name" },
 			            { "sTitle": "Gender" },
 			            { "sTitle": "Ethnicity"},
+			            { "sTitle": "Position"},
+			            { "sTitle": "Move Up" , sWidth:"5%"},
+			            { "sTitle": "Move Down" , sWidth:"5%"},
 			            { "sTitle": "Actions", sWidth:"5%"},
 			            { "sTitle": "" , sWidth:"5%"},
-			        ]
+			        ],
+				    "aaSorting":[[4,\'asc\']],
+					"bStateSave": true,
 			    } );   
 			} );
 			</script>';

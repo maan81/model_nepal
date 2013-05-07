@@ -322,7 +322,7 @@ class Render_library{
 						</div>
 					</div>'.
 
-	                $this->render_right($data['render_right']).
+	                $this->render_right($data['render_right'],$data['flinks']).
 	               
 				'</div>';
 
@@ -330,17 +330,51 @@ class Render_library{
 	}
 
 
-	public function render_right($data){
+	public function render_right($data,$flinks){
 
-		$op = 	'<div class="rightPart">';
+		//vertical jquery slider
+		$op =	'<script type="text/javascript">
+				$(function(){
+					$("#flinks").my_slider({
+						move	:	750,
+						pause	:	5000,
+						each_width:	250,
+						each_height:300,
+						num		:	1,
+						showDir	:	false,
+						showPlay:	false,
+						autoMove:	true,
+						display	:	"vertical",
+					});
+				});
+				</script>';
+		$op .= '<style>
+					#main #flinks {
+										width:250px;
+										margin-bottom:10px;
+									}
+					#main #flinks .slide{
+											width:250px;
+											border:0;
+											margin-bottom:0;
+										}
+				</style>';
 
-		//events link
-		$op .= 	'<div class="rads">';
-
-		$op.=		'<a href="'.site_url('events').'">
-						<img src="'.base_url().IMGSPATH.'events.jpg" alt="Latest Events" title="Latest Events" width="250" />
-					</a>';
 		
+		$op .= 	'<div class="rightPart">';
+
+		//featured link
+		$op .= 	'<div class="rads" id="flinks">';
+		foreach($flinks as $key=>$val){
+			$op.=	'<div class="flink slide">
+						<a href="'.$val->link.'">
+							<img src="'.base_url().FLINKSPATH.$val->image.'" 
+								alt="'.$val->title.'" 
+								title="'.$val->title.'" 
+								width="250" height="300" />
+						</a>
+					</div>';
+		}
 		$op .=	'</div>';
 
 		foreach($data as $key=>$val){

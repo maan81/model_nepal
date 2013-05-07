@@ -51,8 +51,10 @@ define('CSSPATH',			'public/css/');
 define('JSPATH',			'public/js/');
 define('ADDSPATH',			'public/ads/');
 define('CKEDITOR',			'public/ckeditor/');
-define('FEATUREDPATH',		'public/featured/');
+define('CONTESTSPATH',		'public/contests/');
 define('EVENTSPATH',		'public/events/');
+define('FEATUREDPATH',		'public/featured/');
+define('FLINKSPATH',		'public/flinks/');
 define('SUBJECTSPATH',		'public/subjects/');
 define('NEWSSPATH',			'public/news/');
 

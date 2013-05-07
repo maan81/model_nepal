@@ -117,6 +117,16 @@ class Adminrender_library{
 					<a href="'.site_url('admin/ads/new_ad').'" class="icon-box">
 						<img alt="new advertizement" src="'.base_url().ADMINIMGSPATH.'clipping_picture.png" title="Create New Advertizement">
 						<div class="value">New Ads</div>
+					</a>
+
+					<a href="'.site_url('admin/contests/new_contest').'" class="icon-box">
+						<img alt="new advertizement" src="'.base_url().ADMINIMGSPATH.'clipping_picture.png" title="Create New Advertizement">
+						<div class="value">New Contest</div>
+					</a>
+
+					<a href="'.site_url('admin/flinks/new_flink').'" class="icon-box">
+						<img alt="new link" src="'.base_url().ADMINIMGSPATH.'clipping_picture.png" title="Create New Featured Link">
+						<div class="value">New Link</div>
 					</a>';
 
 		if( $this->ci->session->userdata('usertype')=='administrator'){
@@ -150,6 +160,16 @@ class Adminrender_library{
 					<a href="'.site_url('admin/ads').'" class="icon-box">
 						<img alt="list advertizement" src="'.base_url().ADMINIMGSPATH.'onebit_39.png" title="List Existing Advertizements">
 						<div class="value">List Ads</div>
+					</a>
+
+					<a href="'.site_url('admin/contests').'" class="icon-box">
+						<img alt="list contests" src="'.base_url().ADMINIMGSPATH.'onebit_39.png" title="List Existing Contests">
+						<div class="value">List Contests</div>
+					</a>
+
+					<a href="'.site_url('admin/flinks').'" class="icon-box">
+						<img alt="list featured links" src="'.base_url().ADMINIMGSPATH.'onebit_39.png" title="List Existing Featured Links">
+						<div class="value">List Links</div>
 					</a>';
 
 		if( $this->ci->session->userdata('usertype')=='administrator'){
@@ -1069,6 +1089,489 @@ $op .=
 
 		return  $op;
 	}
+
+
+	/**
+	 * flinks list
+	 */
+	public function render_flinkslist($data){
+		$this->ci->load->helper('text');
+
+		$op =	'<div class="grid_2" style="float:right;">
+					<p>
+						<a href="'.site_url('admin/flinks/new_flink').'">New</a>
+					</p>
+				</div>'.
+				'<script type="text/javascript">
+				$(function() {
+				    $(\'#list_data\').dataTable( {
+				        "aaData": [';
+
+		if($data)
+		foreach($data as $key=>$val){
+			$op .=	'['.
+						'"'.$val->id.'", '.
+						'"'.$val->title.'", '.
+						'"'.word_limiter($val->summary,10).'", '.
+						'"'.$val->link.'", '.
+						'"'.$val->enabled.'", '.
+						'"'.$val->position.'", ';
+
+			if($val->position == 1 ){
+				$op .=	'"<span class=\"disabled_positioning\">------</span>", ';
+
+			}else{
+				$op .=	'"<a class=\"up\" href=\"'.site_url('admin/flinks/up/'.$val->id).'\" title=\"Shift the ad one step up\" >Up</a>", ';
+			}
+
+			if($val->position == count($data)){
+
+				$op .= 	'"<span class=\"disabled_positioning\">------</span>", ';
+			}else{
+
+				$op .= 	'"<a class=\"down\" href=\"'.site_url('admin/flinks/down/'.$val->id).'\" title=\"Shift the ad one step down\" >Dn</a>", ';
+			}
+
+			$op .= 		'"<a class=\"edit\" href=\"'.site_url('admin/flinks/edit/'.$val->id).'\" title=\"Edit element ID '.$val->id.'\" >Edit</a>", '.
+						'"<a class=\"delete\" href=\"'.site_url('admin/flinks/del/'.$val->id).'\" title=\"Delete element ID '.$val->id.'\" >Delete</a>" ], ';
+		}
+
+		$op .=  '],
+				"aoColumns": [
+			            { "sTitle": "ID" },
+			            { "sTitle": "Title" },
+			            { "sTitle": "Summary" },
+			            { "sTitle": "Link" },
+			            { "sTitle": "Enabled"},
+			            { "sTitle": "Position"},
+			            { "sTitle": "Move Up" , sWidth:"5%"},
+			            { "sTitle": "Move Down" , sWidth:"5%"},
+			            { "sTitle": "Actions", sWidth:"5%"},
+			            { "sTitle": "" , sWidth:"5%"},
+		        ],
+			    "aaSorting":[[5,\'asc\']],
+				"bStateSave": true,
+			    } );   
+			} );
+			</script>';
+		$op .= 	'<div class="grid_16"><table id="list_data"></table></div>';
+		return $op;
+	}
+	
+	
+	/**
+	 * new flinks form
+	 */
+	public function render_new_flinks($data){
+		$op = '<style>
+				#content .fx {
+				    border: 1px solid #DDDDDD;
+				    font-family: inherit;
+				    font-size: inherit;
+				    padding: 1.5px 4px;
+				    position: absolute;
+				    width: 330px;
+				}</style>';
+
+		$op .= '<script type="text/javascript">
+				$(function(){
+					
+					var type;
+					$("select[name=type]").change(function(){
+						type = $(this).val();
+
+						$(".is_"+type).slideDown();
+						$(".not_"+type).slideUp();
+					});
+
+					$("select[name=type]").trigger("change");
+
+					$("#content").find("form").submit(function(){
+						$(".not_"+type).remove();
+					});';
+
+		if(is_object($data[0])){
+			$op .=	'var $img;
+					//remove old img & add input for new image
+					$(".change_img").live("click",function(e){
+						e.preventDefault();
+						
+						var str = "<input class=\"new_img\" type=\"file\" name=\"image\">";
+						str = str + "<a class=\"cancel_change_img\" href=\"#\">cancel</a>";
+
+						$(this).after(str);
+						$img = $(".old_img").detach()+$(this).detach();
+
+						$(".new_img").trigger("click");
+					});						
+
+					//restore the earlier image 
+					$(".cancel_change_img").live("click",function(e){
+						e.preventDefault();
+						
+ 						var str = "<img class=\"old_img\" src=\"'.base_url().FLINKSPATH.$data[0]->image.'\" />";
+						str = str + "<a href=\"#\" class=\"change_img\">Change</a>";
+
+						$(this)
+							.after(str)
+						$(".new_img").remove();
+						$(this).remove();
+					});';
+		}
+		$op .= 	'})
+			  </script> ';
+
+		$op .=	//'<div class="container_16 clearfix" id="content">'.
+					form_open_multipart().'
+					<div class="grid_16">
+						<div class="grid_2" style="float: right;">
+							<p>
+								<a href="'.base_url('admin/flinks').'">Back</a>
+							</p>
+						</div>
+
+						<h2>New Featured Link</h2>
+						<p class="error">Something went wrong.</p>
+					</div>
+
+					<div class="grid_6">
+						<p>
+							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>';
+					if($data){
+						//uneditable form input
+						$op .=		'<span class="fx">'.$data[0]->title.'</span>';
+					}else{
+						//empty form input
+						$op .=		'<input type="text" name="title" value=""/>';
+					}
+					$op .= 	'</p>
+					</div>
+
+
+					<div class="grid_6">
+						<p class="img">
+							<label for="image">Image<small>The required Advertizement image..</small></label>';
+			
+				if($data && $data[0]->image){
+					$op .=	'<img class="old_img" src="'.base_url().FLINKSPATH.$data[0]->image.'" />';
+							 //<a href="#" class="change_img">Change</a>';
+				}else{
+					$op .= '<input class="new_img" type="file" name="image">';
+							//'<a href="#" class="cancel_change_img">Cancel</a>';
+				}		
+			
+			$op .= 		'</p>
+					</div>
+
+					<div class="grid_12">
+						<p>
+							<label for="link">Link<small>Must contain alpha-numeric characters.</small></label>
+							<input type="text" name="link" value="'.($data?$data[0]->link:'').'">
+						</p>
+					</div>
+
+					<div class="grid_12">
+						<p>
+							<label>Link Status</label>
+							<span>
+							     <input class="radio" type="radio" value="1" name="enabled" '.
+							     									($data?($data[0]->enabled==1?'checked="checked"':''):'').' />
+							     <span>Enable Link</span>
+							</span>							
+							<span class="grid_4">
+							     <input class="radio" type="radio" value="0" name="enabled" '.
+							     									($data?($data[0]->enabled==0?'checked="checked"':''):'').' />
+							     <span>Disable Link</span>
+							</span>
+						</p>
+					</div>
+
+					<div class="grid_12">
+						<p>
+							<label>Featured Link Summary <small>Will be displayed in search engine results.</small></label>
+							<textarea class="area_small" name="summary">'.
+								($data?$data[0]->summary:'').
+							'</textarea>
+						</p>
+					</div>
+
+					<div class="grid_12">
+						<p class="submit">
+							<a href="javascript:history.back()">Cancel</a>
+							<input type="submit" value="Submit">
+						</p>
+					</div>		
+					</form>';
+				//</div>';
+
+		return  $op;
+	}
+
+
+
+	/**
+	 * contests list
+	 */
+	public function render_contestslist($data){
+//print_r($data);die;		
+		$this->ci->load->helper('text');
+
+		$op =	'<div class="grid_2" style="float:right;">
+					<p>
+						<a href="'.site_url('admin/contests/new_contest').'">New</a>
+					</p>
+				</div>'.
+				'<script type="text/javascript">
+				$(function() {
+				    $(\'#list_data\').dataTable( {
+				        "aaData": [';
+
+		if($data)
+		foreach($data as $key=>$val){
+			$op .=	'['.
+						'"'.$val->id.'", '.
+						'"'.$val->title.'", '.
+						'"'.word_limiter($val->summary,10).'", '.
+						'"'.$val->type.'", '.
+						'"'.($val->upcomming=='1'?'Yes':'No').'", '.
+						'"'.$val->location.'", '.
+
+						'"'.$val->position.'", ';
+
+			if($val->position == 1 ){
+				$op .=	'"<span class=\"disabled_positioning\">------</span>", ';
+
+			}else{
+				$op .=	'"<a class=\"up\" href=\"'.site_url('admin/contests/up/'.$val->id).'\" title=\"Shift the contest one step up\" >Up</a>", ';
+			}
+
+			if($val->position == count($data)){
+
+				$op .= 	'"<span class=\"disabled_positioning\">------</span>", ';
+			}else{
+
+				$op .= 	'"<a class=\"down\" href=\"'.site_url('admin/contests/down/'.$val->id).'\" title=\"Shift the contest one step down\" >Dn</a>", ';
+			}
+
+			$op .= 		'"<a class=\"edit\" href=\"'.site_url('admin/contests/edit/'.$val->id).'\">Edit</a>", '.
+						'"<a class=\"delete\" href=\"'.site_url('admin/contests/del/'.$val->id).'\">Delete</a>"], ';
+		}
+
+		$op .=  '],"aoColumns": [
+			            { "sTitle": "ID" },
+			            { "sTitle": "Title" },
+			            { "sTitle": "Summary" },
+			            { "sTitle": "Type" },
+			            { "sTitle": "Upcomming" },
+			            { "sTitle": "Location" },
+
+			            { "sTitle": "Position"},
+			            { "sTitle": "Move Up" , sWidth:"5%"},
+			            { "sTitle": "Move Down" , sWidth:"5%"},
+			            { "sTitle": "Actions", sWidth:"5%"},
+			            { "sTitle": "" , sWidth:"5%"},
+			        ],
+			    "aaSorting":[[6,\'asc\']],
+				"bStateSave": true,
+			    } );   
+			} );
+			</script>';
+		$op .= 	'<div class="grid_16"><table id="list_data"></table></div>';
+		return $op;
+	}
+	
+	
+	/**
+	 * new contest form
+	 */
+	public function render_new_contests($data){
+//echo '<pre>';
+//print_r($data);
+//echo '</pre>';
+//die;
+		$this->ci->template->add_css(ADMINJSPATH.'jquery-ui.css');
+		$this->ci->template->add_js(ADMINJSPATH.'jquery-ui.js');
+
+		$op = 	'<style>
+					#content .fx{
+						border: 1px solid #DDDDDD;
+						font-family: inherit;
+						font-size: inherit;
+						padding: 1.5px 4px;
+						width: 330px;
+						position:absolute;
+					}
+					#ui-datepicker-div {
+						font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
+						font-size: inherit;
+					}
+				</style>';
+		$op .= 	'<script type="text/javascript">
+					$(function() {
+						$( "#date_created" ).datepicker({
+														dateFormat: "yy-mm-dd",
+														showAnim:	"fadeIn"
+													});
+					});
+				</script>';
+
+		$op .= '<script type="text/javascript">$(function(){
+					$(".fx").parent().css("margin-bottom","45px");
+
+					function change_event_type($param){
+						if($param==1){
+							$(".upcomming").fadeIn();
+						}else{
+							$(".upcomming").fadeOut();
+						}
+					}
+					$("input[name=upcomming]").click(function(){
+						change_event_type($(this).val());
+					})
+					$(".upcomming").hide();
+					'.($data?(($data[0]->upcomming=='1')?'$(".upcomming").show();':''):'').'
+
+
+				})</script>';
+
+		$op .=	//'<div class="container_16 clearfix" id="content">'.
+					form_open().'
+					<div class="grid_16">
+						<div class="grid_2" style="float: right;">
+							<p>
+								<a href="'.base_url('admin/contests').'">Back</a>
+							</p>
+						</div>
+						<h2>New Contest</h2>
+						<p class="error">Something went wrong.</p>
+					</div>
+
+					<div class="grid_6">
+						<p>
+							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>';
+					if($data){
+						//uneditable form input
+						$op .=		'<span class="fx">'.$data[0]->title.'</span>';
+					}else{
+						//empty form input
+						$op .=		'<input type="text" name="title" value=""/>';
+					}
+					$op .= 	'</p>
+					</div>
+
+					<div class="grid_6">
+						<p>
+							<label for="type">Type</label>
+							<select name="type">';
+
+				$this->ci->load->config('eventstype');
+				$eventstype = $this->ci->config->item('eventstype');
+
+				foreach($eventstype as $key=>$val){
+					$op .= '<option value="'.$key.'" '.
+								($data?($data[0]->type==$key?'selected="selected"':''):'').'>'.$val
+							.'</option>';					
+				}
+
+				$op .=		'</select>
+						</p>
+					</div>
+
+					<div class="grid_6">
+						<p>
+							<label for="date_created">Date Created</label>
+							<input id="date_created" type="text" name="date_created" value="'.($data?$data[0]->date_created:'').'" />
+						</p>
+					</div>
+					
+					<div class="grid_6">
+						<p>
+							<label for="location">Location</label>
+							<input type="text" name="location" value="'.($data?$data[0]->location:'').'" />
+						</p>
+					</div>
+
+
+					<div class="grid_12">
+						<p>
+							<label>Contest Category</label>
+							<span>
+							     <input class="radio" type="radio" value="1" name="upcomming" '.
+							     									($data?($data[0]->upcomming==1?'checked="checked"':''):'').' />
+							     <span>upcomming Event</span>
+							</span>							
+							<span class="grid_4">
+							     <input class="radio" type="radio" value="0" name="upcomming" '.
+							     									($data?($data[0]->upcomming==0?'checked="checked"':''):'').' />
+							     <span>Past Contests</span>
+							</span>
+							<!--
+							<span class="grid_4" style="float:right;">
+							     <input type="checkbox" name="featured" value="1" '.
+							     									($data?($data[0]->featured==1?'checked="checked"':''):'').' />
+							     <span>Featured Event</span>
+							</span>
+							-->
+						</p>
+					</div>
+
+
+					<div class="grid_6 upcomming">
+						<p>
+							<label for="time">Time</label>
+							<input type="text" value="'.($data?$data[0]->time:'').'" name="time">
+						</p>
+					</div>
+
+					<div class="grid_16"></div>
+
+					<div class="grid_12">
+						<p>
+							<label>Contest Summary <small>Will be displayed in search engine results.</small></label>
+							<textarea class="area_small" name="summary">'.
+								($data?$data[0]->summary:'').
+							'</textarea>
+						</p>
+					</div>
+
+					<div class="grid_12 upcomming">
+						<p>
+							<label>Contest Details <small>Will be displayed in search engine results.</small></label>
+							<textarea name="details" class="area_medium">'.
+								($data?$data[0]->details:'').
+							'</textarea>
+						</p>
+					</div>
+
+					<div class="grid_12">
+
+						<p class="submit">
+							<a href="javascript:history.back()">Cancel</a>
+							<input type="submit" value="Submit">
+						</p>
+					</div>
+
+					<div class="grid_16">
+						<small>
+							To create a Events Gallery, create a folder within <code>public\</code> 
+							and upload the images there using any ftp client. 
+						</small>
+						<br>
+						<small>eg.</small>  	
+						<small>
+							<ul style="list-style:none;">
+								<li><code>&lt;site&gt;\public\event_name\</code></li>
+								<li><code>&lt;site&gt;\public\another_event_name\</code></li>
+							</ul>
+						</small>
+					</div>		
+					</form>';
+				//</div>';
+
+
+		return  $op;
+	}
+
 
 
 	/**

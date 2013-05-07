@@ -1,5 +1,5 @@
 .upcomming_selectors {
-    border: 1px solid gray;
+    /*border: 1px solid gray;*/
     border-radius: 5px;
     float: right;
     margin: 10px 10px 0 0;
@@ -10,7 +10,7 @@
 }
 
 .upcomming_selector {
-    background: none repeat scroll 0 0 #008;
+    background: none repeat scroll 0 0 #fff;
     border: 2px solid gray;
     border-radius: 4.5px;
     cursor:pointer;

@@ -49,6 +49,11 @@ class Main extends MY_Controller {
 		$news = $this->news_model->get();
 
 		//---------------------------------------------
+		//get the featured links
+		$this->load->model('flinks_model');
+		$flinks = $this->flinks_model->get();
+
+		//---------------------------------------------
 		//generate meta tags
 		$featured_list = '';
 		foreach($featured as $key=>$val){
@@ -78,6 +83,7 @@ class Main extends MY_Controller {
 					'featured'	=> $featured,
 					'render_right'	=>$tmp3,
 					'news'		=> $news,
+					'flinks'	=> $flinks,
 				);
 
 

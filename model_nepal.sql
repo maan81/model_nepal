@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 06, 2013 at 10:08 AM
+-- Generation Time: May 07, 2013 at 12:06 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -58,6 +58,28 @@ INSERT INTO `ads` (`id`, `title`, `category`, `type`, `dimensions`, `script`, `l
 (22, 'Adsence test 2', 'published', 'script', 'rads', '<script type="text/javascript"><!--\ngoogle_ad_client = "ca-pub-7372466155313335";\n/* 250 Ad */\ngoogle_ad_slot = "3531712710";\ngoogle_ad_width = 250;\ngoogle_ad_height = 250;\n//-->\n</script>\n<script type="text/javascript"\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js">\n</script>', '0', NULL, 3, ''),
 (23, 'Google Adsence 3', 'published', 'script', 'rtbbox', '<script type="text/javascript"><!--\ngoogle_ad_client = "ca-pub-7372466155313335";\n/* 200x200 */\ngoogle_ad_slot = "2498494592";\ngoogle_ad_width = 200;\ngoogle_ad_height = 200;\n//-->\n</script>\n<script type="text/javascript"\nsrc="http://pagead2.googlesyndication.com/pagead/show_ads.js">\n</script>', NULL, NULL, 12, ''),
 (27, 'Photography', 'published', 'image', 'rtbbox', NULL, 'http://cybernepal.com', '1366024025.7594.jpg', 13, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contests`
+--
+
+CREATE TABLE IF NOT EXISTS `contests` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(127) NOT NULL,
+  `summary` varchar(2047) NOT NULL,
+  `type` varchar(11) NOT NULL,
+  `location` varchar(127) NOT NULL,
+  `time` varchar(11) DEFAULT NULL,
+  `details` text,
+  `date_created` date NOT NULL,
+  `upcomming` tinyint(4) NOT NULL,
+  `featured` tinyint(4) NOT NULL DEFAULT '0',
+  `created_by` varchar(11) NOT NULL,
+  `position` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 -- --------------------------------------------------------
 
@@ -124,6 +146,33 @@ INSERT INTO `featured` (`id`, `name`, `gender`, `ethnicity`, `wardrobe`, `locati
 (8, 'Bipishana', 0, 'limbu', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 2, '', 1),
 (9, 'Sarifa', 0, 'gurung', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 2, '', 6),
 (10, 'Zigyasha', 0, 'gurung', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 2, '', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `flinks`
+--
+
+CREATE TABLE IF NOT EXISTS `flinks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `link` varchar(127) NOT NULL,
+  `image` varchar(127) NOT NULL,
+  `title` varchar(11) NOT NULL,
+  `summary` varchar(2047) NOT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
+  `date_created` date NOT NULL,
+  `created_by` varchar(11) NOT NULL,
+  `position` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+
+--
+-- Dumping data for table `flinks`
+--
+
+INSERT INTO `flinks` (`id`, `link`, `image`, `title`, `summary`, `enabled`, `date_created`, `created_by`, `position`) VALUES
+(25, 'http://google.com', '1367918911.0396.jpg', 'lkj hlkj hl', 'lk u hgl jk', 1, '0000-00-00', 'root', 1),
+(26, 'http://en.wikipedia.org/wiki/Nepal', '1367924166.248.jpg', 'tttt', 'about nepal ........', 1, '0000-00-00', 'root', 2);
 
 -- --------------------------------------------------------
 
@@ -232,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 INSERT INTO `subjects` (`id`, `name`, `age`, `gender`, `address`, `contact_no`, `email`, `height`, `weight`, `bust`, `waist`, `hips`, `shoe`, `dress`, `hair_color`, `hair_length`, `ethnicity`, `skin`, `eyes`, `teeth`, `professional`, `additional`, `travelling_area`, `travelling_duration`, `editorial`, `runaway`, `catalog`, `print`, `showroom`, `fitness`, `fit`, `tearoom`, `body_part`, `lingerie`, `product_modelling`, `lifestyle_modelling`, `coorporate_modelling`, `product_demo`, `tradeshow`, `lingrie`, `art`, `experience`, `date_created`, `profile_viewed`, `created_by`, `position`) VALUES
 (8, 'sss', 20, 0, 'Kathnamdu', '123456', 'test@test.com', '5'' 5''''', '50', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2013-04-01', 2, '', 1),
 (10, 'as dfas dawe ', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2013-04-10', 2, '', 2),
-(11, 'Pooza', 18, 0, '', '', '', '', '', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, '', '2013-04-11', 2, '', 3);
+(11, 'Pooza', 18, 0, '', '', '', '', '', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, '', '2013-04-11', 3, '', 3);
 
 -- --------------------------------------------------------
 
@@ -284,7 +333,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `usertype`, `last_loggedin`, `last_location`) VALUES
-(1, 'root', '9d9e9979efe032e23a07cd2623574417', 'root@root.com', 'administrator', '2013-05-06 08:21:48', '::1'),
+(1, 'root', '9d9e9979efe032e23a07cd2623574417', 'root@root.com', 'administrator', '2013-05-07 08:33:27', '::1'),
 (11, 'ff', 'ece926d8c0356205276a45266d361161', 'ff@ff.com', 'administrator', '0000-00-00 00:00:00', '0'),
 (12, 'ee', 'c0bdce0aca8f4f5512bb2fd78c922c24', 'pranijman@gmail.com', 'editor', '0000-00-00 00:00:00', '0');
 
@@ -304,7 +353,7 @@ CREATE TABLE IF NOT EXISTS `visitors_count` (
   UNIQUE KEY `unique` (`ip_address`,`type`,`model_id`),
   KEY `ip_address` (`ip_address`),
   KEY `model_id` (`model_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=168 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=169 ;
 
 --
 -- Dumping data for table `visitors_count`
@@ -333,7 +382,8 @@ INSERT INTO `visitors_count` (`id`, `ip_address`, `type`, `model_id`, `timestamp
 (141, '::1', 'featured', 10, '2013-05-01 11:45:33'),
 (142, '::1', 'featured', 9, '2013-05-03 06:41:54'),
 (161, '::1', 'subjects', 8, '2013-05-03 08:32:58'),
-(165, '::1', 'featured', 3, '2013-05-06 09:34:23');
+(165, '::1', 'featured', 3, '2013-05-06 09:34:23'),
+(168, '::1', 'subjects', 11, '2013-05-06 10:19:57');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

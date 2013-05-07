@@ -15,7 +15,7 @@ $(function(){
         .css({'opacity':1,'z-index':1})
 
     //select 1st selector
-    $selectors.eq(0).css('background-color','#00f');
+    $selectors.eq(0).css('background-color','#000');
 
     //repeat the animation
     events_ani = setInterval(events_ani_fn,disp);
@@ -34,7 +34,7 @@ $(function(){
                 { duration: fade, queue: false }
             );
         //unselect the displayed selector
-        $selectors.eq(index).css('background-color','#008');
+        $selectors.eq(index).css('background-color','#fff');
 
 
         //select next
@@ -63,7 +63,7 @@ $(function(){
                 {duratin:fade,queue:false}
             )
         //select the reqd. selector
-        $selectors.eq(index).css('background-color','#00f');
+        $selectors.eq(index).css('background-color','#000');
     }
 
     //trigger by selecting

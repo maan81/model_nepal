@@ -21,6 +21,11 @@ class Featured extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
+		//---------------------------------------------
+		//get the featured links
+		$this->load->model('flinks_model');
+		$flinks = $this->flinks_model->get();
+
 		//-----------------------------------------------
 		//get the featured in order of their names
 		$featured = $this->featured_model->get(false,array(
@@ -61,6 +66,7 @@ class Featured extends MY_Controller {
 										),
 					'featured'		=>	$featured,
 					'render_right'	=>	$tmp3,
+					'flinks'		=>	$flinks,
 					'ethnicity'		=> 	$this->config->item('ethnicity'),
 					'popular_featured'=>$popular_featured,
 					'latest_featured'=> $latest_featured,
@@ -294,11 +300,13 @@ class Featured extends MY_Controller {
 		//-----------------------------------------------
 
 		$this->load->model('ads_model');
+		$this->load->model('flinks_model');
 
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 		$rtbbox = $this->ads_model->get(array('dimensions'=>'rtbbox','category'=>'published'));
 		$featured = $this->featured_model->get(array('id' => $model));
+		$flinks = $this->flinks_model->get();
 
 		//================
 		$galleries = array();
@@ -331,6 +339,7 @@ class Featured extends MY_Controller {
 		$data = array(
 					'featured'		=>	$featured,
 					'render_right'	=>	$tmp3,
+					'flinks'		=>	$flinks,
 					'galleries'		=> 	$galleries,
 					'img_links'		=> 	$img_links,
 					'rtbbox'		=>  $rtbbox,
@@ -375,9 +384,10 @@ class Featured extends MY_Controller {
 		//-----------------------------------------------
 
 		$this->load->model('ads_model');
-
+		$this->load->model('flinks_model');
 		
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
+		$flinks = $this->flinks_model->get();
 		$featured = $this->featured_model->get(array('id' => $model));
 
 
@@ -469,6 +479,7 @@ class Featured extends MY_Controller {
 		$data = array(
 					'featured'		=>	$featured,
 					'render_right'	=>	$tmp3,
+					'flinks'		=>	$flinks,
 					'galleries'		=> 	$galleries,
 					//'img_links'		=> 	$img_links,
 					'imgs_preview'	=> 	$imgs_preview,

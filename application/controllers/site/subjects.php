@@ -29,6 +29,11 @@ class Subjects extends MY_Controller {
 														)
 												);
 
+		//---------------------------------------------
+		//get the featured links
+		$this->load->model('flinks_model');
+		$flinks = $this->flinks_model->get();
+
 		//-----------------------------------------------
 		//get the date's dropdown
 		$this->load->helper('date_helper');
@@ -46,6 +51,7 @@ class Subjects extends MY_Controller {
 									),
 					'subjects'	=> $subjects,
 					'render_right'=>$tmp3,
+					'flinks'	=>	$flinks,
 					'ethnicity'	=> $this->config->item('ethnicity'),
 					'date_dropdown'	=>	$date_dropdown,
 				);
@@ -205,7 +211,9 @@ class Subjects extends MY_Controller {
 		//-----------------------------------------------
 
 		$this->load->model('ads_model');
+		$this->load->model('flinks_model');
 
+		$flinks = $this->flinks_model->get();
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 		$subjects = $this->subjects_model->get(array('id' => $model_id));
 
@@ -217,16 +225,15 @@ class Subjects extends MY_Controller {
 		$data = array(
 					'subjects'		=>	$updated_subjects,
 					'render_right'	=>	$tmp3,
-//					'galleries'		=> 	$galleries,
-//					'img_links'		=> 	$img_links,
-//					'imgs_preview'	=> 	$imgs_preview,
+					'flinks'		=>	$flinks,
+					//'galleries'		=> 	$galleries,
+					//'img_links'		=> 	$img_links,
+					//'imgs_preview'	=> 	$imgs_preview,
 					);
 
 
-//print_r($data);die;
 		$op = $this->load->view('site/subjects_selected_gallery.php',$data,true);
-//echo $op;die;
-//$op='';
+
 		$this->template->write('mainContents',$op);
 
 		$this->template->add_css(CSSPATH.'/custom.css');
@@ -263,6 +270,11 @@ class Subjects extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
+		//---------------------------------------------
+		//get the featured links
+		$this->load->model('flinks_model');
+		$flinks = $this->flinks_model->get();
+
 		//------------------------------------------------
 
 		$this->load->helper('visitors_count_helper');
@@ -285,7 +297,8 @@ class Subjects extends MY_Controller {
 		$data = array(
 					'subjects'		=>	$subjects,
 					'render_right'	=>	$tmp3,
-					//'img_links'		=> 	$img_links,
+					'flinks'		=>	$flinks,
+					//'img_links'	=> 	$img_links,
 					'add2'			=>	$tmp2,
 					);
 

@@ -30,7 +30,9 @@ class MY_Controller extends CI_Controller {
 	 */
 	public function render_skeleton(){
 		$this->template->set_template('site');
-		
+
+		//add right featured links vertical slider jquery
+		$this->template->add_js(JSPATH.'my_slider.js');
 
 		//-----------------------------------------------
 		// render the upper most bar

@@ -5,7 +5,7 @@
      <div class="agencyDisplay">
         <?php if($subjects->img_type == 'potrait') : ?>
           <div class="modelpic">
-             <img src="<?php echo $subjects->cur_img?>" alt="<?php echo $subjects->name?>" 
+             <img src="<?php echo $subjects->cur_img?>" 
                   alt="<?php echo $subjects->name?>" width="330" height="496" />
           </div>
           <div class="agencymodeldetail">
@@ -114,7 +114,8 @@
                <div class="block">
                   <a href="<?php echo $val['link']?>">
                     <div class="">
-                      <img src="<?php echo $val['img']?>" alt="<?php echo $val['name']?>" title="<?php echo $val{'name'}?>" />
+                      <img src="<?php echo $val['img']?>" alt="<?php echo $subjects->name?>" 
+                            title="<?php echo $subjects->name?>" />
                     </div>
                   </a>
                </div>

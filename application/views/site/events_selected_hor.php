@@ -17,7 +17,7 @@
 			
 	         <div class="mpic" style="top:70px;">
 	            <img src="<?php echo $events->cur_img?>" alt="<?php echo $events->title?>" 
-	            	title="<?php echo $events->tile?>" width="610" height="400" />
+	            	title="<?php echo $events->title?>" width="610" height="400" />
 	         </div>
 
 	         <?php if(isset($events->prev)):?>

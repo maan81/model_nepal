@@ -53,6 +53,11 @@ class Events extends MY_Controller {
 		$this->load->helper('date_helper');
 		$date_dropdown = date_dropdown();		
 
+		//---------------------------------------------
+		//get the featured links
+		$this->load->model('flinks_model');
+		$flinks = $this->flinks_model->get();
+
 		//-----------------------------------------------
 
 		$this->load->config('ethnicity');
@@ -63,6 +68,7 @@ class Events extends MY_Controller {
 					'events'			=> $events,
 					'events_slideshow'	=> $events_slideshow,
 					'render_right'		=> $tmp3,
+					'flinks'			=> $flinks,
 					'ethnicity'			=> $this->config->item('ethnicity'),
 					'date_dropdown'		=> $date_dropdown,
 					'types'				=> $this->config->item('eventstype'),
@@ -226,6 +232,12 @@ class Events extends MY_Controller {
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 		$events = $this->events_model->get(array('id' => $model_id));
 
+		//---------------------------------------------
+		//get the featured links
+		$this->load->model('flinks_model');
+		$flinks = $this->flinks_model->get();
+		//---------------------------------------------
+
 		$updated_events = array();
 		foreach($events as $key=>$val){
 			array_push($updated_events,$this->event_imgs($val,1));
@@ -234,16 +246,15 @@ class Events extends MY_Controller {
 		$data = array(
 					'events'		=>	$events,
 					'render_right'	=>	$tmp3,
-//					'galleries'		=> 	$galleries,
-//					'img_links'		=> 	$img_links,
-//					'imgs_preview'	=> 	$imgs_preview,
+					'flinks'		=> 	$flinks,
+					//'galleries'		=> 	$galleries,
+					//'img_links'		=> 	$img_links,
+					//'imgs_preview'	=> 	$imgs_preview,
 					);
 
 
-//print_r($data);die;
 		$op = $this->load->view('site/events_selected_gallery.php',$data,true);
-//echo $op;die;
-//$op='';
+
 		$this->template->write('mainContents',$op);
 
 		//---------------------------------------------
@@ -275,19 +286,23 @@ class Events extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
+		//---------------------------------------------
+		//get the featured links
+		$this->load->model('flinks_model');
+		$flinks = $this->flinks_model->get();
+
 		//------------------------------------------------
 		$events = $this->event_imgs($events,1);
-//print_r($events);die;
 		//------------------------------------------------
 
 		$data = array(
 					'events'		=>	$events,
 					'render_right'	=>	$tmp3,
+					'flinks'		=>	$flinks,
 					//'img_links'		=> 	$img_links,
 					'add'			=>	$tmp1[0],
 					'add2'			=>	$tmp2,
 					);
-//print_r($events->img_type);die;
 
 		$op = $this->load->view('site/events_upcomming.php',$data,true);
 
@@ -351,12 +366,20 @@ class Events extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 		$rtbbox = $this->ads_model->get(array('dimensions'=>'rtbbox','category'=>'published'));
+
+
+		//---------------------------------------------
+		//get the featured links
+		$this->load->model('flinks_model');
+		$flinks = $this->flinks_model->get();
+
 		//------------------------------------------------
 
 
 		$data = array(
 					'events'		=>	$events,
 					'render_right'	=>	$tmp3,
+					'flinks'		=>	$flinks,
 					//'img_links'		=> 	$img_links,
 					'add2'			=>	$tmp2,
 					'rtbbox'		=> $rtbbox,

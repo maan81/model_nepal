@@ -27,6 +27,11 @@ class News extends MY_Controller {
 														)
 												);
 
+		//---------------------------------------------
+		//get the featured links
+		$this->load->model('flinks_model');
+		$flinks = $this->flinks_model->get();
+
 		//-----------------------------------------------
 		//get the date's dropdown
 		$this->load->helper('date_helper');
@@ -42,6 +47,7 @@ class News extends MY_Controller {
 					//				),
 					'news'		=> $news,
 					'render_right'=>$tmp3,
+					'flinks'	=>	$flinks,
 					'date_dropdown'	=>	$date_dropdown,
 				);
 
@@ -186,9 +192,12 @@ class News extends MY_Controller {
 		//-----------------------------------------------
 
 		$this->load->model('ads_model');
+		$this->load->model('flinks_model');
 
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','desc');
 		$news = $this->news_model->get(array('id' => $model_id));
+		$flinks = $this->flinks_model->get();
+
 
 		$updated_news = array();
 		foreach($news as $key=>$val){
@@ -196,18 +205,17 @@ class News extends MY_Controller {
 		}
 
 		$data = array(
-					'news'		=>	$news,
+					'news'			=>	$news,
 					'render_right'	=>	$tmp3,
-//					'galleries'		=> 	$galleries,
-//					'img_links'		=> 	$img_links,
-//					'imgs_preview'	=> 	$imgs_preview,
+					'flinks'		=>	$flinks,
+					//'galleries'		=> 	$galleries,
+					//'img_links'		=> 	$img_links,
+					//'imgs_preview'	=> 	$imgs_preview,
 					);
 
 
-//print_r($data);die;
 		$op = $this->load->view('site/news_selected_gallery.php',$data,true);
-//echo $op;die;
-//$op='';
+
 		$this->template->write('mainContents',$op);
 
 		$this->template->add_css(CSSPATH.'/custom.css');
@@ -229,19 +237,23 @@ class News extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
+		//---------------------------------------------
+		//get the featured links
+		$this->load->model('flinks_model');
+		$flinks = $this->flinks_model->get();
+
 		//------------------------------------------------
 		$news = $this->event_imgs($news,1);
-//print_r($news);die;
 		//------------------------------------------------
 
 		$data = array(
-					'news'		=>	$news,
+					'news'			=>	$news,
 					'render_right'	=>	$tmp3,
+					'flinks'		=>	$flinks,
 					//'img_links'		=> 	$img_links,
 					'add'			=>	$tmp1[0],
 					'add2'			=>	$tmp2,
 					);
-//print_r($news->img_type);die;
 
 		$op = $this->load->view('site/news_upcomming.php',$data,true);
 
@@ -294,16 +306,22 @@ class News extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
+		//---------------------------------------------
+		//get the featured links
+		$this->load->model('flinks_model');
+		$flinks = $this->flinks_model->get();
+
 		//------------------------------------------------
 
 
 		$data = array(
-					'news'		=>	$news,
+					'news'			=>	$news,
 					'render_right'	=>	$tmp3,
-					//'img_links'		=> 	$img_links,
+					'flinks'		=>	$flinks,
+					//'img_links'	=> 	$img_links,
 					'add2'			=>	$tmp2,
 					);
-//print_r($news->img_type);die;
+
 		if($news->img_type=='potrait'){
 			$op = $this->load->view('site/news_selected.php',$data,true);
 

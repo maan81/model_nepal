@@ -5,7 +5,7 @@
    <?php foreach($subjects as $key=>$val):?>
 
       <div class="thumb" style="margin-right:15px;text-align:center;">
-         <a href="<?php echo site_url('subjects/'.$val->id)?>">
+         <a href="<?php echo site_url('models/'.$val->id)?>">
             <span class="title"><?php echo $val->name?></span> 
             <img src="<?php echo base_url().$val->thumbs?>" />
          </a>

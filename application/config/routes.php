@@ -46,10 +46,10 @@ $route['admin/(:any)'] = 'admin/$1';
 $route['admin/(:any)/(:any)'] = 'admin/$1/$2';
 $route['admin/(:any)/(:any)/(:any)'] = 'admin/$1/$2/$3';
 
-$route['subjects'] = 'site/subjects';
-$route['subjects/(:any)'] = 'site/subjects/get/$1';
-$route['subjects/(:any)/(:any)'] = 'site/subjects/get/$1/$2';
-$route['subjects/(:any)/(:any)/(:any)'] = 'site/subjects/get/$1/$2/$3';
+$route['models'] = 'site/subjects';
+$route['models/(:any)'] = 'site/subjects/get/$1';
+$route['models/(:any)/(:any)'] = 'site/subjects/get/$1/$2';
+$route['models/(:any)/(:any)/(:any)'] = 'site/subjects/get/$1/$2/$3';
 
 $route['featured'] = 'site/featured';
 $route['featured/(:any)'] = 'site/featured/get/$1';

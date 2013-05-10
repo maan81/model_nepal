@@ -34,6 +34,9 @@
     text-decoration: none;
     width: inherit;
 }
+.contents table {
+  margin-top: 40px;
+}
 </style>
 <script>
 $(function(){
@@ -52,8 +55,7 @@ $(function(){
   )
 })
 </script>
-<a href="<?php echo site_url('subjects/'.$val->id)?>" class="desc">
-  <h1><?php echo $val->name?></h1>              
+<a href="<?php echo site_url('models/'.$val->id)?>" class="desc">
   <table>
     <tr><td>Age</td>    <td><?php echo $val->age?></td></tr>
     <tr><td>Height</td> <td><?php echo $val->height?></td></tr>
@@ -62,7 +64,6 @@ $(function(){
     <tr><td>Waist</td>  <td><?php echo $val->waist?></td></tr>
     <tr><td>Hips</td>   <td><?php echo $val->hips?></td></tr>
     <tr><td>Ethnicity</td><td><?php echo $val->ethnicity?></td></tr>
-    <tr><td>Profile Viewed</td><td><?php echo $val->profile_viewed?></td></tr>
   </table>
 </a> 
 

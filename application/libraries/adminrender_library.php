@@ -109,7 +109,7 @@ class Adminrender_library{
 						<div class="value">New News</div>
 					</a>
 
-					<a href="'.site_url('admin/subjects/new_subject').'" class="icon-box">
+					<a href="'.site_url('admin/models/new_subject').'" class="icon-box">
 						<img alt="new agency" src="'.base_url().ADMINIMGSPATH.'users_2.png" title="Create New Agency">
 						<div class="value">New Agency</div>
 					</a>
@@ -1815,7 +1815,7 @@ $op .=
 
 		$op =	'<div class="grid_2" style="float:right;">
 					<p>
-						<a href="'.site_url('admin/subjects/new_subject').'">New</a>
+						<a href="'.site_url('admin/models/new_subject').'">New</a>
 					</p>
 				</div>'.
 				'<script type="text/javascript">
@@ -1835,7 +1835,7 @@ $op .=
 				$op .=	'"<span class=\"disabled_positioning\">------</span>", ';
 
 			}else{
-				$op .=	'"<a class=\"up\" href=\"'.site_url('admin/subjects/up/'.$val->id).'\" title=\"Shift the ad one step up\" >Up</a>", ';
+				$op .=	'"<a class=\"up\" href=\"'.site_url('admin/models/up/'.$val->id).'\" title=\"Shift the ad one step up\" >Up</a>", ';
 			}
 
 			if($val->position == count($data)){
@@ -1843,12 +1843,12 @@ $op .=
 				$op .= 	'"<span class=\"disabled_positioning\">------</span>", ';
 			}else{
 
-				$op .= 	'"<a class=\"down\" href=\"'.site_url('admin/subjects/down/'.$val->id).'\" title=\"Shift the ad one step down\" >Dn</a>", ';
+				$op .= 	'"<a class=\"down\" href=\"'.site_url('admin/models/down/'.$val->id).'\" title=\"Shift the ad one step down\" >Dn</a>", ';
 			}
 
 
-					$op .= 		'"<a class=\"edit\" href=\"'.site_url('admin/subjects/edit/'.$val->id).'\">Edit</a>", 
-			        			"<a class=\"delete\" href=\"'.site_url('admin/subjects/del/'.$val->id).'\">Delete</a>" ],';
+					$op .= 		'"<a class=\"edit\" href=\"'.site_url('admin/models/edit/'.$val->id).'\">Edit</a>", 
+			        			"<a class=\"delete\" href=\"'.site_url('admin/models/del/'.$val->id).'\">Delete</a>" ],';
     			}
 		$op .=  '],"aoColumns": [
 			            { "sTitle": "ID" },

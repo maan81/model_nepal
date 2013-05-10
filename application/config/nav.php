@@ -6,7 +6,7 @@
 $config['admin_nav'] = array(	'Home'			=> site_url('admin'),
 								'Advertizements'=> site_url('admin/ads'),
 								'Featured Models'=>site_url('admin/featured'),
-								'Models'		=> site_url('admin/subjects'),
+								'Models'		=> site_url('admin/models'),
 								'Events'		=> site_url('admin/events'),
 								'News'			=> site_url('admin/news'),
 								'Contests'		=> base_url('admin/contests'),
@@ -23,12 +23,12 @@ $config['admin_nav'] = array(	'Home'			=> site_url('admin'),
  */
 
 $config['nav'] = array(
-						'Featured Models'	=> site_url('featured'),
-						'Agency'			=> site_url('subjects'),
+						'Models'			=> site_url('featured'),
+						'Agency'			=> site_url('models'),
+						'Professionals'		=> '#',
 						'News &amp; Gossips'=> site_url('news'),
 						'Events'			=> site_url('events'),
 						'Contests'			=> site_url('contests'),
-						'Music'				=> '#',
 						);
 
 

@@ -172,7 +172,7 @@ class Subjects extends MY_Controller {
 		//pagination
 		$this->load->library('pagination');
 
-		$config['base_url'] = base_url().'subjects';
+		$config['base_url'] = site_url('models');
 		$config['total_rows'] = count($this->subjects_model->get());
 		$config['per_page'] = 100000;
 
@@ -372,12 +372,12 @@ class Subjects extends MY_Controller {
 
 				//previous img link
 				if($count>1){
-					$subject->prev = site_url('subjects/'.$subject->id.'/'.($count-1));
+					$subject->prev = site_url('models/'.$subject->id.'/'.($count-1));
 				}
 
 				//next img link
 				if($count<count($imgs)-3){
-					$subject->next = site_url('subjects/'.$subject->id.'/'.($count+1));
+					$subject->next = site_url('models/'.$subject->id.'/'.($count+1));
 				}
 			}
 			
@@ -412,7 +412,7 @@ class Subjects extends MY_Controller {
 			array_push($subject->thumbs,
 						array(
 								'img'=> base_url().SUBJECTSPATH.gen_folder_name($subject->name).'/thumbs/'.$v,
-								'link'=>site_url('subjects/'.$subject->id.'/'.($count)),
+								'link'=>site_url('models/'.$subject->id.'/'.($count)),
 								'type'=>$img_type
 							)
 						);	

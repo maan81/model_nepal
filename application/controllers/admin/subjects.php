@@ -111,12 +111,12 @@ class Subjects extends MY_Controller {
 				//input new data
 				$data = $this->subjects_model->set($data);
 				$this->session->set_flashdata('msg','New Agency Model saved.');
-				redirect('admin/subjects/edit/'.$data[0]->id);
+				redirect('admin/models/edit/'.$data[0]->id);
 
 			}else{
 				//err in validation....
 				$this->session->set_flashdata('msg','Unable to save New Agency Model.');
-				redirect('admin/subjects/new_subject');
+				redirect('admin/models/new_subject');
 			}
 		}
 	
@@ -223,7 +223,7 @@ class Subjects extends MY_Controller {
 			}
 
 			unset($_POST);
-			redirect('admin/subjects/edit/'.$data[0]->id);
+			redirect('admin/models/edit/'.$data[0]->id);
 		}
 
 		$data = $this->subjects_model->get(array('id'=>$id));

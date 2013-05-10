@@ -60,7 +60,7 @@ class Render_library{
 					<!-- Google custom search box Start -by BloggerSentral.com -->
 					<div class="cse search" style="color:#000000;float:right;/*margin:6px 10px 0 0;*/">
 						<form action="'.site_url('search').'" id="cse-search-box">
-							<input name="cx" type="hidden" value="012904614657930534599:m9nt-ujiieu"/>
+							<input name="cx" type="hidden" value="partner-pub-7372466155313335:2216816197"/>
 							<input id="q" type="text" name="q" />
 							<input name="ie" type="hidden" value="ISO-8859-1"/>
 							<input type="submit" name="sa" value="&nbsp;&nbsp;" />

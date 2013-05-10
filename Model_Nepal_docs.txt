@@ -34,6 +34,15 @@ The the images should have width of 330px and height od 496px.
 
 ========================================================================
 
+Contests
+
+Once the information has been saved through the administrator, a folder
+will be created in ./public/contests/ with the submitted name.
+
+...... to be continued ....
+
+========================================================================
+
 Events
 
 After the information has been saved through the administrator, a folder

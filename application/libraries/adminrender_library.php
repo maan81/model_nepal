@@ -1016,7 +1016,7 @@ $op .=
 							<span>
 							     <input class="radio" type="radio" value="1" name="upcomming" '.
 							     									($data?($data[0]->upcomming==1?'checked="checked"':''):'').' />
-							     <span>upcomming Event</span>
+							     <span>Upcomming Event</span>
 							</span>							
 							<span class="grid_4">
 							     <input class="radio" type="radio" value="0" name="upcomming" '.
@@ -1498,7 +1498,7 @@ $op .=
 							<span>
 							     <input class="radio" type="radio" value="1" name="upcomming" '.
 							     									($data?($data[0]->upcomming==1?'checked="checked"':''):'').' />
-							     <span>upcomming Event</span>
+							     <span>Upcomming Contest</span>
 							</span>							
 							<span class="grid_4">
 							     <input class="radio" type="radio" value="0" name="upcomming" '.

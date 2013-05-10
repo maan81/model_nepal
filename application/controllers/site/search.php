@@ -25,11 +25,16 @@ class Search extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
+		//---------------------------------------------
+		//get the featured links
+		$this->load->model('flinks_model');
+		$flinks = $this->flinks_model->get();
 
 		$data = array(
 					'add'			=>	$tmp[0],
 					'add2'			=>	$tmp2,
 					'render_right'	=>	$tmp3,
+					'flinks'		=>	$flinks,
 				);
 
 

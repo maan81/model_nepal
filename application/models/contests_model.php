@@ -159,7 +159,7 @@ class Contests_model extends CI_Model{
 			//create new folder -- by contest title's name
 			$this->load->helper('utilites_helper');
 			$folder_name = gen_folder_name($data[0]->title);
-			make_dir(contestSPATH, $folder_name);
+			make_dir(CONTESTSPATH, $folder_name);
 		}
 
 		return $data;
@@ -199,8 +199,8 @@ class Contests_model extends CI_Model{
 		foreach($items as $key=>$val){
 
 			//delete the directory & all the ones in it.
-			delete_files(contestSPATH.gen_folder_name($val->title), true);
-			rmdir(contestSPATH.gen_folder_name($val->title));
+			delete_files(CONTESTSPATH.gen_folder_name($val->title), true);
+			rmdir(CONTESTSPATH.gen_folder_name($val->title));
 
 			$this->db->where('id',$val->id)
 					 ->delete($this->table);
@@ -208,7 +208,7 @@ class Contests_model extends CI_Model{
 			//readjust the positions of the ads
 			$update_position = array('position'=>'position - 1');
 			$this->db->where('position > ',$val->position);
-		 	$this->db->update($table,$update_position);
+		 	$this->db->update($this->table,$update_position);
 		}
 		return true;
 	}

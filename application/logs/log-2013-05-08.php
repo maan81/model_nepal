@@ -37,3 +37,39 @@ ERROR - 2013-05-08 07:23:35 --> Severity: Notice  --> Undefined index: name C:\w
 ERROR - 2013-05-08 07:23:35 --> Severity: Notice  --> Undefined index: name C:\wamp\www\model_nepal\application\views\site\subjects_selected.php 117
 ERROR - 2013-05-08 07:31:13 --> Severity: Notice  --> Undefined variable: flinks C:\wamp\www\model_nepal\application\views\site\right_part.php 34
 ERROR - 2013-05-08 07:31:13 --> Severity: Warning  --> Invalid argument supplied for foreach() C:\wamp\www\model_nepal\application\views\site\right_part.php 34
+ERROR - 2013-05-08 07:44:24 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\wamp\www\model_nepal\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2013-05-08 07:44:26 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\wamp\www\model_nepal\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2013-05-08 07:44:40 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\wamp\www\model_nepal\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2013-05-08 07:47:15 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\wamp\www\model_nepal\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2013-05-08 07:58:36 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 07:58:36 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 10:53:38 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 10:53:38 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 10:53:38 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 10:53:38 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 10:54:51 --> Severity: Notice  --> Undefined variable: table C:\wamp\www\model_nepal\application\models\contests_model.php 211
+ERROR - 2013-05-08 10:58:18 --> Severity: Warning  --> Invalid argument supplied for foreach() C:\wamp\www\model_nepal\application\models\contests_model.php 199
+ERROR - 2013-05-08 12:27:08 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 12:27:08 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 12:27:09 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 12:27:09 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 12:27:55 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 12:27:56 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 12:28:17 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 12:28:18 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 12:28:35 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 12:28:36 --> 404 Page Not Found --> public
+ERROR - 2013-05-08 12:31:16 --> Severity: Notice  --> Undefined variable: data C:\wamp\www\model_nepal\application\views\admin\render\adminhome.php 6
+ERROR - 2013-05-08 12:31:16 --> Severity: Notice  --> Trying to get property of non-object C:\wamp\www\model_nepal\application\views\admin\render\adminhome.php 6
+ERROR - 2013-05-08 12:31:16 --> Severity: Notice  --> Undefined variable: data C:\wamp\www\model_nepal\application\views\admin\render\adminhome.php 8
+ERROR - 2013-05-08 12:31:16 --> Severity: Notice  --> Trying to get property of non-object C:\wamp\www\model_nepal\application\views\admin\render\adminhome.php 8
+ERROR - 2013-05-08 12:31:16 --> Severity: Notice  --> Undefined variable: data C:\wamp\www\model_nepal\application\views\admin\render\adminhome.php 9
+ERROR - 2013-05-08 12:31:16 --> Severity: Notice  --> Trying to get property of non-object C:\wamp\www\model_nepal\application\views\admin\render\adminhome.php 9
+ERROR - 2013-05-08 12:31:54 --> Severity: Notice  --> Undefined variable: data C:\wamp\www\model_nepal\application\views\admin\render\adminhome.php 8
+ERROR - 2013-05-08 12:31:54 --> Severity: Notice  --> Trying to get property of non-object C:\wamp\www\model_nepal\application\views\admin\render\adminhome.php 8
+ERROR - 2013-05-08 12:31:54 --> Severity: Notice  --> Undefined variable: data C:\wamp\www\model_nepal\application\views\admin\render\adminhome.php 9
+ERROR - 2013-05-08 12:31:54 --> Severity: Notice  --> Trying to get property of non-object C:\wamp\www\model_nepal\application\views\admin\render\adminhome.php 9

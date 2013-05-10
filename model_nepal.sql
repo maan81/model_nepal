@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 07, 2013 at 12:06 PM
+-- Generation Time: May 10, 2013 at 07:21 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `contests` (
   `created_by` varchar(11) NOT NULL,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -143,7 +143,7 @@ INSERT INTO `featured` (`id`, `name`, `gender`, `ethnicity`, `wardrobe`, `locati
 (3, 'Model Nepal', 0, 'gurung', 'Personal', 'Kathmandu', 'Mr. Designer', 'The Fashion Plus', 'The Fashion Plus', '2013-04-07', 2, '', 2),
 (6, 'Kritika', 0, 'rana', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-21', 3, '', 3),
 (7, 'Gunjun', 0, 'gurung', 'The Fashion Plus', 'Kathmandu', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-03-01', 2, '', 4),
-(8, 'Bipishana', 0, 'limbu', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 2, '', 1),
+(8, 'Bipishana', 0, 'limbu', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 3, '', 1),
 (9, 'Sarifa', 0, 'gurung', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 2, '', 6),
 (10, 'Zigyasha', 0, 'gurung', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 2, '', 5);
 
@@ -280,7 +280,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 
 INSERT INTO `subjects` (`id`, `name`, `age`, `gender`, `address`, `contact_no`, `email`, `height`, `weight`, `bust`, `waist`, `hips`, `shoe`, `dress`, `hair_color`, `hair_length`, `ethnicity`, `skin`, `eyes`, `teeth`, `professional`, `additional`, `travelling_area`, `travelling_duration`, `editorial`, `runaway`, `catalog`, `print`, `showroom`, `fitness`, `fit`, `tearoom`, `body_part`, `lingerie`, `product_modelling`, `lifestyle_modelling`, `coorporate_modelling`, `product_demo`, `tradeshow`, `lingrie`, `art`, `experience`, `date_created`, `profile_viewed`, `created_by`, `position`) VALUES
 (8, 'sss', 20, 0, 'Kathnamdu', '123456', 'test@test.com', '5'' 5''''', '50', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2013-04-01', 2, '', 1),
-(10, 'as dfas dawe ', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2013-04-10', 2, '', 2),
+(10, 'as dfas dawe ', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2013-04-10', 3, '', 2),
 (11, 'Pooza', 18, 0, '', '', '', '', '', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, '', '2013-04-11', 3, '', 3);
 
 -- --------------------------------------------------------
@@ -333,7 +333,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `usertype`, `last_loggedin`, `last_location`) VALUES
-(1, 'root', '9d9e9979efe032e23a07cd2623574417', 'root@root.com', 'administrator', '2013-05-07 08:33:27', '::1'),
+(1, 'root', '9d9e9979efe032e23a07cd2623574417', 'root@root.com', 'administrator', '2013-05-09 06:29:35', '::1'),
 (11, 'ff', 'ece926d8c0356205276a45266d361161', 'ff@ff.com', 'administrator', '0000-00-00 00:00:00', '0'),
 (12, 'ee', 'c0bdce0aca8f4f5512bb2fd78c922c24', 'pranijman@gmail.com', 'editor', '0000-00-00 00:00:00', '0');
 
@@ -353,7 +353,7 @@ CREATE TABLE IF NOT EXISTS `visitors_count` (
   UNIQUE KEY `unique` (`ip_address`,`type`,`model_id`),
   KEY `ip_address` (`ip_address`),
   KEY `model_id` (`model_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=169 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=187 ;
 
 --
 -- Dumping data for table `visitors_count`
@@ -383,7 +383,9 @@ INSERT INTO `visitors_count` (`id`, `ip_address`, `type`, `model_id`, `timestamp
 (142, '::1', 'featured', 9, '2013-05-03 06:41:54'),
 (161, '::1', 'subjects', 8, '2013-05-03 08:32:58'),
 (165, '::1', 'featured', 3, '2013-05-06 09:34:23'),
-(168, '::1', 'subjects', 11, '2013-05-06 10:19:57');
+(168, '::1', 'subjects', 11, '2013-05-06 10:19:57'),
+(178, '::1', 'subjects', 10, '2013-05-08 07:27:16'),
+(186, '::1', 'featured', 8, '2013-05-08 08:48:39');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

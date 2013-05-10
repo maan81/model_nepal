@@ -46,17 +46,19 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('ADMINCSSPATH',		'public/admin/css/');
 define('ADMINJSPATH',		'public/admin/js/');
 define('ADMINIMGSPATH',		'public/admin/imgs/');
+
 define('IMGSPATH',			'public/imgs/');
 define('CSSPATH',			'public/css/');
 define('JSPATH',			'public/js/');
+
 define('ADDSPATH',			'public/ads/');
 define('CKEDITOR',			'public/ckeditor/');
 define('CONTESTSPATH',		'public/contests/');
 define('EVENTSPATH',		'public/events/');
 define('FEATUREDPATH',		'public/featured/');
 define('FLINKSPATH',		'public/flinks/');
-define('SUBJECTSPATH',		'public/subjects/');
 define('NEWSSPATH',			'public/news/');
+define('SUBJECTSPATH',		'public/subjects/');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

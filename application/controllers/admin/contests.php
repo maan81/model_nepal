@@ -272,7 +272,7 @@ class Contests extends MY_Controller {
 	}
 
 	private function render_navigation(){
-		$menu = $this->adminrender_library->render_navigation('contests');
+		$menu = $this->adminrender_library->render_navigation('Contests');
 		$this->template->write('menu',$menu);
 	}
 	private function render_user_info(){

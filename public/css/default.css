@@ -256,6 +256,7 @@ div{
 			background:url(../imgs/model-shadow.png) no-repeat bottom;
 			float:left;
 			padding-bottom:10px;
+			z-index: 20;	/* added */
 		}
 		
 		.leftPart .bannerthree .models img{

@@ -27,8 +27,8 @@ class MY_Controller extends CI_Controller {
 		 */
 		if(!in_array('admin', $this->uri->segment_array())){
 
-		   $this->output->cache(60*24*365);
-		   $this->db->cache_on();
+//		   $this->output->cache(60*24*365);
+//		   $this->db->cache_on();
 
 
 		/**

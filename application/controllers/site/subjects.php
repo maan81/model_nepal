@@ -121,6 +121,9 @@ class Subjects extends MY_Controller {
 
 		$this->load->helper('utilites_helper');
 
+		//array to hold search results
+		$subjects_search_results=array();
+
 		if($subjects){
 		foreach($subjects as $key=>$val){
 
@@ -164,9 +167,21 @@ class Subjects extends MY_Controller {
 			//--------------------------------------
 
 			$val->thumbs = SUBJECTSPATH.gen_folder_name($val->name).'/thumbs/'.$preview_img;
+
+
+			//add search results into the array holding search results
+			array_push(	$subjects_search_results, 
+						array(
+								'name'	=> $val->name,
+								'id'	=> $val->id
+							)
+					);
+
 		}
 		}
 
+		//add search results into the session.
+		$this->session->set_userdata('subjects_search_results',$subjects_search_results);
 
 		//------------------------------------------
 		//pagination
@@ -370,15 +385,8 @@ class Subjects extends MY_Controller {
 
 				$subject->img_type=$img_type;
 
-				//previous img link
-				if($count>1){
-					$subject->prev = site_url('models/'.$subject->id.'/'.($count-1));
-				}
-
-				//next img link
-				if($count<count($imgs)-3){
-					$subject->next = site_url('models/'.$subject->id.'/'.($count+1));
-				}
+				//previous-next subjects' link
+				$subject = $this->prev_next($subject);
 			}
 			
 
@@ -420,6 +428,37 @@ class Subjects extends MY_Controller {
 
 		return $subject;
 	}
+
+
+	/**
+	 * Set previous-next subject's link
+	 */
+	private function prev_next($subject){
+
+		$subjects_search_results = $this->session->userdata('subjects_search_results');
+
+		foreach($subjects_search_results as $key=>$val){
+			if($subject->id == $val['id']){
+				//previous subject's id
+				if(array_key_exists(($key-1), $subjects_search_results)){
+					$url = site_url('models/'.$subjects_search_results[$key-1]['id']);
+					$subject->prev = $url;
+				}
+
+				//next subject's id
+				if(array_key_exists(($key+1), $subjects_search_results)){
+					$url = site_url('models/'.$subjects_search_results[$key+1]['id']);
+					$subject->next = $url;
+				}
+
+				break;
+			}
+		}
+
+		return $subject;
+	}
+
+
 }
 
 /* End of file subjects.php */

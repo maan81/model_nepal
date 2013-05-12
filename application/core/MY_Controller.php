@@ -20,6 +20,36 @@ class MY_Controller extends CI_Controller {
 		 */
 		$this->load->library('render_library');
 		$this->load->library('adminrender_library');
+
+
+		/**
+		 * turn cache on for if not going into admin area
+		 */
+		if(!in_array('admin', $this->uri->segment_array())){
+
+		   $this->output->cache(60*24*365);
+		   $this->db->cache_on();
+
+
+		/**
+		 * clear cache if going into admin area
+		 */
+		}else{
+
+		   $this->load->helper('file');
+
+		   $path = dirname(BASEPATH).'/application/';
+		   $index_html = $path.'index.html';
+
+		   delete_files($path.'cache', TRUE);
+		   $this->db->cache_delete_all();
+
+
+		   //reenter the forbidden page    
+		   copy($path.'index.html', $path.'cache/index.html');
+
+		}
+
 	}
 
 

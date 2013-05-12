@@ -52,6 +52,8 @@ class Subjects_model extends CI_Model{
 		
 		if($data){
 		foreach($data as $key=>$val){
+			$val->link = gen_folder_name($val->name);
+
 			if($val->editorial){
 				$val->fashion_type['editorial']	= true;
 			}

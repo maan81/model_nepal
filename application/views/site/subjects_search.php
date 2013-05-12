@@ -55,7 +55,7 @@ $(function(){
   )
 })
 </script>
-<a href="<?php echo site_url('models/'.$val->id)?>" class="desc">
+<a href="<?php echo site_url('models/'.$val->link)?>" class="desc">
   <table>
     <tr><td>Age</td>    <td><?php echo $val->age?></td></tr>
     <tr><td>Height</td> <td><?php echo $val->height?></td></tr>

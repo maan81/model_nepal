@@ -59,8 +59,10 @@ class Subjects extends MY_Controller {
 		
 		if($this->input->post('professional')){
 
+			$this->load->helper('utilites_helper');
 			$data = array(
 							'name'			=> $this->input->post('name'),
+							'link'			=> gen_folder_name($this->input->post('name')),
 							'gender'		=> $this->input->post('gender'),
 							'ethnicity'		=> $this->input->post('ethnicity'),
 							'age' 			=> $this->input->post('age'),
@@ -167,7 +169,7 @@ class Subjects extends MY_Controller {
 	
 			$data = array(
 							'id'			=> $id,
-							'name'			=> $this->input->post('name'),
+							//'name'			=> $this->input->post('name'),
 							'gender'		=> $this->input->post('gender'),
 							'ethnicity'		=> $this->input->post('ethnicity'),
 							'age' 			=> $this->input->post('age'),

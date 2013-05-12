@@ -99,7 +99,7 @@ class Subjects extends MY_Controller {
 		*/
 
 		if( ($key==null) || ($val==null) ){
-			$subjects = $this->subjects_model->get(	false,
+			$subjects = $this->subjects_model->corrected_get(	false,
 													array(	'order_by'=> array(
 																			'coln'=>'name',
 																			'dir'=>'asc'
@@ -108,7 +108,7 @@ class Subjects extends MY_Controller {
 												);
 		
 		}else{
-			$subjects = $this->subjects_model->get(
+			$subjects = $this->subjects_model->corrected_get(
 													array(	$key	  => urldecode($val),
 														), 
 													array(	'order_by'=> array(
@@ -126,7 +126,7 @@ class Subjects extends MY_Controller {
 
 		if($subjects){
 		foreach($subjects as $key=>$val){
-
+//print_r($val);die;
 			//--------------------------------------
 			//folder of imgs of the subject
 			$full_path = dirname(BASEPATH).'/'.SUBJECTSPATH;	
@@ -172,7 +172,7 @@ class Subjects extends MY_Controller {
 			//add search results into the array holding search results
 			array_push(	$subjects_search_results, 
 						array(
-								'name'	=> $val->name,
+								'link'	=> $val->link,
 								'id'	=> $val->id
 							)
 					);
@@ -263,9 +263,9 @@ class Subjects extends MY_Controller {
 	 *  @param int[subject id], int[selected img id]
 	 *  @return void
 	 */
-	public function get($subject_id=null,$img=null,$param2=null){
+	public function get($subject_link=null,$img=null,$param2=null){
 		//redirect to subject search if not specified
-		if($subject_id==null || $subject_id=='search'){
+		if($subject_link==null || $subject_link=='search'){
 			return $this->search($img,$param2);
 		}
 
@@ -294,15 +294,15 @@ class Subjects extends MY_Controller {
 
 		$this->load->helper('visitors_count_helper');
 
-		set_count_visitors(array(
-								'type'	  => 'subjects',
-								'model_id'=> $subject_id)
-							);
+		//set_count_visitors(array(
+		//						'type'	  => 'subjects',
+		//						'model_id'=> $subject_id)
+		//					);
 
 		//------------------------------------------------
 
 		//$subjects = $this->subjects_model->get(array('id' => $subject_id));
-		$subjects = $this->subjects_model->corrected_get(array('id' => $subject_id));
+		$subjects = $this->subjects_model->corrected_get(array('link' => $subject_link));
 
 		$subjects = $this->subject_imgs($subjects[0],$img);
 
@@ -420,7 +420,7 @@ class Subjects extends MY_Controller {
 			array_push($subject->thumbs,
 						array(
 								'img'=> base_url().SUBJECTSPATH.gen_folder_name($subject->name).'/thumbs/'.$v,
-								'link'=>site_url('models/'.$subject->id.'/'.($count)),
+								'link'=>site_url('models/'.$subject->link.'/'.($count)),
 								'type'=>$img_type
 							)
 						);	
@@ -441,13 +441,13 @@ class Subjects extends MY_Controller {
 			if($subject->id == $val['id']){
 				//previous subject's id
 				if(array_key_exists(($key-1), $subjects_search_results)){
-					$url = site_url('models/'.$subjects_search_results[$key-1]['id']);
+					$url = site_url('models/'.$subjects_search_results[$key-1]['link']);
 					$subject->prev = $url;
 				}
 
 				//next subject's id
 				if(array_key_exists(($key+1), $subjects_search_results)){
-					$url = site_url('models/'.$subjects_search_results[$key+1]['id']);
+					$url = site_url('models/'.$subjects_search_results[$key+1]['link']);
 					$subject->next = $url;
 				}
 

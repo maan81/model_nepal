@@ -37,3 +37,12 @@ ERROR - 2013-05-12 07:23:10 --> Severity: Notice  --> Trying to get property of 
 ERROR - 2013-05-12 07:31:56 --> 404 Page Not Found --> public
 ERROR - 2013-05-12 07:31:56 --> 404 Page Not Found --> public
 ERROR - 2013-05-12 07:32:37 --> 404 Page Not Found --> public
+ERROR - 2013-05-12 10:46:52 --> Severity: Notice  --> Undefined property: stdClass::$link C:\wamp\www\model_nepal\application\controllers\site\subjects.php 175
+ERROR - 2013-05-12 10:46:52 --> Severity: Notice  --> Undefined property: stdClass::$link C:\wamp\www\model_nepal\application\controllers\site\subjects.php 175
+ERROR - 2013-05-12 10:46:53 --> Severity: Notice  --> Undefined property: stdClass::$link C:\wamp\www\model_nepal\application\controllers\site\subjects.php 175
+ERROR - 2013-05-12 10:48:16 --> Severity: Notice  --> Undefined property: stdClass::$link C:\wamp\www\model_nepal\application\controllers\site\subjects.php 175
+ERROR - 2013-05-12 10:48:16 --> Severity: Notice  --> Undefined property: stdClass::$link C:\wamp\www\model_nepal\application\controllers\site\subjects.php 175
+ERROR - 2013-05-12 10:48:17 --> Severity: Notice  --> Undefined property: stdClass::$link C:\wamp\www\model_nepal\application\controllers\site\subjects.php 175
+ERROR - 2013-05-12 10:57:14 --> Severity: Notice  --> Undefined variable: subject_id C:\wamp\www\model_nepal\application\controllers\site\subjects.php 299
+ERROR - 2013-05-12 10:57:14 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ERROR - 2013-05-12 10:58:38 --> Query error: Unknown column 'link' in 'where clause'

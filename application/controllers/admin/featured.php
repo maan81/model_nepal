@@ -148,8 +148,10 @@ class Featured extends MY_Controller {
     public function new_featured($data = false){
 		
 		if($this->input->post('ethnicity')){
+			$this->load->helper('utilites_helper');
 			$data = array(
 							'name'			=> $this->input->post('name'),
+							'link'			=> gen_folder_name($this->input->post('name')),
 							'gender'		=> $this->input->post('gender'),
 							'ethnicity'		=> $this->input->post('ethnicity'),
 							'wardrobe'		=> $this->input->post('wardrobe'),

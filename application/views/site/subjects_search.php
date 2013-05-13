@@ -9,7 +9,7 @@
       <?php if($subjects) :?>
       <?php $count_img=1?>
       <?php foreach($subjects as $key=>$val):?>
-<?php //print_r($val)?>
+
          <div class="aModel" style="overflow:hidden;position:relative;">
   
               <div>
@@ -18,54 +18,57 @@
                 <h1><?php echo $val->name?></h1>              
               </div>
 
-<style>
-.contents .desc {
-    background: none repeat scroll 0 0 black;
-    color: #999;
-    height: 228px;
-    left: 0;
-    opacity: 0;
-    overflow: hidden;
-    padding: 10px;
-    position: absolute;
-    text-decoration: none;
-    top: 0;
-    z-index: 1;
-    text-decoration: none;
-    width: inherit;
-}
-.contents table {
-  margin-top: 40px;
-}
-</style>
-<script>
-$(function(){
-  $('.desc','.contents').hover(
-    function(){
-      $(this).animate(
-                {'opacity':0.75},
-                {duration:400,queue:false}
-              );
-    },function(){
-      $(this).animate(
-                {'opacity':0},
-                {duration:400,queue:false}
-              );
-    }
-  )
-})
-</script>
-<a href="<?php echo site_url('models/'.$val->link)?>" class="desc">
-  <table>
-    <tr><td>Age</td>    <td><?php echo $val->age?></td></tr>
-    <tr><td>Height</td> <td><?php echo $val->height?></td></tr>
-    <tr><td>Weight</td> <td><?php echo $val->weight?></td></tr>
-    <tr><td>Bust</td>   <td><?php echo $val->bust?></td></tr>
-    <tr><td>Waist</td>  <td><?php echo $val->waist?></td></tr>
-    <tr><td>Hips</td>   <td><?php echo $val->hips?></td></tr>
-    <tr><td>Ethnicity</td><td><?php echo $val->ethnicity?></td></tr>
-  </table>
-</a> 
+          
+              <style>
+              .contents .desc {
+                  background: none repeat scroll 0 0 black;
+                  color: #999;
+                  height: 228px;
+                  left: 0;
+                  opacity: 0;
+                  overflow: hidden;
+                  padding: 10px;
+                  position: absolute;
+                  text-decoration: none;
+                  top: 0;
+                  z-index: 1;
+                  text-decoration: none;
+                  width: inherit;
+              }
+              .contents table {
+                margin-left: 10px;
+                margin-top: 40px;
+              }
+              </style>
+              <script>
+              $(function(){
+                $('.desc','.contents').hover(
+                  function(){
+                    $(this).animate(
+                              {'opacity':0.75},
+                              {duration:400,queue:false}
+                            );
+                  },function(){
+                    $(this).animate(
+                              {'opacity':0},
+                              {duration:400,queue:false}
+                            );
+                  }
+                )
+              })
+              </script>
+              <a href="<?php echo site_url('models/'.$val->link)?>" class="desc">
+                <table>
+                  <tr><td>Age</td>    <td><?php echo $val->age?></td></tr>
+                  <tr><td>Height</td> <td><?php echo $val->height?></td></tr>
+                  <tr><td>Weight</td> <td><?php echo $val->weight?></td></tr>
+                  <tr><td>Bust</td>   <td><?php echo $val->bust?></td></tr>
+                  <tr><td>Waist</td>  <td><?php echo $val->waist?></td></tr>
+                  <tr><td>Hips</td>   <td><?php echo $val->hips?></td></tr>
+                  <tr><td>Ethnicity</td><td><?php echo $val->ethnicity?></td></tr>
+                </table>
+              </a> 
+
 
          </div>
 

@@ -85,7 +85,7 @@ class Subjects extends MY_Controller {
 							'additional'	=> $this->input->post('additional'),
 							'travelling_area'=>$this->input->post('travelling_area'),
 							'travelling_duration'=>$this->input->post('travelling_duration'), 
-							'editorial'		=>$this->input->post('editorial'),
+							'editorial'		=> $this->input->post('editorial'),
 							'runaway' 		=> $this->input->post('runaway'),
 							'catalog' 		=> $this->input->post('catalog'),
 							'print' 		=> $this->input->post('print'),

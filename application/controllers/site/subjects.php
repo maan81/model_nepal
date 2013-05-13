@@ -126,7 +126,7 @@ class Subjects extends MY_Controller {
 
 		if($subjects){
 		foreach($subjects as $key=>$val){
-//print_r($val);die;
+
 			//--------------------------------------
 			//folder of imgs of the subject
 			$full_path = dirname(BASEPATH).'/'.SUBJECTSPATH;	

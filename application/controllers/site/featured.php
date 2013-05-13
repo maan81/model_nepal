@@ -280,18 +280,16 @@ class Featured extends MY_Controller {
 	}
 
 
-
-
-	public function get($model=null,$gallery='01',$img=null){
+	public function get($featured_link=null,$gallery='01',$img=null){
 		//goto search featured if no featured id is present
-		if($model==null || $model=='search'){
+		if($featured_link==null || $featured_link=='search'){
 			return $this->search($gallery,$img);
 		}
 
 		//goto listing 1st gallery's img's preview if no gallery 
 		//and/or imgs is specified
 		if($img==null){
-			return $this->_disp_gallery($model,$gallery);
+			return $this->_disp_gallery($featured_link,$gallery);
 		}
 		//-----------------------------------------------
 
@@ -305,7 +303,7 @@ class Featured extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 		$rtbbox = $this->ads_model->get(array('dimensions'=>'rtbbox','category'=>'published'));
-		$featured = $this->featured_model->get(array('id' => $model));
+		$featured = $this->featured_model->get(array('link' => $featured_link));
 		$flinks = $this->flinks_model->get();
 
 		//================
@@ -322,12 +320,12 @@ class Featured extends MY_Controller {
 
 		//-----------------------------------------------
 
-		$this->load->helper('visitors_count_helper');
-
-		set_count_visitors(array(
-								'type'	  => 'featured',
-								'model_id'=> $model)
-							);
+		//$this->load->helper('visitors_count_helper');
+		//
+		//set_count_visitors(array(
+		//						'type'	  => 'featured',
+		//						'model_id'=> $model)
+		//					);
 
 		//-----------------------------------------------
 
@@ -378,7 +376,7 @@ class Featured extends MY_Controller {
 	 * Display selected gallery's preview imgs
 	 * @param int [model id], string [gallery id] 
 	 */
-	private function _disp_gallery($model,$gallery){
+	private function _disp_gallery($featured_link,$gallery){
 		$this->render_skeleton();
 
 		//-----------------------------------------------
@@ -388,7 +386,7 @@ class Featured extends MY_Controller {
 		
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 		$flinks = $this->flinks_model->get();
-		$featured = $this->featured_model->get(array('id' => $model));
+		$featured = $this->featured_model->get(array('link' => $featured_link));
 
 
 		//================
@@ -409,7 +407,7 @@ class Featured extends MY_Controller {
 		$imgs_preview = array('landscape'=>array(),'potrait'=>array());
 
 		//folder of imgs of the featured model
-		$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery;	
+		$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.$featured[0]->link.'/'.$gallery;	
 
 		//create thumbs folder inside the gallery folder if reqd.
 		make_dir($full_path,'thumbs');
@@ -427,7 +425,7 @@ class Featured extends MY_Controller {
 			}
 
 			//the current original img
-			$config['source_image']		= FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/'.$v;	
+			$config['source_image']		= FEATUREDPATH.$featured[0]->link.'/'.$gallery.'/'.$v;	
 
 			//thumbs of that img 
 			$config['new_image'] 		= $full_path.'/thumbs/'.$v;
@@ -449,16 +447,16 @@ class Featured extends MY_Controller {
 			//landscape img
 			if($img_dim[0] > $img_dim[1]){
 				array_push(	$imgs_preview['landscape'],
-							array('img' => FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/thumbs/'.$v,
-								  'link'=> site_url('featured/'.$featured[0]->id.'/'.$gallery.'/'.$count_link)
+							array('img' => FEATUREDPATH.$featured[0]->link.'/'.$gallery.'/thumbs/'.$v,
+								  'link'=> site_url('featured/'.$featured[0]->link.'/'.$gallery.'/'.$count_link)
 							  )
 						);
 
 			//potrait img
 			}else{
 				array_push(	$imgs_preview['potrait'],
-							array('img'=>FEATUREDPATH.gen_folder_name($featured[0]->name).'/'.$gallery.'/thumbs/'.$v,
-								  'link'=>site_url('featured/'.$featured[0]->id.'/'.$gallery.'/'.$count_link)
+							array('img'=>FEATUREDPATH.$featured[0]->link.'/'.$gallery.'/thumbs/'.$v,
+								  'link'=>site_url('featured/'.$featured[0]->link.'/'.$gallery.'/'.$count_link)
 								)
 							);
 			}

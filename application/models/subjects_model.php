@@ -47,8 +47,8 @@ class Subjects_model extends CI_Model{
 	/**
 	 * corrected get
 	 */
-	public function corrected_get($subjects=false){
-		$data=$this->get($subjects);
+	public function corrected_get($subjects=false,$sql_params=false){
+		$data=$this->get($subjects,$sql_params);
 		
 		if($data){
 		foreach($data as $key=>$val){
@@ -156,7 +156,7 @@ class Subjects_model extends CI_Model{
 		//insert new data
 		}else{
 			$this->load->helper('utilites_helper');
-			$folder_name = gen_folder_name($data->name);
+			$folder_name = $data->link;
 
 			$data->position	= $this->db->count_all($this->table);
 

@@ -5,7 +5,7 @@
    <?php foreach($events as $key=>$val):?>
 
       <div class="thumb" style="text-align:center;">
-         <a href="<?php echo site_url('events/'.$val->id)?>">
+         <a href="<?php echo site_url('events/'.$val->link)?>">
             <span class="title"><?php echo $val->title?></span> 
             <img src="<?php echo base_url().$val->thumbs?>" 
                   alt="<?php echo $val->title?>" 

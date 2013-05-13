@@ -34,8 +34,8 @@ class Main extends MY_Controller {
 
 			$featured[$count++] = array(
 									'img'	=> $tmp4['cur_img'],
-									'model'	=>$val,
-									'link'	=>$tmp4['cur'],
+									'model'	=> $val,
+									'link'	=> $tmp4['cur'],
 								);
 		};
 

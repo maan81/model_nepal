@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 10, 2013 at 07:21 AM
+-- Generation Time: May 13, 2013 at 07:51 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -90,6 +90,7 @@ CREATE TABLE IF NOT EXISTS `contests` (
 CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(127) NOT NULL,
+  `link` varchar(127) NOT NULL,
   `summary` varchar(2047) NOT NULL,
   `type` varchar(11) NOT NULL,
   `location` varchar(127) NOT NULL,
@@ -107,10 +108,10 @@ CREATE TABLE IF NOT EXISTS `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `summary`, `type`, `location`, `time`, `details`, `date_created`, `upcomming`, `featured`, `created_by`, `position`) VALUES
-(13, 'Nv asdfiuh aefw', 'Was a nice event', 'pagent', 'aad', 'ag', 'asg asg', '2013-04-01', 0, 0, '', 1),
-(14, 'A Big Event', 'A big event is comming ...........', 'fashion', 'Kathmandu', '11:11', 'asd fasdf awe', '2013-04-09', 1, 0, '', 2),
-(16, 'A Upcomming Event', 'This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make Nepal one of the best holiday destinations and we are more than happy to welcome you in this beautiful country where people are famous for their hospitality and care towards guests. Welcome to Nepal, the country of diversity. ', 'dance', 'Kathmandu', '12:30pm', '<p>This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make Nepal one of the best holiday destinations and we are more than happy to welcome you in this beautiful country where people are famous for their hospitality and care towards guests. Welcome to Nepal, the country of diversity.</p>\r\n\r\n<p>This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make</P>\r\n', '2013-04-08', 1, 0, '', 3);
+INSERT INTO `events` (`id`, `title`, `link`, `summary`, `type`, `location`, `time`, `details`, `date_created`, `upcomming`, `featured`, `created_by`, `position`) VALUES
+(13, 'Nv asdfiuh aefw', 'nv_asdfiuh_aefw', 'Was a nice event', 'pagent', 'aad', 'ag', 'asg asg', '2013-04-01', 0, 0, '', 1),
+(14, 'A Big Event', 'a_big_event', 'A big event is comming ...........', 'fashion', 'Kathmandu', '11:11', 'asd fasdf awe', '2013-04-09', 0, 0, '', 2),
+(16, 'A Upcomming Event', 'a_upcomming_event', 'This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make Nepal one of the best holiday destinations and we are more than happy to welcome you in this beautiful country where people are famous for their hospitality and care towards guests. Welcome to Nepal, the country of diversity. ', 'dance', 'Kathmandu', '12:30pm', '<p>This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make Nepal one of the best holiday destinations and we are more than happy to welcome you in this beautiful country where people are famous for their hospitality and care towards guests. Welcome to Nepal, the country of diversity.</p>\r\n\r\n<p>This small but strikingly beautiful Himalayan nation boasts of being a dream come true for adventure lovers as it features 8 highest Mountains including the Mt. Everest, greatest altitude variation (60 m from sea level to highest point on earth), more than 900 species of birds, more than 70 ethnic groups and same number of dialects and many more. These features make</P>\r\n', '2013-04-08', 1, 0, '', 3);
 
 -- --------------------------------------------------------
 
@@ -121,6 +122,7 @@ INSERT INTO `events` (`id`, `title`, `summary`, `type`, `location`, `time`, `det
 CREATE TABLE IF NOT EXISTS `featured` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `link` varchar(127) NOT NULL,
   `gender` tinyint(1) NOT NULL,
   `ethnicity` varchar(127) NOT NULL,
   `wardrobe` varchar(255) NOT NULL,
@@ -139,13 +141,13 @@ CREATE TABLE IF NOT EXISTS `featured` (
 -- Dumping data for table `featured`
 --
 
-INSERT INTO `featured` (`id`, `name`, `gender`, `ethnicity`, `wardrobe`, `location`, `make_up`, `photographer`, `model_by`, `date_created`, `profile_viewed`, `created_by`, `position`) VALUES
-(3, 'Model Nepal', 0, 'gurung', 'Personal', 'Kathmandu', 'Mr. Designer', 'The Fashion Plus', 'The Fashion Plus', '2013-04-07', 2, '', 2),
-(6, 'Kritika', 0, 'rana', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-21', 3, '', 3),
-(7, 'Gunjun', 0, 'gurung', 'The Fashion Plus', 'Kathmandu', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-03-01', 2, '', 4),
-(8, 'Bipishana', 0, 'limbu', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 3, '', 1),
-(9, 'Sarifa', 0, 'gurung', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 2, '', 6),
-(10, 'Zigyasha', 0, 'gurung', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 2, '', 5);
+INSERT INTO `featured` (`id`, `name`, `link`, `gender`, `ethnicity`, `wardrobe`, `location`, `make_up`, `photographer`, `model_by`, `date_created`, `profile_viewed`, `created_by`, `position`) VALUES
+(3, 'Model Nepal', 'model_nepal', 0, 'gurung', 'Personal', 'Kathmandu', 'Mr. Designer', 'The Fashion Plus', 'The Fashion Plus', '2013-04-07', 2, '', 2),
+(6, 'Kritika', 'kritika', 0, 'rana', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-21', 3, '', 3),
+(7, 'Gunjun', 'gunjun', 0, 'gurung', 'The Fashion Plus', 'Kathmandu', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-03-01', 2, '', 4),
+(8, 'Bipishana', 'bipishana', 0, 'limbu', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 3, '', 1),
+(9, 'Sarifa', 'sarifa', 0, 'gurung', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 2, '', 6),
+(10, 'Zigyasha', 'zigyasha', 0, 'gurung', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 2, '', 5);
 
 -- --------------------------------------------------------
 
@@ -227,6 +229,7 @@ INSERT INTO `news` (`id`, `title`, `content`, `summary`, `type`, `image`, `date_
 CREATE TABLE IF NOT EXISTS `subjects` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `link` varchar(127) NOT NULL,
   `age` int(11) NOT NULL,
   `gender` tinyint(1) NOT NULL,
   `address` varchar(255) NOT NULL,
@@ -271,17 +274,18 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `profile_viewed` int(11) NOT NULL DEFAULT '0',
   `created_by` varchar(11) NOT NULL,
   `position` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `link` (`link`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `name`, `age`, `gender`, `address`, `contact_no`, `email`, `height`, `weight`, `bust`, `waist`, `hips`, `shoe`, `dress`, `hair_color`, `hair_length`, `ethnicity`, `skin`, `eyes`, `teeth`, `professional`, `additional`, `travelling_area`, `travelling_duration`, `editorial`, `runaway`, `catalog`, `print`, `showroom`, `fitness`, `fit`, `tearoom`, `body_part`, `lingerie`, `product_modelling`, `lifestyle_modelling`, `coorporate_modelling`, `product_demo`, `tradeshow`, `lingrie`, `art`, `experience`, `date_created`, `profile_viewed`, `created_by`, `position`) VALUES
-(8, 'sss', 20, 0, 'Kathnamdu', '123456', 'test@test.com', '5'' 5''''', '50', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2013-04-01', 2, '', 1),
-(10, 'as dfas dawe ', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2013-04-10', 3, '', 2),
-(11, 'Pooza', 18, 0, '', '', '', '', '', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, '', '2013-04-11', 3, '', 3);
+INSERT INTO `subjects` (`id`, `name`, `link`, `age`, `gender`, `address`, `contact_no`, `email`, `height`, `weight`, `bust`, `waist`, `hips`, `shoe`, `dress`, `hair_color`, `hair_length`, `ethnicity`, `skin`, `eyes`, `teeth`, `professional`, `additional`, `travelling_area`, `travelling_duration`, `editorial`, `runaway`, `catalog`, `print`, `showroom`, `fitness`, `fit`, `tearoom`, `body_part`, `lingerie`, `product_modelling`, `lifestyle_modelling`, `coorporate_modelling`, `product_demo`, `tradeshow`, `lingrie`, `art`, `experience`, `date_created`, `profile_viewed`, `created_by`, `position`) VALUES
+(8, 'sss', 'sss', 20, 0, 'Kathnamdu', '123456', 'test@test.com', '5'' 5''''', '50', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2013-04-01', 2, '', 1),
+(10, 'as dfas dawe ', 'as_dfas_dawe', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '2013-04-10', 3, '', 2),
+(11, 'Pooza', 'pooza', 18, 0, '', '', '', '', '', '', '', '', '', '', '', '', 'brahmin', '', '', '', 'armateur', '', 'local', '', 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, '', '2013-04-11', 3, '', 3);
 
 -- --------------------------------------------------------
 
@@ -333,7 +337,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `usertype`, `last_loggedin`, `last_location`) VALUES
-(1, 'root', '9d9e9979efe032e23a07cd2623574417', 'root@root.com', 'administrator', '2013-05-09 06:29:35', '::1'),
+(1, 'root', '9d9e9979efe032e23a07cd2623574417', 'root@root.com', 'administrator', '2013-05-12 07:32:01', '::1'),
 (11, 'ff', 'ece926d8c0356205276a45266d361161', 'ff@ff.com', 'administrator', '0000-00-00 00:00:00', '0'),
 (12, 'ee', 'c0bdce0aca8f4f5512bb2fd78c922c24', 'pranijman@gmail.com', 'editor', '0000-00-00 00:00:00', '0');
 
@@ -353,7 +357,7 @@ CREATE TABLE IF NOT EXISTS `visitors_count` (
   UNIQUE KEY `unique` (`ip_address`,`type`,`model_id`),
   KEY `ip_address` (`ip_address`),
   KEY `model_id` (`model_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=187 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=237 ;
 
 --
 -- Dumping data for table `visitors_count`

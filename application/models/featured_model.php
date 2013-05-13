@@ -78,7 +78,7 @@ class Featured_model extends CI_Model{
 		//insert new data
 		}else{
 			$this->load->helper('utilites_helper');
-			$folder_name = gen_folder_name($data->name);
+			$folder_name = $data->link;
 
 			//configure data for positioning & update db
 			$data->position = $this->db->count_all_results($this->table);

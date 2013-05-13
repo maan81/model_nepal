@@ -106,7 +106,7 @@
 			<?php foreach($galleries[0]['gallery_cover'] as $key=>$val):?>
 
 				<div class="modelAlbum">
-						<a href="<?php echo site_url('featured/'.$featured[0]->id.'/'.$key)?>">
+						<a href="<?php echo site_url('featured/'.$featured[0]->link.'/'.$key)?>">
 								<img src="<?php echo base_url().$val?>" 
 										width="110" height="165" alt="model album name" /> 
 						</a>

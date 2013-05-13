@@ -18,7 +18,7 @@
             </div>
             <?php foreach($events_slideshow as $key=>$val): ?>
                <div class="eventpic">
-                  <a href="<?php echo site_url('events/'.$val->id)?>">
+                  <a href="<?php echo site_url('events/'.$val->link)?>">
                      <span class="title"><?php echo $val->title?></span>
                      <img  title="<?php echo $val->title?>" 
                            alt="<?php echo $val->title?>" 

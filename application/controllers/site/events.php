@@ -230,7 +230,7 @@ class Events extends MY_Controller {
 		$this->load->model('ads_model');
 		
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
-		$events = $this->events_model->get(array('id' => $model_id));
+		$events = $this->events_model->get(array('link' => $model_id));
 
 		//---------------------------------------------
 		//get the featured links
@@ -330,18 +330,18 @@ class Events extends MY_Controller {
 
 	/**
 	 *  The selected event
-	 *  @param int[event id], int[selected img id]
+	 *  @param varchar[event link], int[selected img id]
 	 *  @return void
 	 */
-	public function get($event_id=null,$img=null,$param2=null){
+	public function get($event_link=null,$img=null,$param2=null){
 		//redirect to event search if not specified
-		if($event_id==null || $event_id=='search'){
+		if($event_link==null || $event_link=='search'){
 			return $this->search($img,$param2);
 		}
 
 		//----------------------------------------------
 
-		$events = $this->events_model->get(array('id' => $event_id));
+		$events = $this->events_model->get(array('link' => $event_link));
 
 		//goto upcomming events function
 		if($events[0]->upcomming=='1'){
@@ -355,7 +355,7 @@ class Events extends MY_Controller {
 
 		//redirect to get the imgs. of the specified event
 		if($img==null){
-			return $this->_list_imgs($event_id);
+			return $this->_list_imgs($event_link);
 		}
 
 		$this->render_skeleton();
@@ -431,7 +431,7 @@ class Events extends MY_Controller {
 		$event->thumbs=array();
 
 		//event's folders
-		$folder = dirname(BASEPATH).'/'.EVENTSPATH.gen_folder_name($event->title);
+		$folder = dirname(BASEPATH).'/'.EVENTSPATH.$event->link;
 
 
 
@@ -449,7 +449,7 @@ class Events extends MY_Controller {
 
 			//the current selected img
 			if($count==$img){
-				$event->cur_img = base_url().EVENTSPATH.gen_folder_name($event->title).'/'.$v;
+				$event->cur_img = base_url().EVENTSPATH.$event->link.'/'.$v;
 
 				$dim = getimagesize($event->cur_img);
 				if($dim[0]>$dim[1]){
@@ -462,12 +462,12 @@ class Events extends MY_Controller {
 
 				//previous img link
 				if($count>1){
-					$event->prev = site_url('events/'.$event->id.'/'.($count-1));
+					$event->prev = site_url('events/'.$event->link.'/'.($count-1));
 				}
 
 				//next img link
 				if($count<count($imgs)-3){
-					$event->next = site_url('events/'.$event->id.'/'.($count+1));
+					$event->next = site_url('events/'.$event->link.'/'.($count+1));
 				}
 			}
 
@@ -502,8 +502,8 @@ class Events extends MY_Controller {
 			//thumbs & links of the other imgs event
 			array_push($event->thumbs,
 						array(
-								'img'=> base_url().EVENTSPATH.gen_folder_name($event->title).'/thumbs/'.$v,
-								'link'=>site_url('events/'.$event->id.'/'.($count)),
+								'img'=> base_url().EVENTSPATH.$event->link.'/thumbs/'.$v,
+								'link'=>site_url('events/'.$event->link.'/'.$count),
 								'type'=>$img_type
 							)
 						);	

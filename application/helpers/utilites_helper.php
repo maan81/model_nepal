@@ -56,10 +56,10 @@ if(! function_exists('get_img')){
 	
 		if($is_featured){
 			//set the relative model path
-			$path = FEATUREDPATH.gen_folder_name($model->name).'/';
+			$path = FEATUREDPATH.$model->link.'/';
 		}else{
 			//set the relative model path
-			$path = SUBJECTSPATH.gen_folder_name($model->name).'/';
+			$path = SUBJECTSPATH.$model->name.'/';
 		}
 
 		//include gallery path
@@ -85,7 +85,7 @@ if(! function_exists('get_img')){
 		$imgs['cur_img']= base_url().$path.reset($arr);
 
 		if(next($arr)!==false){
-			$imgs['next'] 	= site_url('featured/'.$model->id.$gallery.'/'.($img+1));
+			$imgs['next'] 	= site_url('featured/'.$model->link.$gallery.'/'.($img+1));
 
 		}else{
 			$imgs['next']	= false;
@@ -108,13 +108,13 @@ if(! function_exists('get_img')){
 			}
 			
 			//set variables ...
-			$imgs['prev'] = site_url('featured/'.$model->id.$gallery.'/'.($img-1));
+			$imgs['prev'] = site_url('featured/'.$model->link.$gallery.'/'.($img-1));
 			$imgs['cur']  = $imgs['next'];
 			$imgs['cur_img'] = base_url().$path.current($arr);
 
 			//increment ...
 			if(next($arr)){
-				$imgs['next'] 	= site_url('featured/'.$model->id.$gallery.'/'.($img+1));
+				$imgs['next'] 	= site_url('featured/'.$model->link.$gallery.'/'.($img+1));
 			}else{
 				$imgs['next'] = false;
 			}
@@ -147,10 +147,10 @@ if(! function_exists('get_profile_img')){
 	function get_profile_img($model){
 	
 		//set the relative model path + profile img
-		$path = FEATUREDPATH.gen_folder_name($model->name).'/profile_img.jpg';
+		$path = FEATUREDPATH.$model->link.'/profile_img.jpg';
 
 		//set the default values
-		$imgs['cur']	= site_url('featured/'.$model->id);
+		$imgs['cur']	= site_url('featured/'.$model->link);
 		$imgs['cur_img']= base_url().$path;
 
 		//return the selectd img & the previous & next links

@@ -149,6 +149,8 @@ class Events_model extends CI_Model{
 		
 		//insert new data
 		}else{
+			$this->load->helper('utilites_helper');
+			$data->link	= gen_folder_name($data->name);
 			$data->position	= $this->db->count_all($this->table);
 
 			$this->db->insert($this->table,$data);

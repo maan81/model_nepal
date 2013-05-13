@@ -224,10 +224,10 @@ class Subjects_model extends CI_Model{
 		 			->where('model_id',$val->id)
 		 			->delete($this->visitors_count);
 
-			//readjust the positions of the ads
-			$update_position = array('position'=>'position - 1');
+			//readjust the positions of the subjects
+			$this->db->set('position', 'position-1', FALSE);
 			$this->db->where('position > ',$val->position);
-		 	$this->db->update($this->table,$update_position);
+		 	$this->db->update($this->table);
 		}
 		return true;
 	}

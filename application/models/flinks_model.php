@@ -165,10 +165,10 @@ class flinks_model extends CI_Model{
 			$this->db->where('id',$val->id)
 					 ->delete($this->table);
 
-			//readjust the positions of the ads
-			$update_position = array('position'=>'position - 1');
+			//readjust the positions of the flinks
+			$this->db->set('position', 'position-1', FALSE);
 			$this->db->where('position > ',$val->position);
-		 	$this->db->update($this->table,$update_position);
+		 	$this->db->update($this->table);
 		}
 		return true;
 	}

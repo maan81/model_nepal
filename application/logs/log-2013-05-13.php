@@ -123,3 +123,10 @@ ERROR - 2013-05-13 07:36:43 --> Severity: Warning  --> Invalid argument supplied
 ERROR - 2013-05-13 07:36:43 --> Severity: Notice  --> Trying to get property of non-object C:\wamp\www\model_nepal\application\controllers\site\events.php 265
 ERROR - 2013-05-13 07:36:43 --> Severity: Notice  --> Trying to get property of non-object C:\wamp\www\model_nepal\application\controllers\site\events.php 266
 ERROR - 2013-05-13 07:49:29 --> 404 Page Not Found --> contests
+ERROR - 2013-05-13 07:58:09 --> 404 Page Not Found --> contests
+ERROR - 2013-05-13 08:15:34 --> 404 Page Not Found --> public
+ERROR - 2013-05-13 08:15:34 --> 404 Page Not Found --> public
+ERROR - 2013-05-13 08:15:34 --> 404 Page Not Found --> public
+ERROR - 2013-05-13 08:15:34 --> 404 Page Not Found --> public
+ERROR - 2013-05-13 08:16:54 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\wamp\www\model_nepal\system\database\drivers\mysql\mysql_driver.php 91

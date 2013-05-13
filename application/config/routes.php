@@ -42,6 +42,10 @@ $route['admin'] = 'admin/admin'; 	//admin's root class
 $route['admin/main'] = 'admin/admin/main';
 $route['admin/reset_user'] = 'admin/admin/reset_user';
 
+$route['admin/models'] = 'admin/subjects';
+$route['admin/models/(:any)'] = 'admin/subjects/$1';
+$route['admin/models/(:any)/(:any)'] = 'admin/subjects/$1/$2';
+
 $route['admin/(:any)'] = 'admin/$1';
 $route['admin/(:any)/(:any)'] = 'admin/$1/$2';
 $route['admin/(:any)/(:any)/(:any)'] = 'admin/$1/$2/$3';

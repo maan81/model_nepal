@@ -25,7 +25,12 @@ class Main extends MY_Controller {
 		$this->load->model('featured_model');
 		$this->load->helper('utilites_helper');
 
-		$featured_data = $this->featured_model->get();
+		$featured_data = $this->featured_model->get(false,array(
+														'order_by'=>array(
+																		'coln'=>'position',
+																		'dir'=>'desc')
+														)
+												);
 		$featured = array();
 		$count=0;
 		foreach($featured_data as $key=>$val){

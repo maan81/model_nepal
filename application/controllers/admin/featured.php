@@ -155,10 +155,15 @@ class Featured extends MY_Controller {
 							'gender'		=> $this->input->post('gender'),
 							'ethnicity'		=> $this->input->post('ethnicity'),
 							'wardrobe'		=> $this->input->post('wardrobe'),
+							'wardrobe_link'	=> urlencode($this->input->post('wardrobe_link')),
 							'location'		=> $this->input->post('location'),
+							'location_link'	=> urlencode($this->input->post('location_link')),
 							'make_up'		=> $this->input->post('make_up'),
+							'make_up_link'	=> urlencode($this->input->post('make_up_link')),
 							'photographer'	=> $this->input->post('photographer'),
+							'photographer_link'=>urlencode($this->input->post('photographer_link')),
 							'model_by'		=> $this->input->post('model_by'),
+							'model_by_link'	=> urlencode($this->input->post('model_by_link')),
 							'date_created'	=> $this->input->post('date_created'),
 							'created_by'	=> $this->session->userdata('username'),
 						);
@@ -227,13 +232,17 @@ class Featured extends MY_Controller {
 							'gender'		=> $this->input->post('gender'),
 							'ethnicity'		=> $this->input->post('ethnicity'),
 							'wardrobe'		=> $this->input->post('wardrobe'),
+							'wardrobe_link'	=> urlencode($this->input->post('wardrobe_link')),
 							'location'		=> $this->input->post('location'),
+							'location_link'	=> urlencode($this->input->post('location_link')),
 							'make_up'		=> $this->input->post('make_up'),
+							'make_up_link'	=> urlencode($this->input->post('make_up_link')),
 							'photographer'	=> $this->input->post('photographer'),
+							'photographer_link'=>urlencode($this->input->post('photographer_link')),
 							'model_by'		=> $this->input->post('model_by'),
+							'model_by_link'	=> urlencode($this->input->post('model_by_link')),
 							'date_created'	=> $this->input->post('date_created'),
 						);
-
 			$this->_validate_new($data);
 			
 			if($this->_validated){

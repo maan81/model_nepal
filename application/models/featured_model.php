@@ -60,6 +60,54 @@ class Featured_model extends CI_Model{
 	}
 
 
+	public function corrected_get($featured=false,$sql_params=false){
+		$data = $this->get($featured,$sql_params);
+		if(count($data))
+		foreach($data as $key=>$val){
+			if($val->wardrobe_link){
+				$val->wardrobe_link = anchor(	urldecode($val->wardrobe_link),
+												$val->wardrobe,
+												'class="link" target="_blank"'
+											);
+			}else{
+				$val->wardrobe_link = $val->wardrobe;
+			}
+			if($val->location_link){
+				$val->location_link = anchor(	urldecode($val->location_link),
+												$val->location,
+												'class="link" target="_blank"'
+											);
+			}else{
+				$val->location_link = $val->location;
+			}
+			if($val->make_up_link){
+				$val->make_up_link = anchor(	urldecode($val->make_up_link),
+												$val->make_up,
+												'class="link" target="_blank"'
+											);
+			}else{
+				$val->make_up_link = $val->make_up;
+			}
+			if($val->photographer_link){
+				$val->photographer_link = anchor(urldecode($val->photographer_link),
+												$val->photographer,
+												'class="link" target="_blank"'
+											);
+			}else{
+				$val->photographer_link = $val->photographer;
+			}
+			if($val->model_by_link){
+				$val->model_by_link = anchor(	urldecode($val->model_by_link),
+												$val->model_by,
+												'class="link" target="_blank"'
+											);
+			}else{
+				$val->model_by_link = $val->model_by;
+			}
+		}
+		return $data;
+	}
+
 	/**
 	 * set/update record's info
 	 * @param record array/object

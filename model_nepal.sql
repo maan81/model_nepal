@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 13, 2013 at 07:51 AM
+-- Generation Time: May 16, 2013 at 12:02 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -79,7 +79,14 @@ CREATE TABLE IF NOT EXISTS `contests` (
   `created_by` varchar(11) NOT NULL,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `contests`
+--
+
+INSERT INTO `contests` (`id`, `title`, `summary`, `type`, `location`, `time`, `details`, `date_created`, `upcomming`, `featured`, `created_by`, `position`) VALUES
+(1, 'First Contest', 'aout first contest', 'dance', 'KTM', NULL, NULL, '2013-05-13', 0, 0, 'root', 0);
 
 -- --------------------------------------------------------
 
@@ -126,10 +133,15 @@ CREATE TABLE IF NOT EXISTS `featured` (
   `gender` tinyint(1) NOT NULL,
   `ethnicity` varchar(127) NOT NULL,
   `wardrobe` varchar(255) NOT NULL,
+  `wardrobe_link` varchar(127) DEFAULT NULL,
   `location` varchar(255) NOT NULL,
+  `location_link` varchar(127) DEFAULT NULL,
   `make_up` varchar(255) NOT NULL,
+  `make_up_link` varchar(127) DEFAULT NULL,
   `photographer` varchar(255) NOT NULL,
+  `photographer_link` varchar(127) DEFAULT NULL,
   `model_by` varchar(225) NOT NULL,
+  `model_by_link` varchar(127) DEFAULT NULL,
   `date_created` date NOT NULL,
   `profile_viewed` int(255) NOT NULL DEFAULT '0',
   `created_by` varchar(11) NOT NULL,
@@ -141,13 +153,13 @@ CREATE TABLE IF NOT EXISTS `featured` (
 -- Dumping data for table `featured`
 --
 
-INSERT INTO `featured` (`id`, `name`, `link`, `gender`, `ethnicity`, `wardrobe`, `location`, `make_up`, `photographer`, `model_by`, `date_created`, `profile_viewed`, `created_by`, `position`) VALUES
-(3, 'Model Nepal', 'model_nepal', 0, 'gurung', 'Personal', 'Kathmandu', 'Mr. Designer', 'The Fashion Plus', 'The Fashion Plus', '2013-04-07', 2, '', 2),
-(6, 'Kritika', 'kritika', 0, 'rana', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-21', 3, '', 3),
-(7, 'Gunjun', 'gunjun', 0, 'gurung', 'The Fashion Plus', 'Kathmandu', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-03-01', 2, '', 4),
-(8, 'Bipishana', 'bipishana', 0, 'limbu', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 3, '', 1),
-(9, 'Sarifa', 'sarifa', 0, 'gurung', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 2, '', 6),
-(10, 'Zigyasha', 'zigyasha', 0, 'gurung', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', 'The Fashion Plus', '2013-04-11', 2, '', 5);
+INSERT INTO `featured` (`id`, `name`, `link`, `gender`, `ethnicity`, `wardrobe`, `wardrobe_link`, `location`, `location_link`, `make_up`, `make_up_link`, `photographer`, `photographer_link`, `model_by`, `model_by_link`, `date_created`, `profile_viewed`, `created_by`, `position`) VALUES
+(3, 'Model Nepal', 'model_nepal', 0, 'gurung', 'Our Wardrobe', 'http%3A%2F%2Fw3schools.com', 'KTM', '', 'Mr. Designer', '', 'The Photographer', 'http%3A%2F%2Fgoogle.com.np%2Fsearch%3Fq%3Dphotography', 'The Fashion Plus', '', '2013-04-07', 2, '', 2),
+(6, 'Kritika', 'kritika', 0, 'rana', 'The Fashion Plus', '', 'The Fashion Plus', 'https%3A%2F%2Fwww.google.com.np%2Fsearch%3Fq%3Dfisheye%2Binteractive%2Bfacebook', 'The Fashion Plus', '', 'The Fashion Plus', '', 'The Fashion Plus', '', '2013-04-21', 3, '', 3),
+(7, 'Gunjun', 'gunjun', 0, 'gurung', 'The Fashion Plus', '', 'Kathmandu', '', 'The Fashion Plus', '', 'The Fashion Plus', '', 'The Fashion Plus', 'http%3A%2F%2Fwww.ekantipur.com%2Fen%2F', '2013-03-01', 2, '', 4),
+(8, 'Bipishana', 'bipishana', 0, 'limbu', 'The Fashion Plus', 'http%3A%2F%2Fwww.facebook.com%2Ffisheye.interactive', 'The Fashion Plus', 'http%3A%2F%2Fwww.facebook.com%2Ffisheye.interactive', 'The Fashion Plus', 'http%3A%2F%2Fwww.facebook.com%2Ffisheye.interactive', 'The Fashion Plus', 'http%3A%2F%2Fwww.facebook.com%2Ffisheye.interactive', 'The Fashion Plus', 'http%3A%2F%2Fwww.facebook.com%2Ffisheye.interactive', '2013-04-11', 3, '', 1),
+(9, 'Sarifa', 'sarifa', 0, 'gurung', 'The Fashion Plus', '', 'The Fashion Plus', 'http%3A%2F%2Fwww.kathmandu.gov.np%2F', 'The Fashion Plus', '', 'The Fashion Plus', '', 'The Fashion Plus', '', '2013-04-11', 2, '', 6),
+(10, 'Zigyasha', 'zigyasha', 0, 'gurung', 'The Fashion Plus', '', 'The Fashion Plus', '', 'The Fashion Plus', '', 'The Fashion Plus', 'http%3A%2F%2Fwww.youtube.com', 'The Fashion Plus', '', '2013-04-11', 2, '', 5);
 
 -- --------------------------------------------------------
 
@@ -337,7 +349,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `usertype`, `last_loggedin`, `last_location`) VALUES
-(1, 'root', '9d9e9979efe032e23a07cd2623574417', 'root@root.com', 'administrator', '2013-05-12 07:32:01', '::1'),
+(1, 'root', '9d9e9979efe032e23a07cd2623574417', 'root@root.com', 'administrator', '2013-05-16 06:40:17', '::1'),
 (11, 'ff', 'ece926d8c0356205276a45266d361161', 'ff@ff.com', 'administrator', '0000-00-00 00:00:00', '0'),
 (12, 'ee', 'c0bdce0aca8f4f5512bb2fd78c922c24', 'pranijman@gmail.com', 'editor', '0000-00-00 00:00:00', '0');
 
@@ -357,7 +369,7 @@ CREATE TABLE IF NOT EXISTS `visitors_count` (
   UNIQUE KEY `unique` (`ip_address`,`type`,`model_id`),
   KEY `ip_address` (`ip_address`),
   KEY `model_id` (`model_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=237 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=187 ;
 
 --
 -- Dumping data for table `visitors_count`

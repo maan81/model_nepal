@@ -303,7 +303,7 @@ class Featured extends MY_Controller {
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 		$rtbbox = $this->ads_model->get(array('dimensions'=>'rtbbox','category'=>'published'));
-		$featured = $this->featured_model->get(array('link' => $featured_link));
+		$featured = $this->featured_model->corrected_get(array('link' => $featured_link));
 		$flinks = $this->flinks_model->get();
 
 		//================

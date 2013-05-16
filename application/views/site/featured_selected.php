@@ -1,4 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+<style type="text/css">
+    #main .link:hover{
+    	text-decoration: underline;
+	}
+    #main .link{
+    	color:#fff;
+    	text-decoration: none;
+    }
+
+</style>
+
 
 <div class="mainContents">
 
@@ -55,23 +66,23 @@
 			<table class="modelinfo">
 			    <tr>
 			        <td>Wardrobe :</td>
-			        <td><?php echo $featured[0]->wardrobe?></td>
+			        <td><?php echo $featured[0]->wardrobe_link?></td>
 			    </tr>
 			    <tr>
 			        <td>Location :</td>
-			        <td><?php echo $featured[0]->location?></td>
+			        <td><?php echo $featured[0]->location_link?></td>
 			    </tr>
 			    <tr>
 			        <td>Make-Up :</td>
-			        <td><?php echo $featured[0]->make_up?></td>
+			        <td><?php echo $featured[0]->make_up_link?></td>
 			    </tr>
 			    <tr>
 			        <td>Photographer :</td>
-			        <td><?php echo $featured[0]->photographer?></td>
+			        <td><?php echo $featured[0]->photographer_link?></td>
 			    </tr>
 			    <tr>
 			        <td>Model By :</td>
-			        <td><?php echo $featured[0]->model_by?></td>
+			        <td><?php echo $featured[0]->model_by_link?></td>
 			    </tr>
 			</table>
 

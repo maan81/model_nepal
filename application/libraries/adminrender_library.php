@@ -548,62 +548,66 @@ class Adminrender_library{
 						font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
 						font-size: inherit;
 					}
+					.reset_ml{
+						margin-left:0;
+					}
 		</style>';
 
-$op .=
-'
-	<link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-responsive.min.css">
+		/* for [multiple ??] file uploads ..........  
+		$op .=
+		'
+			<link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-responsive.min.css">
 
-<div class="container">
+			<div class="container">
 
-    <!-- The file upload form used as target for the file upload widget -->
-    <form id="fileupload" action="<?=base_url()?>index.php/home/upload" method="POST" enctype="multipart/form-data">
-        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-        <div class="row fileupload-buttonbar">
-            <div class="span7">
-                <!-- The fileinput-button span is used to style the file input field as button -->
-                <span class="btn btn-success fileinput-button">
-                    <i class="icon-plus icon-white"></i>
-                    <span>Add files...</span>
-                    <input type="file" name="files[]" multiple>
-                </span>
-                <button type="submit" class="btn btn-primary start">
-                    <i class="icon-upload icon-white"></i>
-                    <span>Start upload</span>
-                </button>
-                <button type="reset" class="btn btn-warning cancel">
-                    <i class="icon-ban-circle icon-white"></i>
-                    <span>Cancel upload</span>
-                </button>
-                <button type="button" class="btn btn-danger delete">
-                    <i class="icon-trash icon-white"></i>
-                    <span>Delete</span>
-                </button>
-                <input type="checkbox" class="toggle">
-            </div>
-            <!-- The global progress information -->
-            <div class="span5 fileupload-progress fade">
-                <!-- The global progress bar -->
-                <div class="progress progress-success progress-striped active">
-                    <div class="bar" style="width:0%;"></div>
-                </div>
-                <!-- The extended global progress information -->
-                <div class="progress-extended">&nbsp;</div>
-            </div>
-        </div>
-        <!-- The loading indicator is shown during file processing -->
-        <div class="fileupload-loading"></div>
-        <br>
-        <!-- The table listing the files available for upload/download -->
-        <table class="table table-striped">
-			<tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
-		</table>
-    </form>
-    <br>
-    
-</div>
-';
-
+			    <!-- The file upload form used as target for the file upload widget -->
+			    <form id="fileupload" action="<?=base_url()?>index.php/home/upload" method="POST" enctype="multipart/form-data">
+			        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+			        <div class="row fileupload-buttonbar">
+			            <div class="span7">
+			                <!-- The fileinput-button span is used to style the file input field as button -->
+			                <span class="btn btn-success fileinput-button">
+			                    <i class="icon-plus icon-white"></i>
+			                    <span>Add files...</span>
+			                    <input type="file" name="files[]" multiple>
+			                </span>
+			                <button type="submit" class="btn btn-primary start">
+			                    <i class="icon-upload icon-white"></i>
+			                    <span>Start upload</span>
+			                </button>
+			                <button type="reset" class="btn btn-warning cancel">
+			                    <i class="icon-ban-circle icon-white"></i>
+			                    <span>Cancel upload</span>
+			                </button>
+			                <button type="button" class="btn btn-danger delete">
+			                    <i class="icon-trash icon-white"></i>
+			                    <span>Delete</span>
+			                </button>
+			                <input type="checkbox" class="toggle">
+			            </div>
+			            <!-- The global progress information -->
+			            <div class="span5 fileupload-progress fade">
+			                <!-- The global progress bar -->
+			                <div class="progress progress-success progress-striped active">
+			                    <div class="bar" style="width:0%;"></div>
+			                </div>
+			                <!-- The extended global progress information -->
+			                <div class="progress-extended">&nbsp;</div>
+			            </div>
+			        </div>
+			        <!-- The loading indicator is shown during file processing -->
+			        <div class="fileupload-loading"></div>
+			        <br>
+			        <!-- The table listing the files available for upload/download -->
+			        <table class="table table-striped">
+						<tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+					</table>
+			    </form>
+			    <br>
+			    
+			</div>
+		';
+		*/
 		$op .=	//'<div class="container_16 clearfix" id="content">'.
 					form_open().'
 					<div class="grid_16">
@@ -619,7 +623,7 @@ $op .=
 
 					<div class="grid_6">
 						<p>
-							<label for="name">Name <small>Alpha-numeric characters without spaces.</small></label>';
+							<label for="name">Name <small>Name is not editable once saved.</small></label>';
 					if($data){
 						//uneditable form input
 						$op .=		'<span class="fx">'.$data[0]->name.'</span>';
@@ -630,10 +634,17 @@ $op .=
 					$op .= 	'</p>
 					</div>
 
-					<div class="grid_5">
+					<div class="grid_6">
+						<p>
+							<label for="date_created">Date Created</label>
+							<input id="date_created" type="text" name="date_created" value="'.($data?$data[0]->date_created:'').'" />
+						</p>
+					</div>
+
+					<div class="grid_6">
 						<p>
 							<label for="gender">Gender</label>
-							<select name="gender">
+							<select name="gender" class="grid_5 reset_ml" style="margin-bottom:20px">
 								<option value="1" '.($data?($data[0]->gender=='1'?'selected="selected"':''):'').' >Male</option>
 								<option value="0" '.($data?($data[0]->gender=='0'?'selected="selected"':''):'').'>Female</option>
 								
@@ -644,7 +655,7 @@ $op .=
 					<div class="grid_6">
 						<p>
 							<label for="ethnicity">Ethnicity </label>
-							<select name="ethnicity">';
+							<select class="grid_5 reset_ml" name="ethnicity" style="margin-bottom:20px;">';
 
 				foreach($this->ethnicity as $val){
 					$op .= '<option value="'.$val.'" '.
@@ -652,44 +663,58 @@ $op .=
 								ucfirst($val)
 							.'</option>';								
 				}
-				
+
 				$op .=		'</select>
 						</p>
 					</div>
-					<div class="grid_6">
-						<p>
-							<label for="date_created">Date Created</label>
-							<input id="date_created" type="text" name="date_created" value="'.($data?$data[0]->date_created:'').'" />
-						</p>
-					</div>
-					<div class="grid_6">
-						<p>
+					<div class="grid_14">
+						<p class="grid_6 reset_ml">
 							<label for="wardrobe">Wardrobe<small>Alpha-numeric characters without spaces.</small></label>
-							<input type="text" name="wardrobe" value="'.($data?$data[0]->wardrobe:'').'">
+							<input class="grid_5 reset_ml" type="text" name="wardrobe" value="'.($data?$data[0]->wardrobe:'').'">
+						</p>
+						<p class="grid_7">
+							<label for="wardrobe_link">Wardrobe Link<small>URL of the Wardrobe.</small></label>
+							<input class="grid_6 reset_ml" type="text" name="wardrobe_link" value="'.($data?urldecode($data[0]->wardrobe_link):'').'">
 						</p>
 					</div>
-					<div class="grid_6">
-						<p>
+					<div class="grid_14">
+						<p class="grid_6 reset_ml">
 							<label for="location">Location<small>Alpha-numeric characters without spaces.</small></label>
-							<input type="text" name="location" value="'.($data?$data[0]->location:'').'">
+							<input class="grid_5 reset_ml" type="text" name="location" value="'.($data?$data[0]->location:'').'">
+						</p>
+						<p class="grid_7">
+							<label for="location_link">Location Link<small>URL of the Location.</small></label>
+							<input class="grid_6 reset_ml" type="text" name="location_link" value="'.($data?urldecode($data[0]->location_link):'').'" >
 						</p>
 					</div>
-					<div class="grid_6">
-						<p>
+					<div class="grid_14">
+						<p class="grid_6 reset_ml">
 							<label for="make_up">Make Up<small>Alpha-numeric characters without spaces.</small></label>
-							<input type="text" name="make_up" value="'.($data?$data[0]->make_up:'').'">
+							<input class="grid_5 reset_ml" type="text" name="make_up" value="'.($data?$data[0]->make_up:'').'">
+						</p>
+						<p class="grid_7">
+							<label for="make_up_link">Make Up Link<small>URL of the Make-Up.</small></label>
+							<input class="grid_6 reset_ml" type="text" name="make_up_link" value="'.($data?urldecode($data[0]->make_up_link):'').'" >
 						</p>
 					</div>
-					<div class="grid_6">
-						<p>
+					<div class="grid_14">
+						<p class="grid_6 reset_ml">
 							<label for="model_by">Model By<small>Alpha-numeric characters without spaces.</small></label>
-							<input type="text" name="model_by" value="'.($data?$data[0]->model_by:'').'">
+							<input class="grid_5 reset_ml" type="text" name="model_by" value="'.($data?$data[0]->model_by:'').'">
+						</p>
+						<p class="grid_7">
+							<label for="model_by_link">Model By Link<small>URL of the Model By.</small></label>
+							<input class="grid_6 reset_ml" type="text" name="model_by_link" value="'.($data?urldecode($data[0]->model_by_link):'').'" >
 						</p>
 					</div>
-					<div class="grid_6">
-						<p>
+					<div class="grid_14">
+						<p class="grid_6 reset_ml">
 							<label for="photographer">Photographer<small>Alpha-numeric characters without spaces.</small></label>
-							<input type="text" value="'.($data?$data[0]->photographer:'').'" name="photographer">
+							<input class="grid_5 reset_ml" type="text" value="'.($data?$data[0]->photographer:'').'" name="photographer">
+						</p>
+						<p class="grid_7">
+							<label for="photographer_link">Photographer Link<small>URL of the Photographer.</small></label>
+							<input class="grid_6 reset_ml" type="text" value="'.($data?urldecode($data[0]->photographer_link):'').'" name="photographer_link" >
 						</p>
 					</div>
 					<div class="grid_16">
@@ -966,7 +991,7 @@ $op .=
 
 					<div class="grid_6">
 						<p>
-							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>';
+							<label for="title">Title <small>Title is not editable once saved.</small></label>';
 					if($data){
 						//uneditable form input
 						$op .=		'<span class="fx">'.$data[0]->title.'</span>';
@@ -1236,7 +1261,7 @@ $op .=
 
 					<div class="grid_6">
 						<p>
-							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>';
+							<label for="title">Title <small>Title is not editable once saved.</small></label>';
 					if($data){
 						//uneditable form input
 						$op .=		'<span class="fx">'.$data[0]->title.'</span>';
@@ -1448,7 +1473,7 @@ $op .=
 
 					<div class="grid_6">
 						<p>
-							<label for="title">Title <small>Alpha-numeric characters without spaces.</small></label>';
+							<label for="title">Title <small>Ttile is not editable once saved.</small></label>';
 					if($data){
 						//uneditable form input
 						$op .=		'<span class="fx">'.$data[0]->title.'</span>';
@@ -1962,7 +1987,7 @@ $op .=
 
 						<div class="grid_12">
 							<p>
-								<label for="name">Name <small>Alpha-numeric characters without spaces.</small></label>';
+								<label for="name">Name <small>Name is not editable once saved.</small></label>';
 					if($data){
 						//uneditable form input
 						$op .=		'<span class="fx">'.$data[0]->name.'</span>';

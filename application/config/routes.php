@@ -66,6 +66,12 @@ $route['events/(:any)/(:any)'] = 'site/events/get/$1/$2';
 $route['events/(:any)/(:any)/(:any)'] = 'site/events/get/$1/$2/$3';
 
 
+$route['contests'] = 'site/contests';
+$route['contests/(:any)'] = 'site/contests/get/$1';
+$route['contests/(:any)/(:any)'] = 'site/contests/get/$1/$2';
+$route['contests/(:any)/(:any)/(:any)'] = 'site/contests/get/$1/$2/$3';
+
+
 $route['news'] = 'site/news';
 $route['news/(:any)'] = 'site/news/$1';
 $route['news/(:any)/(:any)'] = 'site/news/$1/$2';

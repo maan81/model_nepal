@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 16, 2013 at 12:02 PM
--- Server version: 5.5.24-log
--- PHP Version: 5.4.3
+-- Generation Time: May 19, 2013 at 01:36 AM
+-- Server version: 5.5.31
+-- PHP Version: 5.3.10-1ubuntu3.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -68,6 +68,7 @@ INSERT INTO `ads` (`id`, `title`, `category`, `type`, `dimensions`, `script`, `l
 CREATE TABLE IF NOT EXISTS `contests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(127) NOT NULL,
+  `link` varchar(127) NOT NULL,
   `summary` varchar(2047) NOT NULL,
   `type` varchar(11) NOT NULL,
   `location` varchar(127) NOT NULL,
@@ -85,8 +86,8 @@ CREATE TABLE IF NOT EXISTS `contests` (
 -- Dumping data for table `contests`
 --
 
-INSERT INTO `contests` (`id`, `title`, `summary`, `type`, `location`, `time`, `details`, `date_created`, `upcomming`, `featured`, `created_by`, `position`) VALUES
-(1, 'First Contest', 'aout first contest', 'dance', 'KTM', NULL, NULL, '2013-05-13', 0, 0, 'root', 0);
+INSERT INTO `contests` (`id`, `title`, `link`, `summary`, `type`, `location`, `time`, `details`, `date_created`, `upcomming`, `featured`, `created_by`, `position`) VALUES
+(1, 'First Contest', 'first_contest', 'aout first contest', 'dance', 'KTM', NULL, NULL, '2013-05-13', 0, 0, 'root', 0);
 
 -- --------------------------------------------------------
 

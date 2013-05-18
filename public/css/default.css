@@ -242,6 +242,15 @@ div{
 			padding-bottom:15px;
 		}
 		
+		.leftPart .fullbanner h3{
+			
+			color:#f5f6f7;
+			font-family:Myriad Pro Arial, Helvetica, sans-serif;
+			font-size:18px;
+			text-transform:uppercase;
+			font-weight:bold;
+		}
+
 		.leftPart .bannerthree{
 			position:relative;
 			width:706px;
@@ -975,7 +984,103 @@ div{
 		margin:5px;
 	}
 	
+/* Contesters css	*/
+
+.contester{
+	width:690px;
+	height:auto;
+	overflow:hidden;
+}
+	
+.contester_block{
+	width:212px;
+	float:left;
+	padding:4px;
+	background:#ffffff;
+	border-radius:2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	overflow:hidden;
+}
 		
+.contester_block_head{
+	width:212px;
+	height:32px;
+	background:#d5000f;
+	padding-top:14px;
+}
+
+.imgstyle{
+	padding-top:4px;
+}
+
+.contester_block_head h3{
+	color:#f3f3f3;
+	font-family:Myriad Pro Arial, Helvetica, sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+	text-transform:uppercase;
+}
+
+ .contester_block_botom {
+	width:212px;
+	height:22px;
+	background:#ffffff;
+	padding:15px 0px;
+}
+
+.imgstlef{
+	float:left;
+	margin-left:10px;
+}
+	
+.imgstrigh{
+	float:right;
+	margin-right:10px;
+}
+
+.spacerright{
+	width:15px;
+	height:30px;
+	float:left;
+	overflow:hidden;
+}
+	
+.spacerbottom{
+	width:690px;
+	height:20px;
+	overflow:hidden;
+}
+	
+.contester_footr{
+	width:290px;
+	overflow:hidden;
+	height:50px;
+	padding:30px 200px;
+	alignment-adjust:central;
+}
+
+.contester_footr span{
+	font-family:Myriad Pro, Arial, Helvetica, sans-serif;
+	font-size:26px;
+	letter-spacing:5px;
+	margin:5px 0px 0px 15px;
+	font-weight:bold;
+	color:#000000;
+}
+
+	
+.imgleftal{
+	float:left;
+}
+	
+.imgrightal{
+	float:right;
+}
+	
+		
+
 /* upcomming events */
 
 .leftPart .upcomming{

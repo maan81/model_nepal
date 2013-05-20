@@ -9,6 +9,12 @@
 
    <div class="leftPart">
 
+      <div class="fullbanner">
+         <a href="<?php echo $add->link?>">
+            <img src="<?php echo base_url().ADDSPATH.$add->image?>" alt="Banner" width="690" height="110" />
+         </a>
+      </div>
+
       <?php if($contests_slideshow): ?>
          <div class="upcomming">
             <div class="upcomming_selectors">

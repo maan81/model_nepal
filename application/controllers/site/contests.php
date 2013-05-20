@@ -16,6 +16,7 @@ class Contests extends MY_Controller {
 		//-----------------------------------------------
 		$this->load->model('ads_model');
 
+		$tmp = $this->ads_model->get(array('dimensions'=>'fullbanner','category'=>'published'));
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
@@ -62,7 +63,7 @@ class Contests extends MY_Controller {
 		$this->load->config('ethnicity');
 		$this->load->config('eventstype');
 		$data = array(
-					//'add'				=> $tmp[0],
+					'add'				=> $tmp[0],
 					'add2'				=> $tmp2,
 					'contests'			=> $contests,
 					'contests_slideshow'=> $contests_slideshow,
@@ -136,44 +137,6 @@ class Contests extends MY_Controller {
 			//--------------------------------------
 			//folder of imgs of the event
 			$full_path = dirname(BASEPATH).'/'.CONTESTSPATH;	
-			/*
-				//create thumbs folder if reqd.
-				make_dir($full_path.'/'.gen_folder_name($val->title),'thumbs');
-
-				$full_path .= gen_folder_name($val->title);
-
-				//imgs in that folder
-				$imgs = scandir($full_path);								
-
-				//1st img of the 1st folder
-				foreach($imgs as $k=>$v){
-					if($v!='.' && $v!='..' && $v!='thumbs' ){
-						$preview_img = $v;
-						break;
-					}
-				}
-				$config['source_image']		= EVENTSPATH.gen_folder_name($val->title).'/'.$preview_img;		
-				
-				//thumbs of that img 
-				$config['new_image'] 		= $full_path.'/thumbs/'.$preview_img;		
-
-				
-				$config['thumb_marker']		= '';
-				$config['image_library']	= 'gd2';
-				$config['create_thumb'] 	= TRUE;
-				$config['maintain_ratio'] 	= TRUE;
-				$config['width'] 			= 323;
-				$config['height'] 			= 152;
-
-				$this->load->library('image_lib', $config);
-
-				if ( ! $this->image_lib->resize()){
-				    echo $this->image_lib->display_errors();
-				}			
-				//--------------------------------------
-
-				$val->thumbs = EVENTSPATH.gen_folder_name($val->title).'/thumbs/'.$preview_img;
-			*/
 			$val->thumbs = CONTESTSPATH.gen_folder_name($val->title).'/search_img.jpg';
 			if($val->featured=='1'){
 				$val->featured = '<img src="'.base_url().IMGSPATH.'featured_events.png" alt="'.$val->title.'" title="'.$val->title.'" class="featured_event" />';
@@ -329,40 +292,43 @@ class Contests extends MY_Controller {
 
 
 	/**
-	 *  The selected contest
-	 *  @param varchar[contest link], int[selected img id]
+	 *  The selected contestent
+	 *  @param varchar[contest link], varchar[selected contestnant]
 	 *  @return void
 	 */
 	public function get($contests_link=null,$img=null,$param2=null){
-		//redirect to event search if not specified
+		//redirect to contest search if not specified
 		if($contests_link==null || $contests_link=='search'){
 			return $this->search($img,$param2);
 		}
 
 		//----------------------------------------------
 
-		$contests = $this->contests_model->get(array('link' => $contests_link));
+			//$contests = $this->contests_model->get(array('link' => $contests_link));
 
-		//goto upcomming contests function
-		if($contests[0]->upcomming=='1'){
-			return $this->contest_upcomming($contests[0]);
-		}
+			//goto upcomming contests function
+			//if($contests[0]->upcomming=='1'){
+			//	return $this->contest_upcomming($contests[0]);
+			//}
 
-		//add image & previous & next links
-		$contests = $this->contests_imgs($contests[0],$img);
-
+			//add image & previous & next links
+			//$contests = $this->contests_imgs($contests[0],$img);
+		//------------------------------------------------
+		//get specified contest's contestentant
+		$contestants = $this->get_contestants($contests_link,$img);
 		//------------------------------------------------
 
 		//redirect to get the imgs. of the specified contests
 		if($img==null){
 			return $this->_list_imgs($contests_link);
 		}
-die;
+
 		$this->render_skeleton();
 
 		//-----------------------------------------------
 		$this->load->model('ads_model');
 
+		$tmp = $this->ads_model->get(array('dimensions'=>'fullbanner','category'=>'published'));
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 		$rtbbox = $this->ads_model->get(array('dimensions'=>'rtbbox','category'=>'published'));
@@ -377,20 +343,17 @@ die;
 
 
 		$data = array(
-					'contests'		=>	$contests,
+					//'contests'		=>	$contests,
+					'contestants'	=>	$contestants,
 					'render_right'	=>	$tmp3,
 					'flinks'		=>	$flinks,
 					//'img_links'		=> 	$img_links,
+					'add'			=> $tmp[0],
 					'add2'			=>	$tmp2,
 					'rtbbox'		=> $rtbbox,
 					);
 
-		if($contests->img_type=='potrait'){
-			$op = $this->load->view('site/contests_selected.php',$data,true);
-
-		}else{
-			$op = $this->load->view('site/contests_selected_hor.php',$data,true);
-		}
+		$op = $this->load->view('site/contests_contestant.php',$data,true);
 
 		$this->template->write('mainContents',$op);
 
@@ -400,8 +363,8 @@ die;
 		$meta = array(
 		        array('name' => 'keywords', 'content' => 'nepal, college, model, contests'),
 		        array('name' => 'description', 'content' => 'College Models Contests in Nepal'),
-		        array('name' => 'description', 'content' => $contests->title),
-		        array('name' => 'description', 'content' => word_limiter($contests->summary),5),
+		        //array('name' => 'description', 'content' => $contests->title),
+		        //array('name' => 'description', 'content' => word_limiter($contests->summary),5),
 		        array('name' => 'author', 'content' => 'The Fashion Plus'),
 		    );
 
@@ -412,6 +375,109 @@ die;
 		$this->template->render();
 	}
 
+
+	/**
+	 * get/generate specified contestant's reqd. info.
+	 */
+	private function get_contestants($contest,$contestant){
+		$data = null;
+
+		$img = dirname(BASEPATH).'/'.CONTESTSPATH.$contest.'/'.$contestant.'-detail.jpg';
+		$data->img = base_url().'/'.CONTESTSPATH.$contest.'/'.$contestant.'-detail.jpg';
+
+		//contest's folders
+		$folder = dirname(BASEPATH).'/'.CONTESTSPATH.$contest;
+
+		//imgs in that folder
+		$imgs = glob($folder.'/*-detail.{jpeg,jpg}', GLOB_BRACE);
+		$end = end($imgs);
+		$first = reset($imgs);
+		$cur = $first;
+
+		while($end!=$cur){
+
+			//reqd. data found
+			if($cur==$img){
+	
+				$data->next = next($imgs);
+				$data->next = explode('/',$data->next);
+				$data->next = explode('-',end($data->next));
+				$data->next = site_url('contests/'.$contest.'/'.$data->next[0]);
+
+				prev($imgs);
+
+				if($cur!=$first){
+					$data->prev = prev($imgs);
+					$data->prev = explode('/',$data->prev);
+					$data->prev = explode('-',end($data->prev));
+					$data->prev = site_url('contests/'.$contest.'/'.$data->prev[0]);
+
+					next($imgs);
+				}
+				break;
+			}
+
+			$cur = next($imgs);
+		}
+	
+		if($cur=prev($imgs)){
+			$data->prev = $cur;
+			$data->prev = explode('/',$data->prev);
+			$data->prev = explode('-',end($data->prev));
+			$data->prev = site_url('contests/'.$contest.'/'.$data->prev[0]);
+		}
+
+		$data->name = implode(' ',explode('_',$contestant));
+
+		//$data->like;
+		//$data->send;
+		//$data->comment;
+
+		return $data;
+	}
+	private function get_contestants_1($contest,$contestant){
+		$data = null;
+
+		$data->img = dirname(BASEPATH).'/'.CONTESTSPATH.$contest.'/'.$contestant.'-detail.jpg';
+
+		//contest's folders
+		$folder = dirname(BASEPATH).'/'.CONTESTSPATH.$contest;
+
+		//imgs in that folder
+		//$imgs = scandir($folder);	
+		$imgs = glob($folder.'/*-detail.{jpeg,jpg}', GLOB_BRACE);
+		$end = end($imgs);
+		$first = reset($imgs);
+		$cur = $first;
+
+		while($end!=$cur){
+
+			//reqd. data found
+			if($cur==$data->img){
+	
+				$data->next = next($imgs);
+				prev($imgs);
+
+				if($cur!=$first){
+					$data->prev = prev($imgs);
+					next($imgs);
+				}
+				break;
+			}
+
+			$cur = next($imgs);
+		}
+	
+		if($cur=prev($imgs)){
+			$data->prev = $cur;
+		}
+
+		//$data->like;
+		//$data->send;
+		//$data->comment;
+
+		return $data;
+	}
 
 
 	/**

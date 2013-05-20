@@ -1079,6 +1079,89 @@ div{
 	float:right;
 }
 	
+/* Contesters Details	*/
+	
+	.contester_detail{
+		width:682px;
+		height:auto;
+		overflow:hidden;
+		background:#ffffff;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius:2px;
+		padding:4px 4px 0px;
+	}
+	
+	.contester_detail_head{
+		width:662px;
+		height:26px;
+		background:#d5000f;
+		padding:10px;
+	}
+	
+	.contester_detail_head span{
+		color:#f3f3f3;
+		font-family:Myriad Pro Arial, Helvetica, sans-serif;
+		font-size:16px;
+		font-weight:bold;
+		text-align:center;
+		text-transform:uppercase;
+		margin:5px 0px 0px 100px;
+	}
+	
+	.insideimage{
+		padding:12px;
+	}
+	
+	.contester_detail_btnfacebk{
+		width:322px;
+		height:40px;
+		padding:10px 170px;
+		background:#ffffff;
+	}
+	.contester_detail_fotcoment{
+		width:662px;
+		height:auto;
+		padding:10px;
+		background:#ffffff;
+	}
+	
+	
+/* Contest Page	*/
+	.contesterpge{
+		width:690px;
+		height:auto;
+		overflow:hidden;
+	}
+
+
+	.contest_page{
+		width:690px;
+		height:329px;
+		padding:0px 0px 10px 0px;
+		background:url(../images/banner-bg.png) no-repeat bottom left;
+	}
+
+	.contest_page_inner{
+		width:674px;
+		height:313px;
+		padding:8px;
+		background:#ffffff;
+		border-radius:2px;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+	}
+		
+	.contest_fiil_type{
+		width:690px;
+		height:42px;
+		padding:20px 0px 10px 0px;
+		background:url(../images/fiill-type-bg.png) no-repeat center;
+	}
+
+	.contest_page, .contest_fiil_type td{
+		margin:0px 40px 0px 0px;
+	}	
 		
 
 /* upcomming events */

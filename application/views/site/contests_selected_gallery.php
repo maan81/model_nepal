@@ -1,6 +1,37 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-
+<?php
+//$subject = "abcdefe";
+//$pattern = '/defe$/';
+//echo preg_match($pattern, $subject, $matches);
+//die;
+?>
 <?php //print_r($contests);//die;?>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<style type="text/css">
+    .fb-like{margin-top: -40px;}
+    .fb-like-wrapper{
+        overflow: hidden;
+        top: 10px;
+        right:10px;
+        margin-right: 10px;
+        float: right;
+    }
+    .contester_block_botom{
+        position:relative;
+    }
+    .fb_edge_widget_with_comment{
+        margin-left:10px;
+    }
+</style>
+
 <div class="mainContents">
 
     <div class="leftPart">
@@ -20,7 +51,10 @@
 
             <?php $count_img=1?>
             <?php foreach($contests[0]->thumbs as $key=>$val):?>
-                <?php if($val['name']=='Search Img ')continue;?>
+                <?php 
+                    if($val['name']=='Search Img ')continue;
+                    if( preg_match('/-detail/i', $val['name'])) continue;
+                ?>
     
                 <div class="contester_block">
                     <div class="contester_block_head">
@@ -30,18 +64,30 @@
                         <img width="212" height="149" class="imgstyle" 
                                 alt="<?php echo $val['name']?>" 
                                 title="<?php echo $val['name']?>" 
-                                src="<?php echo $val['img']?>">
+                                src="<?php echo $val['img']?>" />
                     </a>
                     <div class="contester_block_botom">
                         <!--facebook like button-->
-                        <img width="47" height="24" class="imgstlef" src="images/like-btn.png">
+                        <!--<img width="47" height="24" class="imgstlef" src="images/like-btn.png">-->
+                        <div class="fb-like-wrapper">
+                            <div class="fb-like" data-href="<?php echo current_url()?>" 
+                                    data-send="false" data-layout="box_count" 
+                                    data-width="450" data-show-faces="false">
+                            </div>
+                        </div>
+                        
+
                         <!--facebook send button-->
-                        <img width="47" height="24" class="imgstrigh" src="images/send.png">
+                        <fb:send href="<?php echo current_url()?>"></fb:send>
+                        <!--<img width="47" height="24" class="imgstrigh" src="images/send.png">-->
                     </div>
                 </div>
 
-                <div class="spacerright"></div>
-
+                <?php if(($count_img)%3):?>
+                    <div class="spacerright"></div>
+                <?php else : ?>
+                    <div class="spacerbottom"></div>
+                <?php endif?>
 
                 <?php $count_img++?>
             <?php endforeach?>

@@ -9,7 +9,18 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
+<style type="text/css">
+	.fb-like{margin-top: -40px;}
+	.fb-like-wrapper{
+		overflow: hidden;
+		top: 7px;
+		position: absolute;
+		right: 170px;
+	}
+	.contester_detail_btnfacebk{
+		position:relative;
+	}
+</style>
 <div class="mainContents">
 
 	<div class="leftPart">
@@ -47,9 +58,11 @@
 
 				<fb:send href="<?php echo current_url()?>"></fb:send>
 
-				<div class="fb-like" data-href="<?php echo current_url()?>" 
-						data-send="false" data-layout="box_count" 
-						data-width="450" data-show-faces="false">
+				<div class="fb-like-wrapper">
+					<div class="fb-like" data-href="<?php echo current_url()?>" 
+							data-send="false" data-layout="box_count" 
+							data-width="450" data-show-faces="false">
+					</div>
 				</div>
 			</div>
 

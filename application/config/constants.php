@@ -47,6 +47,11 @@ define('ADMINCSSPATH',		'public/admin/css/');
 define('ADMINJSPATH',		'public/admin/js/');
 define('ADMINIMGSPATH',		'public/admin/imgs/');
 
+define('FILEMGNTPATH',		'public/admin/file_management/');
+define('FILEMGNTCSS',		'public/admin/file_management/css/');
+define('FILEMGNTJS',		'public/admin/file_management/js/');
+define('FILEMGNTIMGS',		'public/admin/file_management/imgs/');
+
 define('IMGSPATH',			'public/imgs/');
 define('CSSPATH',			'public/css/');
 define('JSPATH',			'public/js/');

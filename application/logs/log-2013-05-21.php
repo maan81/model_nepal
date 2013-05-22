@@ -1072,3 +1072,139 @@ ERROR - 2013-05-21 13:48:00 --> Severity: Warning  --> chmod() [<a href='functio
 ERROR - 2013-05-21 13:48:00 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
 ERROR - 2013-05-21 13:48:00 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
 ERROR - 2013-05-21 13:48:00 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-05-21 16:04:02 --> 404 Page Not Found --> public
+ERROR - 2013-05-21 16:04:02 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:04:07 --> 404 Page Not Found --> public
+ERROR - 2013-05-21 16:04:07 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:04:07 --> 404 Page Not Found --> public
+ERROR - 2013-05-21 16:04:07 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:30:06 --> Severity: Warning  --> Missing argument 1 for Adminrender_library::render_navigation(), called in /var/www/model_nepal/application/controllers/admin/file_management.php on line 53 and defined /var/www/model_nepal/application/libraries/adminrender_library.php 50
+ERROR - 2013-05-21 16:30:06 --> Severity: Notice  --> Undefined variable: selected /var/www/model_nepal/application/libraries/adminrender_library.php 61
+ERROR - 2013-05-21 16:30:06 --> Severity: Notice  --> Undefined variable: selected /var/www/model_nepal/application/libraries/adminrender_library.php 61
+ERROR - 2013-05-21 16:30:06 --> Severity: Notice  --> Undefined variable: selected /var/www/model_nepal/application/libraries/adminrender_library.php 61
+ERROR - 2013-05-21 16:30:06 --> Severity: Notice  --> Undefined variable: selected /var/www/model_nepal/application/libraries/adminrender_library.php 61
+ERROR - 2013-05-21 16:30:06 --> Severity: Notice  --> Undefined variable: selected /var/www/model_nepal/application/libraries/adminrender_library.php 61
+ERROR - 2013-05-21 16:30:06 --> Severity: Notice  --> Undefined variable: selected /var/www/model_nepal/application/libraries/adminrender_library.php 61
+ERROR - 2013-05-21 16:30:06 --> Severity: Notice  --> Undefined variable: selected /var/www/model_nepal/application/libraries/adminrender_library.php 61
+ERROR - 2013-05-21 16:30:06 --> Severity: Notice  --> Undefined variable: selected /var/www/model_nepal/application/libraries/adminrender_library.php 61
+ERROR - 2013-05-21 16:30:06 --> Severity: Notice  --> Undefined variable: selected /var/www/model_nepal/application/libraries/adminrender_library.php 61
+ERROR - 2013-05-21 16:30:06 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /var/www/model_nepal/system/core/Exceptions.php:185) /var/www/model_nepal/system/core/Output.php 391
+ERROR - 2013-05-21 16:30:06 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /var/www/model_nepal/system/core/Exceptions.php:185) /var/www/model_nepal/system/core/Output.php 391
+ERROR - 2013-05-21 16:30:06 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /var/www/model_nepal/system/core/Exceptions.php:185) /var/www/model_nepal/system/core/Output.php 391
+ERROR - 2013-05-21 16:30:06 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /var/www/model_nepal/system/core/Exceptions.php:185) /var/www/model_nepal/system/core/Output.php 391
+ERROR - 2013-05-21 16:34:35 --> Severity: Notice  --> Undefined variable: menu /var/www/model_nepal/application/controllers/admin/file_management.php 47
+ERROR - 2013-05-21 16:34:35 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /var/www/model_nepal/system/core/Exceptions.php:185) /var/www/model_nepal/system/core/Output.php 391
+ERROR - 2013-05-21 16:34:35 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /var/www/model_nepal/system/core/Exceptions.php:185) /var/www/model_nepal/system/core/Output.php 391
+ERROR - 2013-05-21 16:34:35 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /var/www/model_nepal/system/core/Exceptions.php:185) /var/www/model_nepal/system/core/Output.php 391
+ERROR - 2013-05-21 16:34:35 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /var/www/model_nepal/system/core/Exceptions.php:185) /var/www/model_nepal/system/core/Output.php 391
+ERROR - 2013-05-21 16:34:36 --> Severity: Notice  --> Undefined variable: menu /var/www/model_nepal/application/controllers/admin/file_management.php 47
+ERROR - 2013-05-21 16:34:36 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /var/www/model_nepal/system/core/Exceptions.php:185) /var/www/model_nepal/system/core/Output.php 391
+ERROR - 2013-05-21 16:34:36 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /var/www/model_nepal/system/core/Exceptions.php:185) /var/www/model_nepal/system/core/Output.php 391
+ERROR - 2013-05-21 16:34:36 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /var/www/model_nepal/system/core/Exceptions.php:185) /var/www/model_nepal/system/core/Output.php 391
+ERROR - 2013-05-21 16:34:36 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /var/www/model_nepal/system/core/Exceptions.php:185) /var/www/model_nepal/system/core/Output.php 391
+ERROR - 2013-05-21 16:43:35 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:43:35 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:43:35 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:43:35 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:43:35 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:43:35 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:43:36 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:43:36 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:43:36 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:43:36 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:43:36 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:43:36 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:44:14 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:44:14 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:44:14 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:44:14 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:44:14 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:44:14 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:44:14 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:44:14 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:44:14 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:44:14 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:44:14 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:44:14 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:44:53 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:44:53 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:44:53 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:44:53 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:44:53 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:44:53 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:44:53 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:44:53 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:44:53 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:44:53 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:44:53 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:44:53 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:21 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:21 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:21 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:51:21 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:21 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:21 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:22 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:22 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:22 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:51:22 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:22 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:22 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:46 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:46 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:46 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:51:46 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:46 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:46 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:46 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:46 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:46 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:51:46 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:46 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:46 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:47 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:47 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:47 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:51:47 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:47 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:47 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:55 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:55 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:55 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:55 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:56 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:51:56 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:56 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:56 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:56 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:51:56 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:51:56 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:51:56 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:54:39 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:54:39 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:54:39 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:54:39 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:54:40 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:54:40 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:54:41 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:54:41 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:54:41 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:54:41 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:54:41 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:54:41 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:56:04 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:56:04 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:56:04 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:56:04 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:56:04 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:56:04 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:56:06 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:56:06 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:56:06 --> 404 Page Not Found --> admin/js
+ERROR - 2013-05-21 16:56:06 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 16:56:06 --> 404 Page Not Found --> admin/css
+ERROR - 2013-05-21 16:56:06 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 17:21:00 --> 404 Page Not Found --> admin/public
+ERROR - 2013-05-21 17:21:00 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106
+ERROR - 2013-05-21 17:21:00 --> 404 Page Not Found --> admin/public
+ERROR - 2013-05-21 17:21:00 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Log.php 106

@@ -2626,4 +2626,37 @@ class Adminrender_library{
 		$op = 	'<div class="flash_msg">'.$msg.'<span class="flash_close">x</span></div>';
 		return $op;
 	}
+
+
+
+
+
+	public function file_management($data){
+		$this->ci->template->add_css(ADMINJSPATH.'jquery-ui.css');
+		$this->ci->template->add_js(ADMINJSPATH.'jquery-ui.js');
+
+
+		$this->ci->template->add_css(FILEMGNTCSS.'elfinder.min.css');
+		$this->ci->template->add_js(FILEMGNTJS.'elfinder-nightly.full.js');
+		//$this->ci->template->add_js(ADMINJSPATH.'jquery.cookie.js');
+
+		$op = '';
+		$op .=	'<h2>File Management</h2>
+				<script type="text/javascript" charset="utf-8">
+					$().ready(function() {
+						//var cct = $.cookie("csrf_cookie");						
+
+						var elf = $(\'#elfinder\').elfinder({
+							url : "'.site_url('admin/file_management/elfinder_init').'",  // connector URL (REQUIRED)
+							customData : {'.$data['csrf_name'].': "'.$data['csrf_value'].'"}
+						}).elfinder(\'instance\');			
+					});
+
+				</script>
+
+				<!-- Element where elFinder will be created (REQUIRED) -->
+				<div id="elfinder"></div>';
+		return $op;
+	}
+
 }

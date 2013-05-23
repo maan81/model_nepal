@@ -62,16 +62,29 @@ class File_management extends MY_Controller {
 									array( 
 										'driver' => 'LocalFileSystem', 
 										'path'   => dirname(BASEPATH).'/'.'public', 
-										'URL'    => site_url('public/') . '/'
-									) 
-								)
+										'URL'    => site_url('public/') . '/',
+
+										//array( // restrict access to jpg files
+										//	'pattern' => '/\.png$/',
+										//	'write' => false,
+										//	'locked' => true
+										//),
+						                //array( // hide readmes
+						                //    'pattern' => '/index\.html/',
+						                //    'read' => false,
+						                //    'write' => false,
+						                //   'hidden' => true,
+						                //    'locked' => false
+						                //),
+						            ), 
+								),
 				);
 		$this->load->library('elfinder_lib', $opts);
 	}
 
 
 	private function render_navigation(){
-		$menu = $this->adminrender_library->render_navigation('');
+		$menu = $this->adminrender_library->render_navigation('File Management');
 		$this->template->write('menu',$menu);
 	}
 	private function render_user_info(){

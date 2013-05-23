@@ -506,6 +506,7 @@ class elFinder {
 		|| ($list = $volume->ls($target)) === false) {
 			return array('error' => $this->error(self::ERROR_OPEN, '#'.$target));
 		}
+
 		return array('list' => $list);
 	}
 	

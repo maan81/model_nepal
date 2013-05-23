@@ -194,7 +194,8 @@ class Adminrender_library{
 					<p>
 						<a href="'.site_url('admin/ads/new_ad').'">New</a>
 					</p>
-				</div>'.
+				</div>
+				<h2>Advertizements List</h2>'.
 				'<script type="text/javascript">
 				$(function() {
 				    $(\'#list_data\').dataTable( {
@@ -441,7 +442,8 @@ class Adminrender_library{
 					<p>
 						<a href="'.site_url('admin/featured/new_featured').'">New</a>
 					</p>
-				</div>'.
+				</div>
+				<h2>Featured Models List</h2>'.
 				'<script type="text/javascript">
 				$(function() {
 				    $(\'#list_data\').dataTable( {
@@ -856,14 +858,15 @@ class Adminrender_library{
 	 * events list
 	 */
 	public function render_eventslist($data){
-//print_r($data);die;		
+
 		$this->ci->load->helper('text');
 
 		$op =	'<div class="grid_2" style="float:right;">
 					<p>
 						<a href="'.site_url('admin/events/new_event').'">New</a>
 					</p>
-				</div>'.
+				</div>
+				<h2>Events List</h2>'.
 				'<script type="text/javascript">
 				$(function() {
 				    $(\'#list_data\').dataTable( {
@@ -928,10 +931,7 @@ class Adminrender_library{
 	 * new events form
 	 */
 	public function render_new_events($data){
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//die;
+
 		$this->ci->template->add_css(ADMINJSPATH.'jquery-ui.css');
 		$this->ci->template->add_js(ADMINJSPATH.'jquery-ui.js');
 
@@ -1126,7 +1126,8 @@ class Adminrender_library{
 					<p>
 						<a href="'.site_url('admin/flinks/new_flink').'">New</a>
 					</p>
-				</div>'.
+				</div>
+				<h2>Featured Links List</h2>'.
 				'<script type="text/javascript">
 				$(function() {
 				    $(\'#list_data\').dataTable( {
@@ -1338,14 +1339,14 @@ class Adminrender_library{
 	 * contests list
 	 */
 	public function render_contestslist($data){
-//print_r($data);die;		
 		$this->ci->load->helper('text');
 
 		$op =	'<div class="grid_2" style="float:right;">
 					<p>
 						<a href="'.site_url('admin/contests/new_contest').'">New</a>
 					</p>
-				</div>'.
+				</div>
+				<h2>Contests List</h2>'.
 				'<script type="text/javascript">
 				$(function() {
 				    $(\'#list_data\').dataTable( {
@@ -1410,10 +1411,7 @@ class Adminrender_library{
 	 * new contest form
 	 */
 	public function render_new_contests($data){
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//die;
+
 		$this->ci->template->add_css(ADMINJSPATH.'jquery-ui.css');
 		$this->ci->template->add_js(ADMINJSPATH.'jquery-ui.js');
 
@@ -1609,7 +1607,8 @@ class Adminrender_library{
 					<p>
 						<a href="'.site_url('admin/news/new_news').'">New</a>
 					</p>
-				</div>'.
+				</div>
+				<h2>News List</h2>'.
 				'<script type="text/javascript">
 				$(function() {
 				    $(\'#list_data\').dataTable( {
@@ -1842,7 +1841,8 @@ class Adminrender_library{
 					<p>
 						<a href="'.site_url('admin/models/new_subject').'">New</a>
 					</p>
-				</div>'.
+				</div>
+				<h2>Agency Models List</h2>'.
 				'<script type="text/javascript">
 				$(function() {
 				    $(\'#list_data\').dataTable( {
@@ -2491,7 +2491,7 @@ class Adminrender_library{
 				</div>
 				<div class="grid_6">
 					<p>
-						<label for="new_password_reenter">Reenter Newe Password</label>
+						<label for="new_password_reenter">Re-Enter New Password</label>
 						<input type="password" class="profile_data" name="new_password_reenter" id="new_password_reenter">
 					</p>
 				</div>
@@ -2516,7 +2516,8 @@ class Adminrender_library{
 					<p>
 						<a href="'.site_url('admin/users/new_user').'">New</a>
 					</p>
-				</div>'.
+				</div>
+				<h2>Users List</h2>'.
 				'<script type="text/javascript">
 				$(function() {
 				    $(\'#list_data\').dataTable( {
@@ -2524,13 +2525,23 @@ class Adminrender_library{
 
 		if($data)
 		foreach($data as $key=>$val){
-			$op .=	'["'.$val->id.'", "'.$val->usertype.'", "'.$val->username.'", "<a class=\"edit\" href=\"'.site_url('admin/users/edit/'.$val->id).'\">Edit</a>","<a class=\"delete\" href=\"'.site_url('admin/users/del/'.$val->id).'\">Delete</a>"], ';
+			$op .=	'[
+						"'.$val->id.'", 
+						"'.$val->usertype.'", 
+						"'.$val->username.'", 
+						"'.$val->last_loggedin.'",
+						"'.$val->last_location.'",
+						"<a class=\"edit\" href=\"'.site_url('admin/users/edit/'.$val->id).'\">Edit</a>",
+						"<a class=\"delete\" href=\"'.site_url('admin/users/del/'.$val->id).'\">Delete</a>"
+					], ';
 		}
 
 		$op .=  '],"aoColumns": [
 			            { "sTitle": "ID" },
 			            { "sTitle": "Usertype" },
 			            { "sTitle": "Username" },
+			            { "sTitle": "Last Logged" },
+			            { "sTitle": "Last Location" },
 			            { "sTitle": "Actions", sWidth:"5%"},
 			            { "sTitle": "" , sWidth:"5%"},
 			        ]
@@ -2561,9 +2572,14 @@ class Adminrender_library{
 
 					<div class="grid_6">
 						<p>
-							<label for="username">Username <small>Alpha-numeric characters without spaces.</small></label>
-							<input type="text" name="username" value="'.($data?$data[0]->username:'').'" />
-						</p>
+							<label for="username">Username <small>Alpha-numeric characters without spaces.</small></label>';
+						if($data){
+							$op .= '<span class="fx">'.$data[0]->username.'</span>';
+						}else{
+							$op .= '<input type="text" name="username" value="" />';
+						}
+
+				$op.=	'</p>
 					</div>
 
 					<div class="grid_6">
@@ -2626,9 +2642,6 @@ class Adminrender_library{
 		$op = 	'<div class="flash_msg">'.$msg.'<span class="flash_close">x</span></div>';
 		return $op;
 	}
-
-
-
 
 
 	public function file_management($data){

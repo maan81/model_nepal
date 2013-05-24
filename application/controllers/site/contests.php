@@ -143,6 +143,8 @@ class Contests extends MY_Controller {
 			}else{
 				$val->featured = '';
 			}
+
+			$val->link = gen_folder_name($val->title);
 		}
 		}
 
@@ -380,11 +382,11 @@ class Contests extends MY_Controller {
 	 * get/generate specified contestant's reqd. info.
 	 */
 	private function get_contestants($contest,$contestant){
-		$data = null;
-
+		$data = new stdClass();
+		
+		if(empty($contestant))return;
 		$img = dirname(BASEPATH).'/'.CONTESTSPATH.$contest.'/'.$contestant.'-detail.jpg';
-		$data->img = base_url().'/'.CONTESTSPATH.$contest.'/'.$contestant.'-detail.jpg';
-
+		$data->img = base_url().CONTESTSPATH.$contest.'/'.$contestant.'-detail.jpg';
 		//contest's folders
 		$folder = dirname(BASEPATH).'/'.CONTESTSPATH.$contest;
 
@@ -540,6 +542,7 @@ class Contests extends MY_Controller {
 
 
 			//the generation of thumbs of imgs ...
+			make_dir($folder, 'thumbs');
 
 			$config['source_image']		= $folder.'/'.$v;			//img
 			$config['new_image'] 		= $folder.'/thumbs/'.$v;	//thumbs of that img 

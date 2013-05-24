@@ -226,7 +226,9 @@ class Contests extends MY_Controller {
 		redirect('admin/contests');
 	}
 
-
+public function file_management($type,$id){
+	redirect('admin/file_management/')
+}
 
 	/**
 	 * Shift the given contests ID 1 setp down

@@ -53,7 +53,7 @@ class File_management extends MY_Controller {
 		$this->template->render();
 	}
 
-	function elfinder_init(){
+	function elfinder_init($type,$id){
 		$this->load->helper('path');
 
 		$opts = array(
@@ -61,8 +61,8 @@ class File_management extends MY_Controller {
 					'roots' => array(
 									array( 
 										'driver' => 'LocalFileSystem', 
-										'path'   => dirname(BASEPATH).'/'.'public', 
-										'URL'    => site_url('public/') . '/',
+										'path'   => dirname(BASEPATH).'/'.'public/'.$type.'/'.$id, 
+										'URL'    => site_url('public/'.$type.'/'.$id).'/',
 
 										//array( // restrict access to jpg files
 										//	'pattern' => '/\.png$/',

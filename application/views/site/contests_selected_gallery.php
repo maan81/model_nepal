@@ -68,9 +68,8 @@
                     </a>
                     <div class="contester_block_botom">
                         <!--facebook like button-->
-                        <!--<img width="47" height="24" class="imgstlef" src="images/like-btn.png">-->
                         <div class="fb-like-wrapper">
-                            <div class="fb-like" data-href="<?php echo current_url()?>" 
+                            <div class="fb-like" data-href="<?php echo $val['link']?>" 
                                     data-send="false" data-layout="box_count" 
                                     data-width="450" data-show-faces="false">
                             </div>
@@ -78,8 +77,7 @@
                         
 
                         <!--facebook send button-->
-                        <fb:send href="<?php echo current_url()?>"></fb:send>
-                        <!--<img width="47" height="24" class="imgstrigh" src="images/send.png">-->
+                        <fb:send href="<?php echo $val['link']?>"></fb:send>
                     </div>
                 </div>
 
@@ -124,7 +122,10 @@
 
 */
 
-?>        <!--<div class="bannerthree">
+?>
+<?php
+/*
+        <!--<div class="bannerthree">
          <div class="models">
           <img  src="images/m1.jpg" alt="model" width="210" height="390" />
           </div><div class="models"><img  src="images/m1.jpg" alt="model" width="210" height="390" /></div><div class="models"><img  src="images/m1.jpg" alt="model" width="210" height="390" /></div>
@@ -148,6 +149,8 @@
             <img src="images/twia.jpg" alt="twia" width="210" height="120" /></div>
             </div>
          </div>-->
+*/
+?>
     </div>
 
    <?php $this->view('site/right_part.php')?>

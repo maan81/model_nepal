@@ -162,6 +162,7 @@ class Contests_model extends CI_Model{
 			$this->load->helper('utilites_helper');
 			$folder_name = gen_folder_name($data[0]->title);
 			make_dir(CONTESTSPATH, $folder_name);
+			make_dir(CONTESTSPATH.$folder_name,'thumbs');
 		}
 
 		return $data;

@@ -226,9 +226,22 @@ class Contests extends MY_Controller {
 		redirect('admin/contests');
 	}
 
-public function file_management($type,$id){
-	redirect('admin/file_management/')
-}
+
+	/**
+	 * Contest's file browser
+	 */
+	public function file_management($name=false){
+		$this->session->set_flashdata('dir_type','Contests');
+		$this->session->set_flashdata('dir_name',
+										ucwords(
+											implode(' ', explode('_', $name)
+												)
+										)
+									);
+
+		redirect('admin/file_management');
+	}
+
 
 	/**
 	 * Shift the given contests ID 1 setp down

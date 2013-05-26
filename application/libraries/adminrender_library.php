@@ -2651,17 +2651,27 @@ class Adminrender_library{
 
 		$this->ci->template->add_css(FILEMGNTCSS.'elfinder.min.css');
 		$this->ci->template->add_js(FILEMGNTJS.'elfinder-nightly.full.js');
-		//$this->ci->template->add_js(ADMINJSPATH.'jquery.cookie.js');
+
+		$name = gen_folder_name($this->ci->session->flashdata('dir_name'));
+		$type = gen_folder_name($this->ci->session->flashdata('dir_type'));
 
 		$op = '';
-		$op .=	'<h2>File Management</h2>
+		$op .=	'<h2>'
+					.$name.
+					' - '
+					.$type.
+					' File Management
+				</h2>
 				<script type="text/javascript" charset="utf-8">
 					$().ready(function() {
-						//var cct = $.cookie("csrf_cookie");						
 
 						var elf = $(\'#elfinder\').elfinder({
-							url : "'.site_url('admin/file_management/elfinder_init').'",  // connector URL (REQUIRED)
-							customData : {'.$data['csrf_name'].': "'.$data['csrf_value'].'"}
+							url : "'.site_url('admin/file_management/elfinder_init/contests/1').'",  // connector URL (REQUIRED)
+							customData : {
+											'.$data['csrf_name'].': "'.$data['csrf_value'].'",
+											type: "'.$type.'",
+											name: "'.$name.'",
+										}
 						}).elfinder(\'instance\');			
 					});
 

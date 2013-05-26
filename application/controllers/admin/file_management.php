@@ -39,13 +39,6 @@ class File_management extends MY_Controller {
 		//$this->template->add_js(ADMINJSPATH.'jquery.dataTables.min.js');
 		$this->template->add_js(ADMINJSPATH.'functions.js');
 
-		//$this->template->add_css(ADMINCSSPATH.'jquery.dataTables.css');
-		//$this->template->add_css(ADMINCSSPATH.'jquery.dataTables_themeroller.css');
-		//$this->template->add_css(ADMINCSSPATH.'demo_page.css');
-		//$this->template->add_css(ADMINCSSPATH.'demo_table.css');
-		//$this->template->add_css(ADMINCSSPATH.'demo_table_jui.css');
-		//$this->template->add_css(ADMINCSSPATH.'dataTables_modifications.css');
-
 		$this->render_navigation();
 		$this->render_user_info();
 		$this->render_flash();
@@ -53,19 +46,22 @@ class File_management extends MY_Controller {
 		$this->template->render();
 	}
 
-	function elfinder_init($type,$id){
+	function elfinder_init(){
 		$this->load->helper('path');
+
+		$type=gen_folder_name($this->input->get('type'));
+		$name=gen_folder_name($this->input->get('name'));
 
 		$opts = array(
 					'debug' => array('error', 'warning', 'event-destroy'), 
 					'roots' => array(
 									array( 
 										'driver' => 'LocalFileSystem', 
-										'path'   => dirname(BASEPATH).'/'.'public/'.$type.'/'.$id, 
-										'URL'    => site_url('public/'.$type.'/'.$id).'/',
+										'path'   => dirname(BASEPATH).'/'.'public/'.$type.'/'.$name.'/',
+										'URL'    => site_url('public/'.$type.'/'.$name.'/'),
 
 										//array( // restrict access to jpg files
-										//	'pattern' => '/\.png$/',
+										//	'pattern' => '/\.jpg$/',
 										//	'write' => false,
 										//	'locked' => true
 										//),
@@ -79,6 +75,7 @@ class File_management extends MY_Controller {
 						            ), 
 								),
 				);
+
 		$this->load->library('elfinder_lib', $opts);
 	}
 

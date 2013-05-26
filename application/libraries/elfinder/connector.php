@@ -26,13 +26,16 @@ function access($attr, $path, $data, $volume) {
 		:  null;                                    // else elFinder decide it itself
 }
 
+$dir_type = gen_folder_name($this->session->flashdata('dir_type'));
+$dir_name = gen_folder_name($this->session->flashdata('dir_name'));
+
 $opts = array(
 	'debug' => true,
 	'roots' => array(
 		array(
 			'driver'        => 'LocalFileSystem',   // driver for accessing file system (REQUIRED)
-			'path'          => dirname(BASEPATH).'/'.'public',         // path to files (REQUIRED)
-			'URL'           => base_url() . 'public/', // URL to files (REQUIRED)
+			'path'          => dirname(BASEPATH).'/'.'public/'.$dir_type.'/'.$dir_name.'/',         // path to files (REQUIRED)
+			'URL'           => base_url() . 'public/'.$dir_type.'/'.$dir_name.'/', // URL to files (REQUIRED)
 			'accessControl' => 'access'             // disable and hide dot starting files (OPTIONAL)
 		)
 	)

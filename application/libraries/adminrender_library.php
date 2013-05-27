@@ -2652,8 +2652,12 @@ class Adminrender_library{
 		$this->ci->template->add_css(FILEMGNTCSS.'elfinder.min.css');
 		$this->ci->template->add_js(FILEMGNTJS.'elfinder-nightly.full.js');
 
-		$name = gen_folder_name($this->ci->session->flashdata('dir_name'));
-		$type = gen_folder_name($this->ci->session->flashdata('dir_type'));
+		$name = $this->ci->session->flashdata('dir_name');
+		$type = $this->ci->session->flashdata('dir_type');
+
+		if(empty($name) || empty($type)){
+			redirect('admin/main');
+		}
 
 		$op = '';
 		$op .=	'<h2>'
@@ -2669,8 +2673,8 @@ class Adminrender_library{
 							url : "'.site_url('admin/file_management/elfinder_init/contests/1').'",  // connector URL (REQUIRED)
 							customData : {
 											'.$data['csrf_name'].': "'.$data['csrf_value'].'",
-											type: "'.$type.'",
-											name: "'.$name.'",
+											type: "'.gen_folder_name($type).'",
+											name: "'.gen_folder_name($name).'",
 										}
 						}).elfinder(\'instance\');			
 					});

@@ -26,8 +26,6 @@ function access($attr, $path, $data, $volume) {
 		:  null;                                    // else elFinder decide it itself
 }
 
-$dir_type = 'type_aaa';
-$dir_name = 'name_bb';
 
 // Documentation for connector options:
 // https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options
@@ -36,19 +34,9 @@ $opts = array(
 	'roots' => array(
 		array(
 			'driver'        => 'LocalFileSystem',   // driver for accessing file system (REQUIRED)
-			'path'		=> set_realpath(dirname(BASEPATH).'/public/'.$dir_type.'/'.$dir_name),
-			'URL'		=> base_url().'public/'.$dir_type.'/'.$dir_name,
-			'accessControl' => 'access',             // disable and hide dot starting files (OPTIONAL)
-//			'attributes' => array(
-//								array(  // show
-//									'pattern' => '/^((?!\.).)/',
-//									'hidden' => false
-//								),
-//								array(  // hide
-//									'pattern' => '/^\./',
-//									'hidden' => true
-//								),
-//			),
+			'path'          => '../files/',         // path to files (REQUIRED)
+			'URL'           => dirname($_SERVER['PHP_SELF']) . '/../files/', // URL to files (REQUIRED)
+			'accessControl' => 'access'             // disable and hide dot starting files (OPTIONAL)
 		)
 	)
 );

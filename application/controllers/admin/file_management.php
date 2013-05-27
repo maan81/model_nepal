@@ -49,16 +49,20 @@ class File_management extends MY_Controller {
 	function elfinder_init(){
 		$this->load->helper('path');
 
-		$type=gen_folder_name($this->input->get('type'));
-		$name=gen_folder_name($this->input->get('name'));
+		$dir_type=gen_folder_name($this->input->get('type'));
+		$dir_name=gen_folder_name($this->input->get('name'));
+
+
 
 		$opts = array(
 					'debug' => array('error', 'warning', 'event-destroy'), 
 					'roots' => array(
 									array( 
 										'driver' => 'LocalFileSystem', 
-										'path'   => dirname(BASEPATH).'/'.'public/'.$type.'/'.$name.'/',
-										'URL'    => site_url('public/'.$type.'/'.$name.'/'),
+										//'path'   => dirname(BASEPATH).'/'.'public/'.$type.'/'.$name.'/',
+										//'URL'    => site_url('public/'.$type.'/'.$name.'/'),
+										'path'		=> set_realpath(dirname(BASEPATH).'/public/'.$dir_type.'/'.$dir_name),
+										'URL'		=> base_url().'public/'.$dir_type.'/'.$dir_name,
 
 										//array( // restrict access to jpg files
 										//	'pattern' => '/\.jpg$/',

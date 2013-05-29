@@ -1,45 +1,36 @@
-<script>
-$(function(){
-	$('#event_pics .event').click(function(e){
-		window.location = '<?php echo site_url('news/')?>'+'/'+$(this).attr('data-id');
-	})
-})
-</script>
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<div class="events_slideshow">
 
-    <?php $count=0?>
-	<?php //medium size image?>
-	<div class="eventpics" id="event_pics">
-		<?php foreach($news as $key=>$val):?>
-            <?php if($count<4): $count++?>
-    			<div class="event" data-id="<?php echo $val->id?>">
-    				<span class="title event_summary"><?php echo $val->title?></span>
-    				<img src="<?php echo $val->image?>" 
-    						alt="<?php echo $val->title?>" 
-    						title="<?php echo $val->title?>" />
-    			</div>
-            <?php endif?>
-		<?php endforeach?>
-	</div>
+<div class="articlepic">
+   <span class="title"><?php echo $val->title?></span>
+   <img src="<?php echo $val->image?>" 
+         alt="<?php echo $val->title?>" 
+         title="<?php echo $val->title?>" />
+</div>
 
-    <?php $count=0?>
-	<?php //small size image?>
-	<div class="event_thumbs" id="event_thumbs">
-		<?php foreach($news as $key=>$val):?>
-            <?php if($count<4): $count++?>
-    			<div class="event">
-    				<div>
-    					<span class="title event_summary"><?php echo $val->title?></span>
-    					<img src="<?php echo $val->image?>" 
-    							alt="<?php echo $val->title?>" 
-    							title="<?php echo $val->title?>" />
+<div class="thumb">
+   <div class="box">
+      <img src="images/thumb-icon.png" alt="thumb" />
+      <img src="images/thumb-icon.png" alt="thumb" /> 
+      <img src="images/thumb-icon.png" alt="thumb" /> 
+      <img src="images/thumb-icon.png" alt="thumb" />
+      <img src="images/thumb-icon.png" alt="thumb" />
+      <img src="images/thumb-icon.png" alt="thumb" width="103" height="85" />
+   </div>
+</div>
 
-                        <div class="selected"></div>
-    				</div>
-    			</div>
-            <?php endif?>
-		<?php endforeach?>
-	</div>
 
+
+====================
+<div class="eventpics" id="event_pics">
+   <?php foreach($news as $key=>$val):?>
+         <?php if($count<4): $count++?>
+         <div class="event" data-id="<?php echo $val->id?>">
+            <span class="title event_summary"><?php echo $val->title?></span>
+            <img src="<?php echo $val->image?>" 
+                  alt="<?php echo $val->title?>" 
+                  title="<?php echo $val->title?>" />
+         </div>
+         <?php endif?>
+   <?php endforeach?>
 </div>

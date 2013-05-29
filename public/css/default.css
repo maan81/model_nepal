@@ -1291,8 +1291,9 @@ div{
 		float:left;
 		height:auto;
 		margin-top:15px;
-		background:#ffffff;
+		background:#031C3B;
 		padding:5px 15px;
+		border-radius: 5px;
 	}
 	
 	.upcomming .articles .block{
@@ -1300,8 +1301,13 @@ div{
 		float:left;
 		height:auto;
 		padding:10px 0;
-	}
-	
+		margin:5px 0;
+		background:#fff;
+		border-radius:5px;
+		-webkit-border-radius:5px;
+		-moz-border-radius:5px;
+	}	
+
 	.upcomming .articles .block img{
 		float:left;
 		margin-right:15px;
@@ -1311,6 +1317,7 @@ div{
 		width:auto;		/* added */
 		height:100px;	/* added */
 	}
+
 	
 	
 	.upcomming .articles .block h1{
@@ -1571,7 +1578,7 @@ div{
 
 /* articles new */
 
-.upcoming .articlepic{
+.upcomming .articlepic{
 		width:674px;
 		border-radius:5px 5px 0 0;
 		-webkit-border-radius:5px 5px 0 0;
@@ -1583,7 +1590,7 @@ div{
 		height:315px;
 	}
 	
-	.upcoming .articlepic .title{
+	.upcomming .articlepic .title{
 		width:674px;
 		position:absolute;
 		background:url(images/modelspage-bg.png);
@@ -1599,14 +1606,14 @@ div{
 		font-family:"Myriad Pro", "Trebuchet MS";
 	}
 
-.upcoming .thumb{
+.upcomming .thumb{
 		width:690px;
 		float:left;
 		background:url(images/thumb-bg.png) no-repeat left bottom;
 		padding-bottom:16px;
 	}
 	
-	.upcoming .thumb .box{
+	.upcomming .thumb .box{
 	width:682px;
 		border-radius:0 0 5px 5px;
 		-webkit-border-radius:0 0 5px 5px;
@@ -1616,12 +1623,12 @@ div{
 		float:left;
 	}
 		
-		.upcoming .thumb .box img{
+		.upcomming .thumb .box img{
 			margin:0 5px 0 0;
 			height:85px;
 		}
 		
-.upcoming .articlethumb{
+.upcomming .articlethumb{
 		width:670px;
 		float:left;
 		background:#031c3b;
@@ -1631,7 +1638,7 @@ div{
 		-moz-border-radius:5px;
 	}
 	
-	.upcoming .articlethumb .block{
+	.upcomming .articlethumb .block{
 		width:650px;
 		float:left;
 		height:auto;
@@ -1643,7 +1650,7 @@ div{
 		-moz-border-radius:5px;
 	}
 	
-	.upcoming .articlethumb .block img{
+	.upcomming .articlethumb .block img{
 		float:left;
 		margin-right:15px;
 		padding:4px;
@@ -1652,22 +1659,22 @@ div{
 	}
 	
 	
-	.upcoming .articlethumb .block h1{
+	.upcomming .articlethumb .block h1{
 		font-family:"Myriad Pro", "Trebuchet MS";
 		padding-top:0;
 	}
 	
-	.upcoming .articlethumb .block h1 a{
+	.upcomming .articlethumb .block h1 a{
 		color:#086bbc;
 		text-decoration:none;
 		font-size:15px;
 	}
 	
-	.upcoming .articlethumb .block h1 a:hover{
+	.upcomming .articlethumb .block h1 a:hover{
 		text-decoration:underline;
 	}
 	
-	.upcoming .articlethumb .block h1 span{
+	.upcomming .articlethumb .block h1 span{
 		display:block;
 		font-size:12px;
 	}

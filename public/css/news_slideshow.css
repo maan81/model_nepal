@@ -4,9 +4,11 @@
 
 #event_pics {
     border: 2px solid #FFFFFF;
-    border-radius: 5px 5px 5px 5px;
-    height: 316px;
-    width: 480px;
+    border-radius: 5px 5px 0px 0px;
+    height: 315px;
+    width: 674px;
+    padding: 8px;
+    background:#fff;
 }
 
 #event_pics .event {
@@ -19,41 +21,43 @@
 }
 
 #event_pics img {
-    width: inherit; 
+    width: 674px;
+    height:315px; 
 }
 
 #event_pics .title {
-    background: none repeat scroll 0 0 #000000;
+    background: none repeat scroll 0 0 #fff;
     bottom: 0;
-    font-size: 1.5em;
-    font-weight: bold;
+    color: #000;
+    font-size: 20px;
     height: 20%;
-    opacity: 0.7;
+    line-height: 45px;
+    opacity: 0.5;
     padding-top: 10px;
     position: absolute;
     text-align: center;
+    text-transform: uppercase;
     width: 100%;
 }
 
 #event_thumbs {
-    background: none repeat scroll 0 0 #EEEEEE;
-    border-radius: 5px 5px 5px 5px;
+    background: none repeat scroll 0 0 #fff;
     height: inherit;
+    width: 98.2%;
+    padding:    8px;
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 195px;
 }
 
 #event_thumbs .event {
     border: 0 none;
     height: 75px;
     padding-top: 5px;
-    width: inherit;
+    width: 105px;
+    float: left;
 }
 #event_thumbs .selected {
     background-color: #000;
-    opacity: 0.7;
+    opacity: 0;
     height: 80px;
     cursor:pointer;
     margin-top:-5px;

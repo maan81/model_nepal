@@ -1,6 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <?php //print_r($news);die;?>
 
+<style type="text/css">
+#footer{
+	margin-top: 35px;
+}
+</style>
+
 <div class="mainContents">
 
 	<div class="leftPart">
@@ -14,9 +20,9 @@
 
 		<div class="upcomming">
 
-			<?php $this->view('site/news_slideshow')?>
+			<?php $this->view('site/news_slideshow_old')?>
 
-			<div class="articles">
+			<div class="articles" style="margin-top:110px;">
 				
 				<?php foreach($news as $key=>$val) :?>
 

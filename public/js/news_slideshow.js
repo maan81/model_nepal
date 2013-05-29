@@ -50,11 +50,11 @@ $(function(){
     $event_thumbs
         .bind({
             'mouseover': function(){
-                $(this).animate({opacity:0},{duration:fade,queue:false});
+                //$(this).animate({opacity:0},{duration:fade,queue:false});
                 //clearInterval(news_ani);
             },
             'mouseout': function(){
-                $(this).animate({opacity:0.7},{duration:fade,queue:false});
+                //$(this).animate({opacity:0.7},{duration:fade,queue:false});
                // news_ani = setInterval(news_ani_fn,disp)
             },
             'click' : function(e){

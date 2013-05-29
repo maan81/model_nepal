@@ -271,30 +271,17 @@ class News extends MY_Controller {
 	 *  @param int[event id], int[selected img id]
 	 *  @return void
 	 */
-	public function get($event_id=null,$img=null){
+	public function get($news_id=null){
 		//redirect to event search if not specified
-		if($event_id==null){
+		if($news_id==null){
 			return $this->search();
 		}
 
 		//----------------------------------------------
 
-		$news = $this->news_model->get(array('id' => $event_id));
-
-		//goto upcomming news function
-		if($news[0]->type=='upcomming'){
-			return $this->event_upcomming($news[0]);
-		}
-
-		//add image & previous & next links
-		$news = $this->event_imgs($news[0],$img);
+		$news = $this->news_model->get(array('id' => $news_id));
 
 		//------------------------------------------------
-
-		//redirect to get the imgs. of the specified event
-		if($img==null){
-			return $this->_list_imgs($event_id);
-		}
 
 		$this->render_skeleton();
 
@@ -302,7 +289,7 @@ class News extends MY_Controller {
 
 		$this->load->model('ads_model');
 
-		
+		$tmp =  $this->ads_model->get(array('dimensions'=>'fullbanner','category'=>'published'));		
 		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
 		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
 
@@ -318,17 +305,11 @@ class News extends MY_Controller {
 					'news'			=>	$news,
 					'render_right'	=>	$tmp3,
 					'flinks'		=>	$flinks,
-					//'img_links'	=> 	$img_links,
+					'add'			=>	$tmp[0],
 					'add2'			=>	$tmp2,
 					);
 
-		if($news->img_type=='potrait'){
-			$op = $this->load->view('site/news_selected.php',$data,true);
-
-		}else{
-			$op = $this->load->view('site/news_selected_hor.php',$data,true);
-		}
-
+		$op = $this->load->view('site/news_selected.php',$data,true);
 		$this->template->write('mainContents',$op);
 
 		//-----------------------------------------------

@@ -1337,3 +1337,337 @@ div{
 
 
 .thumb:nth-child(odd){margin-right: 15px}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* upcoming events */
+
+.leftPart .upcoming{
+	width:690px;
+	float:left;
+	height:auto;
+}
+
+	.upcoming .eventpic{
+		width:674px;
+		border-radius:5px;
+		-webkit-border-radius:5px;
+		-moz-border-radius:5px;
+		padding:8px;
+		background:#ffffff;
+		float:left;
+		position:relative;
+		height:315px;
+	}
+	
+	.upcoming .eventpic .title{
+		width:674px;
+		position:absolute;
+		background:url(images/modelspage-bg.png);
+		height:45px;
+		left:8px;
+		bottom:8px;
+		font-size:20px;
+		color:#333;
+		text-transform:uppercase;
+		text-align:center;
+		line-height:45px;
+		color:#000000;
+		font-family:"Myriad Pro", "Trebuchet MS";
+	}
+	
+		.upcoming .highlights{
+		width:670px;
+		float:left;
+		height:auto;
+		margin-top:15px;
+		background:#ffffff;
+		padding:10px;
+	}
+	
+	
+	.upcoming .highlights h1{
+		color:#000000;
+		font-family:"Myriad Pro", "Trebuchet MS";
+	}
+
+	.upcoming .details{
+		width:690px;
+		margin-top:15px;
+		float:left;
+	}
+	
+	.upcoming .details .desc, .upcoming .details .descright .block{
+		width:430px;
+		float:left;
+		height:auto;
+		background:#ffffff;
+		border-radius:0 0 5px 5px;
+		-moz-border-radius:0 0 5px 5px;
+		-webkit-border-radius:0 0 5px 5px;
+	}
+	
+	.upcoming .details .desc .title, .upcoming .details .descright .block .title{
+		width:430px;
+		float:left;
+		height:35px;
+		background:#f4f4f4;
+		text-indent:10px;
+		line-height:35px;
+		color:#000000;
+		font-family:"Myriad Pro", "Trebuchet MS";
+		font-size:17px;	
+		
+	}
+	
+	.upcoming .details .desc .contents, .upcoming .details .descright .block .contents{
+		width:410px;
+		float:left;
+		height:auto;
+		padding:10px;
+	}
+	
+	.upcoming .details .descright{
+		padding-left:15px;
+		width:245px;
+		float:left;
+		height:auto;
+	}
+	
+	.upcoming .details .descright .block{
+		width:245px !important;
+		margin-bottom:10px;
+	}
+	
+	.upcoming .details .descright .block .title{
+		width:245px !important;
+	}
+	
+		
+	.upcoming .details .descright .block .contents{
+		width:225px !important;
+	}
+	
+	.upcoming .details .descright .block a.link{
+		display:inline-block;
+		text-align:center;
+		padding:10px 25px;
+		text-decoration:none;
+		background:#b5069a;
+		color:#fff;
+		font-size:15px;
+	}
+
+	
+	/* articles */
+	
+	.upcoming .articles{
+		width:660px;
+		float:left;
+		height:auto;
+		margin-top:15px;
+		background:#ffffff;
+		padding:5px 15px;
+	}
+	
+	.upcoming .articles .block{
+		width:660px;
+		float:left;
+		height:auto;
+		padding:10px 0;
+	}
+	
+	.upcoming .articles .block img{
+		float:left;
+		margin-right:15px;
+		padding:4px;
+		border:1px solid #e2e4d7;
+		background:#fff;
+	}
+	
+	
+	.upcoming .articles .block h1{
+		font-family:"Myriad Pro", "Trebuchet MS";
+		padding-top:0;
+	}
+	
+	.upcoming .articles .block h1 a{
+		color:#086bbc;
+		text-decoration:none;
+		font-size:15px;
+	}
+	
+	.upcoming .articles .block h1 a:hover{
+		text-decoration:underline;
+	}
+	
+	.upcoming .articles .block h1 span{
+		display:block;
+		font-size:12px;
+	}
+	
+	/* article - details */
+	
+/* upcoming events */
+
+.leftPart .article-details{
+	width:690px;
+	float:left;
+	height:auto;
+}
+
+.article-details .title{
+	width:660px;
+	text-align:center;
+	padding:15px 15px 10px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	font-size:20px;
+	background:#ffffff;
+}
+
+.article-details .contents{
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	background:#ffffff;
+	width:670px;
+	padding:10px;
+	float:left;
+	margin-top:10px;
+}
+
+.article-details .contents .ver{
+	width:120px;
+	float:left;
+	margin-right:15px;
+	height:600px;
+	background:#605ca8;
+}
+
+.article-details .contents .hor{
+	width:531px;
+	float:right;
+	height:354px;
+	background:#343434;
+}
+
+.article-details .contents img{
+	width: inherit;
+	height: inherit;
+}
+
+/* articles new */
+
+.upcoming .articlepic{
+		width:674px;
+		border-radius:5px 5px 0 0;
+		-webkit-border-radius:5px 5px 0 0;
+		-moz-border-radius:5px 5px 0 0;
+		padding:8px;
+		background:#ffffff;
+		float:left;
+		position:relative;
+		height:315px;
+	}
+	
+	.upcoming .articlepic .title{
+		width:674px;
+		position:absolute;
+		background:url(images/modelspage-bg.png);
+		height:45px;
+		left:8px;
+		bottom:8px;
+		font-size:20px;
+		color:#333;
+		text-transform:uppercase;
+		text-align:center;
+		line-height:45px;
+		color:#000000;
+		font-family:"Myriad Pro", "Trebuchet MS";
+	}
+
+.upcoming .thumb{
+		width:690px;
+		float:left;
+		background:url(images/thumb-bg.png) no-repeat left bottom;
+		padding-bottom:16px;
+	}
+	
+	.upcoming .thumb .box{
+	width:682px;
+		border-radius:0 0 5px 5px;
+		-webkit-border-radius:0 0 5px 5px;
+		-moz-border-radius:0 0 5px 5px;
+		padding:0px 0px 5px 8px;
+		background:#ffffff;
+		float:left;
+	}
+		
+		.upcoming .thumb .box img{
+			margin:0 5px 0 0;
+			height:85px;
+		}
+		
+.upcoming .articlethumb{
+		width:670px;
+		float:left;
+		background:#031c3b;
+		padding:5px 10px;
+		border-radius:5px;
+		-webkit-border-radius:5px;
+		-moz-border-radius:5px;
+	}
+	
+	.upcoming .articlethumb .block{
+		width:650px;
+		float:left;
+		height:auto;
+		padding:10px;
+		margin:5px 0;
+		background:#fff;
+		border-radius:5px;
+		-webkit-border-radius:5px;
+		-moz-border-radius:5px;
+	}
+	
+	.upcoming .articlethumb .block img{
+		float:left;
+		margin-right:15px;
+		padding:4px;
+		border:1px solid #e2e4d7;
+		background:#fff;
+	}
+	
+	
+	.upcoming .articlethumb .block h1{
+		font-family:"Myriad Pro", "Trebuchet MS";
+		padding-top:0;
+	}
+	
+	.upcoming .articlethumb .block h1 a{
+		color:#086bbc;
+		text-decoration:none;
+		font-size:15px;
+	}
+	
+	.upcoming .articlethumb .block h1 a:hover{
+		text-decoration:underline;
+	}
+	
+	.upcoming .articlethumb .block h1 span{
+		display:block;
+		font-size:12px;
+	}

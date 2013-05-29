@@ -73,9 +73,9 @@ $route['contests/(:any)/(:any)/(:any)'] = 'site/contests/get/$1/$2/$3';
 
 
 $route['news'] = 'site/news';
-$route['news/(:any)'] = 'site/news/$1';
-$route['news/(:any)/(:any)'] = 'site/news/$1/$2';
-$route['news/(:any)/(:any)/(:any)'] = 'site/news/$1/$2/$3';
+$route['news/(:any)'] = 'site/news/get/$1';
+$route['news/(:any)/(:any)'] = 'site/news/get/$1/$2';
+$route['news/(:any)/(:any)/(:any)'] = 'site/news/get/$1/$2/$3';
 
 
 $route['search'] = 'site/search';

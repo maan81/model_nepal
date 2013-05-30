@@ -3,7 +3,7 @@
 
 <style type="text/css">
 #footer{
-	margin-top: 35px;
+	margin-top: 150px;
 }
 </style>
 

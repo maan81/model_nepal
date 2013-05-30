@@ -42,4 +42,6 @@ $(function(){
 		<?php endforeach?>
 	</div>
 
+    <img src="<?php echo base_url().IMGSPATH?>thumb-bg.png"/>
+
 </div>

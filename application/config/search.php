@@ -4,7 +4,7 @@
  * search per page -- num. to disp. per search result 
  */
 
-$config['search_per_page'] = 2;
+$config['search_per_page'] = 4;
 
 
 /* End of file search.php */

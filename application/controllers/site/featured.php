@@ -156,24 +156,18 @@ class Featured extends MY_Controller {
 	}
 
 
-	public function get_id($get_id){
-		$this->session->set_flashdata('get_id',$get_id);
-	}
-
 
 	/**
 	 * Search Featured models
 	 *
-	 * @param string (search parameter) , string (search value)
-	 * @return string (html div)
+	 *	 search parameters : 
+	 *		key = param. name
+	 *		val = param. value
+	 *		page = param id to start list with.
 	 */
-//	public function search($key=null,$val=null){
 	public function search(){
-//echo $this->session->userdata('get_id');
-$data = $this->input->get();
-print_r($data);
-$key = $data['key'];$val=$data['val'];
-		$get_id = $this->session->userdata('get_id');
+		$data = $this->input->get();
+		$key = $data['key'];$val=$data['val'];$get_id = $data['page'];
 
 		$this->load->config('search');
 		if( ($key==null) || ($val==null) ){
@@ -185,7 +179,7 @@ $key = $data['key'];$val=$data['val'];
 																			),
 															'limit'=>array(
 																'size'=>$this->config->item('search_per_page'),
-																'start'=>0,
+																'start'=>$get_id,
 																)
 														)
 													);
@@ -201,12 +195,11 @@ $key = $data['key'];$val=$data['val'];
 																			),
 															'limit'	=> array(
 																	'size'=>$this->config->item('search_per_page'),
-																	'start'=>	$get_id,
+																	'start'=>$get_id,
 																	),
 														)
 													);
 		}
-//echo $this->db->last_query();die;
 		$this->load->helper('utilites_helper');
 
 		if($featured){
@@ -222,19 +215,23 @@ $key = $data['key'];$val=$data['val'];
 
 		$this->load->library('pagination');
 
-		$config['base_url'] = base_url().'featured';
-		$config['total_rows'] = $featured_count;
-		$config['per_page'] =  $this->config->item('search_per_page');
-		$config['cur_page'] = $get_id;
+		$config = array(
+					'base_url' 		=> base_url().'featured',
+					'total_rows' 	=> $featured_count,
+					'per_page' 		=> $this->config->item('search_per_page'),
+					'cur_page' 		=> $get_id,
 
-		$config['prev_tag_open'] = '<a href="#">';
-		$config['prev_tag_close'] = '</a>';
+					'prev_tag_open' => '<a href="#">',
+					'prev_link' 	=> '<img src="'.IMGSPATH.'prev.png" alt="Previous" />',
+					'prev_tag_close'=> '</a>',
 
-		$config['next_tag_open'] = '<a href="#">';
-		$config['next_tag_close'] = '</a>';
+					'next_tag_open' => '<a href="#">',
+					'next_link' 	=> '<img src="'.IMGSPATH.'next.png" alt="Next" />',
+					'next_tag_close'=> '</a>',
 
-		$config['full_tag_open'] = '<div class="pagina">';
-		$config['full_tag_close'] = '</div>';
+					'full_tag_open' => '<div class="pagina">',
+					'full_tag_close'=> '</div>',
+				);
 
 
 		$this->pagination->initialize($config);

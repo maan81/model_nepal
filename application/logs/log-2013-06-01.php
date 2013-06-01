@@ -199,3 +199,10 @@ ERROR - 2013-06-01 21:59:51 --> Severity: Notice  --> Undefined variable: key /v
 ERROR - 2013-06-01 22:02:29 --> Severity: Notice  --> Undefined offset: 1 /var/www/model_nepal/application/controllers/site/featured.php 173
 ERROR - 2013-06-01 22:02:29 --> Severity: Notice  --> Undefined offset: 0 /var/www/model_nepal/application/controllers/site/featured.php 173
 ERROR - 2013-06-01 22:02:29 --> Severity: Notice  --> Undefined variable: data /var/www/model_nepal/application/controllers/site/featured.php 174
+ERROR - 2013-06-01 22:27:16 --> Severity: Notice  --> Undefined variable: get_id /var/www/model_nepal/application/controllers/site/featured.php 220
+ERROR - 2013-06-01 23:57:44 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-06-01 23:57:44 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-06-01 23:57:44 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-06-01 23:57:44 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-06-01 23:57:44 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543
+ERROR - 2013-06-01 23:57:44 --> Severity: Warning  --> chmod() [<a href='function.chmod'>function.chmod</a>]: Operation not permitted /var/www/model_nepal/system/libraries/Image_lib.php 543

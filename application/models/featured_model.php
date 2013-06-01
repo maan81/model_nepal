@@ -32,7 +32,6 @@ class Featured_model extends CI_Model{
 	 * @return array of objects, or false 
 	 */
 	public function get($featured=false,$sql_params=false){
-
 		if($featured){
 			foreach($featured as $key=>$value){
 				if($key=='date_created'){
@@ -50,7 +49,7 @@ class Featured_model extends CI_Model{
 				$this->db->order_by($sql_params['order_by']['coln'],$sql_params['order_by']['dir']);
 			}
 			if(isset($sql_params['limit'])){
-				$this->db->limit( $sql_params['limit']['size'], $sql_params['limit']['start'] );
+				$this->db->limit($sql_params['limit']['size'],$sql_params['limit']['start']);
 			}
 		}
 

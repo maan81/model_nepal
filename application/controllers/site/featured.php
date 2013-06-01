@@ -156,48 +156,57 @@ class Featured extends MY_Controller {
 	}
 
 
+	public function get_id($get_id){
+		$this->session->set_flashdata('get_id',$get_id);
+	}
+
+
 	/**
 	 * Search Featured models
 	 *
 	 * @param string (search parameter) , string (search value)
 	 * @return string (html div)
 	 */
-	public function search($key=null,$val=null){
+//	public function search($key=null,$val=null){
+	public function search(){
+//echo $this->session->userdata('get_id');
+$data = $this->input->get();
+print_r($data);
+$key = $data['key'];$val=$data['val'];
+		$get_id = $this->session->userdata('get_id');
 
-		/*
+		$this->load->config('search');
 		if( ($key==null) || ($val==null) ){
-			$this->load->view('site/featured_search.php',array(
-																'featured' => false,
-																'pagination' => false
-																)
-															);
-			return;
-
-		}
-		*/
-
-		if( ($key==null) || ($val==null) ){
+			$featured_count = count($this->featured_model->get());
 			$featured = $this->featured_model->get(	false,
 													array(	'order_by'=> array(
 																			'coln'=>'name',
 																			'dir'=>'asc'
-																			)
+																			),
+															'limit'=>array(
+																'size'=>$this->config->item('search_per_page'),
+																'start'=>0,
+																)
 														)
-												);
+													);
 		
 		}else{
+			$featured_count = count($this->featured_model->get(array($key=>urldecode($val))));
 			$featured = $this->featured_model->get(
-													array(	$key	  => urldecode($val),
+													array(	$key  => urldecode($val),
 														), 
 													array(	'order_by'=> array(
 																			'coln'=>'name',
 																			'dir'=>'asc'
-																			)
+																			),
+															'limit'	=> array(
+																	'size'=>$this->config->item('search_per_page'),
+																	'start'=>	$get_id,
+																	),
 														)
 													);
 		}
-
-
+//echo $this->db->last_query();die;
 		$this->load->helper('utilites_helper');
 
 		if($featured){
@@ -207,70 +216,30 @@ class Featured extends MY_Controller {
 			//search imgs of the selected featured model
 			$full_path = dirname(BASEPATH).'/'.FEATUREDPATH.gen_folder_name($val->name).'/search_img.jpg';	
 
-		/*
-			//create thumbs folder if reqd.
-			make_dir($full_path,'thumbs');
-
-			$imgs = scandir($full_path);									//imgs in that folder
-			foreach($imgs as $k=>$v){
-				if($v!='.' && $v!='..' && $v!='thumbs' ){
-					$preview_img = $v;
-					break;
-				}
-			}
-
-			$config['image_library']	= 'gd2';
-
-
-
-			$config['source_image']		= FEATUREDPATH.gen_folder_name($val->name).'/01/'.$preview_img;		//1st img of the 1st folder
-			
-
-			$config['new_image'] 		= $full_path.'/thumbs/'.$preview_img;		//thumbs of that img 
-			$config['thumb_marker']		= '';
-
-
-			$config['create_thumb'] 	= TRUE;
-			$config['maintain_ratio'] 	= TRUE;
-			$config['width'] 			= 323;
-			$config['height'] 			= 152;
-
-			$this->load->library('image_lib', $config);
-
-			if ( ! $this->image_lib->resize()){
-			    echo $this->image_lib->display_errors();
-			}			
-			//--------------------------------------
-
-			$val->thumbs = FEATUREDPATH.gen_folder_name($val->name).'/01/thumbs/'.$preview_img;
-		*/
-			
 			$val->thumbs = base_url().FEATUREDPATH.gen_folder_name($val->name).'/search_img.jpg';
 		}
 		}
 
-
 		$this->load->library('pagination');
 
 		$config['base_url'] = base_url().'featured';
-		$config['total_rows'] = count($this->featured_model->get());
-		$config['per_page'] = 100000;
+		$config['total_rows'] = $featured_count;
+		$config['per_page'] =  $this->config->item('search_per_page');
+		$config['cur_page'] = $get_id;
 
-		$config['prev_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'prev.png" alt="Previous" title="Previous" />';
+		$config['prev_tag_open'] = '<a href="#">';
 		$config['prev_tag_close'] = '</a>';
 
-		$config['next_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'next.png" alt="Next" title="Next" />';
+		$config['next_tag_open'] = '<a href="#">';
 		$config['next_tag_close'] = '</a>';
 
 		$config['full_tag_open'] = '<div class="pagina">';
 		$config['full_tag_close'] = '</div>';
 
 
-
 		$this->pagination->initialize($config);
 
 		$pagination =  $this->pagination->create_links();
-
 
 		$this->load->view('site/featured_search.php',array(
 															'featured' => $featured,

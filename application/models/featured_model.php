@@ -45,7 +45,6 @@ class Featured_model extends CI_Model{
 				$this->db->where($key,$value);
 			}
 		}
-
 		if($sql_params){
 			if(isset($sql_params['order_by'])){
 				$this->db->order_by($sql_params['order_by']['coln'],$sql_params['order_by']['dir']);

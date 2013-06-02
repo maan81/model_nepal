@@ -85,20 +85,13 @@ class Subjects extends MY_Controller {
 	 * @param string (search parameter) , string (search value)
 	 * @return string (html div)
 	 */
-	public function search($key=null,$val=null){
-		/*
-		if( ($key==null) || ($val==null) ){
-			$this->load->view('site/subjects_search.php',array(
-																'subjects' => false,
-																'pagination' => false
-																)
-															);
-			return;
+	public function search(){
+		$data = $this->input->get();
+		$key = $data['key'];$val=$data['val'];$get_id = $data['page'];
 
-		}
-		*/
-
+		$this->load->config('search');
 		if( ($key==null) || ($val==null) ){
+			$subjects_count = count($this->subjects_model->get());
 			$subjects = $this->subjects_model->corrected_get(	false,
 													array(	'order_by'=> array(
 																			'coln'=>'name',
@@ -108,13 +101,18 @@ class Subjects extends MY_Controller {
 												);
 		
 		}else{
+			$subjects_count = count($this->subjects_model->get(array($key=>urldecode($val))));
 			$subjects = $this->subjects_model->corrected_get(
 													array(	$key	  => urldecode($val),
 														), 
 													array(	'order_by'=> array(
 																			'coln'=>'name',
 																			'dir'=>'asc'
-																			)
+																			),
+															'limit'	=> array(
+																	'size'=>$this->config->item('search_per_page'),
+																	'start'=>$get_id,
+																	),
 														)
 													);
 		}
@@ -187,18 +185,23 @@ class Subjects extends MY_Controller {
 		//pagination
 		$this->load->library('pagination');
 
-		$config['base_url'] = site_url('models');
-		$config['total_rows'] = count($this->subjects_model->get());
-		$config['per_page'] = 100000;
+		$config = array(
+					'base_url' 		=> site_url('models'),
+					'total_rows' 	=> $subjects_count,
+					'per_page' 		=> $this->config->item('search_per_page'),
+					'cur_page' 		=> $get_id,
 
-		$config['prev_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'prev.png" alt="Previous" title="Previous" />';
-		$config['prev_tag_close'] = '</a>';
+					'prev_tag_open' => '<a href="#">',
+					'prev_link' 	=> '<img src="'.IMGSPATH.'prev.png" alt="Previous" />',
+					'prev_tag_close'=> '</a>',
 
-		$config['next_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'next.png" alt="Next" title="Next" />';
-		$config['next_tag_close'] = '</a>';
+					'next_tag_open' => '<a href="#">',
+					'next_link' 	=> '<img src="'.IMGSPATH.'next.png" alt="Next" />',
+					'next_tag_close'=> '</a>',
 
-		$config['full_tag_open'] = '<div class="pagina">';
-		$config['full_tag_close'] = '</div>';
+					'full_tag_open' => '<div class="pagina">',
+					'full_tag_close'=> '</div>',
+				);
 		//------------------------------------------
 
 

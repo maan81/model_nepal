@@ -140,10 +140,6 @@ class Subjects_model extends CI_Model{
 	 * @return the inserted/updated object
 	 */
 	public function set($data=false){
-//echo '<pre>';
-//print_r($data);
-//echo '</pre>';
-//die;
 		if(!$data)
 			return false;
 

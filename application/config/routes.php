@@ -56,7 +56,6 @@ $route['models/(:any)/(:any)'] = 'site/subjects/get/$1/$2';
 $route['models/(:any)/(:any)/(:any)'] = 'site/subjects/get/$1/$2/$3';
 
 $route['featured'] = 'site/featured';
-$route['featured/get_id/(:any)'] = 'site/featured/get_id/$1';
 $route['featured/(:any)'] = 'site/featured/get/$1';
 $route['featured/(:any)/(:any)'] = 'site/featured/get/$1/$2';
 $route['featured/(:any)/(:any)/(:any)'] = 'site/featured/get/$1/$2/$3';

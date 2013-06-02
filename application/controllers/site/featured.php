@@ -216,7 +216,7 @@ class Featured extends MY_Controller {
 		$this->load->library('pagination');
 
 		$config = array(
-					'base_url' 		=> base_url().'featured',
+					'base_url' 		=> site_url('featured'),
 					'total_rows' 	=> $featured_count,
 					'per_page' 		=> $this->config->item('search_per_page'),
 					'cur_page' 		=> $get_id,

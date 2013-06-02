@@ -41,10 +41,6 @@ class News extends MY_Controller {
 		$data = array(
 					'add'		=>	$tmp[0],
 					'add2'		=>	$tmp2,
-					//'event'		=> array(
-					//					'img'	=>	'm4/m4.jpg',
-					//					'url'	=>	'#'
-					//				),
 					'news'		=> $news,
 					'render_right'=>$tmp3,
 					'flinks'	=>	$flinks,
@@ -80,26 +76,42 @@ class News extends MY_Controller {
 	 * @return string (html div)
 	 */
 	public function search($key=null,$val=null){
+		$data = $this->input->get();
+		$key = $data['key'];$val=$data['val'];$get_id = $data['page'];
 
+		$this->load->config('search');
+		$news_count = count($this->news_model->get());
 		if( ($key==null) || ($val==null) ){
-			$this->load->view('site/news_search.php',array(
-																'news' => false,
-																'pagination' => false
-																)
-															);
-			return;
+			$news_count = count($this->news_model->get());
+			$news = $this->news_model->get(	false,
+											array(	'order_by'=> array(
+																	'coln'=>'name',
+																	'dir'=>'asc'
+																	),
+													'limit'=>array(
+														'size'=>$this->config->item('search_per_page'),
+														'start'=>$get_id,
+														)
+												)
+											);
 
+		}else{
+			$news_count = count($this->news_model->get(array($key=>urlencode($val))));
+			$news = $this->news_model->get(
+											array(	$key	  => urldecode($val),
+												), 
+											array(	'order_by'=> array(
+																	'coln'=>'title',
+																	'dir'=>'asc'
+																	),
+													'limit'=>array(
+														'size'=>$this->config->item('search_per_page'),
+														'start'=>$get_id,
+													)
+												)
+											);
 		}
 
-		$news = $this->news_model->get(
-												array(	$key	  => urldecode($val),
-													), 
-												array(	'order_by'=> array(
-																		'coln'=>'title',
-																		'dir'=>'asc'
-																		)
-													)
-												);
 
 		$this->load->helper('utilites_helper');
 
@@ -154,28 +166,34 @@ class News extends MY_Controller {
 		//pagination
 		$this->load->library('pagination');
 
-		$config['base_url'] = base_url().'events';
-		$config['total_rows'] = count($this->events_model->get());
-		$config['per_page'] = 100000;
+		$config = array(
+					'base_url' 		=> site_url('news'),
+					'total_rows' 	=> $news_count,
+					'per_page' 		=> $this->config->item('search_per_page'),
+					'cur_page' 		=> $get_id,
 
-		$config['prev_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'prev.png" alt="Previous" title="Previous" />';
-		$config['prev_tag_close'] = '</a>';
+					'prev_tag_open' => '<a href="#">',
+					'prev_link' 	=> '<img src="'.IMGSPATH.'prev.png" alt="Previous" />',
+					'prev_tag_close'=> '</a>',
 
-		$config['next_tag_open'] = '<a href="#"><img src="'.IMGSPATH.'next.png" alt="Next" title="Next" />';
-		$config['next_tag_close'] = '</a>';
+					'next_tag_open' => '<a href="#">',
+					'next_link' 	=> '<img src="'.IMGSPATH.'next.png" alt="Next" />',
+					'next_tag_close'=> '</a>',
 
-		$config['full_tag_open'] = '<div class="pagina">';
-		$config['full_tag_close'] = '</div>';
+					'full_tag_open' => '<div class="pagina">',
+					'full_tag_close'=> '</div>',
+				);
 		//------------------------------------------
+
 
 
 		$this->pagination->initialize($config);
 
 		$pagination =  $this->pagination->create_links();
 
-
-		$this->load->view('site/events_search.php',array(
-															'events' => $events,
+		//news search js & news search view not yet done.
+		$this->load->view('site/news_search.php',array(
+															'events' => $news,
 															'pagination' => $pagination
 															)
 														);

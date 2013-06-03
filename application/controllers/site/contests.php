@@ -240,6 +240,7 @@ class Contests extends MY_Controller {
 
 		$this->template->add_meta($meta);
 		$this->template->add_css(CSSPATH.'/custom.css');
+		$this->template->add_js(ADMINJSPATH.'/jquery-ui.js');
 		//-----------------------------------------------
 		//-----------------------------------------------
 		$this->template->render();
@@ -515,7 +516,7 @@ class Contests extends MY_Controller {
 		//get & process the img.
 		$count=0;
 		foreach($imgs as $k=>$v){
-			if($v=='.' || $v=='..' || $v=='thumbs'){
+			if($v=='.' || $v=='..' || $v=='thumbs' || $v=='.tmb'){
 				continue;
 			}
 

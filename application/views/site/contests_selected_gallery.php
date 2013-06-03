@@ -14,15 +14,49 @@
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+
+$(function(){
+/*
+  $('.fb_share').find('a').live('click',function(e){
+    e.preventDefault();
+console.log($(this))    
+var $cur_link = $(this).attr('link');
+var $link = 'https://www.facebook.com/sharer/sharer.php?u='+$cur_link;
+
+
+
+  $(this).after().dialog({  //create dialog, but keep it closed
+     autoOpen: true,
+     height: 300,
+     width: 350,
+     modal: true
+  });
+    $(this).after().load($link);
+    $(this).after().dialog("open");
+  })
+*/
+})
+function fbs_click(width, height) {
+    var leftPosition, topPosition;
+    //Allow for borders.
+    leftPosition = (window.screen.width / 2) - ((width / 2) + 10);
+    //Allow for title and status bars.
+    topPosition = (window.screen.height / 2) - ((height / 2) + 50);
+    var windowFeatures = "status=no,height=" + height + ",width=" + width + ",resizable=yes,left=" + leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY=" + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no";
+    u=location.href;
+    t=document.title;
+    window.open('https://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer', windowFeatures);
+    return false;
+}
+
+</script>
 <style type="text/css">
-    .fb-like{margin-top: -40px;}
     .fb-like-wrapper{
         overflow: hidden;
-        top: 10px;
         right:10px;
-        margin-right: 10px;
-        float: right;
+        position: absolute;
+        width: 50px;
     }
     .contester_block_botom{
         position:relative;
@@ -30,7 +64,28 @@
     .fb_edge_widget_with_comment{
         margin-left:10px;
     }
+    .fb_share a{
+      text-decoration: none; 
+      width: 100%; 
+      font-size: 11px; 
+      background: none repeat scroll 0px 0px rgb(236, 238, 245); 
+      color: rgb(59, 89, 152); 
+      border: 1px solid rgb(202, 212, 231); 
+      border-radius: 4px 4px 4px 4px; 
+      padding: 3px; 
+      height: 100%;
+    }
+    .fb_share div{
+      background: url(http://static.ak.fbcdn.net/rsrc.php/v2/yF/r/wtsky0Emo_J.png) no-repeat scroll 0% 0% transparent; 
+      width: 14px; 
+      height: 14px; 
+      display: inline-block; 
+      position: relative; 
+      padding-right: 2px; 
+      top: 2px;
+    }
 </style>
+
 
 <div class="mainContents">
 
@@ -69,15 +124,30 @@
                     <div class="contester_block_botom">
                         <!--facebook like button-->
                         <div class="fb-like-wrapper">
-                            <div class="fb-like" data-href="<?php echo $val['link']?>" 
-                                    data-send="false" data-layout="box_count" 
-                                    data-width="450" data-show-faces="false">
-                            </div>
+                          <div class="fb-like">
+                            <iframe src="//www.facebook.com/plugins/like.php?href=<?php echo $val['link']?>&amp;send=false&amp;layout=button_count&amp;amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21" 
+                                scrolling="no" 
+                                frameborder="0" 
+                                style="border:none; overflow:hidden; height:21px;" 
+                                allowTransparency="true">
+                            </iframe>
+
+                          </div>
                         </div>
                         
 
-                        <!--facebook send button-->
-                        <fb:send href="<?php echo $val['link']?>"></fb:send>
+                        <!--facebook share button-->
+                        <div class="fb_share">
+                        <a id="fb_share" href="#" link="<?php echo $val['link']?>" onClick="return fbs_click(400, 300)">
+                          <div></div>
+                          Share
+                        </a>
+
+
+<!-- Please change the width and height to suit your needs -->
+<!-- <a href="http://www.facebook.com/share.php?u=<full page url to share" onClick="return fbs_click(400, 300)" target="_blank" title="Share This on Facebook"><img src="images/facebookimage.jpg" alt="facebook share"></a>-->
+
+                        </div>
                     </div>
                 </div>
 

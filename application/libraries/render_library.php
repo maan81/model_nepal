@@ -263,11 +263,11 @@ class Render_library{
 						<div class="twia">
 							<div class="heading"> 
 								<span class="left" id="left">
-									<img src="tmp/left.png" alt="left" />
+									<img src="'.base_url().IMGSPATH.'left.png" alt="left" />
 								</span>
 						    	the world in action
 						    	<span class="right" id="right">
-						    		<img src="tmp/right.png" alt="right" />
+						    		<img src="'.base_url().IMGSPATH.'right.png" alt="right" />
 						    	</span>
 						    </div>';
 

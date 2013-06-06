@@ -301,6 +301,34 @@ class Contests extends MY_Controller {
 
 
 	/**
+	 * calls fb's share
+	 */
+	private function share($type,$name){
+		$op = '';
+$url = '';
+//https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2Fmodel_nepal%2Fcontests%2Ffirst_contest&t=Model+Nepal
+$url .= 'https://www.facebook.com/sharer/sharer.php?u=';
+//http%3A%2F%2Flocalhost%2Fmodel_nepal%2F
+$url .= urlencode(base_url());
+$url .= $type.'%2F';
+$url .= $name;
+$url .= '&t=Model+Nepal';
+//echo $url;
+//echo $url;
+		$handle = @fopen(($url), "r");
+		if ($handle) {
+		    while (!feof($handle)) {
+		        $buffer = fgets($handle, 4096);
+		        $op .= $buffer;
+		    }
+		    fclose($handle);
+		}
+		echo $op;
+		die;
+	}
+
+
+	/**
 	 *  The selected contestent
 	 *  @param varchar[contest link], varchar[selected contestnant]
 	 *  @return void
@@ -309,6 +337,12 @@ class Contests extends MY_Controller {
 		//redirect to contest search if not specified
 		if($contests_link==null || $contests_link=='search'){
 			return $this->search($img,$param2);
+		}
+
+		//server side fb share
+		if($contests_link=='share'){
+			$this->share($img,$param2);
+			die;
 		}
 
 		//----------------------------------------------

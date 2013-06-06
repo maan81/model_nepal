@@ -37,21 +37,54 @@ var $link = 'https://www.facebook.com/sharer/sharer.php?u='+$cur_link;
   })
 */
 })
-function fbs_click(width, height) {
-    var leftPosition, topPosition;
+function fbs_click(contestant_name,constent_name) {
+    var leftPosition, topPosition, width=300, height=200, u='';
     //Allow for borders.
     leftPosition = (window.screen.width / 2) - ((width / 2) + 10);
     //Allow for title and status bars.
     topPosition = (window.screen.height / 2) - ((height / 2) + 50);
+
     var windowFeatures = "status=no,height=" + height + ",width=" + width + ",resizable=yes,left=" + leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY=" + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no";
-    u=location.href;
-    t=document.title;
+
+
+    u += 'http://localhost/modelnepal/constents/'+constent_name+'/'+contestant_name;
+    t='Model Nepal Share';
+
     window.open('https://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer', windowFeatures);
     return false;
 }
 
+function fb_share(contestant_name,constent_name){
+
+  var $html = '<div class="overlay"></div><div class="pop" ></div>';
+  $('body').append($html);
+console.log("<?php echo site_url('contests/share').'/'?>"+constent_name+'/'+contestant_name  );
+  $('.pop').load("<?php echo site_url('contests/share').'/'?>"+constent_name+'/'+contestant_name);
+ 
+  return false;
+}
+
 </script>
 <style type="text/css">
+    body > .overlay{
+      background: none repeat scroll 0% 0% black; 
+      height: 100%; 
+      width: 100%; 
+      opacity: 0.5; 
+      left: 0px; 
+      position: fixed; 
+      top: 0px;
+    }
+    body > .pop{
+      z-index: 5; 
+      position: fixed; 
+      top: 20px; 
+      left: 20px; 
+      background: none repeat scroll 0% 0% white; 
+      width: 800px; 
+      height: 300px;
+    }
+
     .fb-like-wrapper{
         overflow: hidden;
         right:10px;
@@ -134,20 +167,19 @@ function fbs_click(width, height) {
 
                           </div>
                         </div>
-                        
 
                         <!--facebook share button-->
                         <div class="fb_share">
-                        <a id="fb_share" href="#" link="<?php echo $val['link']?>" onClick="return fbs_click(400, 300)">
-                          <div></div>
-                          Share
-                        </a>
-
-
-<!-- Please change the width and height to suit your needs -->
-<!-- <a href="http://www.facebook.com/share.php?u=<full page url to share" onClick="return fbs_click(400, 300)" target="_blank" title="Share This on Facebook"><img src="images/facebookimage.jpg" alt="facebook share"></a>-->
-
-                        </div>
+<?php
+ $tmp = explode('/',$val['link']);
+ $contestant_name = array_pop($tmp);
+ $constent_name = array_pop($tmp);
+?>
+                          <a id="fb_share" href="#" onClick="return fbs_click('<?php echo $constent_name?>','<?php echo $contestant_name?>')">
+                            <div></div>
+                            Share
+                          </a>
+                      </div>
                     </div>
                 </div>
 

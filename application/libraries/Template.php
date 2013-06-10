@@ -441,6 +441,13 @@ class CI_Template {
       {
          case 'import':
             $filepath = base_url() . $script;
+            //-----------------------------------
+            //carabiner js minifer
+            $this->CI->load->library('carabiner');
+            $this->CI->carabiner->js($filepath);
+            break;
+            //-----------------------------------
+            
             $js = '<script type="text/javascript" src="'. $filepath .'"';
             if ($defer)
             {
@@ -500,7 +507,13 @@ class CI_Template {
       switch ($type)
       {
          case 'link':
-            
+            //-----------------------------------
+            ////carabiner css minifer
+            //$this->CI->load->library('carabiner');
+            //$this->CI->carabiner->css($filepath);
+            //break;
+            //-----------------------------------
+
             $css = '<link type="text/css" rel="stylesheet" href="'. $filepath .'"';
             if ($media)
             {

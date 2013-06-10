@@ -1,0 +1,21 @@
+.ps_overlay{z-index:90;background:#111;width:100%;height:100%;position:fixed;top:0px;left:0px;opacity:0.5;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=80)}.ps_container{width:480px;height:350px;position:absolute;top:50%;margin-top:-175px;left:50%;margin-left:-240px;z-index:100}.ps_container
+img{border:10px
+solid #fff;position:absolute;top:50%;left:50%;-moz-box-shadow:1px 1px 10px #000;-webkit-box-shadow:1px 1px 10px #000;box-shadow:1px 1px 10px #000}a.ps_close{background:#000 url(http://localhost/model_nepal/public/css/slider.css../images/close.png) no-repeat center center;cursor:pointer;width:56px;height:56px;position:fixed;right:10px;top:10px;z-index:1000;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;opacity:0.6;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60)}a.ps_next_photo{position:absolute;top:50%;left:50%;width:56px;height:56px;margin:-28px 0 0 -28px;z-index:200;cursor:pointer;background:#000 url(http://localhost/model_nepal/public/css/slider.css../images/next_photo.png) no-repeat 50% 50%;opacity:0.6;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px}a.ps_next_photo:hover,a.ps_close:hover{opacity:0.8;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=80)}.ps_slider{width:inherit;height:inherit;position:relative}.ps_slider a.next,
+.ps_slider
+a.prev{position:absolute;background-color:#000;background-position:center center;background-repeat:no-repeat;border:1px
+solid #232323;width:20px;height:20px;top:50%;margin-top:-10px;opacity:0.6;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;cursor:pointer;outline:none;z-index:30}.ps_slider a.prev:hover,
+.ps_slider a.next:hover{border:1px
+solid #333;opacity:0.9}.ps_slider a.disabled,
+.ps_slider a.disabled:hover{opacity:0.4;border:1px
+solid #111;cursor:default}.ps_slider
+a.prev{left:10px;background-image:url('http://localhost/model_nepal/public/css/slider.css../css/images/photostack/prev.png')}.ps_slider
+a.next{right:25px;background-image:url('http://localhost/model_nepal/public/css/slider.css../css/images/photostack/next.png')}.ps_slider
+.ps_album{width:140px;height:310px;background-color:#333;position:absolute;top:0px;text-align:center;cursor:pointer}.ps_slider .ps_album:hover{}.ps_slider .ps_album
+img{height:390px;width:inherit}.ps_slider .ps_album
+.ps_desc{display:block;color:#666;background:#111 url(http://localhost/model_nepal/public/css/slider.css../css/images/photostack/overlay.png) no-repeat bottom right;bottom:6px;height:95%;margin:5px;text-align:left;line-height:190px;opacity:0;overflow:hidden;position:absolute;text-overflow:ellipsis;border:1px
+solid #393939;-moz-box-shadow:0px 0px 2px #000 inset;-webkit-box-shadow:0px 0px 2px #000 inset;box-shadow:0px 0px 2px #000 inset;top:0;width:99%}.ps_slider .ps_album:hover
+.ps_desc{background-image:none}.ps_slider .ps_album .ps_desc
+td{margin:0
+10px 10px 10px;padding:10px}.ps_slider .ps_album .ps_desc :hover{}.ps_slider .ps_album .ps_desc
+h2{font-weight:normal;color:#ddd;text-shadow:0px 0px 1px #fff;bottom:25%;position:absolute;text-align:center;width:100%;font-size:20px}.ps_slider
+.loading{background:#121212 url(http://localhost/model_nepal/public/css/slider.css../images/loading.gif) no-repeat 50% 50%;position:absolute;top:0px;left:0px;width:100%;height:100%;opacity:0.7;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70)}

@@ -20,6 +20,20 @@ class MY_Controller extends CI_Controller {
 		 */
 		$this->load->library('render_library');
 		$this->load->library('adminrender_library');
+	
+		//-----------------------------------------
+		//carabiner minifier
+		$this->load->library('carabiner');
+		$carabiner_config = array(
+		    'script_dir' => JSPATH, 
+		    'style_dir'  => CSSPATH,
+		    'cache_dir'  => 'cache',
+		    'base_uri'   => base_url(),
+		    'combine'    => TRUE,
+		    'dev'        => FALSE
+		);
+		$this->carabiner->config($carabiner_config);
+		//-----------------------------------------
 
 
 		/**

@@ -18,8 +18,10 @@ console.log('Starting seconds : '+t1.getSeconds() + ':' + t1.getMilliseconds() )
 	<?php else:?>
 		<script type='text/javascript' src='<?php echo base_url().JSPATH?>jquery-1.8.2.min.js'></script>
 	<?php endif;?>
-	<?php echo $_scripts?>
-	<?php echo $_styles?>
+
+	<?php $this->carabiner->display()?>
+	<?php //echo $_scripts?>
+	<?php //echo $_styles?>
 	<?php echo $_meta?>
 </head>
 <body>

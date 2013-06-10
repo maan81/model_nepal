@@ -47,7 +47,7 @@ function fbs_click(contestant_name,constent_name) {
     var windowFeatures = "status=no,height=" + height + ",width=" + width + ",resizable=yes,left=" + leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY=" + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no";
 
 
-    u += 'http://localhost/modelnepal/constents/'+constent_name+'/'+contestant_name;
+    u += '<?php echo site_url('contests')?>'+constent_name+'/'+contestant_name;
     t='Model Nepal Share';
 
     window.open('https://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer', windowFeatures);

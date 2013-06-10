@@ -9,6 +9,24 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+<script>
+function fbs_click() {
+    var leftPosition, topPosition, width=300, height=200, u='';
+    //Allow for borders.
+    leftPosition = (window.screen.width / 2) - ((width / 2) + 10);
+    //Allow for title and status bars.
+    topPosition = (window.screen.height / 2) - ((height / 2) + 50);
+
+    var windowFeatures = "status=no,height=" + height + ",width=" + width + ",resizable=yes,left=" + leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY=" + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no";
+
+
+    u += '<?php echo current_url()?>';
+    t='Model Nepal Share';
+
+    window.open('https://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer', windowFeatures);
+    return false;
+}
+</script>
 <style type="text/css">
 	.fb-like{margin-top: -40px;}
 	.fb-like-wrapper{
@@ -55,8 +73,35 @@
 			<img src="<?php echo $contestants->img?>" height="304" width="648" alt="Details" class="insideimage" />
 
 			<div class="contester_detail_btnfacebk">
-
-				<fb:send href="<?php echo current_url()?>"></fb:send>
+				<style type="text/css">
+				    .fb_share a{
+				      text-decoration: none; 
+				      width: 100%; 
+				      font-size: 11px; 
+				      background: none repeat scroll 0px 0px rgb(236, 238, 245); 
+				      color: rgb(59, 89, 152); 
+				      border: 1px solid rgb(202, 212, 231); 
+				      border-radius: 4px 4px 4px 4px; 
+				      padding: 3px; 
+				      height: 100%;
+				    }
+				    .fb_share div{
+				      background: url(http://static.ak.fbcdn.net/rsrc.php/v2/yF/r/wtsky0Emo_J.png) no-repeat scroll 0% 0% transparent; 
+				      width: 14px; 
+				      height: 14px; 
+				      display: inline-block; 
+				      position: relative; 
+				      padding-right: 2px; 
+				      top: 2px;
+				    }
+				</style>
+				<!--facebook share button-->
+				<div class="fb_share">
+					<a id="fb_share" href="#" onClick="return fbs_click()">
+						<div></div>
+						Share
+					</a>
+				</div>
 
 				<div class="fb-like-wrapper">
 					<div class="fb-like" data-href="<?php echo current_url()?>" 

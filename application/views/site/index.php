@@ -1,4 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+<script>
+var t1 = new Date()
+console.log('Starting seconds : '+t1.getSeconds() + ':' + t1.getMilliseconds() )
+</script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -14,7 +18,6 @@
 	<?php else:?>
 		<script type='text/javascript' src='<?php echo base_url().JSPATH?>jquery-1.8.2.min.js'></script>
 	<?php endif;?>
-
 	<?php echo $_scripts?>
 	<?php echo $_styles?>
 	<?php echo $_meta?>
@@ -29,15 +32,6 @@
 		ga('create', 'UA-40135663-1', 'modelnepal.com');
 		ga('send', 'pageview');
 	</script>	
-
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
 	-->
 
 	<?php echo $toplink?>
@@ -55,6 +49,15 @@
     </div>
 
 	 <?php echo $footer?>       
-
+<script>
+$(function(){
+	var t2 = new Date()
+	console.log('jQuery fn ready seconds : '+t2.getSeconds() + ':' + t2.getMilliseconds() )
+})
+window.onload = function(){	
+	var t3 = new Date()
+	console.log('js window onLoad seconds : '+t3.getSeconds() + ':' + t3.getMilliseconds() )
+}
+</script>
 </body>
 </html>

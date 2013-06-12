@@ -318,8 +318,8 @@ class Carabiner {
 		$this->style_path = FCPATH.$this->style_dir;
 		$this->style_uri = $this->base_uri.$this->style_dir;
 
-		$this->cache_path = FCPATH.$this->cache_dir;
-		$this->cache_uri = $this->base_uri.$this->cache_dir;
+		$this->cache_path = FCPATH.$this->cache_dir.'/';
+		$this->cache_uri = $this->base_uri.$this->cache_dir.'/';
 
 		log_message('debug', 'Carabiner: library configured.');
 	}
@@ -711,7 +711,6 @@ class Carabiner {
 	*/		
 	private function _display_css($group = 'main')
 	{
-
 		if( empty($this->css) ) return; // there aren't any css assets, so just stop!
 
 		if( !isset($this->css[$group]) ): // the group you asked for doesn't exist. This should never happen, but better to be safe than sorry.
@@ -1187,11 +1186,10 @@ class Carabiner {
                 
                 if( !isset($this->css[$group]) ): // the group you asked for doesn't exist. This should never happen, but better to be safe than sorry.
 
-			log_message('error', "Carabiner: The CSS string group named '{$group}' does not exist.");
-			return;
+					log_message('error', "Carabiner: The CSS string group named '{$group}' does not exist.");
+					return;
 		
-		endif;
-                
+				endif;
                 $style = implode('', $this->_css_string['main']);
                 
                 if($this->minify_css && strlen($style)){

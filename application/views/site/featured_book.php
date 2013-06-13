@@ -53,7 +53,11 @@
 
 			<div id="form_container">
 			   <h1><a>Book Model - <?php echo $featured[0]->name?></a></h1>
-			   <form id="form_649133" class="appnitro"  method="post" action="">
+			   <?php 
+			   		$attr = array(	'id'=>"form_649133",
+			   						'class'=>"appnitro");
+			   		echo form_open(current_url(),$attr); 
+		   		?>
 			      <div class="form_description">
 			         <h2>Book Model - <?php echo $featured[0]->name?></h2>
 			      </div>

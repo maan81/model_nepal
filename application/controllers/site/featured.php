@@ -342,8 +342,19 @@ class Featured extends MY_Controller {
 	}
 
 
-
+	/**
+	 * Book the selected subject
+	 */
 	private function book($featured_link=null){
+		//book the selected subject
+		if($this->input->post('submit')){
+			$data = $this->input->post();
+
+			$this->featured_model->book($data);
+		}
+
+
+
 		$this->render_skeleton();
 
 		//-----------------------------------------------

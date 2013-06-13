@@ -244,6 +244,15 @@ class Featured_model extends CI_Model{
 
 		return true;
 	}
+
+
+	/**
+	 * Book the selected subject
+	 */
+	public function book($data){
+print_r($data);
+die;		
+	}
 }
 
 /* End of file featured_model.php */

@@ -28,7 +28,7 @@
 			</div>
 			<?php endif?>
 			<div class="book">
-				<a href="#">
+				<a href="<?php echo site_url('featured/book/'.$featured[0]->link)?>">
 					<img src="<?php echo base_url().IMGSPATH?>book.png" alt="Book this model" />
 				</a>
 			</div>

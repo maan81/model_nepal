@@ -247,6 +247,11 @@ class Featured extends MY_Controller {
 
 
 	public function get($featured_link=null,$gallery='01',$img=null){
+		//goto book featured 
+		if($featured_link=='book'){
+			return $this->book($gallery);
+		}
+
 		//goto search featured if no featured id is present
 		if($featured_link==null || $featured_link=='search'){
 			return $this->search($gallery,$img);
@@ -271,7 +276,6 @@ class Featured extends MY_Controller {
 		$rtbbox = $this->ads_model->get(array('dimensions'=>'rtbbox','category'=>'published'));
 		$featured = $this->featured_model->corrected_get(array('link' => $featured_link));
 		$flinks = $this->flinks_model->get();
-
 		//================
 		$galleries = array();
 
@@ -326,6 +330,55 @@ class Featured extends MY_Controller {
 		$meta = array(
 		        array('name' => 'keywords', 'content' => 'nepal, college, model'),
 		        array('name' => 'description', 'content' => 'College Models Events in Nepal'),
+		        array('name' => 'description', 'content' => $featured[0]->name),
+		        array('name' => 'author', 'content' => 'The Fashion Plus'),
+		    );
+
+		$this->template->add_meta($meta);
+
+		//-----------------------------------------------
+		//-----------------------------------------------
+		$this->template->render();
+	}
+
+
+
+	private function book($featured_link=null){
+		$this->render_skeleton();
+
+		//-----------------------------------------------
+
+		$this->load->model('ads_model');
+		$this->load->model('flinks_model');
+
+		$tmp2 = $this->ads_model->get(array('dimensions'=>'rightadsense','category'=>'published'));
+		$tmp3 = $this->ads_model->get(array('dimensions'=>'rads','category'=>'published'),'position','asc');
+		$rtbbox = $this->ads_model->get(array('dimensions'=>'rtbbox','category'=>'published'));
+		$featured = $this->featured_model->get(array('link' => $featured_link));
+		$flinks = $this->flinks_model->get();
+
+		//-----------------------------------------------
+		$this->template->add_js(JSPATH.'featured_book_view.js');
+		$this->template->add_css(CSSPATH.'featured_book_view.css');
+		//-----------------------------------------------
+
+		
+		$data = array(
+					'featured'		=>	$featured,
+					'render_right'	=>	$tmp3,
+					'flinks'		=>	$flinks,
+					'rtbbox'		=>  $rtbbox,
+					'add2'			=>	$tmp2,
+					);
+
+		$op = $this->load->view('site/featured_book.php',$data,true);
+		$this->template->write('mainContents',$op);
+
+		//---------------------------------------------
+		//generate meta tags
+		$meta = array(
+		        array('name' => 'keywords', 'content' => 'nepal, college, model'),
+		        array('name' => 'description', 'content' => 'College Featured Models in Nepal'),
 		        array('name' => 'description', 'content' => $featured[0]->name),
 		        array('name' => 'author', 'content' => 'The Fashion Plus'),
 		    );

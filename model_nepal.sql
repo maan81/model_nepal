@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 21, 2013 at 01:48 PM
+-- Generation Time: Jun 16, 2013 at 12:01 AM
 -- Server version: 5.5.31
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -62,6 +62,30 @@ INSERT INTO `ads` (`id`, `title`, `category`, `type`, `dimensions`, `script`, `l
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `book`
+--
+
+CREATE TABLE IF NOT EXISTS `book` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(127) NOT NULL,
+  `name` varchar(127) NOT NULL,
+  `contact` mediumint(11) NOT NULL,
+  `model_name` varchar(11) NOT NULL,
+  `model_type` varchar(11) NOT NULL,
+  `purpose` varchar(11) NOT NULL,
+  `other` varchar(11) NOT NULL,
+  `local` tinyint(1) NOT NULL DEFAULT '0',
+  `national` tinyint(1) NOT NULL DEFAULT '0',
+  `international` tinyint(1) NOT NULL DEFAULT '0',
+  `duration` varchar(11) NOT NULL,
+  `renumeration` varchar(11) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `contests`
 --
 
@@ -87,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `contests` (
 --
 
 INSERT INTO `contests` (`id`, `title`, `link`, `summary`, `type`, `location`, `time`, `details`, `date_created`, `upcomming`, `featured`, `created_by`, `position`) VALUES
-(1, 'First Contest', 'first_contest', 'aout first contest', 'dance', 'KTM', NULL, NULL, '2013-05-13', 0, 0, 'root', 0);
+(1, 'First Contest', 'first_contest', 'aout first contest', 'dance', 'KTM', NULL, NULL, '2013-05-13', 0, 0, 'root', 1);
 
 -- --------------------------------------------------------
 
@@ -350,9 +374,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `usertype`, `last_loggedin`, `last_location`) VALUES
-(1, 'root', '9d9e9979efe032e23a07cd2623574417', 'root@root.com', 'administrator', '2013-05-16 06:40:17', '::1'),
-(11, 'ff', 'ece926d8c0356205276a45266d361161', 'ff@ff.com', 'administrator', '0000-00-00 00:00:00', '0'),
-(12, 'ee', 'c0bdce0aca8f4f5512bb2fd78c922c24', 'pranijman@gmail.com', 'editor', '0000-00-00 00:00:00', '0');
+(1, 'root', '9d9e9979efe032e23a07cd2623574417', 'root@root.com', 'administrator', '2013-05-31 12:17:30', '127.0.0.1'),
+(11, 'ff', 'ece926d8c0356205276a45266d361161', 'ff@ff.com', 'administrator', '2013-05-23 13:43:06', '127.0.0.1'),
+(12, 'ee', '670da91be64127c92faac35c8300e814', 'pranijman@gmail.com', 'editor', '2013-05-23 13:58:16', '127.0.0.1');
 
 -- --------------------------------------------------------
 

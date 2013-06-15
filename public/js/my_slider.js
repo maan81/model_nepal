@@ -217,7 +217,7 @@
 							'#'+$objID+' .slide {'+
 								'position: absolute;'+
 								'border: 1px solid #FFFAAE;/*editable*/'+
-								'background-color:yellow;/*editable*/'+
+								'/*background-color:yellow;/*editable*/'+
 
 								'height:'+opt.each_height+'px;	/*changes at init*/'+
 								'width:'+opt.each_width+'px;	/*changes at init*/'+

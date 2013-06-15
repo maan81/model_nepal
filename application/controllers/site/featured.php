@@ -347,12 +347,40 @@ class Featured extends MY_Controller {
 	 */
 	private function book($featured_link=null){
 		//book the selected subject
-		if($this->input->post('submit')){
-			$data = $this->input->post();
+		if($this->input->post('element_3')){
+			$this->load->library('form_validation');
 
-			$this->featured_model->book($data);
+			$this->load->config('form_validation');
+
+			if ($this->form_validation->run('book') == FALSE){
+				echo validation_errors();
+				die;
+			}
+			$model_link = $this->session->userdata('model_link');
+			$model_type = $this->session->userdata('model_type');
+			$this->session->unset_userdata('model_link');
+			$this->session->unset_userdata('model_type');
+
+			$data = array(
+						'model_name'=>	$model_link,
+						'model_type'=>	$model_type,
+
+						'purpose'	=>	$this->input->post('purpose'),
+						'other' 	=>	$this->input->post('other'),
+						'national' 	=>	$this->input->post('national'),
+						'duration' 	=>	$this->input->post('duration'),
+						'renumeration'=>$this->input->post('renumeration'),
+						
+						'name' 		=>	$this->input->post('element_2'),
+						'email' 	=>	$this->input->post('element_3'),
+						'contact' 	=>	$this->input->post('element_4'),
+					);
+
+			$this->load->model('book_model');
+			$this->book_model->book($data);
+			echo 'success';
+			die;
 		}
-
 
 
 		$this->render_skeleton();
@@ -381,6 +409,9 @@ class Featured extends MY_Controller {
 					'rtbbox'		=>  $rtbbox,
 					'add2'			=>	$tmp2,
 					);
+
+		$this->session->set_userdata('model_link',$featured[0]->link);
+		$this->session->set_userdata('model_type','featured');
 
 		$op = $this->load->view('site/featured_book.php',$data,true);
 		$this->template->write('mainContents',$op);

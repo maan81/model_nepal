@@ -25,6 +25,7 @@ body
 	width:650px;
 }
 
+/*
 #footer
 {
 	width:640px;
@@ -36,12 +37,13 @@ body
 	font-size: 85%;
 }
 
+
 #footer a{
 	color:#999999;
 	text-decoration: none;
 	border-bottom: 1px dotted #999999;
 }
-
+*/
 #bottom
 {
 	display:block;

@@ -49,3 +49,16 @@ function validateEmail(email) {
 function isValidPhonenumber(value) {
     return (/^\d{7,}$/).test(value.replace(/[\s()+\-\.]|ext/gi, ''));
 }
+
+$(function(){
+	$('#li_9').hide();
+
+	$('#purpose').change(
+		function(){
+			if($(this).val()=='other') 
+				$('#li_9').show() 
+			else 
+				$('#li_9').hide()
+		}   
+	)
+})

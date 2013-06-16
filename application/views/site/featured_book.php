@@ -14,20 +14,35 @@
 
 <script type='text/javascript'>
 $(function(){
+
 	$('#form_649133').submit(function(e){
 		e.preventDefault();
+
+		var duration_checked;
+		$("input:checked",'#li_5').each(function() {
+		   duration_checked = $(this).val();
+		});
+
+
 		$.post(
 			'<?php echo current_url()?>',
 			{
 				//csrf_name 	: '<?php echo $this->security->get_csrf_token_name()?>',
 				//csrf_value 	: '<?php echo $this->security->get_csrf_hash()?>',
-				purpose 	: $('#purpose').val(),
-				other 		: $('#other').val(),
-				renumeration: $('#renumeration').val(),
-				element_2 	: $('#element_2').val(),
-				element_3 	: $('#element_3').val(),
-				element_4 	: $('#element_4').val()
+
+				purpose 		: $('#purpose').val(),
+				other 			: $('#other').val(),
+				local 			: $('#local').val(),
+				national 		: $('#national').val(),
+				international 	: $('#international').val(),
+				duration 		: duration_checked,
+				renumeration 	: $('#renumeration').val(),
+
+				element_2 		: $('#element_2').val(),
+				element_3 		: $('#element_3').val(),
+				element_4 		: $('#element_4').val()
 			},
+
 			function(result){
 				if(result=='success'){
 					alert('Model Book Success');

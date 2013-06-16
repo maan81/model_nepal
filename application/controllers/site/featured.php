@@ -358,8 +358,8 @@ class Featured extends MY_Controller {
 			}
 			$model_link = $this->session->userdata('model_link');
 			$model_type = $this->session->userdata('model_type');
-			$this->session->unset_userdata('model_link');
-			$this->session->unset_userdata('model_type');
+			//$this->session->unset_userdata('model_link');
+			//$this->session->unset_userdata('model_type');
 
 			$data = array(
 						'model_name'=>	$model_link,
@@ -367,7 +367,9 @@ class Featured extends MY_Controller {
 
 						'purpose'	=>	$this->input->post('purpose'),
 						'other' 	=>	$this->input->post('other'),
+						'local' 	=>	$this->input->post('local'),
 						'national' 	=>	$this->input->post('national'),
+						'international'=>$this->input->post('international'),
 						'duration' 	=>	$this->input->post('duration'),
 						'renumeration'=>$this->input->post('renumeration'),
 						
@@ -399,6 +401,7 @@ class Featured extends MY_Controller {
 		//-----------------------------------------------
 		$this->template->add_js(JSPATH.'featured_book_view.js');
 		$this->template->add_css(CSSPATH.'featured_book_view.css');
+
 		//-----------------------------------------------
 
 		

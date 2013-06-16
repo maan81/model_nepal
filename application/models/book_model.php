@@ -72,7 +72,6 @@ class Book_model extends CI_Model{
 		
 		//insert new data
 		}else{
-
 			$this->db->insert($this->table,$data);
 
 			$data = array('id'=>$this->db->insert_id());
@@ -131,7 +130,6 @@ class Book_model extends CI_Model{
 	 * @param array of data to be booked.
 	 */
 	public function book($data){
-		
 		return $this->set($data);
 	}
 }

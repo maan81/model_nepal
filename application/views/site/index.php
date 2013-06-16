@@ -1,8 +1,3 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-<script>
-var t1 = new Date()
-console.log('Starting seconds : '+t1.getSeconds() + ':' + t1.getMilliseconds() )
-</script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -21,7 +16,7 @@ console.log('Starting seconds : '+t1.getSeconds() + ':' + t1.getMilliseconds() )
 
 	<?php $this->carabiner->display()?>
 	<?php //echo $_scripts?>
-	<?php //echo $_styles?>
+	<?php echo $_styles?>
 	<?php echo $_meta?>
 </head>
 <body>
@@ -51,15 +46,5 @@ console.log('Starting seconds : '+t1.getSeconds() + ':' + t1.getMilliseconds() )
     </div>
 
 	 <?php echo $footer?>       
-<script>
-$(function(){
-	var t2 = new Date()
-	console.log('jQuery fn ready seconds : '+t2.getSeconds() + ':' + t2.getMilliseconds() )
-})
-window.onload = function(){	
-	var t3 = new Date()
-	console.log('js window onLoad seconds : '+t3.getSeconds() + ':' + t3.getMilliseconds() )
-}
-</script>
 </body>
 </html>

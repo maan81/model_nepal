@@ -3,7 +3,6 @@
 class Featured_model extends CI_Model{
 	protected $table = 'featured';
 	protected $visitors_count = 'visitors_count';
-	protected $book_table = 'book';
 
 	public function __construct(){
 		parent::__construct();
@@ -243,16 +242,6 @@ class Featured_model extends CI_Model{
 		$this->db->where('id', $id);
 		$this->db->update($this->table);
 
-		return true;
-	}
-
-
-	/**
-	 * Book the selected subject
-	 * @param array of data to be inserted.
-	 */
-	public function book($data){
-		$this->db->insert($this->book_table,$data);
 		return true;
 	}
 }

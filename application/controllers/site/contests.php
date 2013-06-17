@@ -78,7 +78,7 @@ class Contests extends MY_Controller {
 		$op = $this->load->view('site/contests.php',$data,true);
 		$this->template->write('mainContents',$op);
 
-		$this->template->add_js(JSPATH.'default_search.js');
+//		$this->template->add_js(JSPATH.'default_search.js');
 		$this->template->add_js(JSPATH.'events_search.js');
 		//-----------------------------------------------
 		//-----------------------------------------------
@@ -111,7 +111,7 @@ class Contests extends MY_Controller {
 														)
 													);
 		}else{
-			$featured_count = count($this->featured_model->get(array('upcomming'=>'0', $key=>urldecode($val))));
+			$contests_count = count($this->contests_model->get(array('upcomming'=>'0', $key=>urldecode($val))));
 			$contests = $this->contests_model->get(
 													array(	$key	  => urldecode($val),
 															'upcomming'=> '0',
@@ -177,7 +177,6 @@ class Contests extends MY_Controller {
 		$this->pagination->initialize($config);
 
 		$pagination =  $this->pagination->create_links();
-
 
 		$this->load->view('site/contests_search.php',array(
 															'contests' => $contests,

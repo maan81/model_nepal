@@ -30,13 +30,13 @@ class Render_library{
 					</div>
 					<div class="h-ad">';
 
-//				if(isset($data['ads'])){
-//				foreach($data['ads'] as $key=>$val){
-//					$op .= '<a href="'.$val->link.'">
-//								<img src="'.base_url().ADDSPATH.$val->image.'" alt="ad1" />
-//							</a>';
-//				}	
-//				}
+				if(isset($data['ads'])){
+				foreach($data['ads'] as $key=>$val){
+					$op .= '<a href="'.$val->link.'">
+								<img src="'.base_url().ADDSPATH.$val->image.'" alt="ad1" />
+							</a>';
+				}	
+				}
 
 		$op .=		'</div>
 					<div class="nav">
@@ -44,12 +44,59 @@ class Render_library{
 					foreach($data['nav'] as $key=>$val){
 						$op .= '<a href="'.$val.'">'.$key.'</a>';
 					}
+
+
+		$op .= 	'<!-- Google custom search box Start -by BloggerSentral.com -->
+				<div class="cse search" style="color:#000000;float:right;top:9px;/*margin:6px 10px 0 0;*/">
+					<form action="'.site_url('search').'" id="cse-search-box">
+						<input name="cx" type="hidden" value="partner-pub-7372466155313335:2216816197"/>
+						<input id="q" type="text" name="q" />
+						<input name="ie" type="hidden" value="ISO-8859-1"/>
+						<input type="submit" name="sa" value="&nbsp;&nbsp;" />
+						<input type="hidden" name="cof" value="FORID:10" />
+					</form>
+				<script type="text/javascript"
+						src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en">
+				</script>
+				<script>
+
+					$(function(){
+						$("#cse-search-box").submit(function(){
+							document.cookie = "s" + "=" + $("#q").val() + "; path=/";
+						})
+
+						c_name = "s";
+						c_start = document.cookie.indexOf(c_name + "=");
+						if (c_start != -1) {
+							var s;
+							c_start = c_start + c_name.length + 1;
+							c_end = document.cookie.indexOf(";", c_start);
+				
+							if (c_end == -1) {
+								c_end = document.cookie.length;
+							}
+							s = unescape(document.cookie.substring(c_start, c_end));
+							document.cookie = "s" + "=" + "";
+						}
+						s = "";
+						
+						if(window.location.search.length)
+							s = window.location.search.split("&")[1].split("=")[1];
+						$("#q").delay(250).css({border:0,"padding-top":"2px"}).val(s);
+						
+					})
+					</script>
+				</div>
+				<!-- Google custom search box End -->';
+
+
 		$op .=		'</div>
 
 
 				</div>';
 		return $op;
 	}
+
 
 	/**
 	 * Facebook's Like button
@@ -72,6 +119,12 @@ class Render_library{
 						<!--
 						-->
 						<div class="like">	
+							<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fmodelsnepal&amp;send=false&amp;layout=button_count&amp;amp;show_faces=false&amp;font&amp;colorscheme=dark&amp;action=like&amp;height=21"
+									scrolling="no"
+									frameborder="0"
+									style="border:none; overflow:hidden; height:21px;"
+									allowTransparency="true">
+							</iframe>
 						</div>
 
 				    </div>
@@ -136,14 +189,24 @@ class Render_library{
 						<div class="bannertwo">
 							
 							<div class="leftimg">
-						    	<!-- 
-						    	<a href="'.$data['subject']['url'].'">
-						    		<!--<img  src="'.base_url().SUBJECTSPATH.$data['subject']['img'].'" 
-						    					alt="model" width="300" height="250" /> ->
-						    		<img  src="'.base_url().'tmp/m4.jpg" alt="model" width="300" height="250" />
-					    		</a>
-					    		-->
+						    	<!--<a href="'.$data['subject']['url'].'">
+						    		<img  src="'.base_url().SUBJECTSPATH.$data['subject']['img'].'" 
+						    					alt="model" width="300" height="250" />
+						    		<!--<img  src="'.base_url().'tmp/m4.jpg" alt="model" width="300" height="250" /> ->
+					    		</a>-->
 								
+
+								<script type="text/javascript"><!--
+									google_ad_client = "ca-pub-7372466155313335";
+									/* 300 Ad */
+									google_ad_slot = "5624517025";
+									google_ad_width = 300;
+									google_ad_height = 250;
+									//-->
+								</script>
+								<script type="text/javascript"
+										src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+								</script>
 						
 							</div>
 
@@ -151,9 +214,12 @@ class Render_library{
 
 					//advertizing thru image ad
 					if($data['add2'][0]->type=='image'){
-						
+						$op .=	'<a href="'.$data['add2'][0]->link.'">
+									<img src="'.ADDSPATH.$data['add2'][0]->image.'" alt="model" width="355" height="250" />
+								</a>';						
 					//advertizing thru scrip
 					}else{
+						$op.=	$data['add2'][0]->script;
 					}
 
 			$op .= 		    '</div>
@@ -282,9 +348,14 @@ class Render_library{
 
 			//advertizing thru image ad
 			if($val->type=='image'){
+				$op.=	'<a href="'.$val->link.'">
+							<img src="'.base_url().ADDSPATH.$val->image.'" alt="Ad" width="250" />
+						</a>';
+
 			
 			//advertizing thru scrip
 			}else{
+				$op.=	$val->script;
 			}
 
 			$op .=	'</div>';

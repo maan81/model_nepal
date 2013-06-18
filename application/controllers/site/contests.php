@@ -408,6 +408,7 @@ $url .= '&t=Model+Nepal';
 		        //array('name' => 'description', 'content' => $contests->title),
 		        //array('name' => 'description', 'content' => word_limiter($contests->summary),5),
 		        array('name' => 'author', 'content' => 'The Fashion Plus'),
+		        array('name'=>'og:image','content'=>$contestants->img),
 		    );
 
 		$this->template->add_meta($meta);

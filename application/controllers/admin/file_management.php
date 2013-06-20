@@ -30,13 +30,13 @@ class File_management extends MY_Controller {
 		$data = array(	'csrf_name'=> $this->security->get_csrf_token_name(),
 						'csrf_value'=>$this->security->get_csrf_hash(),
 					);
-
+print_r($data);
 		$this->template->set_template('admin');
 
 		$op = $this->adminrender_library->file_management($data);
 		$this->template->write('list',$op);
 
-		//$this->template->add_js(ADMINJSPATH.'jquery.dataTables.min.js');
+		$this->template->add_js(ADMINJSPATH.'jquery.dataTables.min.js');
 		$this->template->add_js(ADMINJSPATH.'functions.js');
 
 		$this->render_navigation();

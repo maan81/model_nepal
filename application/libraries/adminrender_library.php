@@ -454,12 +454,7 @@ class Adminrender_library{
 			$op .=	'[ '.
 						'"'.$val->id.'", '.
 						'"'.$val->name.'", '.
-						'/*"'.($val->gender==1?'Male':'Female').'", */'.
 						
-						'/*"'.$val->wardrobe.'", */'.
-						'"'.$val->location.'", '.
-						'"'.$val->make_up.'", '.
-						'"'.$val->photographer.'", '.
 						'"'.$val->model_by.'", '.
 						'"'.ucfirst($val->ethnicity).'", '.
 
@@ -482,19 +477,15 @@ class Adminrender_library{
 
 
 				$op .=	'"<a class=\"edit\" href=\"'.site_url('admin/featured/edit/'.$val->id).'\">Edit</a>", '.
-						'"<a class=\"delete\" href=\"'.site_url('admin/featured/del/'.$val->id).'\">Delete</a>"'.
+						'"<a class=\"delete\" href=\"'.site_url('admin/featured/del/'.$val->id).'\">Delete</a>", '.
+						'"<a class=\"browse\" href=\"'.site_url('admin/featured/browse/'.$val->link).'\">Browse</a>", '.
 					'],';
 		}
 
 		$op .=  '],"aoColumns": [
 			            { "sTitle": "ID" },
 			            { "sTitle": "Name" },
-			            /*{ "sTitle": "Gender" },*/
 
-			            /*{ "sTitle": "Wardrobe"},*/
-			            { "sTitle": "Location"},
-			            { "sTitle": "Make-Up"},
-			            { "sTitle": "Photographer"},
 			            { "sTitle": "Model By"},
 			            { "sTitle": "Ethnicity"},
 
@@ -503,6 +494,7 @@ class Adminrender_library{
 			            { "sTitle": "Move Down" , sWidth:"5%"},
 
 			            { "sTitle": "Actions", sWidth:"5%"},
+			            { "sTitle": "" , sWidth:"5%"},
 			            { "sTitle": "" , sWidth:"5%"},
 			        ],
 				    "aaSorting":[[7,\'asc\']],
@@ -2655,6 +2647,8 @@ class Adminrender_library{
 		$name = $this->ci->session->flashdata('dir_name');
 		$type = $this->ci->session->flashdata('dir_type');
 
+//$name='model_nepal';
+//$type="featured";
 		if(empty($name) || empty($type)){
 			redirect('admin/main');
 		}

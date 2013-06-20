@@ -263,6 +263,14 @@ class Featured extends MY_Controller {
 		$this->session->set_userdata('updated_id',$id);
 	}
 
+
+	public function browse($name=false){
+		$this->session->set_userdata('dir_type','featured');
+		$this->session->set_userdata('dir_name',$name);
+
+		redirect('admin/file_management/index/featured/'.$name);
+	}
+
 	private function render_navigation(){
 		$menu = $this->adminrender_library->render_navigation('Featured Models');
 		$this->template->write('menu',$menu);

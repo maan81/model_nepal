@@ -443,9 +443,9 @@ class CI_Template {
             $filepath = base_url() . $script;
             //-----------------------------------
             //carabiner js minifer
-            $this->CI->load->library('carabiner');
-            $this->CI->carabiner->js($filepath);
-            break;
+            //$this->CI->load->library('carabiner');
+            //$this->CI->carabiner->js($filepath);
+            //break;
             //-----------------------------------
             
             $js = '<script type="text/javascript" src="'. $filepath .'"';

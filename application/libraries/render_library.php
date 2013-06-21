@@ -135,7 +135,7 @@ class Render_library{
 	/**
 	 * Render Main conteht of the page
 	 */
-	public function render_mainContents($data){
+	public function render_mainContents($data){//print_r($data['add']);die;
 		$op =	'<script type="text/javascript">
 				$(function(){
 					$(".ps_album .ps_desc",".ps_slider").hover(
@@ -151,6 +151,9 @@ class Render_library{
 		$op .= 	'<div class="mainContents">
 					<div class="leftPart">
 						<div class="fullbanner">
+							<a href="'.$data['add']->link.'">
+								<img src="'.ADDSPATH.$data['add']->image.'" />
+							</a>
 						</div>
 						<div class="bannerthree">
 

@@ -2,5 +2,7 @@ application/config/database.php
 application/cache/
 public/.tmb
 public/.quarantine
+public/featured/*/.tmb
+public/featured/*/*/thumbs
 model_nepal.sql
 model_nepal.zip

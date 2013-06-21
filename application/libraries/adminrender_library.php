@@ -2644,11 +2644,10 @@ class Adminrender_library{
 		$this->ci->template->add_css(FILEMGNTCSS.'elfinder.min.css');
 		$this->ci->template->add_js(FILEMGNTJS.'elfinder-nightly.full.js');
 
-		$name = $this->ci->session->flashdata('dir_name');
-		$type = $this->ci->session->flashdata('dir_type');
+		$name = ucwords(preg_replace('/_/', ' ', $data['dir_name']));
+		$type = ucwords(preg_replace('/_/', ' ', $data['dir_type']));
 
-//$name='model_nepal';
-//$type="featured";
+
 		if(empty($name) || empty($type)){
 			redirect('admin/main');
 		}
@@ -2666,17 +2665,52 @@ class Adminrender_library{
 						var elf = $(\'#elfinder\').elfinder({
 							url : "'.site_url('admin/file_management/elfinder_init/contests/1').'",  // connector URL (REQUIRED)
 							customData : {
-											'.$data['csrf_name'].': "'.$data['csrf_value'].'",
-											type: "'.gen_folder_name($type).'",
+											'.//$data['csrf_name'].': "'.$data['csrf_value'].'",
+											'type: "'.gen_folder_name($type).'",
 											name: "'.gen_folder_name($name).'",
 										}
 						}).elfinder(\'instance\');			
+					
+						$(document).ajaxStart(function(){
+							$("#elfinder_spinner_bg").fadeIn(100);
+							$("#elfinder_spinner").fadeIn(100);
+						})
+						$(document).ajaxStop(function(){
+							$("#elfinder_spinner_bg").fadeOut(100);
+							$("#elfinder_spinner").fadeOut(100);
+						})
 					});
 
 				</script>
+				<style type="text/css">
+				#elfinder_spinner_bg{
+					width: 100%; 
+					height: 100%; 
+					opacity: 0.5; 
+					position: absolute; 
+					background-color: black; 
+					z-index: 1;
+					display:none;
+					top:0;
+					left:0;
+				}
+				#elfinder_spinner{
+					background: url('.base_url().IMGSPATH.'ajax-loader.gif) repeat scroll 0% 0% transparent; 
+					position: absolute; 
+					left: 50%; 
+					width: 100px; 
+					height: 100px; 
+					top: 30%;
+					display:none;
+				}
+				</style>
 
 				<!-- Element where elFinder will be created (REQUIRED) -->
-				<div id="elfinder"></div>';
+				<div id="elfinder">
+				</div>
+				<div id="elfinder_spinner_bg"></div>
+				<div id="elfinder_spinner"></div>';
+
 		return $op;
 	}
 

@@ -9,6 +9,7 @@ class File_management extends MY_Controller {
 
 	public function __construct(){
 		parent::__construct();
+
 		/**
 		 * set headers to prevent back after login
 		 */
@@ -17,20 +18,21 @@ class File_management extends MY_Controller {
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
 		$this->output->set_header('Pragma: no-cache');
 
-		if(($this->session->userdata('usertype')!='administrator') &&
-		   ($this->session->userdata('usertype')!='editor') ) {
+		if( !(($this->session->userdata('usertype')!='administrator') ||
+		   ($this->session->userdata('usertype')!='editor') ) ){
 			redirect('admin');
 		}
-
 		//$this->load->model('featured_model');
 		$this->load->library('adminrender_library');
 	}
 
-	public function index(){
+	public function index($type,$name){
 		$data = array(	'csrf_name'=> $this->security->get_csrf_token_name(),
 						'csrf_value'=>$this->security->get_csrf_hash(),
+						'dir_type'		=>$type,
+						'dir_name'		=>$name
 					);
-print_r($data);
+
 		$this->template->set_template('admin');
 
 		$op = $this->adminrender_library->file_management($data);

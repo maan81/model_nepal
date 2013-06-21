@@ -265,8 +265,8 @@ class Featured extends MY_Controller {
 
 
 	public function browse($name=false){
-		$this->session->set_userdata('dir_type','featured');
-		$this->session->set_userdata('dir_name',$name);
+		$this->session->set_flashdata('dir_type','featured');
+		$this->session->set_flashdata('dir_name',$name);
 
 		redirect('admin/file_management/index/featured/'.$name);
 	}

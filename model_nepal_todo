@@ -1,0 +1,19 @@
+model nepal todo
+
+--  Professionals bhanne menu ma models bhanne menu jastai content rakhnu parne
+--  Image to be uploaded from admin ???                                                                                                                                                                                                                                                                                   
+
+
+
+--  Search Engine Optimize garnu parne
+--  Homepage upper banner is missing
+
+-- fulfill images - profile_img.jpg, search_img.jpg, popular_img.jpg
+
+-- resize image
+-- correct access imaging ie, http://modelnepal.com/models/sss/1
+-- resize image in homepage -- 210,390. tell for uploading
+
+-- accessing admin's files directory without logging !!!
+
+-- image dimenstions should be appropriate ones !!!
